@@ -1,4 +1,7 @@
 $(function(){
+    //-------------------------------------------------------------------------- Toolitips au survol des boutons +
+    $('[data-toggle="tooltip"]').tooltip()
+    
     //-------------------------------------------------------------------------- Outil de recherche de jeunes
     $("#npv").keyup(function(){
     	let search = $("#npv").val();
@@ -23,7 +26,4 @@ $(function(){
 
     //-------------------------------------------------------------------------- Remplissage de la liste des villes
     ajaxListVille("#ville");
-
-    //-------------------------------------------------------------------------- Remplissage de la liste des noms d'organisme
-    ajaxListOrga("#nom_orga");
 });

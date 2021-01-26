@@ -11,7 +11,10 @@ $return_arr = array();
 
 while($row = mysqli_fetch_array($result)){
     $contrat_ville = $row['contrat_ville'];
+    $nom_ville = $row['nom_ville'];
     $return_arr[] = array(
-        "contrat_ville" => $contrat_ville,);
+        "contrat_ville" => $contrat_ville,
+        "nom_ville" => $nom_ville,);
 }
-echo json_encode($return_arr);
+
+if($return_arr) {echo json_encode($return_arr);}

@@ -47,7 +47,7 @@ include("header.php"); ?>
 
         <div class="form-floating mx-3 mt-4">
             <select class="form-select" id="genre" aria-label="Genre *">
-                <option selected>Séléctionner un genre</option>
+                <option selected value="">Séléctionner un genre *</option>
                 <option value="Femme">Femme</option>
                 <option value="Homme">Homme</option>
                 <option value="Autre">Autre</option>
@@ -71,12 +71,12 @@ include("header.php"); ?>
         </div>
         <h2 class="pt-4">Sensibilisation</h2>
         <div class="form-floating mx-3 mt-4">
-            <select class="form-select" id="sensiblisation" aria-label="Sensibilisation">
-                <option selected>Ajouter une sensibilisation</option>
-                <option>Sensibilisation 1</option>
-                <option>Sensibilisation 2</option>
-                <option>Sensibilisation 3</option>
-                <option>Sensibilisation 4</option>
+            <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
+                <option selected value="">Ajouter une sensibilisation</option>
+                <option value="1">Sensibilisation 1</option>
+                <option value="2">Sensibilisation 2</option>
+                <option value="3">Sensibilisation 3</option>
+                <option value="4">Sensibilisation 4</option>
             </select>
             <label for="sensiblisation">Sensibilisation</label>
         </div>
@@ -86,12 +86,12 @@ include("header.php"); ?>
         <h2 class="pt-4">Contact</h2>
         <div class="form-floating mx-3 mt-4">
             <input type="email" class="form-control" id="email" placeholder="Email">
-            <label for="email">Email</label>
+            <label for="email">Email <span class="rose-bold">*</span></label>
         </div>
 
         <div class="form-floating mx-3 mt-3">
             <input type="tel" class="form-control" id="tel" placeholder="Téléphone">
-            <label for="tel">Téléphone</label>
+            <label for="tel">Téléphone <span class="rose-bold">*</span></label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <input type="text" class="form-control" id="facebook" placeholder="Facebook">
@@ -119,26 +119,32 @@ include("header.php"); ?>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="ville" aria-label="Ville">
-                <option selected>Séléctionnez la ville</option>
+                <option selected value="">Séléctionnez une ville *</option>
             </select>
             <label for="ville">Ville</label>
         </div>
+        <!--                                                                    Div invisible pour récup nom_ville -->
+        <div class="form-floating mx-3 mt-3 d-none">
+            <input type="text" class="form-control" id="nom_ville_none">
+            <label for="nom_ville_none"></label>
+        </div>
+        
         <div class="form-floating mx-3 mt-3">
             <input type="text" class="form-control" id="contrat_ville" placeholder="Contrat de Ville" disabled>
             <label for="contrat_ville">Contrat de Ville</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="qpv" aria-label="QPV" disabled>
-                <option selected>QPV</option>
-                <option>Oui</option>
-                <option>Non</option>
-                <option>Limite</option>
+                <option selected value="">QPV</option>
+                <option value="Oui">Oui</option>
+                <option value="Non">Non</option>
+                <option value="Limite">Limite</option>
             </select>
             <label for="qpv">QPV</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="nom_qpv" aria-label="Quartier QPV" disabled>
-                <option selected>Séléctionner le quartier QPV</option>
+                <option selected value="">Séléctionner le quartier QPV</option>
 
             </select>
             <label for="nom_qpv">Quartier QPV</label>
@@ -163,26 +169,27 @@ include("header.php"); ?>
         <h2 class="pt-4">Organisme référent</h2>
         <div class="form-floating mx-3 mt-4">
             <select class="form-select" id="type_orga" aria-label="Type d'organisme">
-                <option selected>Séléctionner le type d'organisme</option>
-                <option>Mission Locale</option>
-                <option>Réseau IJ (BIJ, PIJ, CIDJ)</option>
-                <option>Club de prévention</option>
-                <option>Pôle Emploi</option>
-                <option>Centre Paris Anim ou EPJ (Paris)</option>
-                <option>Internet</option>
-                <option>Bouche à oreilles / ami</option>
-                <option>École de la deuxième chance</option>
-                <option>Membre de la Plateforme (Concordia, SJ, …)</option>
-                <option>Autres structures socio-éducatives</option>
-                <option>Etat et collectivités (DDCS…)</option>
-                <option>Foyer de jeunes travailleurs</option>
+                <option selected value="">Séléctionner le type d'organisme</option>
+                <option value="Mission Locale">Mission Locale</option>
+                <option value="Réseau IJ (BIJ, PIJ, CIDJ)">Réseau IJ (BIJ, PIJ, CIDJ)</option>
+                <option value="Club de prévention">Club de prévention</option>
+                <option value="Pôle Emploi">Pôle Emploi</option>
+                <option value="Centre Paris Anim ou EPJ (Paris)">Centre Paris Anim ou EPJ (Paris)</option>
+                <option value="Internet">Internet</option>
+                <option value="Bouche à oreilles / ami">Bouche à oreilles / ami</option>
+                <option value="École de la deuxième chance">École de la deuxième chance</option>
+                <option value="Membre de la Plateforme (Concordia, SJ, …)">Membre de la Plateforme (Concordia, SJ, …)</option>
+                <option value="Autres structures socio-éducatives">Autres structures socio-éducatives</option>
+                <option value="Etat et collectivités (DDCS…)">Etat et collectivités (DDCS…)</option>
+                <option value="Foyer de jeunes travailleurs">Foyer de jeunes travailleurs</option>
+                <option value="Autres">Autres</option>
             </select>
             <label for="type_orga">Type d'organisme</label>
         </div>
         <div class="row mx-1 mt-3">
             <div class="form-floating col-10">
                 <select class="form-select" id="nom_orga" aria-label="Nom de l'organisme" disabled>
-                    <option selected>Séléctionner le nom de l'organisme</option>
+                    <option selected value="">Séléctionner le nom de l'organisme</option>
                 </select>
                 <label for="nom_orga">Nom de l'organisme</label>
             </div>
@@ -212,13 +219,13 @@ include("header.php"); ?>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="niveau" aria-label="Niveau scolaire">
-                <option selected>Séléctionner le niveau scolaire</option>
-                <option>Sans qualification</option>
-                <option>3 (CAP, BEP)</option>
-                <option>4 (Bac)</option>
-                <option>5 (Bac+2)</option>
-                <option>6 (Bac+3/+4)</option>
-                <option>7 (Bac+5)</option>
+                <option selected value="">Séléctionner le niveau scolaire</option>
+                <option value="Sans qualification">Sans qualification</option>
+                <option value="3 (CAP, BEP)">3 (CAP, BEP)</option>
+                <option value="4 (Bac)">4 (Bac)</option>
+                <option value="5 (Bac+2)">5 (Bac+2)</option>
+                <option value="6 (Bac+3/+4)">6 (Bac+3/+4)</option>
+                <option value="7 (Bac+5)">7 (Bac+5)</option>
             </select>
             <label for="niveau">Niveau scolaire</label>
         </div>
@@ -228,13 +235,13 @@ include("header.php"); ?>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="niveau_anglais" aria-label="Niveau d'anglais">
-                <option selected>Séléctionner le niveau d'anglais</option>
-                <option>A1</option>
-                <option>A2</option>
-                <option>B1</option>
-                <option>B2</option>
-                <option>C1</option>
-                <option>C2</option>
+                <option selected value="">Séléctionner le niveau d'anglais</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+                <option value="C1">C1</option>
+                <option value="C2">C2</option>
             </select>
             <label for="niveau_anglais">Niveau d'anglais</label>
         </div>
@@ -248,51 +255,52 @@ include("header.php"); ?>
         <h2 class="pt-4">Situation professionelle</h2>
         <div class="form-floating mx-3 mt-4">
             <select class="form-select" id="statut" aria-label="Statut emploi">
-                <option selected>Séléctionner le statut emploi</option>
-                <option>Demandeur d'emploi de moins d'un an</option>
-                <option>Demandeur d'emploi de plus d'un an</option>
-                <option>En CDD</option>
-                <option>En intérim</option>
-                <option>En CDI</option>
-                <option>Etudiant</option>
-                <option>Service civique</option>
-                <option>En formation</option>
-                <option>Autre</option>
+                <option selected value="">Séléctionner le statut emploi</option>
+                <option value="Demandeur d'emploi de moins d'un an">Demandeur d'emploi de moins d'un an</option>
+                <option value="Demandeur d'emploi de plus d'un an">Demandeur d'emploi de plus d'un an</option>
+                <option value="En CDD">En CDD</option>
+                <option value="En intérim">En intérim</option>
+                <option value="En CDI">En CDI</option>
+                <option value="Etudiant">Etudiant</option>
+                <option value="Service civique">Service civique</option>
+                <option value="En formation">En formation</option>
+                <option value="Autre">Autre</option>
             </select>
             <label for="statut">Statut emploi</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="pe" aria-label="Inscription Pôle Emploi">
-                <option selected>Inscription Pôle Emploi</option>
-                <option>Oui</option>
-                <option>Non</option>
+                <option selected value="">Inscription Pôle Emploi</option>
+                <option value="Oui">Oui</option>
+                <option value="Non">Non</option>
             </select>
             <label for="pe">Inscription Pôle Emploi</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="rsa" aria-label="Allocataire RSA">
-                <option selected>Allocataire RSA</option>
-                <option>Oui</option>
-                <option>Non</option>
+                <option selected value="">Allocataire RSA</option>
+                <option value="Oui">Oui</option>
+                <option value="Non">Non</option>
             </select>
             <label for="rsa">Allocataire RSA</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="gj" aria-label="Garantie Jeune">
-                <option selected>Garantie Jeune</option>
-                <option>Oui</option>
-                <option>Non</option>
+                <option selected value="">Garantie Jeune</option>
+                <option value="Oui">Oui</option>
+                <option value="Non">Non</option>
             </select>
             <label for="gj">Garantie Jeune</label>
         </div>
         <div class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">
-            <button type="button" id="modif" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
-            <button type="button" id="acc" class="btn btn-warning m-3">Démarrer<br>accomp.</button>
-            <button type="button" id="suppr" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
+            <button type="button" id="jeune_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
+            <button type="button" id="jeune_acc" class="btn btn-warning m-3">Démarrer<br>accomp.</button>
+            <button type="button" id="jeune_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
         </div>
     </div>
 </div>
 </form>
+<!--                                                                                                               ! ! ! - - M O D A L S - - ! ! ! -->
 
 <!--                                                                                                               Modal pour choisir ajouter / modifier un organisme -->
 <div class="modal fade" id="modal_orga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -303,6 +311,9 @@ include("header.php"); ?>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
+          <div id="txt_modal_orga" class="d-none" style="font-weight:bold;">
+              Ce type d'organisme ne contient pas de nom.<br><br>
+          </div>
           Souhaitez-vous ajouter ou modifier/supprimer<br> un organisme référent ?
       </div>
       <div class="modal-footer">
@@ -325,19 +336,20 @@ include("header.php"); ?>
           <form id="form_orga_create">
           <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="create_type_orga" aria-label="Type d'organisme *">
-                  <option selected value="">Séléctionner le type d'organisme *</option>
-                  <option>Mission Locale</option>
-                  <option>Réseau IJ (BIJ, PIJ, CIDJ)</option>
-                  <option>Club de prévention</option>
-                  <option>Pôle Emploi</option>
-                  <option>Centre Paris Anim ou EPJ (Paris)</option>
-                  <option>Internet</option>
-                  <option>Bouche à oreilles / ami</option>
-                  <option>École de la deuxième chance</option>
-                  <option>Membre de la Plateforme (Concordia, SJ, …)</option>
-                  <option>Autres structures socio-éducatives</option>
-                  <option>Etat et collectivités (DDCS…)</option>
-                  <option>Foyer de jeunes travailleurs</option>
+                  <option selected value="">Séléctionner le type d'organisme</option>
+                  <option value="Mission Locale">Mission Locale</option>
+                  <option value="Réseau IJ (BIJ, PIJ, CIDJ)">Réseau IJ (BIJ, PIJ, CIDJ)</option>
+                  <option value="Club de prévention">Club de prévention</option>
+                  <option value="Pôle Emploi">Pôle Emploi</option>
+                  <option value="Centre Paris Anim ou EPJ (Paris)">Centre Paris Anim ou EPJ (Paris)</option>
+                  <option value="Internet">Internet</option>
+                  <option value="Bouche à oreilles / ami">Bouche à oreilles / ami</option>
+                  <option value="École de la deuxième chance">École de la deuxième chance</option>
+                  <option value="Membre de la Plateforme (Concordia, SJ, …)">Membre de la Plateforme (Concordia, SJ, …)</option>
+                  <option value="Autres structures socio-éducatives">Autres structures socio-éducatives</option>
+                  <option value="Etat et collectivités (DDCS…)">Etat et collectivités (DDCS…)</option>
+                  <option value="Foyer de jeunes travailleurs">Foyer de jeunes travailleurs</option>
+                  <option value="Autres">Autres</option>
               </select>
               <label for="create_type_orga">Type d'organisme</label>
           </div>
@@ -372,19 +384,20 @@ include("header.php"); ?>
           </div>
           <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="update_type_orga" aria-label="Type d'organisme">
-                  <option selected value="">Modifier le type d'organisme</option>
-                  <option>Mission Locale</option>
-                  <option>Réseau IJ (BIJ, PIJ, CIDJ)</option>
-                  <option>Club de prévention</option>
-                  <option>Pôle Emploi</option>
-                  <option>Centre Paris Anim ou EPJ (Paris)</option>
-                  <option>Internet</option>
-                  <option>Bouche à oreilles / ami</option>
-                  <option>École de la deuxième chance</option>
-                  <option>Membre de la Plateforme (Concordia, SJ, …)</option>
-                  <option>Autres structures socio-éducatives</option>
-                  <option>Etat et collectivités (DDCS…)</option>
-                  <option>Foyer de jeunes travailleurs</option>
+                  <option selected value="">Séléctionner le type d'organisme</option>
+                  <option value="Mission Locale">Mission Locale</option>
+                  <option value="Réseau IJ (BIJ, PIJ, CIDJ)">Réseau IJ (BIJ, PIJ, CIDJ)</option>
+                  <option value="Club de prévention">Club de prévention</option>
+                  <option value="Pôle Emploi">Pôle Emploi</option>
+                  <option value="Centre Paris Anim ou EPJ (Paris)">Centre Paris Anim ou EPJ (Paris)</option>
+                  <option value="Internet">Internet</option>
+                  <option value="Bouche à oreilles / ami">Bouche à oreilles / ami</option>
+                  <option value="École de la deuxième chance">École de la deuxième chance</option>
+                  <option value="Membre de la Plateforme (Concordia, SJ, …)">Membre de la Plateforme (Concordia, SJ, …)</option>
+                  <option value="Autres structures socio-éducatives">Autres structures socio-éducatives</option>
+                  <option value="Etat et collectivités (DDCS…)">Etat et collectivités (DDCS…)</option>
+                  <option value="Foyer de jeunes travailleurs">Foyer de jeunes travailleurs</option>
+                  <option value="Autres">Autres</option>
               </select>
               <label for="update_type_orga">Modifier le type d'organisme</label>
           </div>
@@ -406,12 +419,12 @@ include("header.php"); ?>
 <!--                                                                                                               Scripts -->
 <script src="js/jeune_Populate.js"></script>
 <script src="js/jeune_Create.js"></script>
-<script src="js/jeune_Event.js"></script>
 <script src="js/jeune_Get.js"></script>
+<script src="js/ajax_jeune.js"></script>
 <script src="js/villeQpv.js"></script>
-<script src="js/villeQpv_Ajax.js"></script>
+<script src="js/ajax_villeQpv.js"></script>
 <script src="js/orga.js"></script>
-<script src="js/orga_Ajax.js"></script>
+<script src="js/ajax_orga.js"></script>
 <script src="js/functions.js"></script>
 
 </body>

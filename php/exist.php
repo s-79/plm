@@ -6,6 +6,7 @@ $return_arr = array();
 
 $id_orga = mysqli_real_escape_string($con, $_GET['id_orga']);
 $nom_orga = mysqli_real_escape_string($con, $_GET['nom_orga']);
+$nom_jeune = mysqli_real_escape_string($con, $_GET['nom_jeune']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville_qpv']);
 $id_qpv_prij = mysqli_real_escape_string($con, $_GET['id_qpv_prij']);
 
@@ -14,6 +15,9 @@ if($id_orga) {
 
 } elseif($nom_orga) {
     $query = "SELECT orga_ExistNom('$nom_orga')";
+
+} elseif($nom_jeune) {
+    $query = "SELECT jeune_ExistNom('$nom_jeune')";
 
 } elseif($id_ville_qpv) {
     $query = "SELECT qpv_ExistId('$id_ville_qpv')";
@@ -31,4 +35,5 @@ while($row = mysqli_fetch_array($result)){
     $return_arr[] = array(
         "statut" => $statut,);
 }
-echo json_encode($return_arr);
+
+if($return_arr) {echo json_encode($return_arr);}

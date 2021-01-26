@@ -8,7 +8,10 @@ const type_Change = (type) => {
             const len = response.length;
             if(len === 0) {
                 $("#nom_orga")[0].disabled = true;
-                alert("Ce type d'organisme ne contient pas encore de nom. Vous pouvez en créer un en cliquant sur le (+)")
+                $('#modal_orga').modal('show');
+                // ------------------------------------------------------------- Afficher la div qui dit qu'il n'y a pas d'orga de ce type
+                $("#txt_modal_orga").removeClass("d-none");
+                $("#txt_modal_orga").addClass("d-block");
             } else {
                 $("#nom_orga").append(displayList(response));
                 $("#nom_orga")[0].disabled = false;
@@ -35,7 +38,7 @@ const orga_Change = (id) => {
     });
 }
 
-/* ---------------------------------------------------------------------------- ORGANISME : Création */
+/* ----------------------------------------------------------------------------- ORGANISME : CRÉATION */
 const orga_Create = (nom, type) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom de l'organisme existe-t-il déjà dans la BDD ?
@@ -65,7 +68,7 @@ const orga_Create = (nom, type) => {
         }
     });
 }
-/* ---------------------------------------------------------------------------- ORGANISME : Modification */
+/* ---------------------------------------------------------------------------- ORGANISME : MODIFICATION */
 
 const orga_Update = (id, nom, type) => {
     $.ajax({
@@ -97,7 +100,7 @@ const orga_Update = (id, nom, type) => {
     });
 }
 
-/* ---------------------------------------------------------------------------- ORGANISME : Suppression */
+/* ---------------------------------------------------------------------------- ORGANISME : SUPPRESSION */
 const orga_Delete = (id) => {
     //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
     $.ajax({

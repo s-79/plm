@@ -1,19 +1,26 @@
 $(function(){
     //-------------------------------------------------------------------------- EVENEMENT CHANGE UN NOM DE VILLE
     $("#ville").change(function(){
-        //---------------------------------------------------------------------- Remplissage du champ "contrat de ville"
-        contrat_ville_Change($("#ville").val());
-        //---------------------------------------------------------------------- La ville possède-t-elle des quartiers QPV ? Si oui, on donne accès au champs QPV
-        qpv_Exist($("#ville").val())
-        //---------------------------------------------------------------------- Reinitialisation du champ QPV
-        let qpv_Reset = "<option selected value=''>QPV</option>"
-        for (e of ["Oui", "Non", "Limite"]) {qpv_Reset += `<option value="${e}">${e}</option>`;}
-        $("#qpv").html(qpv_Reset);
-        //---------------------------------------------------------------------- Reinitialisation et désactivation du champ nom QPV
-        $("#nom_qpv").html("<option selected>Séléctionner le quartier QPV</option>");
-        $("#nom_qpv")[0].disabled = true;
-        //---------------------------------------------------------------------- Décochage de la case prij
-        $("#prij").prop('checked', false);
+        const id_ville = $("#ville").val();
+        //---------------------------------------------------------------------- Si aucune ville n'est séléctionnée, on vide les champs
+        if(!id_ville){
+            $("#contrat_ville").val("");
+            $("#qpv").val("");
+        } else {
+            //------------------------------------------------------------------ Remplissage du champ "contrat de ville"
+            contrat_ville_Change(id_ville);
+            //------------------------------------------------------------------ La ville possède-t-elle des quartiers QPV ? Si oui, on donne accès au champs QPV
+            qpv_Exist(id_ville);
+            //------------------------------------------------------------------ Reinitialisation du champ QPV
+            let qpv_Reset = "<option selected value=''>QPV</option>"
+            for (e of ["Oui", "Non", "Limite"]) {qpv_Reset += `<option value="${e}">${e}</option>`;}
+            $("#qpv").html(qpv_Reset);
+            //---------------------------------------------------------------------- Reinitialisation et désactivation du champ nom QPV
+            $("#nom_qpv").html("<option selected>Séléctionner le quartier QPV</option>");
+            $("#nom_qpv")[0].disabled = true;
+            //------------------------------------------------------------------ Décochage de la case prij
+            $("#prij").prop('checked', false);
+        }
     });
 
     //-------------------------------------------------------------------------- EVENEMENT CHANGE SUR QPV (OUI, NON, LIMITE)
@@ -34,6 +41,9 @@ $(function(){
     //-------------------------------------------------------------------------- EVENEMENT CHANGE LE CHOIX D'UN NOM DE QUARTIER QPV
     $("#nom_qpv").change(function(){
         //---------------------------------------------------------------------- Le quartier est-il PRIJ ? Si oui, on coche la case.
-        qpv_Prij($("#nom_qpv").val());
+        const prij = $("#nom_qpv").val();
+        //---------------------------------------------------------------------- Si aucun quartier n'est séléctionné, on décoche la case..
+        if(!prij) $("#prij").prop('checked', false);
+        else {qpv_Prij(prij);}
     });
 });

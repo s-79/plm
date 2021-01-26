@@ -25,6 +25,7 @@ while($row = mysqli_fetch_array($result)){
     $adresse = $row['adresse'];
     $id_ville = $row['id_ville'];
     $ville = $row['ville'];
+    $nom_ville = $row['nom_ville'];
     $contrat_ville = $row['contrat_ville'];
     $qpv = $row['qpv'];
     $id_qpv = $row['id_qpv'];
@@ -62,6 +63,7 @@ while($row = mysqli_fetch_array($result)){
         "adresse" => $adresse,
         "id_ville" => $id_ville,
         "ville" => $ville,
+        "nom_ville" => $nom_ville,
         "contrat_ville" => $contrat_ville,
         "qpv" => $qpv,
         "id_qpv" => $id_qpv,
@@ -83,4 +85,5 @@ while($row = mysqli_fetch_array($result)){
         "rsa" => $rsa,
         "gj" => $gj);
 }
-echo json_encode($return_arr);
+
+if($return_arr) {echo json_encode($return_arr);}

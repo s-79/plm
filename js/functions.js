@@ -13,7 +13,6 @@ const displayList = response => {
 // ---------------------------------------------------------------------------- FONCTIONS AJAX
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste NPV - Récup données & append */
-
 const ajaxListNpv = (liste) => {
     $.ajax({
         url: "php/jeune_Populate.php",
@@ -50,7 +49,7 @@ const ajaxListVille = (liste) => {
 // ----------------------------------------------------------------------------- ! ! !  - - R È G L E S  D E  V E R I F I C A T I O N - - ! ! !
 
 // ----------------------------------------------------------------------------- Fonction vérification de la longueur du champ présentation
-const verifLength = (nom, champ, nbCar) => {
+const vLen = (nom, champ, nbCar) => {
 	if(champ.length <= nbCar) etat=true;
     else {
         alert(`La taille du champ ${nom} ne doit pas dépasser les ${nbCar} caractères.`);

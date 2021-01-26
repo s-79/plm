@@ -2,6 +2,7 @@ $(function(){
     //-------------------------------------------------------------------------- ÉVENEMENT CLICK SUR LE BOUTONS AFFICHER LES INFORMATIONS
     $("#infos").click(function(){
         $("#ville").html("");
+        $("#nom_ville_none").html("");
         $("#nom_qpv").html("");
         $("#nom_orga").html("");
 
@@ -30,7 +31,8 @@ $(function(){
                     const urgence = response[0].urgence;
                     const adresse = response[0].adresse;
                     const id_ville = response[0].id_ville;
-                    const nom_ville = response[0].ville;
+                    const ville = response[0].ville;
+                    const nom_ville = response[0].nom_ville;
                     const contrat_ville = response[0].contrat_ville;
                     const qpv = response[0].qpv;
                     const id_qpv = response[0].id_qpv;
@@ -67,7 +69,8 @@ $(function(){
                     $("#insta").val(insta);
                     $("#urgence").val(urgence);
                     $("#adresse").val(adresse);
-                    $("#ville").prepend(`<option selected value="${id_ville}">${nom_ville}</option>`);
+                    $("#ville").prepend(`<option selected value="${id_ville}">${ville}</option>`);
+                    $("#nom_ville_none").val(nom_ville);
                     $("#contrat_ville").val(contrat_ville);
                     $("#qpv").val(qpv);
                     $("#nom_qpv").prepend(`<option selected value="${id_qpv}">${nom_qpv}</option>`);
@@ -90,11 +93,10 @@ $(function(){
                 }
             });
         }
-
-        //-------------------------------------------------------------------------- Remplissage de la liste des villes
+        //---------------------------------------------------------------------- Remplissage de la liste des villes
         ajaxListVille("#ville");
 
-        //-------------------------------------------------------------------------- Remplissage de la liste des noms d'organisme
-        ajaxListOrga("#nom_orga");
+        //---------------------------------------------------------------------- Remplissage de la liste des noms d'organisme
+        // ajaxListOrga("#nom_orga");
     });
 });

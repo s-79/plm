@@ -21,4 +21,5 @@ while($row = mysqli_fetch_array($result)){
         "type_orga" => $type_orga,
         );
 }
-echo json_encode($return_arr);
+
+if($return_arr) {echo json_encode($return_arr);}

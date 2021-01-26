@@ -11,8 +11,7 @@ $v_ville = mysqli_real_escape_string($con, $_GET['v_ville']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville']);
 $texte = mysqli_real_escape_string($con, $_GET['texte']);
 
-if($v_npv) {
-    $query = "CALL npv_List ()";
+if($v_npv) {$query = "CALL npv_List ()";
 
 } elseif($v_orga) {
     $query = "CALL orga_List ()";
@@ -42,4 +41,4 @@ while($row = mysqli_fetch_array($result)){
         "id" => $id,
         "nom" => $nom,);
 }
-echo json_encode($return_arr);
+if($return_arr) {echo json_encode($return_arr);}

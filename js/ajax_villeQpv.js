@@ -1,4 +1,4 @@
-/* ---------------------------------------------------------------------------- VILLE : Changement dans le menu SELECT */
+/* ----------------------------------------------------------------------------- VILLE : Changement dans le menu SELECT */
 const contrat_ville_Change = (id_ville) => {
     $.ajax({
         url: "php/ville_contrat.php",
@@ -6,14 +6,16 @@ const contrat_ville_Change = (id_ville) => {
         data : {id_ville:id_ville},
         success: function(response){
             const contrat_ville = response[0].contrat_ville;
+            const nom_ville = response[0].nom_ville;
             $("#contrat_ville").val(contrat_ville);
+            $("#nom_ville_none").val(nom_ville);
         }
     });
 }
 
+//------------------------------------------------------------------------------ La ville possède-t-elle des quartiers QPV ?
 const qpv_Exist = (id) => {
     $.ajax({
-        //---------------------------------------------------------------------- La ville possède-t-elle des quartiers QPV ?
         url: "php/exist.php",
         dataType: 'JSON',
         data : {id_ville_qpv:id},
@@ -31,7 +33,7 @@ const qpv_Exist = (id) => {
     });
 }
 
-/* ---------------------------------------------------------------------------- QPV : Changement dans le menu SELECT */
+/* ----------------------------------------------------------------------------- QPV : Changement dans le menu SELECT */
 const qpv_Change = (id_ville) => {
     $.ajax({
         url: "php/jeune_Populate.php",
