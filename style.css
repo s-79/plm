@@ -1,0 +1,73 @@
+body {
+    font-family: "DejaVu Sans", sans-serif;
+}
+
+.pointeur {
+    cursor: pointer;
+}
+
+h2, .titre {
+    font-size: x-large;
+    font-weight: bold;
+    color: rgb(101, 178, 222);
+}
+
+label {
+    margin-left: 0.65em;
+}
+
+.btn-bleu:hover {
+    background-color: rgb(101, 178, 255);
+    color: rgb(25, 30, 54);
+}
+
+/* ----------------------------------------------------------------------------- NAVBAR */
+.navbar {
+    background-color: rgb(25, 30, 54);
+    font-size: medium;
+    letter-spacing: 1px;
+}
+
+.nav-pills .nav-link {
+    color: #fff !important;
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 10px;
+}
+
+.nav-pills .nav-link.active,  .nav-pills .nav-link:hover {
+    color: rgb(25, 30, 54) !important;
+    background-color: #fff;
+}
+
+/* ------------------------------------------------------------------------------------------- COULEURS PLM */
+.marine {
+    color: rgb(25, 30, 54);
+}
+.bleu {
+    color: rgb(101, 178, 222);
+}
+.beige {
+    color: rgb(200, 184, 162);
+}
+.rose {
+    color: rgb(218, 51, 80);
+}
+
+.rose-bold {
+    color: rgb(218, 51, 80);
+    font-weight: bold;
+}
+
+.bg-marine {
+    background-color: rgb(25, 30, 54);
+}
+.bg-bleu {
+    background-color: rgb(101, 178, 222);
+}
+.bg-beige {
+    background-color: rgb(200, 184, 162);
+}
+.bg-rose {
+    background-color: rgb(218, 51, 80);
+}
