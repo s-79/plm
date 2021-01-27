@@ -10,6 +10,11 @@ const displayList = response => {
     return res;
 }
 
+/* ---------------------------------------------------------------------------- 1ère lettre en majuscule */
+const strUpFirst = a => {
+    return (a+'').charAt(0).toUpperCase()+a.substr(1);
+}
+
 // ---------------------------------------------------------------------------- FONCTIONS AJAX
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste NPV - Récup données & append */

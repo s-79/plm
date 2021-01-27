@@ -8,19 +8,21 @@ $(function(){
         //---------------------------------------------------------------------- Remplissage de la liste des villes
         $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
         ajaxListVille("#ville");
+        //---------------------------------------------------------------------- Reinitialisation des premières lignes
+        $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
+        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
     });
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E -- !!!
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "ENREGISTRER LA FICHE" DANS LA PAGE JEUNE
     $('#jeune_create').click(function(){
-
         // --------------------------------------------------------------------- Récupération des valeus saisies par l'utilisateur
         let adherent =  $("#adherent").is(':checked');
         if(adherent)adherent=1;else{adherent=0};
         const genre = $("#genre").val();
-        const nom = $("#nom").val();
-        const prenom = $("#prenom").val();
+        const nom = $("#nom").val().toUpperCase();
+        const prenom = strUpFirst($("#prenom").val());
         const ddn = $("#ddn").val();
         const sensibilisation = $("#sensibilisation").val();
         const email = $("#email").val();
@@ -34,7 +36,7 @@ $(function(){
         const nom_ville = $("#nom_ville_none").val();
         const contrat_ville = $("#contrat_ville").val();
         const qpv = $("#qpv").val();
-        const id_qpv = $("#id_qpv").val();
+        const id_qpv = $("#nom_qpv").val();
         let prij =  $("#prij").is(':checked');
         if(prij)prij=1;else{prij=0};
         const type_orga = $("#type_orga").val();
@@ -48,6 +50,7 @@ $(function(){
         const niveau_anglais = $("#niveau_anglais").val();
         const langues = $("#langues").val();
         const statut = $("#statut").val();
+        alert(statut);
         const pe = $("#pe").val();
         const rsa = $("#rsa").val();
         const gj = $("#gj").val();
@@ -64,10 +67,9 @@ $(function(){
             && vLen("Autres langues parlées",langues,255)) {
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
+                alert(npv);
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Create(npv, adherent, genre, nom, prenom, ddn, sensiblisation, email, tel facebook, skype, insta, urgence, adresse,
-                id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais,
-                langues, statut, pe, rsa, gj);
+                jeune_Create(npv, adherent, genre, nom, prenom, ddn, sensibilisation, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
             }
         }
     })

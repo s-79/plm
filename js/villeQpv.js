@@ -16,7 +16,7 @@ $(function(){
             for (e of ["Oui", "Non", "Limite"]) {qpv_Reset += `<option value="${e}">${e}</option>`;}
             $("#qpv").html(qpv_Reset);
             //---------------------------------------------------------------------- Reinitialisation et désactivation du champ nom QPV
-            $("#nom_qpv").html("<option selected>Séléctionner le quartier QPV</option>");
+            $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
             $("#nom_qpv")[0].disabled = true;
             //------------------------------------------------------------------ Décochage de la case prij
             $("#prij").prop('checked', false);
@@ -26,7 +26,7 @@ $(function(){
     //-------------------------------------------------------------------------- EVENEMENT CHANGE SUR QPV (OUI, NON, LIMITE)
     $("#qpv").change(function(){
         //---------------------------------------------------------------------- Remplissage de l'en-tête de liste de noms de QPV
-        $("#nom_qpv").html("<option selected value=''>Séléctionner le quartier QPV</option>");
+        $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
 
         const qpv = $("#qpv").val();
         //---------------------------------------------------------------------- Remplissage de la liste des quartiers QPV del la ville séléctionnée

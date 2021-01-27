@@ -20,8 +20,8 @@ const qpv_Exist = (id) => {
         dataType: 'JSON',
         data : {id_ville_qpv:id},
         success: function(response){
-            const statut = parseInt(response[0].statut);
-            if(statut === 1) {
+            const exist = parseInt(response[0].exist);
+            if(exist === 1) {
                 $("#qpv")[0].disabled = false;
                 $("#nom_qpv")[0].disabled = true;
             } else {
@@ -53,8 +53,8 @@ const qpv_Prij = (id) => {
         dataType: 'JSON',
         data : {id_qpv_prij:id},
         success: function(response){
-            const statut = parseInt(response[0].statut);
-            if(statut === 1) {
+            const exist = parseInt(response[0].exist);
+            if(exist === 1) {
                 $("#prij").prop('checked', true);
             } else {
                 $("#prij").prop('checked', false);

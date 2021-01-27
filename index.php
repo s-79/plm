@@ -72,13 +72,13 @@ include("header.php"); ?>
         <h2 class="pt-4">Sensibilisation</h2>
         <div class="form-floating mx-3 mt-4">
             <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
-                <option selected value="">Ajouter une sensibilisation</option>
+                <option selected value="0">Ajouter une sensibilisation</option>
                 <option value="1">Sensibilisation 1</option>
                 <option value="2">Sensibilisation 2</option>
                 <option value="3">Sensibilisation 3</option>
                 <option value="4">Sensibilisation 4</option>
             </select>
-            <label for="sensiblisation">Sensibilisation</label>
+            <label for="sensibilisation">Sensibilisation</label>
         </div>
     </div>
     <!--                                                                                                              Contact -->
@@ -128,7 +128,7 @@ include("header.php"); ?>
             <input type="text" class="form-control" id="nom_ville_none">
             <label for="nom_ville_none"></label>
         </div>
-        
+
         <div class="form-floating mx-3 mt-3">
             <input type="text" class="form-control" id="contrat_ville" placeholder="Contrat de Ville" disabled>
             <label for="contrat_ville">Contrat de Ville</label>
@@ -144,7 +144,7 @@ include("header.php"); ?>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="nom_qpv" aria-label="Quartier QPV" disabled>
-                <option selected value="">Séléctionner le quartier QPV</option>
+                <option selected value="0">Séléctionner le quartier QPV</option>
 
             </select>
             <label for="nom_qpv">Quartier QPV</label>
@@ -189,7 +189,7 @@ include("header.php"); ?>
         <div class="row mx-1 mt-3">
             <div class="form-floating col-10">
                 <select class="form-select" id="nom_orga" aria-label="Nom de l'organisme" disabled>
-                    <option selected value="">Séléctionner le nom de l'organisme</option>
+                    <option selected value="0">Séléctionner le nom de l'organisme</option>
                 </select>
                 <label for="nom_orga">Nom de l'organisme</label>
             </div>

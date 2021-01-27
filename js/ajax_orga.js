@@ -46,8 +46,8 @@ const orga_Create = (nom, type) => {
         dataType: 'JSON',
         data : {nom_orga:nom},
         success: function(response){
-            const statut = parseInt(response[0].statut);
-            if(statut === 1) {
+            const exist = parseInt(response[0].exist);
+            if(exist === 1) {
                 alert("Création impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
             } else {
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
@@ -60,7 +60,7 @@ const orga_Create = (nom, type) => {
                         //------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_create').modal('hide');
                         // //--------------------------------------------------- Remplissage de la liste des noms d'organisme
-                        $("#nom_orga").html("<option selected value=''>Séléctionner le nom de l'organisme</option>");
+                        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
                         ajaxListOrga("#nom_orga");
                     }
                 });
@@ -77,8 +77,8 @@ const orga_Update = (id, nom, type) => {
         dataType: 'JSON',
         data : {nom_orga:nom},
         success: function(response){
-            const statut = parseInt(response[0].statut);
-            if(statut === 1) {
+            const exist = parseInt(response[0].exist);
+            if(exist === 1) {
                 alert("Modification impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
             } else {
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
@@ -91,7 +91,7 @@ const orga_Update = (id, nom, type) => {
                         //------------------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_update').modal('hide');
                         //------------------------------------------------------------------ Remplissage de la liste des noms d'organisme
-                        $("#nom_orga").html("<option selected value=''>Séléctionner le nom de l'organisme</option>");
+                        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
                         ajaxListOrga("#nom_orga");
                     }
                 });
@@ -114,13 +114,13 @@ const orga_Delete = (id) => {
                 dataType: 'JSON',
                 data : {id_orga:id},
                 success: function(response){
-                    const statut = parseInt(response[0].statut);
-                    if(statut === 0) {
+                    const exist = parseInt(response[0].exist);
+                    if(exist === 0) {
                         alert("Suppression éffectuée.");
                         //------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_update').modal('hide');
                         //------------------------------------------------------ Remplissage de la liste des noms d'organisme
-                        $("#nom_orga").html("<option selected value=''>Séléctionner le nom de l'organisme</option>");
+                        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
                         ajaxListOrga("#nom_orga");
                     } else {
                         alert("Suppression impossible : des jeunes sont encore reliés à cet organisme dans la base de données.");

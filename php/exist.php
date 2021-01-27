@@ -30,10 +30,10 @@ if($id_orga) {
 $result = mysqli_query($con,$query);
 
 while($row = mysqli_fetch_array($result)){
-    $statut = $row[0];
+    $exist = $row[0];
 
     $return_arr[] = array(
-        "statut" => $statut,);
+        "exist" => $exist,);
 }
 
 if($return_arr) {echo json_encode($return_arr);}

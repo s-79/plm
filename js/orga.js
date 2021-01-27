@@ -5,7 +5,7 @@ $(function(){
     //-------------------------------------------------------------------------- EVENEMENT CHANGE UN TYPE D'ORGANISME
     $("#type_orga").change(function(){
         // --------------------------------------------------------------------- Affichage des noms reliés à ce type d'organisme
-        $("#nom_orga").html("<option selected value=''>Séléctionner le nom de l'organisme</option>");
+        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
         const type_orga = $("#type_orga").val();
         // --------------------------------------------------------------------- S'il n'y a pas de type séléctionné, on grise la case nom_type
         if(!type_orga)$("#nom_orga")[0].disabled = true;
