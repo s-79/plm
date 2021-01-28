@@ -1,4 +1,4 @@
-/* ---------------------------------------------------------------------------- Remplissage des listes - mise en forme */
+/* ----------------------------------------------------------------------------  Fonction de remplissage et mise en forme des listes select dynamiques */
 const displayList = response => {
     let res = "";
     const len = response.length;
@@ -10,50 +10,12 @@ const displayList = response => {
     return res;
 }
 
-/* ---------------------------------------------------------------------------- 1ère lettre en majuscule */
+/* ----------------------------------------------------------------------------- Mettre la 1ère lettre en majuscule */
 const strUpFirst = a => {
     return (a+'').charAt(0).toUpperCase()+a.substr(1);
 }
 
-// ---------------------------------------------------------------------------- FONCTIONS AJAX
-
-/* ---------------------------------------------------------------------------- Remplissage de la liste NPV - Récup données & append */
-const ajaxListNpv = (liste) => {
-    $.ajax({
-        url: "php/jeune_Populate.php",
-        dataType: 'JSON',
-        data : {v_npv:"v_npv"},
-        success: function(response){
-            $(liste).append(displayList(response));
-        }
-    });
-}
-/* ---------------------------------------------------------------------------- Remplissage de la liste Orga - Récup données & append */
-const ajaxListOrga = (liste) => {
-    $.ajax({
-        url: "php/jeune_Populate.php",
-        dataType: 'JSON',
-        data : {v_orga:"v_orga"},
-        success: function(response){
-            $(liste).append(displayList(response));
-        }
-    });
-}
-/* ---------------------------------------------------------------------------- Remplissage de la liste Ville - Récup données & append */
-const ajaxListVille = (liste) => {
-    $.ajax({
-        url: "php/jeune_Populate.php",
-        dataType: 'JSON',
-        data : {v_ville:"v_ville"},
-        success: function(response){
-            $(liste).append(displayList(response));
-        }
-    });
-}
-
-// ----------------------------------------------------------------------------- ! ! !  - - R È G L E S  D E  V E R I F I C A T I O N - - ! ! !
-
-// ----------------------------------------------------------------------------- Fonction vérification de la longueur du champ présentation
+// ----------------------------------------------------------------------------- Fonction de vérification de la longueur du champ présentation
 const vLen = (nom, champ, nbCar) => {
 	if(champ.length <= nbCar) etat=true;
     else {
@@ -62,6 +24,8 @@ const vLen = (nom, champ, nbCar) => {
     }
 return etat;
 }
+
+// ----------------------------------------------------------------------------- ! ! !  - - R È G L E S  D E  V E R I F I C A T I O N - - ! ! !
 
 // // ----------------------------------------------------------------------------- Fonction vérification du numéro de téléphone
 // const verifTel = tel => {

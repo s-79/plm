@@ -1,13 +1,13 @@
 $(function(){
-    //-------------------------------------------------------------------------- Toolitips au survol des boutons +
+    //-------------------------------------------------------------------------- Toolitips au survol des boutons (+)
     $('[data-toggle="tooltip"]').tooltip()
-    
+
     //-------------------------------------------------------------------------- Outil de recherche de jeunes
     $("#npv").keyup(function(){
     	let search = $("#npv").val();
         if(search) {
             $.ajax({
-            url: 'php/jeune_Populate.php',
+            url: 'php/populate.php',
             dataType: 'JSON',
             data : {vue:'v_npv', texte:search},
             success: function(response){

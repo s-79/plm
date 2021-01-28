@@ -1,9 +1,35 @@
-/* ----------------------------------------------------------------------------- ! ! ! - - J E U N E  :  C R É A T I O N - - ! ! ! */
+/* ----------------------------------------------------------------------------- ! ! ! - - J E U N E  :  P O P U L A T E - - ! ! ! */
+
+/* ---------------------------------------------------------------------------- Remplissage de la liste NPV - Récup données & append */
+const ajaxListNpv = (liste) => {
+    $.ajax({
+        url: "php/populate.php",
+        dataType: 'JSON',
+        data : {v_npv:"v_npv"},
+        success: function(response){
+            $(liste).append(displayList(response));
+        }
+    });
+}
+/* ---------------------------------------------------------------------------- Remplissage de la liste Ville - Récup données & append */
+const ajaxListVille = (liste) => {
+    $.ajax({
+        url: "php/populate.php",
+        dataType: 'JSON',
+        data : {v_ville:"v_ville"},
+        success: function(response){
+            $(liste).append(displayList(response));
+        }
+    });
+}
+
+/* ----------------------------------------------------------------------------- ! ! ! - - J E U N E  :  C R E A T E - - ! ! ! */
+
 const jeune_Create = (npv, adherent, genre, nom, prenom, ddn, sensibilisation, email, tel, facebook, skype, insta, urgence, adresse,
 id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
 statut, pe, rsa, gj) => {
     $.ajax({
-        //---------------------------------------------------------------------- Vérification : Le nom de l'organisme existe-t-il déjà dans la BDD ?
+        //---------------------------------------------------------------------- Vérification : Le nom du jeune existe-t-il déjà dans la BDD ?
         url: "php/exist.php",
         dataType: 'JSON',
         data : {nom_jeune:npv},
@@ -14,7 +40,7 @@ statut, pe, rsa, gj) => {
             } else {
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
                 $.ajax({
-                    url: 'php/jeune_Create.php',
+                    url: 'php/jeune.php',
                     dataType: 'JSON',
                     data : {adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, sensibilisation:sensibilisation,
                         email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence,
@@ -26,6 +52,52 @@ statut, pe, rsa, gj) => {
                     }
                 });
             }
+        }
+    });
+}
+
+/* ----------------------------------------------------------------------------- ! ! ! - - J E U N E  :  U P D A T E - - ! ! ! */
+
+const jeune_Update = (npv, id, adherent, genre, nom, prenom, ddn, sensibilisation, email, tel, facebook, skype, insta, urgence, adresse,
+id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
+statut, pe, rsa, gj) => {
+    //-------------------------------------------------------------- Envoie des infos vers la BDD
+    $.ajax({
+        url: 'php/jeune.php',
+        dataType: 'JSON',
+        data : {id:id, adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, sensibilisation:sensibilisation,
+            email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence,
+            adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv, id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref,
+            formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues,
+            statut:statut, pe:pe, rsa:rsa, gj:gj},
+        complete: function(response){
+            alert(response.responseText);
+        }
+    });
+}
+
+/* ---------------------------------------------------------------------------- JEUNE : SUPPRESSION */
+const jeune_Delete = (id) => {
+    //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
+    $.ajax({
+        url: "php/jeune.php",
+        dataType: 'JSON',
+        data : {id_del:id},
+        complete: function() {
+            //------------------------------------------------------------------ Vérification : L'ID est-il bien supprimé de la BDD ?
+            $.ajax({
+                url: "php/exist.php",
+                dataType: 'JSON',
+                data : {id_jeune:id},
+                success: function(response){
+                    const exist = parseInt(response[0].exist);
+                    if(exist === 0) {
+                        alert("La fiche du jeune a bien été supprimée de la base de données.");
+                    } else {
+                        alert("Suppression impossible. Un accompagnement est encore en cours avec ce jeune.");
+                    }
+                }
+            });
         }
     });
 }

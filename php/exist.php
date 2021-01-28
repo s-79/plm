@@ -4,6 +4,7 @@ include "config.php";
 
 $return_arr = array();
 
+$id_jeune = mysqli_real_escape_string($con, $_GET['id_jeune']);
 $id_orga = mysqli_real_escape_string($con, $_GET['id_orga']);
 $nom_orga = mysqli_real_escape_string($con, $_GET['nom_orga']);
 $nom_jeune = mysqli_real_escape_string($con, $_GET['nom_jeune']);
@@ -15,6 +16,9 @@ if($id_orga) {
 
 } elseif($nom_orga) {
     $query = "SELECT orga_ExistNom('$nom_orga')";
+
+} elseif($id_jeune) {
+    $query = "SELECT jeune_ExistId('$id_jeune')";
 
 } elseif($nom_jeune) {
     $query = "SELECT jeune_ExistNom('$nom_jeune')";

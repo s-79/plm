@@ -1,26 +1,10 @@
 $(function(){
-    // ------------------------------------------------------------------------- ! ! ! - - R E I N I T I A L I S A T I O N   D U   F O R M U L A I R E -- !!!
-
-    //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON (+) DE CREATION D'UN NOUVEAU JEUNE
-    $("#new_jeune").click(function(){
-        //---------------------------------------------------------------------- Réinitialisation du formulaire
-        document.getElementById("form_jeune").reset();
-        //---------------------------------------------------------------------- Remplissage de la liste des villes
-        $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
-        ajaxListVille("#ville");
-        //---------------------------------------------------------------------- Reinitialisation des premières lignes
-        $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
-        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
-        //---------------------------------------------------------------------- Inversement des boutons en bas de page
-        $("#btn_jeune_update").addClass("d-none");
-        $("#btn_jeune_create").removeClass("d-none");
-    });
-
-    // ------------------------------------------------------------------------- ! ! ! - - C R E A T E -- !!!
+    // ------------------------------------------------------------------------- ! ! ! - - U P D A T E-- !!!
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "ENREGISTRER LA FICHE" DANS LA PAGE JEUNE
-    $('#jeune_create').click(function(){
+    $('#jeune_update').click(function(){
         // --------------------------------------------------------------------- Récupération des valeus saisies par l'utilisateur
+        const id = $("#id").val();
         let adherent =  $("#adherent").is(':checked');
         if(adherent)adherent=1;else{adherent=0};
         const genre = $("#genre").val();
@@ -70,8 +54,16 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Create(npv, adherent, genre, nom, prenom, ddn, sensibilisation, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
+                jeune_Update(npv, id, adherent, genre, nom, prenom, ddn, sensibilisation, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
             }
         }
+    })
+
+    // ------------------------------------------------------------------------- ! ! ! - - D E L E T E-- !!!
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER LA FICHE" DANS LA PAGE JEUNE
+    $('#jeune_delete').click(function(){
+        const id = $("#id").val();
+        jeune_Delete(id);
     })
 });

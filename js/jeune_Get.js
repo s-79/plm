@@ -5,6 +5,9 @@ $(function(){
         $("#nom_ville_none").html("");
         $("#nom_qpv").html("");
         $("#nom_orga").html("");
+        //---------------------------------------------------------------------- Inversement des boutons en bas de page
+        $("#btn_jeune_create").addClass("d-none");
+        $("#btn_jeune_update").removeClass("d-none");
 
         //---------------------------------------------------------------------- Récupération de l'id du jeune séléctionné
         const id = $("#npv_res").val();
@@ -95,8 +98,5 @@ $(function(){
         }
         //---------------------------------------------------------------------- Remplissage de la liste des villes
         ajaxListVille("#ville");
-
-        //---------------------------------------------------------------------- Remplissage de la liste des noms d'organisme
-        // ajaxListOrga("#nom_orga");
     });
 });

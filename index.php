@@ -292,15 +292,18 @@ include("header.php"); ?>
             </select>
             <label for="gj">Garantie Jeune</label>
         </div>
-        <div class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">
+        <div id="btn_jeune_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">
             <button type="button" id="jeune_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
+        </div>
+        <div id="btn_jeune_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1 d-none">
+            <button type="button" id="jeune_update" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
             <button type="button" id="jeune_acc" class="btn btn-warning m-3">Démarrer<br>accomp.</button>
             <button type="button" id="jeune_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
         </div>
     </div>
 </div>
 </form>
-<!--                                                                                                               ! ! ! - - M O D A L S - - ! ! ! -->
+<!--                                                                             ! ! ! - - M O D A L S - - ! ! ! -->
 
 <!--                                                                                                               Modal pour choisir ajouter / modifier un organisme -->
 <div class="modal fade" id="modal_orga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -420,6 +423,7 @@ include("header.php"); ?>
 <script src="js/jeune_Populate.js"></script>
 <script src="js/jeune_Create.js"></script>
 <script src="js/jeune_Get.js"></script>
+<script src="js/jeune_Update.js"></script>
 <script src="js/ajax_jeune.js"></script>
 <script src="js/villeQpv.js"></script>
 <script src="js/ajax_villeQpv.js"></script>

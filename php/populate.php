@@ -41,4 +41,4 @@ while($row = mysqli_fetch_array($result)){
         "id" => $id,
         "nom" => $nom,);
 }
-if($return_arr) {echo json_encode($return_arr);}
+echo json_encode($return_arr);
