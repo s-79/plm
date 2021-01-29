@@ -73,10 +73,6 @@ include("header.php"); ?>
         <div class="form-floating mx-3 mt-4">
             <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
                 <option selected value="0">Ajouter une sensibilisation</option>
-                <option value="1">Sensibilisation 1</option>
-                <option value="2">Sensibilisation 2</option>
-                <option value="3">Sensibilisation 3</option>
-                <option value="4">Sensibilisation 4</option>
             </select>
             <label for="sensibilisation">Sensibilisation</label>
         </div>
@@ -429,6 +425,7 @@ include("header.php"); ?>
 <script src="js/ajax_villeQpv.js"></script>
 <script src="js/orga.js"></script>
 <script src="js/ajax_orga.js"></script>
+<script src="js/ajax_sensi.js"></script>
 <script src="js/functions.js"></script>
 
 </body>

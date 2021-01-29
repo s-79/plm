@@ -1,7 +1,4 @@
 $(function(){
-    //-------------------------------------------------------------------------- Toolitips au survol des boutons (+)
-    $('[data-toggle="tooltip"]').tooltip()
-
     //-------------------------------------------------------------------------- Outil de recherche de jeunes
     $("#npv").keyup(function(){
     	let search = $("#npv").val();
@@ -20,6 +17,9 @@ $(function(){
             ajaxListNpv("#npv_res");
         }
     });
+
+    //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
+    ajaxListSensi("#sensibilisation");
 
     //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
     ajaxListNpv("#npv_res");

@@ -1,3 +1,15 @@
+/* ---------------------------------------------------------------------------- Remplissage de la liste Ville - Récup données & append */
+const ajaxListVille = (liste) => {
+    $.ajax({
+        url: "php/populate.php",
+        dataType: 'JSON',
+        data : {v_ville:"v_ville"},
+        success: function(response){
+            $(liste).append(displayList(response));
+        }
+    });
+}
+
 /* ----------------------------------------------------------------------------- VILLE : Changement dans le menu SELECT */
 const contrat_ville_Change = (id_ville) => {
     $.ajax({
@@ -54,11 +66,8 @@ const qpv_Prij = (id) => {
         data : {id_qpv_prij:id},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) {
-                $("#prij").prop('checked', true);
-            } else {
-                $("#prij").prop('checked', false);
-            }
+            if(exist === 1) $("#prij").prop('checked', true);
+            else {$("#prij").prop('checked', false);}
         }
     });
 }

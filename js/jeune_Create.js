@@ -3,17 +3,8 @@ $(function(){
 
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON (+) DE CREATION D'UN NOUVEAU JEUNE
     $("#new_jeune").click(function(){
-        //---------------------------------------------------------------------- Réinitialisation du formulaire
-        document.getElementById("form_jeune").reset();
-        //---------------------------------------------------------------------- Remplissage de la liste des villes
-        $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
-        ajaxListVille("#ville");
-        //---------------------------------------------------------------------- Reinitialisation des premières lignes
-        $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
-        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
-        //---------------------------------------------------------------------- Inversement des boutons en bas de page
-        $("#btn_jeune_update").addClass("d-none");
-        $("#btn_jeune_create").removeClass("d-none");
+        // --------------------------------------------------------------------- Réinitialisation du formulaire et des listes select dynamiques sur la page jeune (fonction ci-dessous)
+        jeune_Reset();
     });
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E -- !!!
@@ -27,7 +18,7 @@ $(function(){
         const nom = $("#nom").val().toUpperCase();
         const prenom = strUpFirst($("#prenom").val());
         const ddn = $("#ddn").val();
-        const sensibilisation = $("#sensibilisation").val();
+        const id_sensi = $("#sensibilisation").val();
         const email = $("#email").val();
         const tel = $("#tel").val();
         const facebook = $("#facebook").val();
@@ -70,8 +61,31 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Create(npv, adherent, genre, nom, prenom, ddn, sensibilisation, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
+                jeune_Create(npv, adherent, genre, nom, prenom, ddn, id_sensi, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
             }
         }
     })
 });
+
+// ----------------------------------------------------------------------------- ! ! ! - - R E S E T (F U N C T I O N)- - ! ! !
+
+//------------------------------------------------------------------------------ Fonction de réinitialisation de la page jeune
+const jeune_Reset = () => {
+    //-------------------------------------------------------------------------- Réinitialisation du formulaire
+    document.getElementById("form_jeune").reset();
+    //-------------------------------------------------------------------------- Remplissage de la liste des sensibilisations
+    $("#sensibilisation").html("<option selected value='0'>Ajouter une sensibilisation</option>");
+    ajaxListSensi("#sensibilisation");
+    //-------------------------------------------------------------------------- Remplissage de la liste des villes
+    $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
+    ajaxListVille("#ville");
+    //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
+    $("#npv_res").html("<option selected value=''>Séléctionner un jeune</option>");
+    ajaxListNpv("#npv_res");
+    //-------------------------------------------------------------------------- Reinitialisation des premières lignes
+    $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
+    $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
+    //-------------------------------------------------------------------------- Inversement des boutons en bas de page
+    $("#btn_jeune_update").addClass("d-none");
+    $("#btn_jeune_create").removeClass("d-none");
+}

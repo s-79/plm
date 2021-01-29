@@ -42,9 +42,8 @@ const orga_Create = (nom, type) => {
         data : {nom_orga:nom},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) {
-                alert("Création impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
-            } else {
+            if(exist === 1) alert("Création impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
+            else {
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
                 $.ajax({
                     url: 'php/orga.php',
@@ -52,8 +51,8 @@ const orga_Create = (nom, type) => {
                     data : {nom:nom, type:type},
                     complete: function(){
                         alert("L'organisme a bien été ajouté à la base de données.");
-                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction ci-dessous)
-                        typeOrga_Reset();
+                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
+                        orga_Reset();
                         //------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_create').modal('hide');
                     }
@@ -91,9 +90,8 @@ const orga_Update = (id, nom, type) => {
         data : {nom_orga:nom},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) {
-                alert("Modification impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
-            } else {
+            if(exist === 1) alert("Modification impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
+            else {
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
                 $.ajax({
                     url: 'php/orga.php',
@@ -101,8 +99,8 @@ const orga_Update = (id, nom, type) => {
                     data : {id:id, nom:nom, type:type},
                     complete: function(){
                         alert("L'organisme a bien été modifié.");
-                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction ci-dessous)
-                        typeOrga_Reset();
+                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
+                        orga_Reset();
                         //------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_update').modal('hide');
                     }
@@ -127,27 +125,16 @@ const orga_Delete = (id) => {
                 data : {id_orga:id},
                 success: function(response){
                     const exist = parseInt(response[0].exist);
-                    if(exist === 0) {
+                    if(exist === 1) alert("Suppression impossible : des jeunes sont encore reliés à cet organisme dans la base de données.");
+                    else {
                         alert("L'organisme a bien été supprimé de la base de données.");
-                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction ci-dessous)
-                        typeOrga_Reset();
+                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
+                        orga_Reset();
                         //------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_update').modal('hide');
-                    } else {
-                        alert("Suppression impossible : des jeunes sont encore reliés à cet organisme dans la base de données.");
                     }
                 }
             });
         }
     });
 }
-
-//------------------------------------------------------------------------------ Fonction de réinitialisation de la liste des types et noms d'organisme sur la page jeune
-const typeOrga_Reset = () => {
-    let types = ["Mission Locale", "Réseau IJ (BIJ, PIJ, CIDJ)", "Club de prévention", "Pôle Emploi", "Centre Paris Anim ou EPJ (Paris)", "Internet", "Bouche à oreilles / ami", "École de la deuxième chance", "Membre de la Plateforme (Concordia, SJ, …)", "Autres structures socio-éducatives", "Etat et collectivités (DDCS…)", "Foyer de jeunes travailleurs", "Autres"];
-    let init = "<option selected value='0'>Séléctionner le type d'organisme</option>"
-    for (type of types) {init += `<option value="${type}">${type}</option>`;}
-    $("#type_orga").html(init);
-    $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
-    $("#nom_orga")[0].disabled = true;
-};

@@ -1,6 +1,7 @@
 $(function(){
     //-------------------------------------------------------------------------- ÉVENEMENT CLICK SUR LE BOUTONS AFFICHER LES INFORMATIONS
     $("#infos").click(function(){
+        $("#sensibilisation").html("");
         $("#ville").html("");
         $("#nom_ville_none").html("");
         $("#nom_qpv").html("");
@@ -11,9 +12,8 @@ $(function(){
 
         //---------------------------------------------------------------------- Récupération de l'id du jeune séléctionné
         const id = $("#npv_res").val();
-        if(!id) {
-            alert("Aucun jeune n'a été séléctionné")
-        } else {
+        if(!id) alert("Aucun jeune n'a été séléctionné")
+        else {
             $.ajax({
                 url: 'php/jeune_Get.php',
                 dataType: 'JSON',
@@ -26,6 +26,9 @@ $(function(){
                     const nom = response[0].nom;
                     const prenom = response[0].prenom;
                     const ddn = response[0].ddn;
+                    const id_sensi = response[0].id_sensi;
+                    if(parseInt(id_sensi) !== 0) nom_sensi = response[0].nom_sensi.substr(2);
+                    else{nom_sensi = "Non renseigné"}
                     const email = response[0].email;
                     const tel = response[0].tel;
                     const facebook = response[0].facebook;
@@ -65,6 +68,7 @@ $(function(){
                     $("#nom").val(nom);
                     $("#prenom").val(prenom);
                     $("#ddn").val(ddn);
+                    $("#sensibilisation").prepend(`<option selected value="${id_sensi}">${nom_sensi}</option>`);
                     $("#email").val(email);
                     $("#tel").val(tel);
                     $("#facebook").val(facebook);
@@ -98,5 +102,7 @@ $(function(){
         }
         //---------------------------------------------------------------------- Remplissage de la liste des villes
         ajaxListVille("#ville");
+        //---------------------------------------------------------------------- Remplissage de la liste des sensibilisations
+        ajaxListSensi("#sensibilisation");
     });
 });

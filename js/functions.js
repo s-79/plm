@@ -1,3 +1,8 @@
+$(function(){
+//----------------------------------------------------------------------------- Toolitips au survol des boutons (+)
+$('[data-toggle="tooltip"]').tooltip()
+});
+
 /* ----------------------------------------------------------------------------  Fonction de remplissage et mise en forme des listes select dynamiques */
 const displayList = response => {
     let res = "";

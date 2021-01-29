@@ -81,6 +81,9 @@ $(function(){
             }
         }
     })
+
+    // ------------------------------------------------------------------------- ! ! ! - - D E L E T E- - ! ! !
+
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON SUPPRIMER UN ORGANISME
     $('#orga_delete').click(function(){
         const id = $('#select_nom_orga').val();
@@ -89,3 +92,15 @@ $(function(){
         else {orga_Delete(id);}
     })
 });
+
+// ------------------------------------------------------------------------- ! ! ! - - R E S E T (F U N C T I O N)- - ! ! !
+
+//------------------------------------------------------------------------------ Fonction de réinitialisation de la liste des types et noms d'organisme sur la page jeune
+const orga_Reset = () => {
+    let types = ["Mission Locale", "Réseau IJ (BIJ, PIJ, CIDJ)", "Club de prévention", "Pôle Emploi", "Centre Paris Anim ou EPJ (Paris)", "Internet", "Bouche à oreilles / ami", "École de la deuxième chance", "Membre de la Plateforme (Concordia, SJ, …)", "Autres structures socio-éducatives", "Etat et collectivités (DDCS…)", "Foyer de jeunes travailleurs", "Autres"];
+    let init = "<option selected value='0'>Séléctionner le type d'organisme</option>"
+    for (type of types) {init += `<option value="${type}">${type}</option>`;}
+    $("#type_orga").html(init);
+    $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
+    $("#nom_orga")[0].disabled = true;
+};

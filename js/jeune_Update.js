@@ -11,7 +11,7 @@ $(function(){
         const nom = $("#nom").val().toUpperCase();
         const prenom = strUpFirst($("#prenom").val());
         const ddn = $("#ddn").val();
-        const sensibilisation = $("#sensibilisation").val();
+        const id_sensi = $("#sensibilisation").val();
         const email = $("#email").val();
         const tel = $("#tel").val();
         const facebook = $("#facebook").val();
@@ -54,7 +54,7 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Update(npv, id, adherent, genre, nom, prenom, ddn, sensibilisation, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
+                jeune_Update(npv, id, adherent, genre, nom, prenom, ddn, id_sensi, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
             }
         }
     })
@@ -64,6 +64,10 @@ $(function(){
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER LA FICHE" DANS LA PAGE JEUNE
     $('#jeune_delete').click(function(){
         const id = $("#id").val();
-        jeune_Delete(id);
+        const nom = $("#nom").val().toUpperCase();
+        const prenom = strUpFirst($("#prenom").val());
+        const nom_ville = $("#nom_ville_none").val();
+        const npv = `${prenom} ${nom} - ${nom_ville}`;
+        jeune_Delete(id, npv);
     })
 });
