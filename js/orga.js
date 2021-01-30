@@ -1,23 +1,4 @@
 $(function(){
-
-    // ------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
-
-    //-------------------------------------------------------------------------- EVENEMENT CHANGE UN TYPE D'ORGANISME
-    $("#type_orga").change(function(){
-        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
-        const type_orga = $("#type_orga").val();
-        // --------------------------------------------------------------------- S'il n'y a pas de type séléctionné, on grise la case nom_type
-        if(!type_orga)$("#nom_orga")[0].disabled = true;
-        // --------------------------------------------------------------------- Sinon, affichage des noms reliés à ce type d'organisme
-        else{type_Change(type_orga)};
-    });
-
-    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON (+) - Le modal s'ouvre dans le html
-    $('#new_orga').click(function(){
-        // --------------------------------------------------------------------- Masquer la div qui affiche qu'il n'y a pas d'orga de ce type
-        $("#txt_modal_orga").removeClass("d-block");
-        $("#txt_modal_orga").addClass("d-none");
-    })
     // ------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LES BOUTONS "AJOUTER" OU "MODIFIER" UN ORGANISME
@@ -40,6 +21,24 @@ $(function(){
         ajaxListOrga("#select_nom_orga");
     })
 
+    // ------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
+
+    //-------------------------------------------------------------------------- EVENEMENT CHANGE UN TYPE D'ORGANISME
+    $("#type_orga").change(function(){
+        $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
+        const type_orga = $("#type_orga").val();
+        // --------------------------------------------------------------------- S'il n'y a pas de type séléctionné, on grise la case nom_type
+        if(!type_orga)$("#nom_orga")[0].disabled = true;
+        // --------------------------------------------------------------------- Sinon, affichage des noms reliés à ce type d'organisme
+        else{type_Change(type_orga)};
+    });
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON (+) - Le modal s'ouvre dans le html
+    $('#new_orga').click(function(){
+        // --------------------------------------------------------------------- Masquer la div qui affiche qu'il n'y a pas d'orga de ce type
+        $("#txt_modal_orga").removeClass("d-block");
+        $("#txt_modal_orga").addClass("d-none");
+    })
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 

@@ -18,7 +18,7 @@ $(function(){
         const nom = $("#nom").val().toUpperCase();
         const prenom = strUpFirst($("#prenom").val());
         const ddn = $("#ddn").val();
-        const id_sensi = $("#sensibilisation").val();
+        const id_evt = $("#sensibilisation").val();
         const email = $("#email").val();
         const tel = $("#tel").val();
         const facebook = $("#facebook").val();
@@ -61,7 +61,7 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Create(npv, adherent, genre, nom, prenom, ddn, id_sensi, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
+                jeune_Create(npv, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
             }
         }
     })
@@ -75,7 +75,7 @@ const jeune_Reset = () => {
     document.getElementById("form_jeune").reset();
     //-------------------------------------------------------------------------- Remplissage de la liste des sensibilisations
     $("#sensibilisation").html("<option selected value='0'>Ajouter une sensibilisation</option>");
-    ajaxListSensi("#sensibilisation");
+    ajaxListEvt("#sensibilisation");
     //-------------------------------------------------------------------------- Remplissage de la liste des villes
     $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
     ajaxListVille("#ville");

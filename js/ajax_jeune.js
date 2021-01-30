@@ -14,7 +14,7 @@ const ajaxListNpv = (liste) => {
 
 /* ----------------------------------------------------------------------------- ! ! ! - - J E U N E  :  C R E A T E - - ! ! ! */
 
-const jeune_Create = (npv, adherent, genre, nom, prenom, ddn, id_sensi, email, tel, facebook, skype, insta, urgence, adresse,
+const jeune_Create = (npv, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse,
 id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
 statut, pe, rsa, gj) => {
     $.ajax({
@@ -30,7 +30,7 @@ statut, pe, rsa, gj) => {
                 $.ajax({
                     url: 'php/jeune.php',
                     dataType: 'JSON',
-                    data : {adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, id_sensi:id_sensi,
+                    data : {adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, id_evt:id_evt,
                         email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence,
                         adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv, id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref,
                         formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues,
@@ -48,14 +48,14 @@ statut, pe, rsa, gj) => {
 
 /* ----------------------------------------------------------------------------- ! ! ! - - J E U N E  :  U P D A T E - - ! ! ! */
 
-const jeune_Update = (npv, id, adherent, genre, nom, prenom, ddn, id_sensi, email, tel, facebook, skype, insta, urgence, adresse,
+const jeune_Update = (npv, id, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse,
 id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
 statut, pe, rsa, gj) => {
     //------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/jeune.php',
         dataType: 'JSON',
-        data : {id:id, adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, id_sensi:id_sensi,
+        data : {id:id, adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, id_evt:id_evt,
             email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence,
             adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv, id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref,
             formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues,

@@ -26,9 +26,9 @@ $(function(){
                     const nom = response[0].nom;
                     const prenom = response[0].prenom;
                     const ddn = response[0].ddn;
-                    const id_sensi = response[0].id_sensi;
-                    if(parseInt(id_sensi) !== 0) nom_sensi = response[0].nom_sensi.substr(2);
-                    else{nom_sensi = "Non renseigné"}
+                    const id_evt = response[0].id_evt;
+                    if(parseInt(id_evt) !== 0) nom_evt = response[0].nom_evt.substr(2);
+                    else{nom_evt = "Non renseigné"};
                     const email = response[0].email;
                     const tel = response[0].tel;
                     const facebook = response[0].facebook;
@@ -42,11 +42,13 @@ $(function(){
                     const contrat_ville = response[0].contrat_ville;
                     const qpv = response[0].qpv;
                     const id_qpv = response[0].id_qpv;
-                    const nom_qpv = response[0].nom_qpv;
+                    if(parseInt(id_qpv) !== 0) nom_qpv = response[0].nom_qpv;
+                    else{nom_qpv = "Non renseigné"};
                     const prij = response[0].prij;
                     const type_orga = response[0].type_orga;
                     const id_orga = response[0].id_orga;
-                    const nom_orga = response[0].nom_orga;
+                    if(parseInt(id_orga) !== 0) nom_orga = response[0].nom_orga;
+                    else{nom_orga = "Non renseigné"};
                     const nom_ref = response[0].nom_ref;
                     const tel_ref = response[0].tel_ref;
                     const email_ref = response[0].email_ref;
@@ -68,7 +70,7 @@ $(function(){
                     $("#nom").val(nom);
                     $("#prenom").val(prenom);
                     $("#ddn").val(ddn);
-                    $("#sensibilisation").prepend(`<option selected value="${id_sensi}">${nom_sensi}</option>`);
+                    $("#sensibilisation").prepend(`<option selected value="${id_evt}">${nom_evt}</option>`);
                     $("#email").val(email);
                     $("#tel").val(tel);
                     $("#facebook").val(facebook);
@@ -80,11 +82,14 @@ $(function(){
                     $("#nom_ville_none").val(nom_ville);
                     $("#contrat_ville").val(contrat_ville);
                     $("#qpv").val(qpv);
+                    if(qpv === "Oui") $("#qpv")[0].disabled = false;
                     $("#nom_qpv").prepend(`<option selected value="${id_qpv}">${nom_qpv}</option>`);
+                    if(parseInt(id_qpv) !== 0) $("#nom_qpv")[0].disabled = true;
                     $("#prij").prop('checked', false);
                     if (prij === "1") $("#prij").prop('checked', true);
                     $("#type_orga").val(type_orga);
                     $("#nom_orga").prepend(`<option selected value="${id_orga}">${nom_orga}</option>`);
+                    if(parseInt(id_orga) !== 0) $("#nom_orga")[0].disabled = true;
                     $("#nom_ref").val(nom_ref);
                     $("#tel_ref").val(tel_ref);
                     $("#email_ref").val(email_ref);
@@ -103,6 +108,6 @@ $(function(){
         //---------------------------------------------------------------------- Remplissage de la liste des villes
         ajaxListVille("#ville");
         //---------------------------------------------------------------------- Remplissage de la liste des sensibilisations
-        ajaxListSensi("#sensibilisation");
+        ajaxListEvt("#sensibilisation");
     });
 });

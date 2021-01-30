@@ -28,7 +28,7 @@
                     <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-user-tie fa-lg"></i>&nbsp;&nbsp;PRO&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="sensi.php">&nbsp;&nbsp;<i class="fas fa-info-circle fa-lg"></i>&nbsp;&nbsp;SENSIBILISATIONS&nbsp;&nbsp;</a>
+                    <a class="nav-link" href="evt.php">&nbsp;&nbsp;<i class="fas fa-users fa-lg"></i>&nbsp;&nbsp;ÉVÉNEMENTS&nbsp;&nbsp;</a>
                 </li>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link" href="sensi.php" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;<i class="fas fa-info-circle fa-lg"></i>&nbsp;&nbsp;SENSIBILISATIONS&nbsp;&nbsp;</a>
@@ -38,10 +38,11 @@
                     </ul>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-users fa-lg"></i>&nbsp;&nbsp;ATELIERS&nbsp;&nbsp;</a>
+                    <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-plane-departure fa-lg"></i>&nbsp;&nbsp;PROJETS&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-plane-departure fa-lg"></i>&nbsp;&nbsp;PROJETS&nbsp;&nbsp;</a>
+                    <!-- line, pie, bar, area -->
+                    <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-chart-bar fa-lg"></i>&nbsp;&nbsp;STATS&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">&nbsp;<i class="fas fa-sign-out-alt fa-lg"></i>&nbsp;&nbsp;DECO&nbsp;</a>

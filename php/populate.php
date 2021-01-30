@@ -6,20 +6,20 @@ $return_arr = array();
 
 $v_npv = mysqli_real_escape_string($con, $_GET['v_npv']);
 $v_orga = mysqli_real_escape_string($con, $_GET['v_orga']);
-$v_sensi = mysqli_real_escape_string($con, $_GET['v_sensi']);
+$v_evt = mysqli_real_escape_string($con, $_GET['v_evt']);
 $orga_type = mysqli_real_escape_string($con, $_GET['orga_type']);
 $v_ville = mysqli_real_escape_string($con, $_GET['v_ville']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville']);
 $texte = mysqli_real_escape_string($con, $_GET['texte']);
-$texte_dtv = mysqli_real_escape_string($con, $_GET['texte_dtv']);
+$texte_evt = mysqli_real_escape_string($con, $_GET['texte_evt']);
 
 if($v_npv) {$query = "CALL npv_List ()";
 
 } elseif($v_orga) {
     $query = "CALL orga_List ()";
 
-} elseif($v_sensi) {
-    $query = "CALL sensi_List ()";
+} elseif($v_evt) {
+    $query = "CALL evt_List ()";
 
 } elseif($orga_type) {
     $query = "CALL orga_Type ('$orga_type')";
@@ -35,9 +35,9 @@ if($v_npv) {$query = "CALL npv_List ()";
         $query = "CALL jeune_Search ('$texte')";
     }
 
-} elseif($texte_dtv) {
-    if(strlen($texte_dtv) > 0) {
-        $query = "CALL sensi_Search ('$texte_dtv')";
+} elseif($texte_evt) {
+    if(strlen($texte_evt) > 0) {
+        $query = "CALL evt_Search ('$texte_evt')";
     }
 }
 

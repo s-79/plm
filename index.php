@@ -425,7 +425,7 @@ include("header.php"); ?>
 <script src="js/ajax_villeQpv.js"></script>
 <script src="js/orga.js"></script>
 <script src="js/ajax_orga.js"></script>
-<script src="js/ajax_sensi.js"></script>
+<script src="js/ajax_evt.js"></script>
 <script src="js/functions.js"></script>
 
 </body>

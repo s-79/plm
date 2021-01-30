@@ -6,7 +6,7 @@ $(function(){
             $.ajax({
             url: 'php/populate.php',
             dataType: 'JSON',
-            data : {vue:'v_npv', texte:search},
+            data : {texte:search},
             success: function(response){
                 $("#npv_res").html(displayList(response));
                 }
@@ -19,7 +19,7 @@ $(function(){
     });
 
     //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
-    ajaxListSensi("#sensibilisation");
+    ajaxListEvt("#sensibilisation");
 
     //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
     ajaxListNpv("#npv_res");
