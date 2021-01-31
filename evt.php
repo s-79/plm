@@ -52,6 +52,10 @@ include("header.php"); ?>
                 </div>
             </div>
         </div>
+
+        <!--                                                                                                        Récupération de l'id dans un input invisible -->
+        <input type="text" class="form-control d-none" id="id">
+
         <div class="form-floating mx-3 mt-3">
             <input type="date" class="form-control" id="date" placeholder="Date de l'événement *">
             <label for="date">Date de l'événement *</label>
@@ -104,8 +108,8 @@ include("header.php"); ?>
                 </div>
                 <div class="col-4 d-flex justify-content-end mt-1">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="Visio">
-                      <label class="form-check-label text-warning fw-bold" for="Visio">En visio</label>
+                      <input class="form-check-input" type="checkbox" id="visio">
+                      <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
                     </div>
                 </div>
             </div>
@@ -121,8 +125,8 @@ include("header.php"); ?>
                 </div>
                 <div class="col-4 d-flex justify-content-end mt-1">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="Visio">
-                      <label class="form-check-label text-warning fw-bold" for="Visio">En visio</label>
+                      <input class="form-check-input" type="checkbox" id="visio">
+                      <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
                     </div>
                 </div>
             </div>
@@ -134,7 +138,7 @@ include("header.php"); ?>
                 <label for="projet">Projet *</label>
             </div>
         </div>
-        <div class="row pt-5">
+        <div class="row pt-4">
             <div class="col-8">
                 <h2>Intervenant-e-s PLM</h2>
             </div>
@@ -142,31 +146,7 @@ include("header.php"); ?>
                 <i id="new_sensi" class="fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Ajouter / Modifier un-e intervenant-e PLM"></i>
             </div>
         </div>
-        <div id="" class="mx-3 mt-2" style="overflow-y:scroll; overflow-x:hidden; height:150px;">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="int1">
-                <label class="form-check-label text-white" for="int1">Margot DAY</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="int2">
-                <label class="form-check-label text-white" for="int2">Solène MARCHAND</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="int3">
-                <label class="form-check-label text-white" for="int3">Élise BAUBAU</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="int4">
-                <label class="form-check-label text-white" for="int4">Lisa Viola ROSSI</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="int4">
-                <label class="form-check-label text-white" for="int4">Manon MOSTI</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="int4">
-                <label class="form-check-label text-white" for="int4">Tanaïs BELLEROSE</label>
-            </div>
+        <div id="inter" class="mx-3 mt-2" style="overflow-y:scroll; overflow-x:hidden; height:180px;">
         </div>
     </div>
     <!--                                                                                                              Évaluation -->
@@ -191,7 +171,7 @@ include("header.php"); ?>
     </div>
 </div>
 </form>
-
+<!--                                                                             Tableau -->
 <div class="container">
 <div class="row justify-content-center mt-5">
     <table class="table table-striped">
@@ -204,7 +184,7 @@ include("header.php"); ?>
                 <th scope="col">Accompagnement</th>
             </tr>
         </thead>
-        <tbody id="ici">
+        <tbody id="tableau">
             <!-- <tr>
                 <th scope="row">1</th>
                 <td>Mark</td>
@@ -231,6 +211,7 @@ include("header.php"); ?>
 <script src="js/ajax_villeQpv.js"></script>
 <script src="js/ajax_evt.js"></script>
 <script src="js/evt.js"></script>
+<script src="js/evt_Get.js"></script>
 <script src="js/functions.js"></script>
 
 </body>

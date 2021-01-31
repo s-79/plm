@@ -7,6 +7,7 @@ $return_arr = array();
 $v_npv = mysqli_real_escape_string($con, $_GET['v_npv']);
 $v_orga = mysqli_real_escape_string($con, $_GET['v_orga']);
 $v_evt = mysqli_real_escape_string($con, $_GET['v_evt']);
+$v_inter = mysqli_real_escape_string($con, $_GET['v_inter']);
 $orga_type = mysqli_real_escape_string($con, $_GET['orga_type']);
 $v_ville = mysqli_real_escape_string($con, $_GET['v_ville']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville']);
@@ -21,11 +22,14 @@ if($v_npv) {$query = "CALL npv_List ()";
 } elseif($v_evt) {
     $query = "CALL evt_List ()";
 
-} elseif($orga_type) {
-    $query = "CALL orga_Type ('$orga_type')";
+} elseif($v_inter) {
+    $query = "CALL inter_List ()";
 
 } elseif($v_ville) {
     $query = "CALL ville_List ()";
+
+} elseif($orga_type) {
+    $query = "CALL orga_Type ('$orga_type')";
 
 } elseif($id_ville_qpv) {
     $query = "CALL ville_Qpv ('$id_ville_qpv')";

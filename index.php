@@ -292,8 +292,7 @@ include("header.php"); ?>
             <button type="button" id="jeune_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
         </div>
         <div id="btn_jeune_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1 d-none">
-            <button type="button" id="jeune_update" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
-            <button type="button" id="jeune_acc" class="btn btn-warning m-3">Démarrer<br>accomp.</button>
+            <button type="button" id="jeune_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
             <button type="button" id="jeune_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
         </div>
     </div>

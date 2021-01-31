@@ -4,7 +4,9 @@ include "config.php";
 
 $return_arr = array();
 
-$query = "CALL evt_List_Jeune()";
+$id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
+
+$query = "CALL evt_Get_Jeune('$id_evt')";
 
 $result = mysqli_query($con,$query);
 
@@ -13,15 +15,14 @@ while($row = mysqli_fetch_array($result)){
     $prenom = $row['prenom'];
     $nom = $row['nom'];
     $nom_ville = $row['nom_ville'];
-    $pe = $row['pe'];
-
+    $acc = $row['acc'];
 
     $return_arr[] = array(
         "id" => $id,
         "prenom" => $prenom,
         "nom" => $nom,
         "nom_ville" => $nom_ville,
-        "pe" => $pe
+        "acc" => $acc
         );
 }
 
