@@ -4,25 +4,27 @@ include "config.php";
 
 $return_arr = array();
 
-$id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
+$id = mysqli_real_escape_string($con, $_GET['id']);
 
-$query = "CALL evt_Get_Inter('$id_evt')";
+$query = "CALL int_Get('$id')";
 
 $result = mysqli_query($con,$query);
 
 while($row = mysqli_fetch_array($result)){
     $id = $row['id'];
-    $prenom = $row['prenom'];
+    $prenom_int = $row['prenom_int'];
+    $nom_int = $row['nom_int'];
     $nom = $row['nom'];
     $actif = $row['actif'];
     $volontaire = $row['volontaire'];
 
     $return_arr[] = array(
         "id" => $id,
-        "prenom" => $prenom,
+        "prenom_int" => $prenom_int,
+        "nom_int" => $nom_int,
         "nom" => $nom,
         "actif" => $actif,
-        "volontaire" => $volontaire
+        "volontaire" => $volontaire,
         );
 }
 

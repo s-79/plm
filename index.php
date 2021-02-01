@@ -415,10 +415,7 @@ include("header.php"); ?>
 </div>
 
 <!--                                                                                                               Scripts -->
-<script src="js/jeune_Populate.js"></script>
-<script src="js/jeune_Create.js"></script>
-<script src="js/jeune_Get.js"></script>
-<script src="js/jeune_Update.js"></script>
+<script src="js/jeune.js"></script>
 <script src="js/ajax_jeune.js"></script>
 <script src="js/villeQpv.js"></script>
 <script src="js/ajax_villeQpv.js"></script>

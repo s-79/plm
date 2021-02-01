@@ -1,5 +1,6 @@
 $(function(){
-    //-------------------------------------------------------------------------- EVENEMENT CHANGE SUR UN NOM DE VILLE
+    // ----------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
+
     $("#ville").change(function(){
         const id_ville = $("#ville").val();
         //---------------------------------------------------------------------- Si aucune ville n'est séléctionnée, on vide les champs

@@ -21,7 +21,7 @@ include("header.php"); ?>
     </div>
 </div>
 
-<form id="form_sensi">
+<form id="form_evt">
 <div class="row justify-content-center ">
     <!--                                                                                                              Événement-->
     <div class="col-12 col-lg-3 bg-marine m-3 rounded rounded-3">
@@ -30,7 +30,7 @@ include("header.php"); ?>
                 <h2>Évenement</h2>
             </div>
             <div class="col-1 p-0 m-0">
-                <i id="new_sensi" class="fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouvel événement"></i>
+                <i id="new_evt" class="fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouvel événement"></i>
             </div>
         </div>
         <div class="mx-3 mt-3 row">
@@ -61,22 +61,24 @@ include("header.php"); ?>
             <label for="date">Date de l'événement *</label>
         </div>
         <div id="select_m0" class="form-floating mx-3 mt-3 d-none">
-            <input type="text" class="form-control" id="sensi_m0" placeholder="Sensibilisation Mission 0">
-            <label for="sensi_m0">Sensibilisation Mission 0</label>
+            <select class="form-select type_m" id="type_m0" aria-label="Type d'événement *" disabled>
+                <option selected value="">Séléctionner un type d'événement *</option>
+            </select>
+            <label for="type_m0">Type *</label>
         </div>
         <div id="select_m1" class="form-floating mx-3 mt-3">
-            <select class="form-select" id="type" aria-label="Type d'événement *">
+            <select class="form-select type_m" id="type_m1" aria-label="Type d'événement *" disabled>
                 <option selected value="">Séléctionner un type d'événement *</option>
-                <option value="Info coll dans les locaux">Info coll PLM</option>
-                <option value="Info coll exterieur">Info coll exterieure</option>
-                <option value="Webinaire pro">Webinaire pros</option>
-                <option value="Sensibilisation pro">Sensibilisation pros</option>
+                <option value="Info coll PLM">Info coll PLM</option>
+                <option value="Info coll exterieure">Info coll exterieure</option>
+                <option value="Webinaire pros">Webinaire pros</option>
+                <option value="Sensibilisation pros">Sensibilisation pros</option>
                 <option value="Evt thématique">Evt thématique</option>
             </select>
-            <label for="type">Type *</label>
+            <label for="type_m1">Type *</label>
         </div>
         <div id="select_m2" class="form-floating mx-3 mt-3 d-none">
-            <select class="form-select" id="type" aria-label="Type d'événement *">
+            <select class="form-select type_m" id="type_m2" aria-label="Type d'événement *" disabled>
                 <option selected value="">Séléctionner un type d'événement *</option>
                 <option value="Atelier d'anglais">Atelier d'anglais</option>
                 <option value="Atelier Europe">Atelier Europe</option>
@@ -85,7 +87,7 @@ include("header.php"); ?>
                 <option value="At. retour à chaud">At. retour à chaud</option>
                 <option value="2ème atelier retour">2ème atelier retour</option>
             </select>
-            <label for="type">Type *</label>
+            <label for="type_m2">Type *</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="ville" aria-label="Ville">
@@ -143,7 +145,7 @@ include("header.php"); ?>
                 <h2>Intervenant-e-s PLM</h2>
             </div>
             <div class="col-1 p-0 m-0">
-                <i id="new_sensi" class="fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Ajouter / Modifier un-e intervenant-e PLM"></i>
+                <i id="new_inter" class="fas fa-plus-circle fa-2x text-white pointeur" data-bs-toggle="modal" data-bs-target="#modal_int" data-toggle="tooltip" data-placement="top" title="Ajouter / Modifier un-e intervenant-e PLM"></i>
             </div>
         </div>
         <div id="inter" class="mx-3 mt-2" style="overflow-y:scroll; overflow-x:hidden; height:180px;">
@@ -165,8 +167,12 @@ include("header.php"); ?>
             </textarea>
             <label for="commentaires">Commentaires</label>
         </div>
-        <div class="d-flex justify-content-center">
-            <button type="button" id="jeune_update" class="btn btn-primary bg-bleu btn-bleu marine m-3">Créer l'événement</button>
+        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">
+            <button type="button" id="evt_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
+        </div>
+        <div id="btn_evt_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1 d-none">
+            <button type="button" id="evt_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
+            <button type="button" id="evt_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
         </div>
     </div>
 </div>
@@ -177,41 +183,123 @@ include("header.php"); ?>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Ville</th>
-                <th scope="col">Accompagnement</th>
+                <th scope="col" style="width:130px">#</th>
+                <th scope="col" style="width:130px">Prénom</th>
+                <th scope="col" style="width:130px">Nom</th>
+                <th scope="col" style="width:130px">Ville</th>
+                <th scope="col" style="width:130px">Accompagnement</th>
             </tr>
         </thead>
         <tbody id="tableau">
-            <!-- <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr> -->
         </tbody>
     </table>
 </div>
+</div>
+
+<!--                                                                             ! ! ! - - M O D A L S - - ! ! ! -->
+
+<!--                                                                                                               Modal pour choisir ajouter / modifier un-e intervenant-e -->
+<div class="modal fade" id="modal_int" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter ou modifier/supprimer un-e intervenant-e PLM</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+          Souhaitez-vous ajouter ou modifier/supprimer un-e intervenant-e PLM ?
+      </div>
+      <div class="modal-footer">
+          <button id="btn_int_create" type="button" class="btn btn-primary close-modal" data-bs-toggle="modal" data-bs-target="#modal_int_create">Ajouter</button>
+          <button id="btn_int_update" type="button" class="btn btn-warning close-modal" data-bs-toggle="modal" data-bs-target="#modal_int_update">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---                                                                                                              Modal pour ajouter un-e intervenant-e -->
+<div class="modal fade" id="modal_int_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un-e intervenant-e PLM</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_int_create">
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="text" class="form-control" id="create_prenom_int" placeholder="Prénom *">
+                        <label for="create_prenom_int">Prénom *</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="text" class="form-control" id="create_nom_int" placeholder="Nom *">
+                        <label for="create_nom_int">Nom *</label>
+                    </div>
+                    <div class="form-check form-switch mx-3 mt-3">
+                        <input class="form-check-input" type="checkbox" id="create_actif" checked>
+                        <label class="form-check-label fw-bold" for="create_actif">actif</label>
+                    </div>
+                    <div class="form-check form-switch mx-3 mt-3">
+                        <input class="form-check-input" type="checkbox" id="create_volontaire">
+                        <label class="form-check-label fw-bold" for="create_volontaire">volontaire</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="int_create" type="button" class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---                                                                                                              Modal pour modifier un organisme -->
+<div class="modal fade" id="modal_int_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier ou supprimer un-e intervenant-e</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_int_update">
+                    <div class="form-floating mx-3 mt-4">
+                        <select class="form-select" id="select_nom_int" aria-label="Nom de l'intervenant-e">
+                        <option selected value="">Séléctionner le nom de l'intervenant-e à modifier</option>
+                        </select>
+                        <label for="select_nom_int">Séléctionner le nom de l'intervenant-e à modifier</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="text" class="form-control" id="update_prenom_int" placeholder="Prenom de l'intervenant-e">
+                        <label for="update_prenom_int">Modifier le prenom de l'intervenant-e</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="text" class="form-control" id="update_nom_int" placeholder="Nom de l'intervenant-e">
+                        <label for="update_nom_int">Modifier le nom de l'intervenant-e</label>
+                    </div>
+                    <div class="form-check form-switch mx-3 mt-3">
+                        <input class="form-check-input" type="checkbox" id="update_actif">
+                        <label class="form-check-label fw-bold" for="update_actif">actif</label>
+                    </div>
+                    <div class="form-check form-switch mx-3 mt-3">
+                        <input class="form-check-input" type="checkbox" id="update_volontaire">
+                        <label class="form-check-label fw-bold" for="update_volontaire">volontaire</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="int_update" type="button" class="btn btn-warning">Modifier</button>
+                <button id="int_delete" type="button" class="btn btn-danger">Supprimer</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--                                                                                                               Scripts -->
 <script src="js/ajax_villeQpv.js"></script>
 <script src="js/ajax_evt.js"></script>
 <script src="js/evt.js"></script>
-<script src="js/evt_Get.js"></script>
+<script src="js/int.js"></script>
+<script src="js/ajax_int.js"></script>
 <script src="js/functions.js"></script>
 
 </body>

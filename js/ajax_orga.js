@@ -1,4 +1,18 @@
-/* ---------------------------------------------------------------------------- ORGANISME : Changement dans le menu type de la page jeune */
+// ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
+/* ---------------------------------------------------------------------------- Remplissage de la liste Orga - Récup données & append */
+const ajaxListOrga = (liste) => {
+    $.ajax({
+        url: "php/populate.php",
+        dataType: 'JSON',
+        data : {v_orga:"v_orga"},
+        success: function(response){
+            $(liste).append(displayList(response));
+        }
+    });
+}
+
+// ----------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
+/* ----------------------------------------------------------------------------  Changement dans le menu type de la page jeune */
 const type_Change = (type) => {
     $.ajax({
         url: 'php/populate.php',
@@ -21,19 +35,7 @@ const type_Change = (type) => {
     });
 }
 
-/* ---------------------------------------------------------------------------- Remplissage de la liste Orga - Récup données & append */
-const ajaxListOrga = (liste) => {
-    $.ajax({
-        url: "php/populate.php",
-        dataType: 'JSON',
-        data : {v_orga:"v_orga"},
-        success: function(response){
-            $(liste).append(displayList(response));
-        }
-    });
-}
-
-/* ----------------------------------------------------------------------------- ORGANISME : CRÉATION */
+// ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 const orga_Create = (nom, type) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom de l'organisme existe-t-il déjà dans la BDD ?
@@ -61,10 +63,9 @@ const orga_Create = (nom, type) => {
         }
     });
 }
+// ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
-/* ---------------------------------------------------------------------------- ORGANISME : MODIFICATION */
-
-/* ---------------------------------------------------------------------------- ORGANISME : Changement dans le menu SELECT du menu update */
+/* ---------------------------------------------------------------------------- Changement dans le menu SELECT du menu update */
 const orga_Change = (id) => {
     $.ajax({
         url: 'php/orga_Get.php',
@@ -83,34 +84,22 @@ const orga_Change = (id) => {
 }
 
 const orga_Update = (id, nom, type) => {
+    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
-        //---------------------------------------------------------------------- Vérification : Le nom de l'organisme existe-t-il déjà dans la BDD ?
-        url: "php/exist.php",
+        url: 'php/orga.php',
         dataType: 'JSON',
-        data : {nom_orga:nom},
-        success: function(response){
-            const exist = parseInt(response[0].exist);
-            if(exist === 1) alert("Modification impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
-            else {
-                //-------------------------------------------------------------- Envoie des infos vers la BDD
-                $.ajax({
-                    url: 'php/orga.php',
-                    dataType: 'JSON',
-                    data : {id:id, nom:nom, type:type},
-                    complete: function(){
-                        alert("L'organisme a bien été modifié.");
-                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
-                        orga_Reset();
-                        //------------------------------------------------------ Fermeture du modal
-                        $('#modal_orga_update').modal('hide');
-                    }
-                });
-            }
+        data : {id:id, nom:nom, type:type},
+        complete: function(){
+            alert("L'organisme a bien été modifié.");
+            //------------------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
+            orga_Reset();
+            //----------------------------------------------------------------- Fermeture du modal
+            $('#modal_orga_update').modal('hide');
         }
     });
 }
 
-/* ---------------------------------------------------------------------------- ORGANISME : SUPPRESSION */
+// ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
 const orga_Delete = (id) => {
     //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
     $.ajax({

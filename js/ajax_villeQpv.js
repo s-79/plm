@@ -1,3 +1,5 @@
+// ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
+
 /* ---------------------------------------------------------------------------- Remplissage de la liste Ville - Récup données & append */
 const ajaxListVille = (liste) => {
     $.ajax({
@@ -10,7 +12,9 @@ const ajaxListVille = (liste) => {
     });
 }
 
-/* ----------------------------------------------------------------------------- VILLE : Changement dans le menu SELECT */
+// ----------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
+
+/* ----------------------------------------------------------------------------- Changement dans le menu SELECT */
 const contrat_ville_Change = (id_ville) => {
     $.ajax({
         url: "php/ville_contrat.php",
