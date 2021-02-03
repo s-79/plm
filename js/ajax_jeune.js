@@ -99,7 +99,7 @@ const jeune_Get = (id) => {
             if (prij === "1") $("#prij").prop('checked', true);
             $("#type_orga").val(type_orga);
             $("#nom_orga").prepend(`<option selected value="${id_orga}">${nom_orga}</option>`);
-            if(parseInt(id_orga) !== 0) $("#nom_orga")[0].disabled = true;
+            if(parseInt(id_orga) !== 0) $("#nom_orga")[0].disabled = false;
             $("#nom_ref").val(nom_ref);
             $("#tel_ref").val(tel_ref);
             $("#email_ref").val(email_ref);

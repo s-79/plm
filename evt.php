@@ -54,7 +54,7 @@ include("header.php"); ?>
         </div>
 
         <!--                                                                                                        Récupération de l'id dans un input invisible -->
-        <input type="text" class="form-control d-none" id="id">
+        <input type="text" class="form-control d-none" id="id_evt">
 
         <div class="form-floating mx-3 mt-3">
             <input type="date" class="form-control" id="date" placeholder="Date de l'événement *">
@@ -116,8 +116,8 @@ include("header.php"); ?>
                 </div>
             </div>
             <div class="form-floating mx-3 mt-4">
-                <input type="text" class="form-control" id="organisateurs" placeholder="Organisé par...">
-                <label for="organisateurs">Organisé par...</label>
+                <input type="text" class="form-control" id="organise" placeholder="Organisé par...">
+                <label for="organise">Organisé par...</label>
             </div>
         </div>
         <div id="projet_evt" class="d-none">
@@ -134,8 +134,7 @@ include("header.php"); ?>
             </div>
             <div class="form-floating mx-3 mt-4">
                 <select class="form-select" id="projet" aria-label="Séléctionner un projet *">
-                    <option selected value="">Séléctionner un projet *</option>
-                    <option value="0">VILLES MULTIPLES</option>
+                    <option selected value="0">Séléctionner un projet *</option>
                 </select>
                 <label for="projet">Projet *</label>
             </div>
@@ -159,12 +158,11 @@ include("header.php"); ?>
             <label for="nb_jeunes">Nombre de jeunes</label>
         </div>
         <div class="form-floating mx-3 mt-3">
-            <input type="text" class="form-control" id="nb_pro" placeholder="Nombre de professionels">
-            <label for="nb_pro">Nombre de professionels</label>
+            <input type="text" class="form-control" id="nb_pros" placeholder="Nombre de professionels">
+            <label for="nb_pros">Nombre de professionels</label>
         </div>
         <div class="form-floating mx-3 mt-3">
-            <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:125px;">
-            </textarea>
+            <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:125px;"></textarea>
             <label for="commentaires">Commentaires</label>
         </div>
         <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">

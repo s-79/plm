@@ -27,8 +27,8 @@ if($id) {
         $id_projet = $row['id_projet'];
         $organise = $row['organise'];
         $nb_jeunes = $row['nb_jeunes'];
-        $nb_pro = $row['nb_pro'];
-        $commentaire = $row['commentaire'];
+        $nb_pros = $row['nb_pros'];
+        $commentaires = $row['commentaires'];
 
         $return_arr[] = array(
             "id" => $id,
@@ -43,8 +43,8 @@ if($id) {
             "id_projet" => $id_projet,
             "organise" => $organise,
             "nb_jeunes" => $nb_jeunes,
-            "nb_pro" => $nb_pro,
-            "commentaire" => $commentaire,
+            "nb_pros" => $nb_pros,
+            "commentaires" => $commentaires
         );
     }
 // ----------------------------------------------------------------------------- Récupération de la liste des jeunes qui ont participé à l'événement en fonction de l'id

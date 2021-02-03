@@ -10,6 +10,7 @@ $id_orga = mysqli_real_escape_string($con, $_GET['id_orga']);
 $nom_orga = mysqli_real_escape_string($con, $_GET['nom_orga']);
 $id_int = mysqli_real_escape_string($con, $_GET['id_int']);
 $nom_int = mysqli_real_escape_string($con, $_GET['nom_int']);
+$id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville_qpv']);
 $id_qpv_prij = mysqli_real_escape_string($con, $_GET['id_qpv_prij']);
 
@@ -30,6 +31,9 @@ if($id_orga) {
 
 } elseif($nom_int) {
     $query = "SELECT int_ExistNom('$nom_int')";
+
+} elseif($id_evt) {
+    $query = "SELECT evt_ExistId('$id_evt')";
 
 } elseif($id_ville_qpv) {
     $query = "SELECT qpv_ExistId('$id_ville_qpv')";

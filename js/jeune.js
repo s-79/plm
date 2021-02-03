@@ -27,7 +27,7 @@ $(function(){
     // ----------------------------------------------------------------------------- ! ! ! - - G E T - - ! ! !
 
     //-------------------------------------------------------------------------- ÉVENEMENT CLICK SUR LE BOUTONS AFFICHER LES INFORMATIONS
-    $("#infos").click(function(){
+    $("#btn_infos").click(function(){
         $("#sensibilisation").html("");
         $("#ville").html("");
         $("#nom_ville_none").html("");
@@ -41,11 +41,19 @@ $(function(){
         const id = $("#npv_res").val();
         if(!id) alert("Aucun jeune n'a été séléctionné")
         //---------------------------------------------------------------------- Récupération des données du jeune
-        else {jeune_Get(id)}
-        //---------------------------------------------------------------------- Remplissage de la liste des villes
-        ajaxListVille("#ville");
-        //---------------------------------------------------------------------- Remplissage de la liste des sensibilisations
-        ajaxListEvt("#sensibilisation");
+        else {
+            //------------------------------------------------------------------ Changement d'interface
+            $("#form_jeune").removeClass('d-none');
+            $("#accompagnement").addClass('d-none');
+
+            //------------------------------------------------------------------ Récupération des données du jeune
+            jeune_Get(id);
+
+            //------------------------------------------------------------------ Remplissage de la liste des villes
+            ajaxListVille("#ville");
+            //------------------------------------------------------------------ Remplissage de la liste des sensibilisations
+            ajaxListEvt("#sensibilisation");
+        }
     });
 
 

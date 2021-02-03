@@ -1,10 +1,3 @@
-// ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
-// ----------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
-// ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
-
-
-// ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
-
 /* ---------------------------------------------------------------------------- Remplissage de la liste Événement - Récup données & append */
 const ajaxListEvt = (liste) => {
     $.ajax({
@@ -87,11 +80,11 @@ const ajaxEvtGet = (id_evt) => {
             // else{nom_projet = "Non renseigné"};
             const organise = response[0].organise;
             const nb_jeunes = response[0].nb_jeunes;
-            const nb_pro = response[0].nb_pro;
-            const commentaire = response[0].commentaire;
+            const nb_pros = response[0].nb_pros;
+            const commentaires = response[0].commentaires;
 
             // ----------------------------------------------------------------- Remplissage des champs
-            $("#id").val(id);
+            $("#id_evt").val(id);
             $("#m0, #m1, #m2").prop('checked', false);
             if (mission === "0") {
                 $("#m0").prop('checked', true);
@@ -127,15 +120,13 @@ const ajaxEvtGet = (id_evt) => {
             $("#visio").prop('checked', false);
             if (visio === "1") $("#visio").prop('checked', true);
             $("#ville").prepend(`<option selected value="${id_ville}">${ville}</option>`);
-            $("#organisateurs").val(organise);
+            $("#organise").val(organise);
             $("#nb_jeunes").val(nb_jeunes);
-            $("#nb_pro").val(nb_pro);
-            $("#commentaires").val(commentaire);
+            $("#nb_pros").val(nb_pros);
+            $("#commentaires").val(commentaires);
         }
     });
 }
-
-
 
 //----------------------------------------------------------------------------- Remplissage du tableau des jeunes en fonction de l'id de l'événement
 const ajaxEvtJeune = (id_evt, liste) => {
@@ -172,6 +163,64 @@ const ajaxEvtInter = (id_evt, liste) => {
                 id += response[i].id;
                 $(id).prop('checked', true);
             }
+        }
+    });
+}
+
+// ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
+
+const evt_Create = (mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
+    $.ajax({
+        url: 'php/evt.php',
+        dataType: 'JSON',
+        data : {mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
+        complete: function(){
+            alert("L'événement a bien été ajouté à la base de données.");
+            //------------------------------------------------------ Réinitialisation de la pages des événements
+            evt_Reset();
+        }
+    });
+}
+
+// ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
+
+const evt_Update = (id, mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
+    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
+    $.ajax({
+        url: 'php/evt.php',
+        dataType: 'JSON',
+        data : {id:id, mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
+        complete: function(){
+            alert("L'événement a bien été modifié.");
+            //------------------------------------------------------ Réinitialisation de la pages des événements
+            evt_Reset();
+        }
+    });
+}
+
+// ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
+const evt_Delete = (id) => {
+    //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
+    $.ajax({
+        url: "php/evt.php",
+        dataType: 'JSON',
+        data : {id_del:id},
+        complete: function() {
+            //------------------------------------------------------------------ Vérification : L'ID est-il bien supprimé de la BDD ?
+            $.ajax({
+                url: "php/exist.php",
+                dataType: 'JSON',
+                data : {id_evt:id},
+                success: function(response){
+                    const exist = parseInt(response[0].exist);
+                    if(exist === 1) alert("Suppression impossible : l'évenement est encore relié à des jeunes ou des intervenants dans la BDD.");
+                    else {
+                        alert("L'événement a bien été supprimé de la base de données.");
+                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
+                        evt_Reset();
+                    }
+                }
+            });
         }
     });
 }

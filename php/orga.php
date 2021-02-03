@@ -14,7 +14,7 @@ elseif($id) {
     $query = "CALL orga_Update ('$id', '$nom', '$type')";
 
 } else {
-    $query = "CALL orga_Create (NULL, '$nom', '$type')";
+    $query = "CALL orga_Create ('$nom', '$type')";
 }
 
 $result = $con->prepare($query);

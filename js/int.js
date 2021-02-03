@@ -34,7 +34,7 @@ $(function(){
         let volontaire =  $("#create_volontaire").is(':checked');
         if(volontaire)volontaire=1;else{volontaire=0};
 
-        // -------------------------------------------------------------------- Vérification si la longueur ets ok pour la BDD puis vérif si le nom existe déjà dans la BDD et si non envoie des infos
+        // -------------------------------------------------------------------- Vérification si la longueur est ok pour la BDD puis vérif si le nom existe déjà dans la BDD et si non envoie des infos
         if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Create(prenom_nom, prenom, nom, actif, volontaire);
     })
 
@@ -57,10 +57,8 @@ $(function(){
         let volontaire =  $("#update_volontaire").is(':checked');
         if(volontaire)volontaire=1;else{volontaire=0};
         if(!id) alert("Aucun intervenant-e n'a été séléctionné-e");
-        else {
-            if(id === "0") alert('Le label "Non renseigné" n\'est pas modifiable.');
-            else {if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Update(id, prenom, nom, actif, volontaire);}
-        }
+        // -------------------------------------------------------------------- Vérification si la longueur est ok pour la BDD et si oui envoie des infos
+        else {if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Update(id, prenom, nom, actif, volontaire);}
     })
     // ------------------------------------------------------------------------- ! ! ! - - D E L E T E- - ! ! !
 

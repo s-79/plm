@@ -12,6 +12,7 @@ const ajaxListOrga = (liste) => {
 }
 
 // ----------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
+
 /* ----------------------------------------------------------------------------  Changement dans le menu type de la page jeune */
 const type_Change = (type) => {
     $.ajax({
@@ -36,6 +37,7 @@ const type_Change = (type) => {
 }
 
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
+
 const orga_Create = (nom, type) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom de l'organisme existe-t-il déjà dans la BDD ?

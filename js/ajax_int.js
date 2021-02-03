@@ -31,6 +31,8 @@ const int_Create = (prenom_nom, prenom, nom, actif, volontaire) => {
                         alert("L'intervenant-e a bien été ajouté-e à la base de données.");
                         //------------------------------------------------------ Fermeture du modal
                         $('#modal_int_create').modal('hide');
+                        //------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
+                        ajaxListInter("#inter");
                     }
                 });
             }
@@ -73,6 +75,8 @@ const int_Update = (id, prenom, nom, actif, volontaire) => {
             alert("Les informations de l'intervenant-e ont bien été modifiées.");
             //------------------------------------------------------------------ Fermeture du modal
             $('#modal_int_update').modal('hide');
+            //------------------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
+            ajaxListInter("#inter");
         }
     });
 }
@@ -92,11 +96,13 @@ const int_Delete = (id) => {
                 data : {id_int:id},
                 success: function(response){
                     const exist = parseInt(response[0].exist);
-                    if(exist === 1) alert("Suppression impossible : cet intervenant est relié à des événements et/ou rendez-vous dans la base de données.");
+                    if(exist === 1) alert("Suppression impossible : cet-te intervenant-e est relié-e à des événements et/ou rendez-vous dans la base de données.");
                     else {
                         alert("L'intervenant-e a bien été supprimé-e de la base de données.");
                         //------------------------------------------------------ Fermeture du modal
                         $('#modal_int_update').modal('hide');
+                        //------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
+                        ajaxListInter("#inter");
                     }
                 }
             });

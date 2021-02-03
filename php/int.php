@@ -16,7 +16,7 @@ elseif($id) {
     $query = "CALL int_Update ('$id', '$prenom', '$nom', '$actif', '$volontaire')";
 
 } else {
-    $query = "CALL int_Create (NULL, '$prenom', '$nom', '$actif', '$volontaire')";
+    $query = "CALL int_Create ('$prenom', '$nom', '$actif', '$volontaire')";
 }
 
 $result = $con->prepare($query);
