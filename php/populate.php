@@ -9,6 +9,11 @@ $v_orga = mysqli_real_escape_string($con, $_GET['v_orga']);
 $v_evt = mysqli_real_escape_string($con, $_GET['v_evt']);
 $v_int = mysqli_real_escape_string($con, $_GET['v_int']);
 $v_intUp = mysqli_real_escape_string($con, $_GET['v_intUp']);
+$v_acc_list_evt = mysqli_real_escape_string($con, $_GET['v_acc_list_evt']);
+$v_acc_list_evt2 = mysqli_real_escape_string($con, $_GET['v_acc_list_evt2']);
+$id_acc_get_evt = mysqli_real_escape_string($con, $_GET['id_acc_get_evt']);
+$id_acc_get_evt2 = mysqli_real_escape_string($con, $_GET['id_acc_get_evt2']);
+$id_acc_get_rdv = mysqli_real_escape_string($con, $_GET['id_acc_get_rdv']);
 $orga_type = mysqli_real_escape_string($con, $_GET['orga_type']);
 $v_ville = mysqli_real_escape_string($con, $_GET['v_ville']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville']);
@@ -28,6 +33,21 @@ if($v_npv) {$query = "CALL npv_List ()";
 
 } elseif($v_intUp) {
     $query = "CALL intUp_List ()";
+
+} elseif($v_acc_list_evt) {
+    $query = "CALL acc_List_Evt ()";
+
+} elseif($v_acc_list_evt2) {
+    $query = "CALL acc_List_Evt2 ()";
+
+} elseif($id_acc_get_evt) {
+    $query = "CALL acc_Get_Evt ($id_acc_get_evt)";
+
+} elseif($id_acc_get_evt2) {
+    $query = "CALL acc_Get_Evt2 ($id_acc_get_evt2)";
+
+} elseif($id_acc_get_rdv) {
+    $query = "CALL acc_Get_Rdv ($id_acc_get_rdv)";
 
 } elseif($v_ville) {
     $query = "CALL ville_List ()";

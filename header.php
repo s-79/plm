@@ -30,13 +30,6 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="evt.php">&nbsp;&nbsp;<i class="fas fa-users fa-lg"></i>&nbsp;&nbsp;ÉVÉNEMENTS&nbsp;&nbsp;</a>
                 </li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link" href="sensi.php" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;<i class="fas fa-info-circle fa-lg"></i>&nbsp;&nbsp;SENSIBILISATIONS&nbsp;&nbsp;</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                        <li><a class="dropdown-item" href="#">JEUNES</a></li>
-                        <li><a class="dropdown-item" href="#">PRO</a></li>
-                    </ul>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-plane-departure fa-lg"></i>&nbsp;&nbsp;PROJETS&nbsp;&nbsp;</a>
                 </li>

@@ -1,5 +1,4 @@
-<?php
-include("header.php"); ?>
+<?php include("header.php"); ?>
 
 <div class="container-fluid">
 <div class="row justify-content-center mt-5" style="margin-top: 5em !important;">
@@ -26,136 +25,7 @@ include("header.php"); ?>
     </div>
 </div>
 
-<div id="accompagnement" class="row justify-content-center mt-4 d-none">
-    <div class="col-9">
-    <!--                                                                                                              Select Statut accompagnement-->
-    <div class="form-group row mx-auto mb-3">
-        <label class="col-6 d-flex justify-content-end mt-1 fw-bold" for="acc">STATUT DE L'ACCOMPAGNEMENT : </label>
-        <div class="col-3 d-flex justify-content-start">
-            <select class="form-select" aria-label="Default select example" id="acc">
-              <option selected value="">Statut d'accompagnement</option>
-              <option value="Non démarré">Non démarré</option>
-              <option value="Premier rdv">Premier rdv</option>
-              <option value="Construction du projet">Construction du projet</option>
-              <option value="Préparation au départ">Préparation au départ</option>
-              <option value="À l'étranger">À l'étranger</option>
-              <option value="Accompagnement retour">Accompagnement retour</option>
-              <option value="Suivi terminé">Suivi terminé</option>
-              <option value="Abandon">Abandon</option>
-            </select>
-        </div>
-        <div id="acc_check" class="col-2 d-flex justify-content-start d-none">
-            <i class="fas fa-check fa-2x text-success"></i>
-        </div>
-    </div>
-    <!--                                                                                                              Projets-->
-
-    <h2>Projets &nbsp;<i id="new_projet" class="fas fa-plus-circle fa-lg bleu pointeur" data-bs-toggle="modal" data-bs-target="#modal_projet" data-toggle="tooltip" data-placement="top" title="Ajouter/Supprimer un projet"></i></h2>
-    <table class="table table-light table-striped mt-3 mb-5">
-        <thead>
-            <tr>
-                <th class="d-none" scope="col">#</th>
-                <th scope="col" style="width:150px">Date</th>
-                <th scope="col" style="width:220px">Type</th>
-                <th scope="col">Destination</th>
-                <th scope="col">Statut</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th class="d-none" scope="row">1</th>
-                <td>2021-02-02</td>
-                <td>Info Coll extérieur</td>
-                <td>@mdo</td>
-                <td class="fw-bold text-success">En prépartion</td>
-            </tr>
-            <tr>
-                <th class="d-none" scope="row">2</th>
-                <td>2021-02-02</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td class="fw-bold text-warning">En cours</td>
-            </tr>
-            <tr>
-                <th class="d-none" scope="row">3</th>
-                <td>2021-02-02</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td class="fw-bold text-danger">Terminé</td>
-            </tr>
-        </tbody>
-    </table>
-    <!--                                                                                                              Sensibilisations -->
-
-    <h2>Sensibilisations &nbsp;<i id="new_sensi" class="fas fa-plus-circle fa-lg bleu pointeur" data-bs-toggle="modal" data-bs-target="#modal_sensi" data-toggle="tooltip" data-placement="top" title="Ajouter/Supprimer une sensibilisation"></i></h2>
-    <table class="table table-striped mt-2 mb-5">
-        <thead>
-            <tr>
-                <th class="d-none" scope="col">#</th>
-                <th scope="col" style="width:150px">Date</th>
-                <th scope="col" style="width:220px">Type</th>
-                <th scope="col">Ville</th>
-            </tr>
-        </thead>
-        <tbody id="tab_evt">
-        </tbody>
-    </table>
-    <!--                                                                                                             Rendez-vous-->
-
-    <h2 style="margin-top:2.5em;">RDV de suivi &nbsp;<i id="new_rdv" class="fas fa-plus-circle fa-lg bleu pointeur" data-bs-toggle="modal" data-bs-target="#modal_rdv" data-toggle="tooltip" data-placement="top" title="Ajouter / modifier un rendez-vous"></i></h2>
-    <table class="table table-striped mt-2 mb-5">
-        <thead>
-            <tr>
-                <th class="d-none" scope="col">#</th>
-                <th scope="col" style="width:150px">Date</th>
-                <th scope="col" style="width:220px">Type</th>
-                <th scope="col">Commentaires</th>
-                <th scope="col">Intervenant</th>
-                <th scope="col">Durée</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th class="d-none" scope="row">1</th>
-                <td>2021-02-02</td>
-                <td>RDV de suivi</td>
-                <td>@Commentaires</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th class="d-none" scope="row">1</th>
-                <td>2021-02-02</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th class="d-none" scope="row">1</th>
-                <td>2021-02-02</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-        </tbody>
-    </table>
-    <!--                                                                                                              Ateliers -->
-
-    <h2 style="margin-top:2.5em;">Ateliers&nbsp;<i id="new_atelier" class="fas fa-plus-circle fa-lg bleu pointeur" data-bs-toggle="modal" data-bs-target="#modal_atelier" data-toggle="tooltip" data-placement="top" title="Ajouter / supprimer un atelier"></i></h2>
-    <table class="table table-striped mt-2 mb-5">
-        <thead>
-            <tr>
-                <th scope="col" style="width:150px">Date</th>
-                <th scope="col" style="width:200px" colspan="4">Type</th>
-            </tr>
-        </thead>
-        <tbody id="tab_evt2">
-        </tbody>
-    </table>
-</div>
-</div>
+<?php include("acc.php"); ?>
 
 <form id="form_jeune">
 <div class="row justify-content-center ">
@@ -203,7 +73,7 @@ include("header.php"); ?>
         <h2 class="pt-4">Sensibilisation</h2>
         <div class="form-floating mx-3 mt-4">
             <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
-                <option selected value="0">Ajouter une sensibilisation</option>
+                <option selected value="">Ajouter une sensibilisation</option>
             </select>
             <label for="sensibilisation">Sensibilisation</label>
         </div>
@@ -429,122 +299,8 @@ include("header.php"); ?>
     </div>
 </div>
 </form>
-<!--                                                                             ! ! ! - - M O D A L S - - ! ! ! -->
 
-<!--                                                                                                               Modal pour choisir ajouter / modifier un organisme -->
-<div class="modal fade" id="modal_orga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter ou modifier un organisme</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-          <div id="txt_modal_orga" class="d-none" style="font-weight:bold;">
-              Ce type d'organisme ne contient pas de nom.<br><br>
-          </div>
-          Souhaitez-vous ajouter ou modifier/supprimer<br> un organisme référent ?
-      </div>
-      <div class="modal-footer">
-          <button id="btn_orga_create" type="button" class="btn btn-primary close-modal" data-bs-toggle="modal" data-bs-target="#modal_orga_create">Ajouter</button>
-          <button id="btn_orga_update" type="button" class="btn btn-warning close-modal" data-bs-toggle="modal" data-bs-target="#modal_orga_update">Modifier</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!---                                                                                                              Modal pour ajouter un organisme -->
-<div class="modal fade" id="modal_orga_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter un organisme</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <form id="form_orga_create">
-          <div class="form-floating mx-3 mt-4">
-              <select class="form-select" id="create_type_orga" aria-label="Type d'organisme *">
-                  <option selected value="">Séléctionner le type d'organisme</option>
-                  <option value="Mission Locale">Mission Locale</option>
-                  <option value="Réseau IJ (BIJ, PIJ, CIDJ)">Réseau IJ (BIJ, PIJ, CIDJ)</option>
-                  <option value="Club de prévention">Club de prévention</option>
-                  <option value="Pôle Emploi">Pôle Emploi</option>
-                  <option value="Centre Paris Anim ou EPJ (Paris)">Centre Paris Anim ou EPJ (Paris)</option>
-                  <option value="Internet">Internet</option>
-                  <option value="Bouche à oreilles / ami">Bouche à oreilles / ami</option>
-                  <option value="École de la deuxième chance">École de la deuxième chance</option>
-                  <option value="Membre de la Plateforme (Concordia, SJ, …)">Membre de la Plateforme (Concordia, SJ, …)</option>
-                  <option value="Autres structures socio-éducatives">Autres structures socio-éducatives</option>
-                  <option value="Etat et collectivités (DDCS…)">Etat et collectivités (DDCS…)</option>
-                  <option value="Foyer de jeunes travailleurs">Foyer de jeunes travailleurs</option>
-                  <option value="Autres">Autres</option>
-              </select>
-              <label for="create_type_orga">Type d'organisme</label>
-          </div>
-          <div class="form-floating mx-3 mt-3">
-                  <input type="text" class="form-control" id="create_nom_orga" placeholder="Nom de l'organisme *">
-                  <label for="create_nom_orga">Nom de l'organisme à ajouter</label>
-          </div>
-      </form>
-      </div>
-      <div class="modal-footer">
-          <button id="orga_create" type="button" class="btn btn-primary">Ajouter</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!---                                                                                                              Modal pour modifier un organisme -->
-<div class="modal fade" id="modal_orga_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modifier ou supprimer un organisme</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <form id="form_orga_update">
-          <div class="form-floating mx-3 mt-4">
-              <select class="form-select" id="select_nom_orga" aria-label="Nom de l'organisme">
-                  <option selected value="">Séléctionner l'organisme à modifier</option>
-              </select>
-              <label for="select_nom_orga">Séléctionner l'organisme à modifier</label>
-          </div>
-          <div class="form-floating mx-3 mt-4">
-              <select class="form-select" id="update_type_orga" aria-label="Type d'organisme">
-                  <option selected value="">Séléctionner le type d'organisme</option>
-                  <option value="Mission Locale">Mission Locale</option>
-                  <option value="Réseau IJ (BIJ, PIJ, CIDJ)">Réseau IJ (BIJ, PIJ, CIDJ)</option>
-                  <option value="Club de prévention">Club de prévention</option>
-                  <option value="Pôle Emploi">Pôle Emploi</option>
-                  <option value="Centre Paris Anim ou EPJ (Paris)">Centre Paris Anim ou EPJ (Paris)</option>
-                  <option value="Internet">Internet</option>
-                  <option value="Bouche à oreilles / ami">Bouche à oreilles / ami</option>
-                  <option value="École de la deuxième chance">École de la deuxième chance</option>
-                  <option value="Membre de la Plateforme (Concordia, SJ, …)">Membre de la Plateforme (Concordia, SJ, …)</option>
-                  <option value="Autres structures socio-éducatives">Autres structures socio-éducatives</option>
-                  <option value="Etat et collectivités (DDCS…)">Etat et collectivités (DDCS…)</option>
-                  <option value="Foyer de jeunes travailleurs">Foyer de jeunes travailleurs</option>
-                  <option value="Autres">Autres</option>
-              </select>
-              <label for="update_type_orga">Modifier le type d'organisme</label>
-          </div>
-          <div class="form-floating mx-3 mt-3">
-                  <input type="text" class="form-control" id="update_nom_orga" placeholder="Nom de l'organisme">
-                  <label for="update_nom_orga">Modifier le nom de l'organisme</label>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-          <button id="orga_update" type="button" class="btn btn-warning">Modifier</button>
-          <button id="orga_delete" type="button" class="btn btn-danger">Supprimer</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
+<?php include("modal.php"); ?>
 <!--                                                                                                               Scripts -->
 <script src="js/jeune.js"></script>
 <script src="js/ajax_jeune.js"></script>
@@ -556,6 +312,7 @@ include("header.php"); ?>
 <script src="js/functions.js"></script>
 <script src="js/acc.js"></script>
 <script src="js/ajax_acc.js"></script>
+<script src="js/ajax_int.js"></script>
 
 </body>
 </html>

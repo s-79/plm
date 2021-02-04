@@ -106,8 +106,8 @@ $(function(){
         const gj = $("#gj").val();
 
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!genre || !nom || !prenom || !id_ville || (!email && !tel)) {
-            alert("Les champs Genre, Nom, Prénom et Ville ainsi que Email ou Tel sont obligatoires.");
+        if(!genre || !nom || !prenom || !id_ville || !id_evt || (!email && !tel)) {
+            alert("Les champs Genre, Nom, Prénom, Sensibilisation et Ville ainsi que Email ou Tel sont obligatoires.");
         } else {
             // ----------------------------------------------------------------- La longueur des champs est-elles bien inférieur à celle attendue dans la BDD ?
             if(vLen("Nom",nom,100) && vLen("Prénom",prenom,100) && vLen("Email",email,100) && vLen("Téléphone",tel,50)
@@ -203,7 +203,7 @@ const jeune_Reset = () => {
     //-------------------------------------------------------------------------- Réinitialisation du formulaire
     document.getElementById("form_jeune").reset();
     //-------------------------------------------------------------------------- Remplissage de la liste des sensibilisations
-    $("#sensibilisation").html("<option selected value='0'>Ajouter une sensibilisation</option>");
+    $("#sensibilisation").html("<option selected value=''>Ajouter une sensibilisation</option>");
     ajaxListEvt("#sensibilisation");
     //-------------------------------------------------------------------------- Remplissage de la liste des villes
     $("#ville").html("<option selected value=''>Séléctionner la ville</option>");

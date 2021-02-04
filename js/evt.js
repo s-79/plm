@@ -197,10 +197,10 @@ const evt_Reset = () => {
     //-------------------------------------------------------------------------- Remplissage de la liste des intervenants
     ajaxListInter("#inter");
     //-------------------------------------------------------------------------- Remplissage de la liste des villes
-    $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
+    $("#ville").html("<option selected value='0'>Séléctionner la ville</option>");
     ajaxListVille("#ville");
     //-------------------------------------------------------------------------- Réinitialisation du champs de recherche des événements
-    $("#evt_res").html("<option selected value='0'>Séléctionner un événement</option>");
+    $("#evt_res").html("<option selected value=''>Séléctionner un événement</option>");
     ajaxListEvt("#evt_res");
     //-------------------------------------------------------------------------- Réinitialisation du tableau de jeunes
     $("#tableau").html("");

@@ -7,6 +7,7 @@ $return_arr = array();
 $id_acc = mysqli_real_escape_string($con, $_GET['id_acc']);
 $id = mysqli_real_escape_string($con, $_GET['id']);
 $id2 = mysqli_real_escape_string($con, $_GET['id2']);
+$idRdv = mysqli_real_escape_string($con, $_GET['idRdv']);
 
 // ----------------------------------------------------------------------------- Récupération du statut d'accompagnement du jeune séléctionné
 if($id_acc) {
@@ -29,14 +30,12 @@ if($id_acc) {
 
     while($row = mysqli_fetch_array($result)){
         $id = $row['id'];
-        $mission = $row['mission'];
         $dat = $row['dat'];
         $type = $row['type'];
         $nom_ville = $row['nom_ville'];
 
         $return_arr[] = array(
             "id" => $id,
-            "mission" => $mission,
             "dat" => $dat,
             "type" => $type,
             "nom_ville" => $nom_ville
@@ -50,17 +49,34 @@ if($id_acc) {
 
     while($row = mysqli_fetch_array($result)){
         $id = $row['id'];
-        $mission = $row['mission'];
         $dat = $row['dat'];
         $type = $row['type'];
-        $nom_ville = $row['nom_ville'];
 
         $return_arr[] = array(
             "id" => $id,
-            "mission" => $mission,
+            "dat" => $dat,
+            "type" => $type
+        );
+    }
+// ----------------------------------------------------------------------------- Récupération des infos des RDV en fonction de l'id du jeune
+} elseif($idRdv) {
+    $query = "CALL jeune_Get_Rdv('$idRdv')";
+
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id = $row['id'];
+        $dat = $row['dat'];
+        $type = $row['type'];
+        $intervenant = $row['intervenant'];
+        $duree = $row['duree'];
+
+        $return_arr[] = array(
+            "id" => $id,
             "dat" => $dat,
             "type" => $type,
-            "nom_ville" => $nom_ville
+            "intervenant" => $intervenant,
+            "duree" => $duree
         );
     }
 }

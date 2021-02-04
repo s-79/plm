@@ -70,13 +70,10 @@ $(function(){
         const nom = $('#update_nom_orga').val();
         if(!id) alert("Aucun organisme n'a été séléctionné");
         else {
-            if(id === "0") alert('Le label "Non renseigné" n\'est pas modifiable.');
+            if(!type) alert("Aucun type d'organisme n'a été séléctionné");
+            // ------------------------------------------------------------- Envoies des données à modifier vers la BDD après vérif de la longueur du nom
             else {
-                if(!type) alert("Aucun type d'organisme n'a été séléctionné");
-                // ------------------------------------------------------------- Envoies des données à modifier vers la BDD après vérif de la longueur du nom
-                else {
-                    if(vLen("Nom de l'organisme",nom,100)) orga_Update(id, nom, type);
-                }
+                if(vLen("Nom de l'organisme",nom,100)) orga_Update(id, nom, type);
             }
         }
     })

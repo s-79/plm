@@ -91,8 +91,8 @@ include("header.php"); ?>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="ville" aria-label="Ville">
-                <option selected value="">Séléctionnez une ville *</option>
-                <option value="0">VILLES MULTIPLES</option>
+                <option selected value="0">Séléctionnez une ville *</option>
+                <option value="0"></option>
             </select>
             <label for="ville">Ville</label>
         </div>
@@ -194,7 +194,7 @@ include("header.php"); ?>
 </div>
 </div>
 
-<!--                                                                             ! ! ! - - M O D A L S - - ! ! ! -->
+<!--                                                                             ! ! ! - - M O D A L S  I N T E R V E N A N T - - ! ! ! -->
 
 <!--                                                                                                               Modal pour choisir ajouter / modifier un-e intervenant-e -->
 <div class="modal fade" id="modal_int" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -250,7 +250,7 @@ include("header.php"); ?>
     </div>
 </div>
 
-<!---                                                                                                              Modal pour modifier un organisme -->
+<!---                                                                                                              Modal pour modifier un intervenant-e -->
 <div class="modal fade" id="modal_int_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
