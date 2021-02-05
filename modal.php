@@ -116,106 +116,135 @@
 
 <!--                                                                             ! ! ! - - S E N S I B I L I S A T I O N S - - ! ! ! -->
 
-<!--                                                                                                               Modal pour choisir ajouter / supprimer unee mission 0 ou 1 de l'accompagnement -->
-<div class="modal fade" id="modal_evt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter ou supprimer une sensibilisation au suivi du jeune</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-          <div class="row">
-              <div class="col-9">
-                  <div class="form-floating">
-                      <select class="form-select" id="evt_create" aria-label="Type d'organisme">
-                          <option selected value="">Séléctionner la sensibilisation</option>
-                      </select>
-                      <label for="evt_create">Sensibilisation à ajouter</label>
-                  </div>
-              </div>
-              <div class="col-2">
-                  <button id="btn_evt_create" type="button" class="btn btn-primary close-modal mt-2" style="min-width:6em;">Ajouter</button>
-              </div>
-          </div>
-          <div class="row mt-3">
-              <div class="col-9">
-                  <div class="form-floating">
-                      <select class="form-select" id="evt_delete" aria-label="Sensibilisation">
-                          <option selected value="">Séléctionner la sensibilisation</option>
-                      </select>
-                      <label for="evt_delete">Sensibilisation à supprimer</label>
-                  </div>
-              </div>
-              <div class="col-2">
-                  <button id="btn_evt_delete" type="button" class="btn btn-danger close-modal mt-2" style="min-width:6em;">Suppr.</button>
-              </div>
-          </div>
-      </div>
+<!---                                                                                                              Modal pour associer une sensibilisation -->
+
+<div class="modal fade" id="modal_evt_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter une sensibilisation au suivi du jeune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_evt_create">
+                    <div class="form-floating mx-3 mt-4">
+                        <select class="form-select" id="evt_create" aria-label="Sensibilisation">
+                            <option selected value="">Séléctionner la sensibilisation à ajouter</option>
+                        </select>
+                        <label for="update_int_rdv">Sensibilisation à ajouter</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <textarea class="form-control" placeholder="Commentaires individuels" id="create_comm_evt" style="height:125px;"></textarea>
+                        <label for="create_comm_evt">Commentaires individuels</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_evt_create" type="button" class="btn btn-primary">Ajouter au suivi</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+<!---                                                                                                              Modal pour disocier ou modifier une sensibilisation -->
+<div class="modal fade" id="modal_evt_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier le commentaire ou supprimer la&nbsp;sensibilisation du suivi du jeune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_evt_update">
+                    <!--                                                                                                        Récupération de l'id_evt dans un input invisible -->
+                    <input type="text" class="form-control d-none" id="update_id_evt">
+                    <!--                                                                                                        Récupération de l'id_jeune dans un input invisible -->
+                    <input type="text" class="form-control d-none" id="update_id_jeune">
+                    <div class="form-floating mx-3 mt-4">
+                            <input type="text" class="form-control" id="update_nom_evt" placeholder="Sensibilisation à modifier" disabled>
+                            <label for="update_nom_evt">Sensibilisation à modifier</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <textarea class="form-control" placeholder="Commentaires individuels" id="update_comm_evt" style="height:125px;"></textarea>
+                        <label for="create_comm_evt">Commentaires individuels à modifier</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_evt_update" type="button" class="btn btn-warning">Modifier le commentaire</button>
+                <button id="btn_evt_delete" type="button" class="btn btn-danger">Supprimer du suivi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--                                                                             ! ! ! - - A T E L I E R S  C O L L E C T I F S - - ! ! ! -->
-<!--                                                                                                               Modal pour choisir ajouter / supprimer unee mission 2 -->
-<div class="modal fade" id="modal_evt2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter ou supprimer un atelier collectif au suivi du jeune</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-          <div class="row">
-              <div class="col-9">
-                  <div class="form-floating">
-                      <select class="form-select" id="evt2_create" aria-label="Atelier">
-                          <option selected value="">Séléctionner l'atelier</option>
-                      </select>
-                      <label for="evt2_create">Atelier à ajouter</label>
-                  </div>
-              </div>
-              <div class="col-2">
-                  <button id="btn_evt2_create" type="button" class="btn btn-primary close-modal mt-2" style="min-width:6em;">Ajouter</button>
-              </div>
-          </div>
-          <div class="row mt-3">
-              <div class="col-9">
-                  <div class="form-floating">
-                      <select class="form-select" id="evt2_delete" aria-label="Type d'organisme">
-                          <option selected value="">Séléctionner l'atelier</option>
-                      </select>
-                      <label for="evt2_delete">Atelier à supprimer</label>
-                  </div>
-              </div>
-              <div class="col-2">
-                  <button id="btn_evt2_delete" type="button" class="btn btn-danger close-modal mt-2" style="min-width:6em;">Suppr.</button>
-              </div>
-          </div>
-      </div>
+
+<!---                                                                                                              Modal pour associer un atelier -->
+
+<div class="modal fade" id="modal_evt2_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un atelier collectif au suivi du jeune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_evt2_create">
+                    <div class="form-floating mx-3 mt-4">
+                        <select class="form-select" id="evt2_create" aria-label="Atelier">
+                            <option selected value="">Séléctionner l'atelier collectif à ajouter</option>
+                        </select>
+                        <label for="update_int_rdv">Atelier à ajouter</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <textarea class="form-control" placeholder="Commentaires individuels" id="create_comm_evt2" style="height:125px;"></textarea>
+                        <label for="create_comm_evt2">Commentaires individuels</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_evt2_create" type="button" class="btn btn-primary">Ajouter au suivi</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<!--                                                                             ! ! ! - - R E N D E Z - V O U S  I N D I V I D U E L S - - ! ! ! -->
-<!--                                                                                                               Modal pour choisir ajouter / supprimer un rendez-vous mission 2 -->
-<div class="modal fade" id="modal_rdv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter ou supprimer un rendez-vous individuel au suivi du jeune</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-          Souhaitez-vous ajouter ou modifier/supprimer<br> un rendez-vous individuel au suivi du jeune ?
-      </div>
-      <div class="modal-footer">
-          <button id="btn_rdv_create" type="button" class="btn btn-primary close-modal" data-bs-toggle="modal" data-bs-target="#modal_rdv_create">Ajouter</button>
-          <button id="btn_rdv_update" type="button" class="btn btn-warning close-modal" data-bs-toggle="modal" data-bs-target="#modal_rdv_update">Modifier</button>
-      </div>
+<!---                                                                                                              Modal pour disocier ou modifier une atelier -->
+<div class="modal fade" id="modal_evt2_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier le commentaire ou supprimer l'atelier collectif du suivi du jeune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_evt2_update">
+                    <!--                                                                                                        Récupération de l'id_evt2 dans un input invisible -->
+                    <input type="text" class="form-control d-none" id="update_id_evt2">
+                    <!--                                                                                                        Récupération de l'id_jeune dans un input invisible -->
+                    <input type="text" class="form-control d-none" id="update_id_jeune2">
+                    <div class="form-floating mx-3 mt-4">
+                            <input type="text" class="form-control" id="update_nom_evt2" placeholder="Atelier collectif à modifier" disabled>
+                            <label for="update_nom_evt2">Atelier collectif à modifier</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <textarea class="form-control" placeholder="Commentaires individuels" id="update_comm_evt2" style="height:125px;"></textarea>
+                        <label for="create_comm_evt2">Commentaires individuels à modifier</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_evt2_update" type="button" class="btn btn-warning">Modifier le commentaire</button>
+                <button id="btn_evt2_delete" type="button" class="btn btn-danger">Supprimer du suivi</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+
+<!--                                                                             ! ! ! - - R E N D E Z - V O U S  I N D I V I D U E L S - - ! ! ! -->
 
 <!---                                                                                                              Modal pour ajouter un rendez-vous individuel -->
 <div class="modal fade" id="modal_rdv_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -265,7 +294,7 @@
       </form>
       </div>
       <div class="modal-footer">
-          <button id="rdv_create" type="button" class="btn btn-primary">Ajouter</button>
+          <button id="btn_rdv_create" type="button" class="btn btn-primary">Ajouter</button>
       </div>
     </div>
   </div>
@@ -281,12 +310,10 @@
       </div>
       <div class="modal-body">
           <form id="form_rdv_update">
-          <div class="form-floating mx-3 mt-4">
-              <select class="form-select" id="update_select_rdv" aria-label="Rendez-vous à modifier">
-                  <option selected value="">Séléctionner le rendez-vous à modifier</option>
-              </select>
-              <label for="update_select_rdv">Séléctionner le rendez-vous à modifier</label>
-          </div>
+              <div class="form-floating mx-3 mt-4">
+                      <input type="text" class="form-control" id="update_nom_rdv" placeholder="Rendez-vous à modifier" disabled>
+                      <label for="update_nom_rdv">Rendez-vous à modifier</label>
+              </div>
           <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="update_int_rdv" aria-label="Intervenant">
                   <option selected value="">Séléctionner l'intervenant-e</option>
@@ -325,8 +352,8 @@
       </form>
       </div>
       <div class="modal-footer">
-          <button id="rdv_update" type="button" class="btn btn-warning">Modifier</button>
-          <button id="rdv_delete" type="button" class="btn btn-danger">Supprimer</button>
+          <button id="btn_rdv_update" type="button" class="btn btn-warning">Modifier</button>
+          <button id="btn_rdv_delete" type="button" class="btn btn-danger">Supprimer</button>
       </div>
     </div>
   </div>

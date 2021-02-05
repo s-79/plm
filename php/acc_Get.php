@@ -7,7 +7,10 @@ $return_arr = array();
 $id_acc = mysqli_real_escape_string($con, $_GET['id_acc']);
 $id = mysqli_real_escape_string($con, $_GET['id']);
 $id2 = mysqli_real_escape_string($con, $_GET['id2']);
-$idRdv = mysqli_real_escape_string($con, $_GET['idRdv']);
+$id_jeune_rdv = mysqli_real_escape_string($con, $_GET['id_jeune_rdv']);
+$id_rdv = mysqli_real_escape_string($con, $_GET['id_rdv']);
+$id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
+$id_jeune = mysqli_real_escape_string($con, $_GET['id_jeune']);
 
 // ----------------------------------------------------------------------------- Récupération du statut d'accompagnement du jeune séléctionné
 if($id_acc) {
@@ -17,9 +20,11 @@ if($id_acc) {
 
     while($row = mysqli_fetch_array($result)){
         $acc = $row['acc'];
+        $npv = $row['npv'];
 
         $return_arr[] = array(
-            "acc" => $acc
+            "acc" => $acc,
+            "npv" => $npv
         );
     }
 // ----------------------------------------------------------------------------- Récupération des infos des missions 0 et 1 en fonction de l'id jeune
@@ -33,12 +38,14 @@ if($id_acc) {
         $dat = $row['dat'];
         $type = $row['type'];
         $nom_ville = $row['nom_ville'];
+        $commentaire = $row['commentaire'];
 
         $return_arr[] = array(
             "id" => $id,
             "dat" => $dat,
             "type" => $type,
-            "nom_ville" => $nom_ville
+            "nom_ville" => $nom_ville,
+            "commentaire" => $commentaire
         );
     }
 // ----------------------------------------------------------------------------- Récupération des infos des missions 2 en fonction de l'id jeune
@@ -51,16 +58,18 @@ if($id_acc) {
         $id = $row['id'];
         $dat = $row['dat'];
         $type = $row['type'];
+        $commentaire = $row['commentaire'];
 
         $return_arr[] = array(
             "id" => $id,
             "dat" => $dat,
-            "type" => $type
+            "type" => $type,
+            "commentaire" => $commentaire
         );
     }
 // ----------------------------------------------------------------------------- Récupération des infos des RDV en fonction de l'id du jeune
-} elseif($idRdv) {
-    $query = "CALL jeune_Get_Rdv('$idRdv')";
+} elseif($id_jeune_rdv) {
+    $query = "CALL jeune_Get_Rdv('$id_jeune_rdv')";
 
     $result = mysqli_query($con,$query);
 
@@ -70,13 +79,60 @@ if($id_acc) {
         $type = $row['type'];
         $intervenant = $row['intervenant'];
         $duree = $row['duree'];
+        $commentaire = $row['commentaire'];
 
         $return_arr[] = array(
             "id" => $id,
             "dat" => $dat,
             "type" => $type,
             "intervenant" => $intervenant,
+            "duree" => $duree,
+            "commentaire" => $commentaire
+        );
+    }
+
+// ----------------------------------------------------------------------------- Récupération des infos d'un RDV en fonction de son id
+} elseif($id_rdv) {
+    $query = "CALL acc_Get_Rdv('$id_rdv')";
+
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id = $row['id'];
+        $nom2 = $row['nom2'];
+        $dat = $row['dat'];
+        $type = $row['type'];
+        $intervenant = $row['intervenant'];
+        $duree = $row['duree'];
+
+        $return_arr[] = array(
+            "id" => $id,
+            "nom2" => $nom2,
+            "dat" => $dat,
+            "type" => $type,
+            "intervenant" => $intervenant,
             "duree" => $duree
+        );
+    }
+
+} elseif($id_evt) {
+    $query = "CALL acc_Get_Evt('$id_evt', '$id_jeune')";
+
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id_evt = $row['id_evt'];
+        $id_jeune = $row['id_jeune'];
+        $nom = $row['nom'];
+        $nom_evt = $row['nom_evt'];
+        $commentaire = $row['commentaire'];
+
+        $return_arr[] = array(
+            "id_evt" => $id_evt,
+            "id_jeune" => $id_jeune,
+            "nom" => $nom,
+            "nom_evt" => $nom_evt,
+            "commentaire" => $commentaire
         );
     }
 }

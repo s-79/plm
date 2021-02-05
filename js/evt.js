@@ -1,6 +1,12 @@
 $(function(){
     // ------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
+    //-------------------------------------------------------------------------- Récupérarion et suppression d'un éventuel id d'événement stocké (si l'utilisateur a cliqué sur une lige du tableau dans acc)
+    let id_evt_storage = sessionStorage.getItem("id_evt");
+    sessionStorage.removeItem('id_evt');
+    //-------------------------------------------------------------------------- (fonction à la fin) Si il y un id, on lance la fonction Get
+    if(id_evt_storage) evt_Get(id_evt_storage);
+
     //-------------------------------------------------------------------------- Outil de recherche d'évenements
     $("#evt_search").keyup(function(){
         let search = $("#evt_search").val();
@@ -75,29 +81,10 @@ $(function(){
 
     //-------------------------------------------------------------------------- ÉVENEMENT CLICK SUR LE BOUTONS AFFICHER LES INFORMATIONS
     $("#infos").click(function(){
+        //---------------------------------------------------------------------- Récupération de l'id de l'évenement séléctionné
         const id_evt = $("#evt_res").val();
-        //---------------------------------------------------------------------- Récupération de l'id du jeune séléctionné
-        if(!id_evt) alert("Aucun événement n'a été séléctionné")
-        else {
-            //------------------------------------------------------------------ Reinitialisation des champs
-            $("#type_m1")[0].disabled = false;
-            $("#type_m2")[0].disabled = false;
-            $("#ville").html("");
-            //------------------------------------------------------------------ Récupération des données de l'événement
-            ajaxEvtGet(id_evt);
-            //------------------------------------------------------------------ Vidage puis remplissage du tableau avec les noms des jeunes qui ont participé à l'événement
-            $("#tableau").html("");
-            ajaxEvtJeune(id_evt, "#tableau");
-            //------------------------------------------------------------------ Réinitialisation de la liste de tous intervenants et décochage des cases
-            ajaxListInter("#inter");
-            //------------------------------------------------------------------ Récupération des intervants liés à cet événement
-            ajaxEvtInter(id_evt);
-            //------------------------------------------------------------------ Inversement des boutons en bas de page
-            $("#btn_evt_create").addClass("d-none");
-            $("#btn_evt_update").removeClass("d-none");
-        }
-        //---------------------------------------------------------------------- Remplissage de la liste des villes
-        ajaxListVille("#ville");
+        //---------------------------------------------------------------------- (fonction à la fin) Récupération des infos de l'événement séléctionné
+        evt_Get(id_evt);
     });
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E -- !!!
@@ -186,7 +173,34 @@ $(function(){
     })
 });
 
-// ----------------------------------------------------------------------------- ! ! ! - - R E S E T (F U N C T I O N)- - ! ! !
+// ----------------------------------------------------------------------------- ! ! ! - - F U N C T I O N S - - ! ! !
+
+// ----------------------------------------------------------------------------- FONCTION GET
+const evt_Get = (id_evt) => {
+    if(!id_evt) alert("Aucun événement n'a été séléctionné")
+    else {
+        //---------------------------------------------------------------------- Reinitialisation des champs
+        $("#type_m1")[0].disabled = false;
+        $("#type_m2")[0].disabled = false;
+        $("#ville").html("");
+        //---------------------------------------------------------------------- Récupération des données de l'événement
+        ajaxEvtGet(id_evt);
+        //---------------------------------------------------------------------- Vidage puis remplissage du tableau avec les noms des jeunes qui ont participé à l'événement
+        $("#tableau").html("");
+        ajaxEvtJeune(id_evt, "#tableau");
+        //---------------------------------------------------------------------- Réinitialisation de la liste de tous intervenants et décochage des cases
+        ajaxListInter("#inter");
+        //---------------------------------------------------------------------- Récupération des intervants liés à cet événement
+        ajaxEvtInter(id_evt);
+        //---------------------------------------------------------------------- Inversement des boutons en bas de page
+        $("#btn_evt_create").addClass("d-none");
+        $("#btn_evt_update").removeClass("d-none");
+    }
+    //-------------------------------------------------------------------------- Remplissage de la liste des villes
+    ajaxListVille("#ville");
+}
+
+// ----------------------------------------------------------------------------- FONCTION RESET
 
 //------------------------------------------------------------------------------ Fonction de réinitialisation de la page événement
 const evt_Reset = () => {

@@ -143,7 +143,7 @@ const ajaxEvtJeune = (id_evt, liste) => {
                 const nom = response[i].nom;
                 const nom_ville = response[i].nom_ville;
                 const acc = response[i].acc;
-                res += `<tr><th scope="row">${id}</th><td>${prenom}</td><td>${nom}</td><td>${nom_ville}</td><td>${acc}</td></tr>`;
+                res += `<tr style="cursor: pointer" onclick="id_jeune_storage(${id})"><th scope="row">${id}</th><td>${prenom}</td><td>${nom}</td><td>${nom_ville}</td><td>${acc}</td></tr>`;
             }
             $(liste).append(res);
         }
@@ -223,4 +223,12 @@ const evt_Delete = (id) => {
             });
         }
     });
+}
+
+// ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
+
+// ----------------------------------------------------------------------------- Stockage de l'id du jeune et envoie vers la page jeune (acc)
+const id_jeune_storage = (id, location) => {
+    sessionStorage.setItem('id_jeune', id);
+    document.location='index.php';
 }
