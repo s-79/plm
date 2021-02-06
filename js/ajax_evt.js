@@ -175,12 +175,60 @@ const evt_Create = (mission, dat, id_ville, type, visio, intitule, id_projet, or
         dataType: 'JSON',
         data : {mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
         complete: function(){
+            //------------------------------------------------------------------ Récupération du nom de la ville et création du nom de l'événement
+            const nom_ville = $("#nom_ville_none").val();
+            const nom_evt = `${dat} - ${type} - ${nom_ville}`;
+            //------------------------------------------------------------------ Récupération de l'id de l'événement créé
+            //------------------------------------------------------------------ Puis récupération des intervenants et association avec l'évenemnt dans la table intervenir
+            evt_Get_Id(nom_evt);
+            //------------------------------------------------------------------ Récupération et envoie des intervenants et association avec le projet dans la table intervenir
             alert("L'événement a bien été ajouté à la base de données.");
-            //------------------------------------------------------ Réinitialisation de la pages des événements
+            //------------------------------------------------------------------ Réinitialisation de la pages des événements
             evt_Reset();
         }
     });
 }
+
+//----------------------------------------------------------------------------- Récupération de l'id de l'événement créé
+const evt_Get_Id = (nom_evt) => {
+    $.ajax({
+        url: "php/evt_Get.php",
+        dataType: 'JSON',
+        data : {nom_evt:nom_evt},
+        success: function(response){
+            const id_evt = response[0].id;
+            evt_Get_Inter(id_evt);
+        }
+    });
+}
+
+//------------------------------------------------------------------------------ Récupération des intervenants et association avec l'évenemnt dans la table intervenir
+const evt_Get_Inter = (id_evt) => {
+    $.ajax({
+        url: "php/populate.php",
+        dataType: 'JSON',
+        data : {v_int:"v_int"},
+        success: function(response){
+            const len = response.length;
+            let checkInt = [];
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                const nom = response[i].nom;
+                const intId = `#int${id}`;
+                let check =  $(intId).is(':checked');
+                if(check) checkInt.push(id);
+            }
+            for(id_int of checkInt) {
+                $.ajax({
+                    url: 'php/evt.php',
+                    dataType: 'JSON',
+                    data : {id_int:id_int, id_evt:id_evt},
+                });
+            }
+        }
+    });
+}
+
 
 // ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
@@ -192,7 +240,7 @@ const evt_Update = (id, mission, dat, id_ville, type, visio, intitule, id_projet
         data : {id:id, mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
         complete: function(){
             alert("L'événement a bien été modifié.");
-            //------------------------------------------------------ Réinitialisation de la pages des événements
+            //----------------------------------------------------------------- Réinitialisation de la pages des événements
             evt_Reset();
         }
     });

@@ -7,6 +7,7 @@ $return_arr = array();
 $id = mysqli_real_escape_string($con, $_GET['id']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_evt_int = mysqli_real_escape_string($con, $_GET['id_evt_int']);
+$nom_evt = mysqli_real_escape_string($con, $_GET['nom_evt']);
 
 // ----------------------------------------------------------------------------- Récupération des infos de l'événement en fonction de l'id
 if($id) {
@@ -89,6 +90,20 @@ if($id) {
             "volontaire" => $volontaire
         );
     }
+
+    // ----------------------------------------------------------------------------- Récupération de l'id de l'événement nouvellement créé
+} elseif($nom_evt) {
+        $query = "CALL evt_Get_Id('$nom_evt')";
+
+        $result = mysqli_query($con,$query);
+
+        while($row = mysqli_fetch_array($result)){
+            $id = $row['id'];
+
+            $return_arr[] = array(
+                "id" => $id
+            );
+        }
 }
 
 if($return_arr) {echo json_encode($return_arr);}

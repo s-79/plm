@@ -15,13 +15,18 @@ $(function(){
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE CRÉATION D'UNE ASSOCIATION ENTRE JEUNE ET SENSIBILISATION
     $("#new_evt").click(function(){
+        //---------------------------------------------------------------------- Réinitialisation du formulaire
+        document.getElementById("form_evt_create").reset();
         const id = $("#npv_res").val();
         /* --------------------------------------------------------------------- Remplissage de la liste des sensibilisation à associer */
         $("#evt_create").html("<option selected value=''>Séléctionner la sensibilisation à ajouter</option>");
         acc_List_Evt("#evt_create");
     });
+
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE CRÉATION D'UNE ASSOCIATION ENTRE JEUNE ET ATELIER COLLECTIF
     $("#new_evt2").click(function(){
+        //---------------------------------------------------------------------- Réinitialisation du formulaire
+        document.getElementById("form_evt2_create").reset();
         const id = $("#npv_res").val();
         /* --------------------------------------------------------------------- Remplissage de la liste des ateliers à associer */
         $("#evt2_create").html("<option selected value=''>Séléctionner l'atelier collectif à ajouter</option>");
@@ -47,8 +52,6 @@ $(function(){
         ajaxListIntUp("#create_int_rdv");
     });
 
-    // ------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
-
     // ------------------------------------------------------------------------- ! ! ! - - G E T - - ! ! !
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AFFICHER ACCOMPAGNEMENT"
@@ -56,8 +59,31 @@ $(function(){
         //---------------------------------------------------------------------- Récupération de l'id du jeune séléctionné
         const id = $("#npv_res").val();
         $("#id").val(id);
-        //---------------------------------------------------------------------- Lancement de la fonction GET définies en dessous
+        //---------------------------------------------------------------------- (fonction en dessous) Lancement de la fonction GET définies en dessous
         acc_Get(id);
+    });
+
+    // ------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT
+    $("#btn_evt_create").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_evt = $("#evt_create").val();
+        const commentaire = $("#create_comm_evt").val();
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
+        if(vLen("Commentaire",commentaire,255)) acc_Create_Evt(id_jeune, id_evt, commentaire);
+
+    });
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT2
+    $("#btn_evt2_create").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_evt2 = $("#evt2_create").val();
+        const commentaire = $("#create_comm_evt2").val();
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
+        if(vLen("Commentaire",commentaire,255)) acc_Create_Evt2(id_jeune, id_evt2, commentaire);
     });
 
     // ------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
@@ -69,11 +95,53 @@ $(function(){
         // --------------------------------------------------------------------- Mise à jour du statut d'accompagnement
         jeune_Update_Acc(id, statut);
     });
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LE COMMENTAIRE" DANS LE MODAL EVT M0 ET 1
+    $("#btn_evt_update").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_evt = $("#update_id_evt").val();
+        const commentaire = $("#update_comm_evt").val();
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
+        if(vLen("Commentaire",commentaire,255)) acc_Update_Evt(id_jeune, id_evt, commentaire);
+    });
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LE COMMENTAIRE" DANS LE MODAL EVT M2
+    $("#btn_evt2_update").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_evt2 = $("#update_id_evt2").val();
+        const commentaire = $("#update_comm_evt2").val();
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt2
+        if(vLen("Commentaire",commentaire,255)) acc_Update_Evt2(id_jeune, id_evt2, commentaire);
+    });
+
+    // ------------------------------------------------------------------------- ! ! ! - - D E L E T E-- !!!
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DE MODIFICATION EVT 0 ET 1
+    $('#btn_evt_delete').click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_evt = $("#update_id_evt").val();
+        //---------------------------------------------------------------------- Suppression de l'association entre le jeune et l'evt
+        acc_Delete_Evt(id_jeune, id_evt);
+    })
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DES ATELIERS COLLECTIFS
+    $('#btn_evt2_delete').click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_evt2 = $("#update_id_evt2").val();
+        //---------------------------------------------------------------------- Suppression de l'association entre le jeune et l'atelier collectif
+        acc_Delete_Evt2(id_jeune, id_evt2);
+    })
+
 });
 
 // ----------------------------------------------------------------------------- ! ! ! - - F U N C T I O N S- - ! ! !
 
 // ----------------------------------------------------------------------------- FONCTION GET
+
 //------------------------------------------------------------------------------ Fonction de réinitialisation de la liste des types, des durées et des intervenants sur les pages rdv
 const acc_Get = (id) => {
     if(!id) alert("Aucun jeune n'a été séléctionné")
@@ -81,13 +149,17 @@ const acc_Get = (id) => {
         //---------------------------------------------------------------------- Changement d'interface
         $("#accompagnement").removeClass('d-none');
         $("#form_jeune").addClass('d-none');
+        //---------------------------------------------------------------------- Réinitialisation des tableaux
+        $("#tab_evt").html("");
+        $("#tab_evt2").html("");
+        $("#tab_rdv").html("");
         //---------------------------------------------------------------------- Récupération du statut du jeune
         jeune_Get_Acc(id);
-        //---------------------------------------------------------------------- Récupération des sensibilisation (mission 0 et 1) du jeune et remplissage du tableau
+        //---------------------------------------------------------------------- TABLEAU M0, M1 : Récupération des sensibilisation (mission 0 et 1) du jeune et remplissage du tableau
         jeune_Get_Evt(id);
-        //---------------------------------------------------------------------- Récupération des ateliers collectifs (mission 2) du jeune et remplissage du tableau
+        //---------------------------------------------------------------------- TABLEAU M2 : RRécupération des ateliers collectifs (mission 2) du jeune et remplissage du tableau
         jeune_Get_Evt2(id);
-        //---------------------------------------------------------------------- Récupération des RDV (mission 3) du jeune et remplissage du tableau
+        //---------------------------------------------------------------------- TABLEAU M3 : RRécupération des RDV (mission 3) du jeune et remplissage du tableau
         jeune_Get_Rdv(id);
     }
 };

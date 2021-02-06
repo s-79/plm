@@ -14,6 +14,9 @@ $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville_qpv']);
 $id_qpv_prij = mysqli_real_escape_string($con, $_GET['id_qpv_prij']);
 
+$id_acc_jeune = mysqli_real_escape_string($con, $_GET['id_acc_jeune']);
+$id_acc_evt = mysqli_real_escape_string($con, $_GET['id_acc_evt']);
+
 if($id_orga) {
     $query = "SELECT orga_ExistId('$id_orga')";
 
@@ -40,6 +43,9 @@ if($id_orga) {
 
 } elseif($id_qpv_prij) {
     $query = "SELECT qpv_Prij('$id_qpv_prij')";
+
+} elseif($id_acc_evt) {
+    $query = "SELECT participer_Exist('$id_acc_jeune', '$id_acc_evt')";
 
 }
 

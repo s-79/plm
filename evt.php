@@ -7,7 +7,6 @@ include("header.php"); ?>
     <div class="col-12 col-lg-2 my-4 mx-1 text-center">
         <input type="text" class="form-control" id="evt_search" placeholder="Saisir la date, le type ou la ville">
         <label for="dtv" class="d-none">Saisir la date, le type ou la ville</label>
-
     </div>
     <!--                                                                                                              Résultat de recherche -->
     <div class="col-12 col-lg-2 my-4 mx-1 text-center">
@@ -95,6 +94,11 @@ include("header.php"); ?>
                 <option value="0"></option>
             </select>
             <label for="ville">Ville</label>
+        </div>
+        <!--                                                                    Div invisible pour récup nom_ville -->
+        <div class="form-floating mx-3 mt-3 d-none">
+            <input type="text" class="form-control" id="nom_ville_none">
+            <label for="nom_ville_none"></label>
         </div>
         <div class="form-floating mx-3 mt-3 mb-4">
             <input type="text" class="form-control" id="intitule" placeholder="Intitulé">

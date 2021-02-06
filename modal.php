@@ -158,8 +158,6 @@
                 <form id="form_evt_update">
                     <!--                                                                                                        Récupération de l'id_evt dans un input invisible -->
                     <input type="text" class="form-control d-none" id="update_id_evt">
-                    <!--                                                                                                        Récupération de l'id_jeune dans un input invisible -->
-                    <input type="text" class="form-control d-none" id="update_id_jeune">
                     <div class="form-floating mx-3 mt-4">
                             <input type="text" class="form-control" id="update_nom_evt" placeholder="Sensibilisation à modifier" disabled>
                             <label for="update_nom_evt">Sensibilisation à modifier</label>
@@ -223,8 +221,6 @@
                 <form id="form_evt2_update">
                     <!--                                                                                                        Récupération de l'id_evt2 dans un input invisible -->
                     <input type="text" class="form-control d-none" id="update_id_evt2">
-                    <!--                                                                                                        Récupération de l'id_jeune dans un input invisible -->
-                    <input type="text" class="form-control d-none" id="update_id_jeune2">
                     <div class="form-floating mx-3 mt-4">
                             <input type="text" class="form-control" id="update_nom_evt2" placeholder="Atelier collectif à modifier" disabled>
                             <label for="update_nom_evt2">Atelier collectif à modifier</label>

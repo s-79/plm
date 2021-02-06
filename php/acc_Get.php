@@ -121,7 +121,7 @@ if($id_acc) {
     $result = mysqli_query($con,$query);
 
     while($row = mysqli_fetch_array($result)){
-        $id_evt = $row['id_evt'];
+        $id_evt = $row['id'];
         $id_jeune = $row['id_jeune'];
         $nom = $row['nom'];
         $nom_evt = $row['nom_evt'];
