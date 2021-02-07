@@ -22,6 +22,7 @@ const jeune_Search = (search) => {
         }
     });
 }
+
 // ----------------------------------------------------------------------------- ! ! ! - - G E T - - ! ! !
 const jeune_Get = (id) => {
     $.ajax({
@@ -139,12 +140,29 @@ statut, pe, rsa, gj) => {
                         formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues,
                         statut:statut, pe:pe, rsa:rsa, gj:gj},
                     complete: function(){
+
+                        //------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement à la sensibilisation
+                        jeune_Get_Id(npv, id_evt);
+
                         alert(`La fiche de ${npv} a bien été ajoutée à la base de données.`);
                         // ----------------------------------------------------- Réinitialisation du formulaire et des listes select dynamiques sur la page jeune (fonction dans jeune_Create)
                         jeune_Reset();
                     }
                 });
             }
+        }
+    });
+}
+
+//----------------------------------------------------------------------------- Récupération de l'id de la fiche jeune créé et rattachement à la sensibilisation
+const jeune_Get_Id = (npv, id_evt) => {
+    $.ajax({
+        url: "php/jeune_Get.php",
+        dataType: 'JSON',
+        data : {npv:npv},
+        success: function(response){
+            const id_jeune = response[0].id;
+            acc_Create_Evt(id_jeune, id_evt, "");
         }
     });
 }

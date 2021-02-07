@@ -15,7 +15,7 @@ $(function(){
     });
 
     //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
-    ajaxListEvt("#sensibilisation");
+    acc_List_Evt("#sensibilisation");
 
     //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
     ajaxListNpv("#npv_res");

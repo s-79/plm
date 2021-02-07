@@ -122,7 +122,7 @@ $(function(){
         const commentaires = $("#commentaires").val();
 
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!mission || !dat || !type || !id_ville || (!nb_jeunes && !nb_pros)) {
+        if(isNaN(mission) || !dat || !type || !id_ville || (!nb_jeunes && !nb_pros)) {
             alert("Les champs Mission, Date, Type et Ville ainsi que le nombre de jeunes ou de pros sont obligatoires.");
         } else {
             // ----------------------------------------------------------------- La longueur des champs est-elles bien inférieur à celle attendue dans la BDD ?

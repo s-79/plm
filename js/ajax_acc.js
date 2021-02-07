@@ -7,7 +7,14 @@ const acc_List_Evt = (liste) => {
         dataType: 'JSON',
         data : {v_acc_list_evt:"v_acc_list_evt"},
         success: function(response){
-            $(liste).append(displayList(response));
+            const len = response.length;
+            let res = "";
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                const nom = response[i].nom.substr(2);
+                res += `<option value="${id}">${nom}</option>`;
+            }
+            $(liste).append(res);
         }
     });
 }
@@ -19,7 +26,14 @@ const acc_List_Evt2 = (liste) => {
         dataType: 'JSON',
         data : {v_acc_list_evt2:"v_acc_list_evt2"},
         success: function(response){
-            $(liste).append(displayList(response));
+            const len = response.length;
+            let res = "";
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                const nom = response[i].nom.substr(2);
+                res += `<option value="${id}">${nom}</option>`;
+            }
+            $(liste).append(res);
         }
     });
 }
@@ -112,10 +126,10 @@ const jeune_Get_Rdv = (id) => {
                 if(!duree)duree="";
                 let intervenant = response[i].intervenant;
                 if(!intervenant)intervenant="";
-                let commentaire = response[i].commentaire;
-                if(!commentaire)commentaire="";
+                let commentaires = response[i].commentaires;
+                if(!commentaires)commentaires="";
                 // ------------------------------------------------------------- Mise en forme des données
-                res += `<tr style="cursor: pointer" onclick="rdv_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_rdv_update"><th class="d-none" scope="row">${id}</th><td>${dat}</td><td>${type}</td><td>${commentaire}</td><td>${intervenant}</td><td>${duree}</td></tr>`;
+                res += `<tr style="cursor: pointer" onclick="rdv_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_rdv_update"><th class="d-none" scope="row">${id}</th><td>${dat}</td><td>${type}</td><td>${commentaires}</td><td>${intervenant}</td><td>${duree}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M2
             $("#tab_rdv").html(res);
@@ -177,15 +191,19 @@ const rdv_Get = (id) => {
             const nom2 = response[0].nom2;
             const dat = response[0].dat;
             const type = response[0].type;
+            const id_intervenant = response[0].id_intervenant;
             const intervenant = response[0].intervenant;
             const duree = response[0].duree;
+            const commentaires = response[0].commentaires;
             // ---------------------------------------------------------------- Remplissage des champs
+            $("#update_id_rdv").val(id);
             $("#update_nom_rdv").val(nom2);
             $("#update_date_rdv").val(dat);
             $("#update_type_rdv").val(type);
-            $("#update_int_rdv").html(`<option selected value="${intervenant}">${intervenant}</option>`);
+            $("#update_int_rdv").html(`<option selected value="${id_intervenant}">${intervenant}</option>`);
             ajaxListIntUp("#update_int_rdv");
             $("#update_duree_rdv").val(duree);
+            $("#update_comm_rdv").val(commentaires);
         }
     });
 }
@@ -210,8 +228,7 @@ const acc_Create_Evt = (id_jeune, id_evt, commentaire) => {
                     data : {id_jeune:id_jeune, id_evt:id_evt, commentaire:commentaire},
                     complete: function(){
                         $('#modal_evt_create').modal('hide')
-                        alert("L'association entre le jeune et la sensibilisation a bien été éfféctuée.");
-                        //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
+                        //------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
                         const id = $("#id").val();
                         jeune_Get_Evt(id);
                     }
@@ -239,13 +256,51 @@ const acc_Create_Evt2 = (id_jeune, id_evt2, commentaire) => {
                     data : {id_jeune:id_jeune, id_evt:id_evt2, commentaire:commentaire},
                     complete: function(){
                         $('#modal_evt2_create').modal('hide')
-                        alert("L'association entre le jeune et l'atelier collectif a bien été éfféctuée.");
-                        //------------------------------------------------------------------ TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
+                        //------------------------------------------------------ TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
                         const id = $("#id").val();
                         jeune_Get_Evt2(id);
                     }
                 });
             }
+        }
+    });
+}
+//------------------------------------------------------------------------------R E N D E Z - V O U S
+
+//------------------------------------------------------------------------------ Création d'un RDV individuel
+const rdv_Create = (id_jeune, id_int, dat, type, duree, intitule, commentaires) => {
+    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
+    $.ajax({
+        url: 'php/acc.php',
+        dataType: 'JSON',
+        data : {id_int:id_int, dat:dat, type:type, duree:duree, intitule:intitule, commentaires:commentaires},
+        complete: function(){
+            //------------------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous
+            rdv_Get_Id(id_jeune, intitule);
+        }
+    });
+}
+
+//----------------------------------------------------------------------------- Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous dans la table participer
+const rdv_Get_Id = (id_jeune, intitule) => {
+    $.ajax({
+        url: "php/acc_Get.php",
+        dataType: 'JSON',
+        data : {intitule:intitule},
+        success: function(response){
+            const id_rdv = response[0].id;
+            //------------------------------------------------------------------ Envoie des infos vers la BDD
+            $.ajax({
+                url: 'php/acc.php',
+                dataType: 'JSON',
+                data : {id_jeune:id_jeune, id_evt:id_rdv, commentaire:""},
+                complete: function(){
+                    $('#modal_rdv_create').modal('hide')
+                    //----------------------------------------------- ---------- TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
+                    const id = $("#id").val();
+                    jeune_Get_Rdv(id);
+                }
+            });
         }
     });
 }
@@ -300,6 +355,24 @@ const acc_Update_Evt2 = (id_jeune, id_evt2, commentaire) => {
     });
 }
 
+//------------------------------------------------------------------------------R E N D E Z - V O U S
+
+//------------------------------------------------------------------------------ Modification d'un RDV individuel
+const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, duree, commentaires) => {
+    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
+    $.ajax({
+        url: 'php/acc.php',
+        dataType: 'JSON',
+        data : {id_rdv_up:id_rdv, id_int:id_int, dat:dat, type:type, duree:duree, commentaires:commentaires},
+        complete: function(){
+            $('#modal_rdv_update').modal('hide')
+            //----------------------------------------------- ---------- TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
+            const id = $("#id").val();
+            jeune_Get_Rdv(id);
+        }
+    });
+}
+
 // ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
 
 const acc_Delete_Evt = (id_jeune, id_evt) => {
@@ -312,6 +385,7 @@ const acc_Delete_Evt = (id_jeune, id_evt) => {
             $('#modal_evt_update').modal('hide')
             //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
             const id = $("#id").val();
+            $("#tab_evt").html("");
             jeune_Get_Evt(id);
         }
     });
@@ -327,7 +401,24 @@ const acc_Delete_Evt2 = (id_jeune, id_evt2) => {
             $('#modal_evt2_update').modal('hide')
             //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
             const id = $("#id").val();
+            $("#tab_evt2").html("");
             jeune_Get_Evt2(id);
+        }
+    });
+}
+
+const acc_Delete_Rdv = (id_jeune, id_rdv) => {
+    //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
+    $.ajax({
+        url: "php/acc.php",
+        dataType: 'JSON',
+        data : {id_jeune:id_jeune, id_evt_del:id_rdv},
+        complete: function() {
+            $('#modal_rdv_update').modal('hide')
+            //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
+            const id = $("#id").val();
+            $("#tab_rdv").html("");
+            jeune_Get_Rdv(id);
         }
     });
 }

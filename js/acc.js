@@ -39,12 +39,12 @@ $(function(){
         document.getElementById("form_rdv_create").reset();
         //---------------------------------------------------------------------- Réinitialisation du menu type
         let types = ["1er RDV", "RDV de suivi", "Suivi", "Relance", "Enquête", "Autres"];
-        let init_type = "<option selected value='0'>Séléctionner le type de rendez-vous</option>"
+        let init_type = "<option selected value=''>Séléctionner le type de rendez-vous</option>"
         for (type of types) {init_type += `<option value="${type}">${type}</option>`;};
         $("#create_type_rdv").html(init_type);
         //---------------------------------------------------------------------- Réinitialisation du menu durées
         let durees = ["- de 10 min", "- de 30 min", "- d'1 heure"];
-        let init_duree = "<option selected value='0'>Séléctionner la durée du rendez-vous</option>"
+        let init_duree = "<option selected value=''>Séléctionner la durée du rendez-vous</option>"
         for (duree of durees) {init_duree += `<option value="${duree}">${duree}</option>`;}
         $("#create_duree_rdv").html(init_duree);
         //---------------------------------------------------------------------- Réinitialisation de la liste des intervenant-e-s
@@ -86,6 +86,24 @@ $(function(){
         if(vLen("Commentaire",commentaire,255)) acc_Create_Evt2(id_jeune, id_evt2, commentaire);
     });
 
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT2
+    $("#btn_rdv_create").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_int = $("#create_int_rdv").val();
+        const dat = $("#create_date_rdv").val();
+        const type = $("#create_type_rdv").val();
+        const duree = $("#create_duree_rdv").val();
+        const intitule = uuid();
+        const commentaires = $("#create_comm_rdv").val();
+        // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
+        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
+        else {
+            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, duree, intitule, commentaires);
+        };
+    });
+
     // ------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
     // ------------------------------------------------------------------------- EVENEMENT CHANGE DANS LE MENU "STATUT DE L'ACCOMPAGNEMENT"
@@ -116,6 +134,24 @@ $(function(){
         if(vLen("Commentaire",commentaire,255)) acc_Update_Evt2(id_jeune, id_evt2, commentaire);
     });
 
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER" DANS LE MODAL RDV
+    $("#btn_rdv_update").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_rdv = $("#update_id_rdv").val();
+        const id_int = $("#update_int_rdv").val();
+        const dat = $("#update_date_rdv").val();
+        const type = $("#update_type_rdv").val();
+        const duree = $("#update_duree_rdv").val();
+        const commentaires = $("#update_comm_rdv").val();
+        // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
+        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
+        else {
+            //---------------------------------------------------------------------- Création de l'association entre le jeune et le rendez-vous
+            if(vLen("Commentaires",commentaires,255)) rdv_Update(id_jeune, id_rdv, id_int, dat, type, duree, commentaires);
+        };
+    });
+
     // ------------------------------------------------------------------------- ! ! ! - - D E L E T E-- !!!
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DE MODIFICATION EVT 0 ET 1
@@ -136,6 +172,14 @@ $(function(){
         acc_Delete_Evt2(id_jeune, id_evt2);
     })
 
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DES RDV
+    $('#btn_rdv_delete').click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_rdv = $("#update_id_rdv").val();
+        //---------------------------------------------------------------------- Suppression de l'association entre le jeune et le rdv
+        acc_Delete_Rdv(id_jeune, id_rdv);
+    })
 });
 
 // ----------------------------------------------------------------------------- ! ! ! - - F U N C T I O N S- - ! ! !

@@ -1,4 +1,6 @@
-/* ---------------------------------------------------------------------------- Remplissage de la liste Événement - Récup données & append */
+// ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
+
+/* ---------------------------------------------------------------------------- Remplissage de la liste Événement pour l'outil de recherche de la page evt */
 const ajaxListEvt = (liste) => {
     $.ajax({
         url: "php/populate.php",

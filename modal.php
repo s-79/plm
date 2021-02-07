@@ -9,7 +9,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-          <div id="txt_modal_orga" class="d-none" style="font-weight:bold;">
+          <div id="txt_modal_orga" class="d-none fw-bold">
               Ce type d'organisme ne contient pas de nom.<br><br>
           </div>
           Souhaitez-vous ajouter ou modifier/supprimer<br> un organisme référent ?
@@ -306,6 +306,8 @@
       </div>
       <div class="modal-body">
           <form id="form_rdv_update">
+              <!--                                                                                                        Récupération de l'id_evt dans un input invisible -->
+              <input type="text" class="form-control d-none" id="update_id_rdv">
               <div class="form-floating mx-3 mt-4">
                       <input type="text" class="form-control" id="update_nom_rdv" placeholder="Rendez-vous à modifier" disabled>
                       <label for="update_nom_rdv">Rendez-vous à modifier</label>

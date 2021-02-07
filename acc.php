@@ -26,23 +26,27 @@
     </div>
 
     <!--                                                                                                              Projets-->
-    <h2 class="bleu">Projets &nbsp;<i id="new_projet" class="fas fa-plus-circle fa-lg bleu pointeur" data-bs-toggle="modal" data-bs-target="#modal_projet" data-toggle="tooltip" data-placement="top" title="Ajouter/Supprimer un projet"></i></h2>
-    <table class="table table-light table-striped mt-3 mb-5">
+    <h2 class="marine">Projets &nbsp;<i id="new_projet" class="fas fa-plus-circle fa-lg marine pointeur" data-bs-toggle="modal" data-bs-target="#modal_projet" data-toggle="tooltip" data-placement="top" title="Ajouter/Supprimer un projet"></i></h2>
+    <table class="table border border-dark mt-3 mb-5">
         <thead>
             <tr>
                 <th class="d-none" scope="col">#</th>
-                <th scope="col" style="width:150px">Date</th>
-                <th scope="col" style="width:250px">Type</th>
-                <th scope="col" style="width:600px">Destination</th>
+                <th scope="col" style="width:300px">Type</th>
+                <th scope="col" style="width:250px">Intitulé</th>
+                <th scope="col">Pays</th>
+                <th scope="col">Date aller</th>
+                <th scope="col">Date retour</th>
                 <th scope="col">Statut</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th class="d-none" scope="row">1</th>
-                <td>2021-02-02</td>
-                <td>Info Coll extérieur</td>
-                <td>@mdo</td>
+                <td>WWoofing / HelpX / Workaway</td>
+                <td>Let's be in honey mood !</td>
+                <td>ROYAUME-UNI</td>
+                <td>21-02-03</td>
+                <td>21-04-03</td>
                 <td class="fw-bold text-success">En prépartion</td>
             </tr>
             <!-- <tr>

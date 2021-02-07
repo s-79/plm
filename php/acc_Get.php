@@ -11,6 +11,7 @@ $id_jeune_rdv = mysqli_real_escape_string($con, $_GET['id_jeune_rdv']);
 $id_rdv = mysqli_real_escape_string($con, $_GET['id_rdv']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_jeune = mysqli_real_escape_string($con, $_GET['id_jeune']);
+$intitule = mysqli_real_escape_string($con, $_GET['intitule']);
 
 // ----------------------------------------------------------------------------- Récupération du statut d'accompagnement du jeune séléctionné
 if($id_acc) {
@@ -79,7 +80,7 @@ if($id_acc) {
         $type = $row['type'];
         $intervenant = $row['intervenant'];
         $duree = $row['duree'];
-        $commentaire = $row['commentaire'];
+        $commentaires = $row['commentaires'];
 
         $return_arr[] = array(
             "id" => $id,
@@ -87,7 +88,7 @@ if($id_acc) {
             "type" => $type,
             "intervenant" => $intervenant,
             "duree" => $duree,
-            "commentaire" => $commentaire
+            "commentaires" => $commentaires
         );
     }
 
@@ -102,16 +103,20 @@ if($id_acc) {
         $nom2 = $row['nom2'];
         $dat = $row['dat'];
         $type = $row['type'];
+        $id_intervenant = $row['id_intervenant'];
         $intervenant = $row['intervenant'];
         $duree = $row['duree'];
+        $commentaires = $row['commentaires'];
 
         $return_arr[] = array(
             "id" => $id,
             "nom2" => $nom2,
             "dat" => $dat,
             "type" => $type,
+            "id_intervenant" => $id_intervenant,
             "intervenant" => $intervenant,
-            "duree" => $duree
+            "duree" => $duree,
+            "commentaires" => $commentaires
         );
     }
 
@@ -134,6 +139,17 @@ if($id_acc) {
             "nom_evt" => $nom_evt,
             "commentaire" => $commentaire
         );
+    }
+
+} elseif($intitule) {
+    $query = "CALL rdv_Get_Id('$intitule')";
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id = $row['id'];
+
+        $return_arr[] = array(
+            "id" => $id);
     }
 }
 
