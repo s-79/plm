@@ -15,6 +15,18 @@ const displayList = response => {
     return res;
 }
 
+/* ----------------------------------------------------------------------------  Fonction de remplissage et mise en forme des listes select dynamiques avec Substr des 2 premiers caractères */
+const displayListSub = response => {
+    let res = "";
+    const len = response.length;
+    for (let i = 0; i < len; i++) {
+        const id = response[i].id;
+        const nom = response[i].nom.substr(2);
+        res += `<option value="${id}">${nom}</option>`;
+    }
+    return res;
+}
+
 /* ----------------------------------------------------------------------------- Mettre la 1ère lettre en majuscule */
 const strUpFirst = a => {
     return (a+'').charAt(0).toUpperCase()+a.substr(1);

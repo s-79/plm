@@ -67,7 +67,6 @@ const ajaxEvtGet = (id_evt) => {
         dataType: 'JSON',
         data : {id:id_evt},
         success: function(response){
-            // ----------------------------------------------------------------- Récupération des données
             const id = response[0].id;
             const mission = response[0].mission;
             const dat = response[0].dat;
@@ -85,7 +84,6 @@ const ajaxEvtGet = (id_evt) => {
             const nb_pros = response[0].nb_pros;
             const commentaires = response[0].commentaires;
 
-            // ----------------------------------------------------------------- Remplissage des champs
             $("#id_evt").val(id);
             $("#m0, #m1, #m2").prop('checked', false);
             if (mission === "0") {
@@ -235,7 +233,6 @@ const evt_Get_Inter = (id_evt) => {
 // ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
 const evt_Update = (id, mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/evt.php',
         dataType: 'JSON',

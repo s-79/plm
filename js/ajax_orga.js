@@ -47,8 +47,7 @@ const orga_Create = (nom, type) => {
         success: function(response){
             const exist = parseInt(response[0].exist);
             if(exist === 1) alert("Création impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
-            else {
-                //-------------------------------------------------------------- Envoie des infos vers la BDD
+            else {infos vers la BDD
                 $.ajax({
                     url: 'php/orga.php',
                     dataType: 'JSON',
@@ -57,7 +56,6 @@ const orga_Create = (nom, type) => {
                         alert("L'organisme a bien été ajouté à la base de données.");
                         //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
                         orga_Reset();
-                        //------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_create').modal('hide');
                     }
                 });
@@ -74,11 +72,9 @@ const orga_Change = (id) => {
         dataType: 'JSON',
         data : {id:id},
         success: function(response){
-            // ---------------------------------------------------------------- Récupération des données
             const type_orga = response[0].type_orga;
             const id_orga = response[0].id_orga;
             const nom_orga = response[0].nom_orga;
-            // ---------------------------------------------------------------- Remplissage des champs
             $("#update_type_orga").val(type_orga);
             $("#update_nom_orga").val(nom_orga);
         }
@@ -86,7 +82,6 @@ const orga_Change = (id) => {
 }
 
 const orga_Update = (id, nom, type) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/orga.php',
         dataType: 'JSON',
@@ -95,7 +90,6 @@ const orga_Update = (id, nom, type) => {
             alert("L'organisme a bien été modifié.");
             //------------------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
             orga_Reset();
-            //----------------------------------------------------------------- Fermeture du modal
             $('#modal_orga_update').modal('hide');
         }
     });
@@ -121,7 +115,6 @@ const orga_Delete = (id) => {
                         alert("L'organisme a bien été supprimé de la base de données.");
                         //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
                         orga_Reset();
-                        //------------------------------------------------------ Fermeture du modal
                         $('#modal_orga_update').modal('hide');
                     }
                 }

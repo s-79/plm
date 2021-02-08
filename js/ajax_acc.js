@@ -7,14 +7,7 @@ const acc_List_Evt = (liste) => {
         dataType: 'JSON',
         data : {v_acc_list_evt:"v_acc_list_evt"},
         success: function(response){
-            const len = response.length;
-            let res = "";
-            for (let i = 0; i < len; i++) {
-                const id = response[i].id;
-                const nom = response[i].nom.substr(2);
-                res += `<option value="${id}">${nom}</option>`;
-            }
-            $(liste).append(res);
+            $(liste).append(displayListSub(response));
         }
     });
 }
@@ -26,14 +19,7 @@ const acc_List_Evt2 = (liste) => {
         dataType: 'JSON',
         data : {v_acc_list_evt2:"v_acc_list_evt2"},
         success: function(response){
-            const len = response.length;
-            let res = "";
-            for (let i = 0; i < len; i++) {
-                const id = response[i].id;
-                const nom = response[i].nom.substr(2);
-                res += `<option value="${id}">${nom}</option>`;
-            }
-            $(liste).append(res);
+            $(liste).append(displayListSub(response));
         }
     });
 }
@@ -47,15 +33,15 @@ const jeune_Get_Acc = (id) => {
         dataType: 'JSON',
         data : {id_acc:id},
         success: function(response){
-            // ----------------------------------------------------------------- Récupération des données
             const acc = response[0].acc;
             const npv = response[0].npv;
-            // ----------------------------------------------------------------- Remplissage des champs
             $("#acc").val(acc);
             $("#acc_npv").html(npv);
         }
     });
 }
+
+//------------------------------------------------------------------------------ !!! REMPLISSAGE DES TABLEAUX !!!
 
 //------------------------------------------------------------------------------ TABLEAU M0 et M1 - Récupération des sensibilisation (mission 0 et 1) du jeune et remplissage du tableau
 const jeune_Get_Evt = (id) => {
@@ -67,15 +53,13 @@ const jeune_Get_Evt = (id) => {
             const len = response.length;
             let res = "";
             for (let i = 0; i < len; i++) {
-                // ------------------------------------------------------------- Récupération des données
                 const id = response[i].id;
                 const dat = response[i].dat;
                 const type = response[i].type;
                 const nom_ville = response[i].nom_ville;
                 let commentaire = response[i].commentaire;
                 if(!commentaire)commentaire="";
-                // ------------------------------------------------------------- Mise en forme des données
-                res += `<tr><th class="d-none" scope="row">${id}</th><td>${dat}</td><td style="cursor: pointer" onclick="id_evt_storage(${id})">${type}</td><td style="cursor: pointer" onclick="evt_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_evt_update">${commentaire}</td><td>${nom_ville}</td></tr>`;
+                res += `<tr><th class="d-none" scope="row">${id}</th><td>${dat}</td><td style="cursor: pointer" onclick="id_evt_storage(${id})">${type}</td><td style="cursor: pointer" onclick="evt_Get(${id},'evt')" data-bs-toggle="modal" data-bs-target="#modal_evt_update">${commentaire}</td><td>${nom_ville}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M0 / M1
             $("#tab_evt").html(res);
@@ -93,14 +77,12 @@ const jeune_Get_Evt2 = (id) => {
             const len = response.length;
             let res = "";
             for (let i = 0; i < len; i++) {
-                // ------------------------------------------------------------- Récupération des données
                 const id = response[i].id;
                 const dat = response[i].dat;
                 const type = response[i].type;
                 let commentaire = response[i].commentaire;
                 if(!commentaire)commentaire="";
-                // ------------------------------------------------------------- Mise en forme des données
-                res += `<tr><th class="d-none" scope="row">${id}</th><td>${dat}</td><td style="cursor: pointer" onclick="id_evt_storage(${id})">${type}</td><td style="cursor: pointer" onclick="evt2_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_evt2_update">${commentaire}</td></tr>`;
+                res += `<tr><th class="d-none" scope="row">${id}</th><td>${dat}</td><td style="cursor: pointer" onclick="id_evt_storage(${id})">${type}</td><td style="cursor: pointer" onclick="evt_Get(${id}, 'evt2')" data-bs-toggle="modal" data-bs-target="#modal_evt2_update">${commentaire}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M2
             $("#tab_evt2").html(res);
@@ -118,7 +100,6 @@ const jeune_Get_Rdv = (id) => {
             const len = response.length;
             let res = "";
             for (let i = 0; i < len; i++) {
-                // ------------------------------------------------------------- Récupération des données
                 const id = response[i].id;
                 const dat = response[i].dat;
                 const type = response[i].type;
@@ -128,7 +109,6 @@ const jeune_Get_Rdv = (id) => {
                 if(!intervenant)intervenant="";
                 let commentaires = response[i].commentaires;
                 if(!commentaires)commentaires="";
-                // ------------------------------------------------------------- Mise en forme des données
                 res += `<tr style="cursor: pointer" onclick="rdv_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_rdv_update"><th class="d-none" scope="row">${id}</th><td>${dat}</td><td>${type}</td><td>${commentaires}</td><td>${intervenant}</td><td>${duree}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M2
@@ -137,45 +117,26 @@ const jeune_Get_Rdv = (id) => {
     });
 }
 
+//------------------------------------------------------------------------------ !!! REMPLISSAGE DES CHAMPS DANS LES POP-UP DE MODIFICATIONS !!!
 
-/* ---------------------------------------------------------------------------- Récupération des données à modifier des sensibilisation (missions 0 et 1) dans le modal de evt_update */
-const evt_Get = (id_evt) => {
+/* ---------------------------------------------------------------------------- Fonction appelée en cliquant sur les lignes du tableau dans jeune_Get_Evt et jeune_Get_Evt2 */
+/* ---------------------------------------------------------------------------- Récupération des données à modifier pour les pop-up evt et evt2 */
+const evt_Get = (id_evt, mission) => {
     const id_jeune = $("#id").val();
     $.ajax({
         url: 'php/acc_Get.php',
         dataType: 'JSON',
         data : {id_evt:id_evt, id_jeune:id_jeune},
         success: function(response){
-            // ---------------------------------------------------------------- Récupération des données
             const id_evt = response[0].id_evt;
-            const nom_ville = response[0].nom;
-            const nom_ville_evt = response[0].nom_evt;
+            const nom_evt_ville = response[0].nom;
             const commentaire = response[0].commentaire;
-            // ---------------------------------------------------------------- Remplissage des champs
-            $("#update_id_evt").val(id_evt);
-            $("#update_nom_evt").val(nom_ville);
-            $("#update_comm_evt").val(commentaire);
-        }
-    });
-}
-
-/* ---------------------------------------------------------------------------- Récupération des données à modifier dans le modal des ateliers missions 2 evt2_update */
-const evt2_Get = (id_evt) => {
-    const id_jeune = $("#id").val();
-    $.ajax({
-        url: 'php/acc_Get.php',
-        dataType: 'JSON',
-        data : {id_evt:id_evt, id_jeune:id_jeune},
-        success: function(response){
-            // ---------------------------------------------------------------- Récupération des données
-            const id_evt = response[0].id_evt;
-            const nom_ville = response[0].nom;
-            const nom_ville_evt = response[0].nom_evt;
-            const commentaire = response[0].commentaire;
-            // ---------------------------------------------------------------- Remplissage des champs
-            $("#update_id_evt2").val(id_evt);
-            $("#update_nom_evt2").val(nom_ville);
-            $("#update_comm_evt2").val(commentaire);
+            const divId = `#update_id_${mission}`;
+            $(divId).val(id_evt);
+            const divNom = `#update_nom_${mission}`;
+            $(divNom).val(nom_evt_ville);
+            const divComm = `#update_comm_${mission}`;
+            $(divComm).val(commentaire);
         }
     });
 }
@@ -187,7 +148,6 @@ const rdv_Get = (id) => {
         dataType: 'JSON',
         data : {id_rdv:id},
         success: function(response){
-            // ---------------------------------------------------------------- Récupération des données
             const nom2 = response[0].nom2;
             const dat = response[0].dat;
             const type = response[0].type;
@@ -195,7 +155,6 @@ const rdv_Get = (id) => {
             const intervenant = response[0].intervenant;
             const duree = response[0].duree;
             const commentaires = response[0].commentaires;
-            // ---------------------------------------------------------------- Remplissage des champs
             $("#update_id_rdv").val(id);
             $("#update_nom_rdv").val(nom2);
             $("#update_date_rdv").val(dat);
@@ -211,26 +170,29 @@ const rdv_Get = (id) => {
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 
 //------------------------------------------------------------------------------ Création d'une association entre un jeune et un événement Mission 0 ou 1
-const acc_Create_Evt = (id_jeune, id_evt, commentaire) => {
+const acc_Create_Evt = (id_jeune, id_evt, commentaire, mission) => {
     $.ajax({
-        //---------------------------------------------------------------------- Vérification : Le nom du jeune existe-t-il déjà dans la BDD ?
+        //---------------------------------------------------------------------- Vérification : L'association existe-t-elle déjà dans la BDD ?
         url: "php/exist.php",
         dataType: 'JSON',
         data : {id_acc_jeune:id_jeune, id_acc_evt:id_evt},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) alert("Création impossible : Cette sensibilisation est déjà associée au jeune dans la base de données.");
+            if(exist === 1) alert("Création impossible : Cet événement est déjà associé au jeune dans la base de données.");
             else {
-                //-------------------------------------------------------------- Envoie des infos vers la BDD
                 $.ajax({
                     url: 'php/acc.php',
                     dataType: 'JSON',
                     data : {id_jeune:id_jeune, id_evt:id_evt, commentaire:commentaire},
                     complete: function(){
-                        $('#modal_evt_create').modal('hide')
+                        const divModal = `#modal_${mission}_create`
+                        $(divModal).modal('hide')
                         //------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
-                        const id = $("#id").val();
-                        jeune_Get_Evt(id);
+                        if(mission === "evt") jeune_Get_Evt(id_jeune);
+                        //------------------------------------------------------ TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
+                        if(mission === "evt2") jeune_Get_Evt2(id_jeune);
+                        //------------------------------------------------------ TABLEAU RDV : Réinitialisation du tableau des rdv dans le suivi du jeune
+                        if(mission === "rdv") jeune_Get_Rdv(id_jeune);
                     }
                 });
             }
@@ -238,67 +200,24 @@ const acc_Create_Evt = (id_jeune, id_evt, commentaire) => {
     });
 }
 
-//------------------------------------------------------------------------------ Création d'une association entre un jeune et un événement Mission 0 ou 1
-const acc_Create_Evt2 = (id_jeune, id_evt2, commentaire) => {
-    $.ajax({
-        //---------------------------------------------------------------------- Vérification : Le nom du jeune existe-t-il déjà dans la BDD ?
-        url: "php/exist.php",
-        dataType: 'JSON',
-        data : {id_acc_jeune:id_jeune, id_acc_evt:id_evt2},
-        success: function(response){
-            const exist = parseInt(response[0].exist);
-            if(exist === 1) alert("Création impossible : Cet atelier collectif est déjà associée au jeune dans la base de données.");
-            else {
-                //-------------------------------------------------------------- Envoie des infos vers la BDD
-                $.ajax({
-                    url: 'php/acc.php',
-                    dataType: 'JSON',
-                    data : {id_jeune:id_jeune, id_evt:id_evt2, commentaire:commentaire},
-                    complete: function(){
-                        $('#modal_evt2_create').modal('hide')
-                        //------------------------------------------------------ TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
-                        const id = $("#id").val();
-                        jeune_Get_Evt2(id);
-                    }
-                });
-            }
-        }
-    });
-}
-//------------------------------------------------------------------------------R E N D E Z - V O U S
+//-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Création d'un RDV individuel
 const rdv_Create = (id_jeune, id_int, dat, type, duree, intitule, commentaires) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
         data : {id_int:id_int, dat:dat, type:type, duree:duree, intitule:intitule, commentaires:commentaires},
         complete: function(){
             //------------------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous
-            rdv_Get_Id(id_jeune, intitule);
-        }
-    });
-}
-
-//----------------------------------------------------------------------------- Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous dans la table participer
-const rdv_Get_Id = (id_jeune, intitule) => {
-    $.ajax({
-        url: "php/acc_Get.php",
-        dataType: 'JSON',
-        data : {intitule:intitule},
-        success: function(response){
-            const id_rdv = response[0].id;
-            //------------------------------------------------------------------ Envoie des infos vers la BDD
             $.ajax({
-                url: 'php/acc.php',
+                url: "php/acc_Get.php",
                 dataType: 'JSON',
-                data : {id_jeune:id_jeune, id_evt:id_rdv, commentaire:""},
-                complete: function(){
-                    $('#modal_rdv_create').modal('hide')
-                    //----------------------------------------------- ---------- TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
-                    const id = $("#id").val();
-                    jeune_Get_Rdv(id);
+                data : {intitule:intitule},
+                success: function(response){
+                    const id_rdv = response[0].id;
+                    //---------------------------------------------------------- Création de l'association entre le jeune et le rdv
+                    acc_Create_Evt(id_jeune, id_rdv, "", "rdv");
                 }
             });
         }
@@ -309,7 +228,6 @@ const rdv_Get_Id = (id_jeune, intitule) => {
 
 // ----------------------------------------------------------------------------- Mise à jour du statut du jeune
 const jeune_Update_Acc = (id, statut) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
@@ -323,50 +241,34 @@ const jeune_Update_Acc = (id, statut) => {
     });
 }
 
-//------------------------------------------------------------------------------ Modification du commentaire dans l'association entre un jeune et un événement Mission 0 ou 1
-const acc_Update_Evt = (id_jeune, id_evt, commentaire) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
+//------------------------------------------------------------------------------ Modification du commentaire dans l'association entre un jeune et un événement
+const acc_Update_Evt = (id_jeune, id_evt, commentaire, mission) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
         data : {id_jeune:id_jeune, id_evt_up:id_evt, commentaire:commentaire},
         complete: function(){
-            $('#modal_evt_update').modal('hide')
+            const divModal = `#modal_${mission}_update`
+            $(divModal).modal('hide')
             //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
-            const id = $("#id").val();
-            jeune_Get_Evt(id);
-        }
-    });
-}
-
-//------------------------------------------------------------------------------ Modification du commentaire dans l'association entre un jeune et un événement Mission 2
-const acc_Update_Evt2 = (id_jeune, id_evt2, commentaire) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
-    $.ajax({
-        url: 'php/acc.php',
-        dataType: 'JSON',
-        data : {id_jeune:id_jeune, id_evt_up:id_evt2, commentaire:commentaire},
-        complete: function(){
-            $('#modal_evt2_update').modal('hide')
+            if(mission === "evt") jeune_Get_Evt(id_jeune);
             //------------------------------------------------------------------ TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
-            const id = $("#id").val();
-            jeune_Get_Evt2(id);
+            if(mission === "evt2") jeune_Get_Evt2(id_jeune);
         }
     });
 }
 
-//------------------------------------------------------------------------------R E N D E Z - V O U S
+//-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Modification d'un RDV individuel
 const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, duree, commentaires) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
         data : {id_rdv_up:id_rdv, id_int:id_int, dat:dat, type:type, duree:duree, commentaires:commentaires},
         complete: function(){
             $('#modal_rdv_update').modal('hide')
-            //----------------------------------------------- ---------- TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
+            //------------------------------------------------------------------ TABLEAU RDV : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
             const id = $("#id").val();
             jeune_Get_Rdv(id);
         }
@@ -375,50 +277,43 @@ const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, duree, commentaires) =>
 
 // ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
 
-const acc_Delete_Evt = (id_jeune, id_evt) => {
+const acc_Delete_Evt = (id_jeune, id_evt, mission) => {
     //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
     $.ajax({
         url: "php/acc.php",
         dataType: 'JSON',
         data : {id_jeune:id_jeune, id_evt_del:id_evt},
         complete: function() {
-            $('#modal_evt_update').modal('hide')
+            const divModal = `#modal_${mission}_update`
+            $(divModal).modal('hide')
             //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
-            const id = $("#id").val();
-            $("#tab_evt").html("");
-            jeune_Get_Evt(id);
+            if(mission === "evt") jeune_Get_Evt(id_jeune);
+            //------------------------------------------------------------------ TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
+            if(mission === "evt2") jeune_Get_Evt2(id_jeune);
         }
     });
 }
 
-const acc_Delete_Evt2 = (id_jeune, id_evt2) => {
-    //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
-    $.ajax({
-        url: "php/acc.php",
-        dataType: 'JSON',
-        data : {id_jeune:id_jeune, id_evt_del:id_evt2},
-        complete: function() {
-            $('#modal_evt2_update').modal('hide')
-            //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
-            const id = $("#id").val();
-            $("#tab_evt2").html("");
-            jeune_Get_Evt2(id);
-        }
-    });
-}
+//------------------------------------------------------------------------------ R E N D E Z - V O U S
 
+//----------------------------------------------------------------------------- Suppression de l'association entre le rdv et le jeune puis suppression du rdv dans la bdd
 const acc_Delete_Rdv = (id_jeune, id_rdv) => {
-    //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
     $.ajax({
         url: "php/acc.php",
         dataType: 'JSON',
         data : {id_jeune:id_jeune, id_evt_del:id_rdv},
         complete: function() {
             $('#modal_rdv_update').modal('hide')
-            //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
-            const id = $("#id").val();
+            //------------------------------------------------------------------ TABLEAU RDV : Réinitialisation du tableau des rendez-vous dans le suivi du jeune
             $("#tab_rdv").html("");
+            const id = $("#id").val();
             jeune_Get_Rdv(id);
+            //------------------------------------------------------------------ Suppression du rdv dans la bdd
+            $.ajax({
+                url: 'php/acc.php',
+                dataType: 'JSON',
+                data : {id_rdv_del:id_rdv}
+            });
         }
     });
 }

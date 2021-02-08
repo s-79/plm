@@ -27,7 +27,7 @@
 
     <!--                                                                                                              Projets-->
     <h2 class="marine">Projets &nbsp;<i id="new_projet" class="fas fa-plus-circle fa-lg marine pointeur" data-bs-toggle="modal" data-bs-target="#modal_projet" data-toggle="tooltip" data-placement="top" title="Ajouter/Supprimer un projet"></i></h2>
-    <table class="table border border-dark mt-3 mb-5">
+    <table class="table table-light border border-dark mt-3 mb-5">
         <thead>
             <tr>
                 <th class="d-none" scope="col">#</th>

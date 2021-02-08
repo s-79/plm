@@ -22,6 +22,7 @@ $commentaires =  mysqli_real_escape_string($con, $_GET['commentaires']);
 $id_rdv_up =  mysqli_real_escape_string($con, $_GET['id_rdv_up']);
 $id_rdv_del =  mysqli_real_escape_string($con, $_GET['id_rdv_del']);
 
+
 if($id_acc) {
     $query = "CALL jeune_Update_Acc('$id_acc', '$statut')";
 // ---------------------------------------------------------------------------  Associations evt, evt2, rdv
@@ -41,8 +42,8 @@ if($id_acc) {
 } elseif($id_rdv_up) {
     $query = "CALL rdv_Update('$id_rdv_up', '$dat', '$type', '$commentaires', '$duree', '$id_int')";
 
-} elseif($id_rdv_up_del) {
-    $query = "CALL rdv_Delete('$id_rdv_up_del')";
+} elseif($id_rdv_del) {
+    $query = "CALL rdv_Delete('$id_rdv_del')";
 }
 
 $result = $con->prepare($query);

@@ -72,8 +72,7 @@ $(function(){
         const id_evt = $("#evt_create").val();
         const commentaire = $("#create_comm_evt").val();
         //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
-        if(vLen("Commentaire",commentaire,255)) acc_Create_Evt(id_jeune, id_evt, commentaire);
-
+        if(vLen("Commentaire",commentaire,255)) acc_Create_Evt(id_jeune, id_evt, commentaire, "evt");
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT2
@@ -83,7 +82,7 @@ $(function(){
         const id_evt2 = $("#evt2_create").val();
         const commentaire = $("#create_comm_evt2").val();
         //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
-        if(vLen("Commentaire",commentaire,255)) acc_Create_Evt2(id_jeune, id_evt2, commentaire);
+        if(vLen("Commentaire",commentaire,255)) acc_Create_Evt(id_jeune, id_evt2, commentaire, "evt2");
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT2
@@ -121,7 +120,7 @@ $(function(){
         const id_evt = $("#update_id_evt").val();
         const commentaire = $("#update_comm_evt").val();
         //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
-        if(vLen("Commentaire",commentaire,255)) acc_Update_Evt(id_jeune, id_evt, commentaire);
+        if(vLen("Commentaire",commentaire,255)) acc_Update_Evt(id_jeune, id_evt, commentaire, "evt");
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LE COMMENTAIRE" DANS LE MODAL EVT M2
@@ -131,7 +130,7 @@ $(function(){
         const id_evt2 = $("#update_id_evt2").val();
         const commentaire = $("#update_comm_evt2").val();
         //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt2
-        if(vLen("Commentaire",commentaire,255)) acc_Update_Evt2(id_jeune, id_evt2, commentaire);
+        if(vLen("Commentaire",commentaire,255)) acc_Update_Evt(id_jeune, id_evt2, commentaire, "evt2");
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER" DANS LE MODAL RDV
@@ -156,25 +155,22 @@ $(function(){
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DE MODIFICATION EVT 0 ET 1
     $('#btn_evt_delete').click(function(){
-        //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
         const id_evt = $("#update_id_evt").val();
         //---------------------------------------------------------------------- Suppression de l'association entre le jeune et l'evt
-        acc_Delete_Evt(id_jeune, id_evt);
+        acc_Delete_Evt(id_jeune, id_evt, "evt");
     })
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DES ATELIERS COLLECTIFS
     $('#btn_evt2_delete').click(function(){
-        //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
         const id_evt2 = $("#update_id_evt2").val();
         //---------------------------------------------------------------------- Suppression de l'association entre le jeune et l'atelier collectif
-        acc_Delete_Evt2(id_jeune, id_evt2);
+        acc_Delete_Evt(id_jeune, id_evt2, "evt2");
     })
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DES RDV
     $('#btn_rdv_delete').click(function(){
-        //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
         const id_rdv = $("#update_id_rdv").val();
         //---------------------------------------------------------------------- Suppression de l'association entre le jeune et le rdv

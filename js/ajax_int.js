@@ -22,14 +22,12 @@ const int_Create = (prenom_nom, prenom, nom, actif, volontaire) => {
             const exist = parseInt(response[0].exist);
             if(exist === 1) alert("Création impossible : Il existe déjà un-e intervenant-e ce nom dans la base de données.");
             else {
-                //-------------------------------------------------------------- Envoie des infos vers la BDD
                 $.ajax({
                     url: "php/int.php",
                     dataType: 'JSON',
                     data : {prenom:prenom, nom:nom, actif:actif, volontaire:volontaire},
                     complete: function(){
                         alert("L'intervenant-e a bien été ajouté-e à la base de données.");
-                        //------------------------------------------------------ Fermeture du modal
                         $('#modal_int_create').modal('hide');
                         //------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
                         ajaxListInter("#inter");
@@ -48,13 +46,11 @@ const int_Change = (id) => {
         dataType: 'JSON',
         data : {id:id},
         success: function(response){
-            // ---------------------------------------------------------------- Récupération des données
             const prenom_int = response[0].prenom_int;
             const nom_int = response[0].nom_int;
             const actif = parseInt(response[0].actif);
             const volontaire = parseInt(response[0].volontaire);
 
-            // ---------------------------------------------------------------- Remplissage des champs
             $("#update_prenom_int").val(prenom_int);
             $("#update_nom_int").val(nom_int);
             $("#update_actif").prop('checked', false);
@@ -66,14 +62,12 @@ const int_Change = (id) => {
 }
 
 const int_Update = (id, prenom, nom, actif, volontaire) => {
-    //-------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/int.php',
         dataType: 'JSON',
         data : {id:id, prenom:prenom, nom:nom, actif:actif, volontaire:volontaire},
         complete: function(){
             alert("Les informations de l'intervenant-e ont bien été modifiées.");
-            //------------------------------------------------------------------ Fermeture du modal
             $('#modal_int_update').modal('hide');
             //------------------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
             ajaxListInter("#inter");
@@ -99,7 +93,6 @@ const int_Delete = (id) => {
                     if(exist === 1) alert("Suppression impossible : cet-te intervenant-e est relié-e à des événements et/ou rendez-vous dans la base de données.");
                     else {
                         alert("L'intervenant-e a bien été supprimé-e de la base de données.");
-                        //------------------------------------------------------ Fermeture du modal
                         $('#modal_int_update').modal('hide');
                         //------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
                         ajaxListInter("#inter");

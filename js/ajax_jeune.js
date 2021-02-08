@@ -30,7 +30,6 @@ const jeune_Get = (id) => {
         dataType: 'JSON',
         data : {id:id},
         success: function(response){
-            // --------------------------------------------------------- Récupération des données
             const id = response[0].id;
             const adherent = response[0].adherent;
             const genre = response[0].genre;
@@ -73,7 +72,6 @@ const jeune_Get = (id) => {
             const rsa = response[0].rsa;
             const gj = response[0].gj;
 
-            // ----------------------------------------------------------------- Remplissage des champs
             $("#id").val(id);
             $("#genre").val(genre);
             $("#adherent").prop('checked', false);
@@ -130,7 +128,6 @@ statut, pe, rsa, gj) => {
             const exist = parseInt(response[0].exist);
             if(exist === 1) alert("Création impossible : Il existe déjà un jeune qui porte ce nom et qui habite cette ville dans la base de données.");
             else {
-                //-------------------------------------------------------------- Envoie des infos vers la BDD
                 $.ajax({
                     url: 'php/jeune.php',
                     dataType: 'JSON',
@@ -172,7 +169,6 @@ const jeune_Get_Id = (npv, id_evt) => {
 const jeune_Update = (npv, id, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse,
 id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
 statut, pe, rsa, gj) => {
-    //------------------------------------------------------------------------- Envoie des infos vers la BDD
     $.ajax({
         url: 'php/jeune.php',
         dataType: 'JSON',
