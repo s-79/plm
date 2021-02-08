@@ -13,6 +13,12 @@ $(function(){
         $("#form_jeune").addClass('d-none');
     }
 
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR L'ICONE PROJET'
+    $("#acc_projet").click(function(){
+        $("#divProjet").toggleClass("d-none");
+        // $("#divAcc").toggleClass("d-none");
+    });
+
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE CRÉATION D'UNE ASSOCIATION ENTRE JEUNE ET SENSIBILISATION
     $("#new_evt").click(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire
@@ -92,6 +98,8 @@ $(function(){
         const id_int = $("#create_int_rdv").val();
         const dat = $("#create_date_rdv").val();
         const type = $("#create_type_rdv").val();
+        let visio =  $("#create_visio_rdv").is(':checked');
+        if(visio)visio=1;else{visio=0};
         const duree = $("#create_duree_rdv").val();
         const intitule = uuid();
         const commentaires = $("#create_comm_rdv").val();
@@ -99,7 +107,7 @@ $(function(){
         if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
         //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
         else {
-            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, duree, intitule, commentaires);
+            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, visio, duree, intitule, commentaires);
         };
     });
 
@@ -141,13 +149,15 @@ $(function(){
         const id_int = $("#update_int_rdv").val();
         const dat = $("#update_date_rdv").val();
         const type = $("#update_type_rdv").val();
+        let visio =  $("#update_visio_rdv").is(':checked');
+        if(visio)visio=1;else{visio=0};
         const duree = $("#update_duree_rdv").val();
         const commentaires = $("#update_comm_rdv").val();
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
         if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
         else {
             //---------------------------------------------------------------------- Création de l'association entre le jeune et le rendez-vous
-            if(vLen("Commentaires",commentaires,255)) rdv_Update(id_jeune, id_rdv, id_int, dat, type, duree, commentaires);
+            if(vLen("Commentaires",commentaires,255)) rdv_Update(id_jeune, id_rdv, id_int, dat, type, visio, duree, commentaires);
         };
     });
 

@@ -16,6 +16,7 @@ $intitule =  mysqli_real_escape_string($con, $_GET['intitule']);
 $id_int =  mysqli_real_escape_string($con, $_GET['id_int']);
 $dat =  mysqli_real_escape_string($con, $_GET['dat']);
 $type =  mysqli_real_escape_string($con, $_GET['type']);
+$visio =  mysqli_real_escape_string($con, $_GET['visio']);
 $duree =  mysqli_real_escape_string($con, $_GET['duree']);
 $commentaires =  mysqli_real_escape_string($con, $_GET['commentaires']);
 
@@ -37,10 +38,10 @@ if($id_acc) {
 
 // ---------------------------------------------------------------------------  Rendez-vous
 } elseif($intitule) {
-    $query = "CALL rdv_Create('$dat', '$type', '$intitule', '$commentaires', '$duree', '$id_int')";
+    $query = "CALL rdv_Create('$dat', '$type', '$visio', '$intitule', '$commentaires', '$duree', '$id_int')";
 
 } elseif($id_rdv_up) {
-    $query = "CALL rdv_Update('$id_rdv_up', '$dat', '$type', '$commentaires', '$duree', '$id_int')";
+    $query = "CALL rdv_Update('$id_rdv_up', '$dat', '$type', '$visio', '$commentaires', '$duree', '$id_int')";
 
 } elseif($id_rdv_del) {
     $query = "CALL rdv_Delete('$id_rdv_del')";

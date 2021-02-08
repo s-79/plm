@@ -252,6 +252,10 @@
       </div>
       <div class="modal-body">
           <form id="form_rdv_create">
+              <div class="form-check form-switch mx-3 d-flex justify-content-end ">
+                <input class="form-check-input" type="checkbox" id="create_visio_rdv">
+                <label class="form-check-label fw-bold" for="create_visio_rdv">En visio</label>
+              </div>
               <div class="form-floating mx-3 mt-4">
                   <select class="form-select" id="create_int_rdv" aria-label="Intervenant">
                       <option selected value="">Séléctionner l'intervenant-e</option>
@@ -308,6 +312,10 @@
           <form id="form_rdv_update">
               <!--                                                                                                        Récupération de l'id_evt dans un input invisible -->
               <input type="text" class="form-control d-none" id="update_id_rdv">
+              <div class="form-check form-switch mx-3 d-flex justify-content-end ">
+                <input class="form-check-input" type="checkbox" id="update_visio_rdv">
+                <label class="form-check-label fw-bold" for="update_visio_rdv">En visio</label>
+              </div>
               <div class="form-floating mx-3 mt-4">
                       <input type="text" class="form-control" id="update_nom_rdv" placeholder="Rendez-vous à modifier" disabled>
                       <label for="update_nom_rdv">Rendez-vous à modifier</label>

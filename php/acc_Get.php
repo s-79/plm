@@ -103,6 +103,7 @@ if($id_acc) {
         $nom2 = $row['nom2'];
         $dat = $row['dat'];
         $type = $row['type'];
+        $visio = $row['visio'];
         $id_intervenant = $row['id_intervenant'];
         $intervenant = $row['intervenant'];
         $duree = $row['duree'];
@@ -113,6 +114,7 @@ if($id_acc) {
             "nom2" => $nom2,
             "dat" => $dat,
             "type" => $type,
+            "visio" => $visio,
             "id_intervenant" => $id_intervenant,
             "intervenant" => $intervenant,
             "duree" => $duree,

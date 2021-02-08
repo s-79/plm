@@ -47,7 +47,7 @@ const orga_Create = (nom, type) => {
         success: function(response){
             const exist = parseInt(response[0].exist);
             if(exist === 1) alert("Création impossible : Il existe déjà un organisme qui porte ce nom dans la base de données.");
-            else {infos vers la BDD
+            else {
                 $.ajax({
                     url: 'php/orga.php',
                     dataType: 'JSON',

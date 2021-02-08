@@ -86,11 +86,19 @@ const ajaxEvtGet = (id_evt) => {
 
             $("#id_evt").val(id);
             $("#m0, #m1, #m2").prop('checked', false);
+
+            if (mission === "0" || mission === "1") {
+                $("#projet_evt").addClass("d-none");
+                $("#orga_evt").removeClass("d-none");
+                $("#ville")[0].disabled = false;
+                $("#nb_pros")[0].disabled = false;
+            }
             if (mission === "0") {
                 $("#m0").prop('checked', true);
                 $("#select_m1, #select_m2").addClass("d-none");
                 $("#select_m0").removeClass("d-none");
                 $("#type_m0").html(`<option value="${type}">${type}</option>`);
+                $("#type_m0")[0].disabled = true;
             }
             if (mission === "1") {
                 $("#m1").prop('checked', true);
@@ -102,9 +110,14 @@ const ajaxEvtGet = (id_evt) => {
                 for (type_m1 of types_m1) {init += `<option value="${type_m1}">${type_m1}</option>`;}
                 $("#type_m1").html(init);
                 $("#type_m1").val(type);
+                $("#type_m1")[0].disabled = false;
             }
             if (mission === "2") {
                 $("#m2").prop('checked', true);
+                $("#orga_evt").addClass("d-none");
+                $("#projet_evt").removeClass("d-none");
+                $("#ville")[0].disabled = true;
+                $("#nb_pros")[0].disabled = true;
                 $("#select_m0, #select_m1").addClass("d-none");
                 $("#select_m2").removeClass("d-none");
                 // ------------------------------------------------------------- Réinitialisation de la liste type m2
@@ -113,6 +126,7 @@ const ajaxEvtGet = (id_evt) => {
                 for (type_m2 of types_m2) {init += `<option value="${type_m2}">${type_m2}</option>`;}
                 $("#type_m2").html(init);
                 $("#type_m2").val(type);
+                $("#type_m2")[0].disabled = false;
             }
             $("#date").val(dat);
             // $("#type_m2").prepend(`<option selected value="${type}">${type}</option>`);
@@ -181,7 +195,7 @@ const evt_Create = (mission, dat, id_ville, type, visio, intitule, id_projet, or
             //------------------------------------------------------------------ Récupération de l'id de l'événement créé
             //------------------------------------------------------------------ Puis récupération des intervenants et association avec l'évenemnt dans la table intervenir
             evt_Get_Id(nom_evt);
-            //------------------------------------------------------------------ Récupération et envoie des intervenants et association avec le projet dans la table intervenir
+
             alert("L'événement a bien été ajouté à la base de données.");
             //------------------------------------------------------------------ Réinitialisation de la pages des événements
             evt_Reset();
@@ -238,9 +252,26 @@ const evt_Update = (id, mission, dat, id_ville, type, visio, intitule, id_projet
         dataType: 'JSON',
         data : {id:id, mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
         complete: function(){
+            //------------------------------------------------------------------ Suppression des associations entre intervenants et cet événement dans la table intervenir
+            //------------------------------------------------------------------ Puis récupération des intervenants et association avec l'évenemnt dans la table intervenir
+            evt_Delete_Int(id);
+
             alert("L'événement a bien été modifié.");
             //----------------------------------------------------------------- Réinitialisation de la pages des événements
             evt_Reset();
+
+        }
+    });
+}
+
+//----------------------------------------------------------------------------- Suppression des associations entre intervenants et cet événement dans la table intervenir
+const evt_Delete_Int = (id_evt) => {
+    $.ajax({
+        url: "php/evt.php",
+        dataType: 'JSON',
+        data : {id_evt_del_int:id_evt},
+        complete: function(){
+            evt_Get_Inter(id_evt);
         }
     });
 }
@@ -260,7 +291,7 @@ const evt_Delete = (id) => {
                 data : {id_evt:id},
                 success: function(response){
                     const exist = parseInt(response[0].exist);
-                    if(exist === 1) alert("Suppression impossible : l'évenement est encore relié à des jeunes ou des intervenants dans la BDD.");
+                    if(exist === 1) alert("Suppression impossible : l'évenement est relié à des jeunes ou des intervenants dans la BDD.");
                     else {
                         alert("L'événement a bien été supprimé de la base de données.");
                         //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)

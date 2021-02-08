@@ -151,6 +151,7 @@ const rdv_Get = (id) => {
             const nom2 = response[0].nom2;
             const dat = response[0].dat;
             const type = response[0].type;
+            const visio = response[0].visio;
             const id_intervenant = response[0].id_intervenant;
             const intervenant = response[0].intervenant;
             const duree = response[0].duree;
@@ -158,7 +159,8 @@ const rdv_Get = (id) => {
             $("#update_id_rdv").val(id);
             $("#update_nom_rdv").val(nom2);
             $("#update_date_rdv").val(dat);
-            $("#update_type_rdv").val(type);
+            $("#update_visio_rdv").prop('checked', false);
+            if (visio === "1") $("#update_visio_rdv").prop('checked', true);
             $("#update_int_rdv").html(`<option selected value="${id_intervenant}">${intervenant}</option>`);
             ajaxListIntUp("#update_int_rdv");
             $("#update_duree_rdv").val(duree);
@@ -203,11 +205,11 @@ const acc_Create_Evt = (id_jeune, id_evt, commentaire, mission) => {
 //-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Création d'un RDV individuel
-const rdv_Create = (id_jeune, id_int, dat, type, duree, intitule, commentaires) => {
+const rdv_Create = (id_jeune, id_int, dat, type, visio, duree, intitule, commentaires) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
-        data : {id_int:id_int, dat:dat, type:type, duree:duree, intitule:intitule, commentaires:commentaires},
+        data : {id_int:id_int, dat:dat, type:type, visio:visio, duree:duree, intitule:intitule, commentaires:commentaires},
         complete: function(){
             //------------------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous
             $.ajax({
@@ -235,8 +237,9 @@ const jeune_Update_Acc = (id, statut) => {
         complete: function(){
             // ----------------------------------------------------------------- Affichage d'une icone de validation pedant 2 secondes
             $("#acc_check").removeClass('d-none');
+            $("#acc").addClass('d-none');
             // ----------------------------------------------------------------- Fonction en dessous
-            setTimeout(acc_Check, 2000);
+            setTimeout(acc_Check, 1000);
         }
     });
 }
@@ -261,11 +264,11 @@ const acc_Update_Evt = (id_jeune, id_evt, commentaire, mission) => {
 //-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Modification d'un RDV individuel
-const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, duree, commentaires) => {
+const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, visio, duree, commentaires) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
-        data : {id_rdv_up:id_rdv, id_int:id_int, dat:dat, type:type, duree:duree, commentaires:commentaires},
+        data : {id_rdv_up:id_rdv, id_int:id_int, dat:dat, type:type, visio:visio, duree:duree, commentaires:commentaires},
         complete: function(){
             $('#modal_rdv_update').modal('hide')
             //------------------------------------------------------------------ TABLEAU RDV : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
@@ -286,6 +289,8 @@ const acc_Delete_Evt = (id_jeune, id_evt, mission) => {
         complete: function() {
             const divModal = `#modal_${mission}_update`
             $(divModal).modal('hide')
+            const divTab = `#tab_${mission}`
+            $(divTab).html("");
             //------------------------------------------------------------------ TABLEAU M0, M1 : Réinitialisation du tableau des sensibilisations dans le suivi du jeune
             if(mission === "evt") jeune_Get_Evt(id_jeune);
             //------------------------------------------------------------------ TABLEAU M2 : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
@@ -323,6 +328,7 @@ const acc_Delete_Rdv = (id_jeune, id_rdv) => {
 // ----------------------------------------------------------------------------- Affichge du check vert
 const acc_Check = () => {
     $("#acc_check").addClass('d-none');
+    $("#acc").removeClass('d-none');
 }
 // ----------------------------------------------------------------------------- Stockage de l'id des événements et envoie vers la page evt
 const id_evt_storage = (id, location) => {
