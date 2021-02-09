@@ -71,7 +71,7 @@
             <label for="ddn">Date de naissance</label>
         </div>
         <h2 class="pt-4">Sensibilisation</h2>
-        <div class="form-floating mx-3 mt-4">
+        <div class="form-floating mx-3 mt-4 mb-4">
             <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
                 <option selected value="">Ajouter une sensibilisation</option>
             </select>

@@ -13,10 +13,9 @@ $(function(){
         $("#form_jeune").addClass('d-none');
     }
 
-    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR L'ICONE PROJET'
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR L'ICONE PROJET
     $("#acc_projet").click(function(){
         $("#divProjet").toggleClass("d-none");
-        // $("#divAcc").toggleClass("d-none");
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE CRÉATION D'UNE ASSOCIATION ENTRE JEUNE ET SENSIBILISATION
@@ -113,12 +112,16 @@ $(function(){
 
     // ------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
-    // ------------------------------------------------------------------------- EVENEMENT CHANGE DANS LE MENU "STATUT DE L'ACCOMPAGNEMENT"
-    $("#acc").change(function(){
+    // ------------------------------------------------------------------------- EVENEMENT CHANGE DANS LES MENU SELECT "STATUT DE L'ACCOMPAGNEMENT", "MOBILITÉ PRÉSENTIE" ET "RÉFÉRENT-E"
+    $("#acc, #mob, #ref").change(function(){
         const id = $("#npv_res").val();
         const statut = $("#acc").val();
+        const mob = $("#mob").val();
+        const id_ref = $("#ref").val();
         // --------------------------------------------------------------------- Mise à jour du statut d'accompagnement
-        jeune_Update_Acc(id, statut);
+        jeune_Update_Acc(id, statut, mob, id_ref);
+        $(this).addClass('text-success');
+        setTimeout(acc_Check, 1500);
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LE COMMENTAIRE" DANS LE MODAL EVT M0 ET 1
@@ -213,3 +216,10 @@ const acc_Get = (id) => {
         jeune_Get_Rdv(id);
     }
 };
+
+// ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
+
+// ----------------------------------------------------------------------------- Affichge du check vert
+const acc_Check = () => {
+    $("#acc, #mob, #ref").removeClass('text-success');
+}

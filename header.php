@@ -31,7 +31,7 @@
                     <a class="nav-link" href="evt.php">&nbsp;&nbsp;<i class="fas fa-users fa-lg"></i>&nbsp;&nbsp;ÉVÉNEMENTS&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-plane-departure fa-lg"></i>&nbsp;&nbsp;PROJETS&nbsp;&nbsp;</a>
+                    <a class="nav-link" href="prj.php">&nbsp;&nbsp;<i class="fas fa-plane-departure fa-lg"></i>&nbsp;&nbsp;PROJETS&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item">
                     <!-- line, pie, bar, area -->

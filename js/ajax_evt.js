@@ -7,19 +7,7 @@ const ajaxListEvt = (liste) => {
         dataType: 'JSON',
         data : {v_evt:"v_evt"},
         success: function(response){
-            const len = response.length;
-            let res = "";
-            for (let i = 0; i < len; i++) {
-                const id = response[i].id;
-                if(parseInt(id) === 0) {
-                    const nom = "Non renseigné"
-                    res += `<option value="${id}">${nom}</option>`;
-                } else {
-                    const nom = response[i].nom.substr(2);
-                    res += `<option value="${id}">${nom}</option>`;
-                }
-            }
-            $(liste).append(res);
+            $(liste).append(displayList(response, 1));
         }
     });
 }

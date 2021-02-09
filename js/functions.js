@@ -3,25 +3,18 @@ $(function(){
 $('[data-toggle="tooltip"]').tooltip()
 });
 
-/* ----------------------------------------------------------------------------  Fonction de remplissage et mise en forme des listes select dynamiques */
-const displayList = response => {
+/* ----------------------------------------------------------------------------  Fonction de remplissage et mise en forme des listes select dynamiques avec Substr des 2 premiers caractères si sub = 1 */
+const displayList = (response, sub) => {
     let res = "";
     const len = response.length;
     for (let i = 0; i < len; i++) {
         const id = response[i].id;
-        const nom = response[i].nom;
-        res += `<option value="${id}">${nom}</option>`;
-    }
-    return res;
-}
-
-/* ----------------------------------------------------------------------------  Fonction de remplissage et mise en forme des listes select dynamiques avec Substr des 2 premiers caractères */
-const displayListSub = response => {
-    let res = "";
-    const len = response.length;
-    for (let i = 0; i < len; i++) {
-        const id = response[i].id;
-        const nom = response[i].nom.substr(2);
+        let nom = "";
+        if(parseInt(id) === 0) nom = "Non renseigné";
+        else {
+            if(sub === 1) nom = response[i].nom.substr(2);
+            else {nom = response[i].nom;}
+        }
         res += `<option value="${id}">${nom}</option>`;
     }
     return res;

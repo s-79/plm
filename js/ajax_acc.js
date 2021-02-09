@@ -7,7 +7,7 @@ const acc_List_Evt = (liste) => {
         dataType: 'JSON',
         data : {v_acc_list_evt:"v_acc_list_evt"},
         success: function(response){
-            $(liste).append(displayListSub(response));
+            $(liste).append(displayList(response, 1));
         }
     });
 }
@@ -19,7 +19,7 @@ const acc_List_Evt2 = (liste) => {
         dataType: 'JSON',
         data : {v_acc_list_evt2:"v_acc_list_evt2"},
         success: function(response){
-            $(liste).append(displayListSub(response));
+            $(liste).append(displayList(response, 1));
         }
     });
 }
@@ -33,10 +33,17 @@ const jeune_Get_Acc = (id) => {
         dataType: 'JSON',
         data : {id_acc:id},
         success: function(response){
-            const acc = response[0].acc;
             const npv = response[0].npv;
-            $("#acc").val(acc);
+            const acc = response[0].acc;
+            const mob = response[0].mob;
+            const id_ref = response[0].id_ref;
+            if(parseInt(id_ref) !== 0) ref = response[0].ref;
+            else{ref = "Non renseigné"};
             $("#acc_npv").html(npv);
+            $("#acc").val(acc);
+            $("#mob").val(mob);
+            $("#ref").html(`<option selected value="${id_ref}">${ref}</option>`);
+            ajaxListIntUp("#ref");
         }
     });
 }
@@ -229,15 +236,15 @@ const rdv_Create = (id_jeune, id_int, dat, type, visio, duree, intitule, comment
 // ----------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
 // ----------------------------------------------------------------------------- Mise à jour du statut du jeune
-const jeune_Update_Acc = (id, statut) => {
+const jeune_Update_Acc = (id, statut, mob, id_ref) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
-        data : {id_acc:id, statut:statut},
+        data : {id_acc:id, statut:statut, mob:mob, id_ref:id_ref},
         complete: function(){
             // ----------------------------------------------------------------- Affichage d'une icone de validation pedant 2 secondes
-            $("#acc_check").removeClass('d-none');
-            $("#acc").addClass('d-none');
+            // $("#acc_projet").addClass('text-success');
+
             // ----------------------------------------------------------------- Fonction en dessous
             setTimeout(acc_Check, 1000);
         }
@@ -323,13 +330,6 @@ const acc_Delete_Rdv = (id_jeune, id_rdv) => {
     });
 }
 
-// ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
-
-// ----------------------------------------------------------------------------- Affichge du check vert
-const acc_Check = () => {
-    $("#acc_check").addClass('d-none');
-    $("#acc").removeClass('d-none');
-}
 // ----------------------------------------------------------------------------- Stockage de l'id des événements et envoie vers la page evt
 const id_evt_storage = (id, location) => {
     sessionStorage.setItem('id_evt', id);

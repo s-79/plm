@@ -22,10 +22,16 @@ if($id_acc) {
     while($row = mysqli_fetch_array($result)){
         $acc = $row['acc'];
         $npv = $row['npv'];
+        $mob = $row['mob'];
+        $id_ref = $row['id_ref'];
+        $ref = $row['ref'];
 
         $return_arr[] = array(
             "acc" => $acc,
-            "npv" => $npv
+            "npv" => $npv,
+            "mob" => $mob,
+            "id_ref" => $id_ref,
+            "ref" => $ref
         );
     }
 // ----------------------------------------------------------------------------- Récupération des infos des missions 0 et 1 en fonction de l'id jeune

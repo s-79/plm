@@ -1,12 +1,15 @@
 <?php
 
 include "config.php";
-// ---------------------------------------------------------------------------  Participer
+// ---------------------------------------------------------------------------  Statut d'accomp + mobilité et référent
 $id_acc =  mysqli_real_escape_string($con, $_GET['id_acc']);
 $statut =  mysqli_real_escape_string($con, $_GET['statut']);
+$mob =  mysqli_real_escape_string($con, $_GET['mob']);
+$id_ref =  mysqli_real_escape_string($con, $_GET['id_ref']);
+
+// ---------------------------------------------------------------------------  Participer
 $id_jeune =  mysqli_real_escape_string($con, $_GET['id_jeune']);
 $commentaire =  mysqli_real_escape_string($con, $_GET['commentaire']);
-
 $id_evt =  mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_evt_up =  mysqli_real_escape_string($con, $_GET['id_evt_up']);
 $id_evt_del =  mysqli_real_escape_string($con, $_GET['id_evt_del']);
@@ -25,7 +28,7 @@ $id_rdv_del =  mysqli_real_escape_string($con, $_GET['id_rdv_del']);
 
 
 if($id_acc) {
-    $query = "CALL jeune_Update_Acc('$id_acc', '$statut')";
+    $query = "CALL jeune_Update_Acc('$id_acc', '$statut', '$mob', '$id_ref')";
 // ---------------------------------------------------------------------------  Associations evt, evt2, rdv
 } elseif($id_evt) {
     $query = "CALL acc_Create_Evt ('$id_jeune', '$id_evt', '$commentaire')";

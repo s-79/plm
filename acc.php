@@ -1,16 +1,11 @@
-<div id="accompagnement" class="row justify-content-center mt-4 d-none">
+<div id="accompagnement" class="row justify-content-center mt-2 d-none">
     <div class="col-9">
     <!--                                                                                                              Select Statut accompagnement-->
     <div class="form-group row mx-auto border-bottom border-top border-2 pt-4 mt-3 pb-4 mb-5">
-        <div class="col-6 ps-0 mt-3">
-            <div class="d-flex"><h2 class="rose" id="acc_npv"></h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i id="acc_projet" class="fas fa-plane-departure fa-lg marine pointeur mt-1" data-toggle="tooltip" data-placement="top" title="Afficher les projets du jeune"></i></div>
-        </div>
+        <div class="d-flex col-6 mt-3"><h2 class="rose" id="acc_npv"></h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i id="acc_projet" class="fas fa-plane-departure marine pointeur" style="font-size:1.5em;" data-toggle="tooltip" data-placement="top" title="Afficher les projets du jeune"></i></div>
         <div class="col-2">
-            <div id="acc_check" class="d-none text-center pt-2">
-                <i class="fas fa-check fa-2x text-success"></i>
-            </div>
-            <div id="acc" class="form-floating">
-                <select class="form-select" aria-label="Statut d'accomp.">
+            <div class="form-floating">
+                <select id="acc" class="form-select" aria-label="Statut d'accomp.">
                     <option selected value="">Statut d'accomp.</option>
                     <option value="Non démarré">Non démarré</option>
                     <option value="Premier rdv">Premier rdv</option>
@@ -26,27 +21,29 @@
         </div>
         <div class="col-2">
             <div class="form-floating">
-                <select class="form-select" id="ref" aria-label="Mobilité présentie">
+                <select id="mob" class="form-select"  aria-label="Mobilité présentie">
                     <option selected value="">Mobilité présentie</option>
-                    <option value="Femme">Femme</option>
-                    <option value="Homme">Homme</option>
-                    <option value="Autre">Autre</option>
+                    <option value="Échange de jeune">Échange de jeune</option>
+                    <option value="Volontariat court terme">Volontariat court terme</option>
+                    <option value="Volontariat long terme">Volontariat long terme</option>
+                    <option value="Stage">Stage</option>
+                    <option value="PVT">PVT</option>
+                    <option value="Emploi">Emploi</option>
                 </select>
-                <label for="ref">Mobilité présentie</label>
+                <label for="mob">Mobilité présentie</label>
             </div>
         </div>
         <div class="col-2">
             <div class="form-floating">
                 <select class="form-select" id="ref" aria-label="Référent-e">
-                    <option selected value="">Référent-e</option>
-                    <option value="Femme">Femme</option>
-                    <option value="Homme">Homme</option>
-                    <option value="Autre">Autre</option>
+                    <option selected value="0">Référent-e</option>
                 </select>
                 <label for="ref">Référent-e</label>
             </div>
         </div>
+
     </div>
+
 
     <!--                                                                                                              Projets-->
     <div id="divProjet" class="d-none">
