@@ -8,13 +8,13 @@ $(function(){
     })
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE CREATION D'ORGANISME
     $("#btn_orga_create").click(function(){
-        //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal Create_update
+        //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal Create
         document.getElementById("form_orga_create").reset();
     })
 
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE MISE A JOUR D'ORGANISME
     $("#btn_orga_update").click(function(){
-        //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal orga_Create
+        //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal orga_Update
         document.getElementById("form_orga_update").reset();
         //---------------------------------------------------------------------- Réinitialisation et remplissage de la liste des noms d'organisme dans le modal de modification d'organisme
         $("#select_nom_orga").html("<option selected value=''>Séléctionner l'organisme à modifier</option>");
@@ -33,7 +33,7 @@ $(function(){
         else{type_Change(type_orga)};
     });
 
-    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON (+) - Le modal s'ouvre dans le html
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON (+)
     $('#new_orga').click(function(){
         // --------------------------------------------------------------------- Masquer la div qui affiche qu'il n'y a pas d'orga de ce type
         $("#txt_modal_orga").removeClass("d-block");

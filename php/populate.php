@@ -11,11 +11,15 @@ $v_int = mysqli_real_escape_string($con, $_GET['v_int']);
 $v_intUp = mysqli_real_escape_string($con, $_GET['v_intUp']);
 $v_acc_list_evt = mysqli_real_escape_string($con, $_GET['v_acc_list_evt']);
 $v_acc_list_evt2 = mysqli_real_escape_string($con, $_GET['v_acc_list_evt2']);
+$v_pays = mysqli_real_escape_string($con, $_GET['v_pays']);
+$v_part = mysqli_real_escape_string($con, $_GET['v_part']);
+$v_prj = mysqli_real_escape_string($con, $_GET['v_prj']);
 $orga_type = mysqli_real_escape_string($con, $_GET['orga_type']);
 $v_ville = mysqli_real_escape_string($con, $_GET['v_ville']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville']);
 $texte = mysqli_real_escape_string($con, $_GET['texte']);
 $texte_evt = mysqli_real_escape_string($con, $_GET['texte_evt']);
+$texte_prj = mysqli_real_escape_string($con, $_GET['texte_prj']);
 
 if($v_npv) {$query = "CALL npv_List ()";
 
@@ -40,6 +44,15 @@ if($v_npv) {$query = "CALL npv_List ()";
 } elseif($v_ville) {
     $query = "CALL ville_List ()";
 
+} elseif($v_pays) {
+    $query = "CALL pays_List ()";
+
+} elseif($v_part) {
+    $query = "CALL part_List ()";
+
+} elseif($v_prj) {
+    $query = "CALL prj_List ()";
+
 } elseif($orga_type) {
     $query = "CALL orga_Type ('$orga_type')";
 
@@ -55,8 +68,12 @@ if($v_npv) {$query = "CALL npv_List ()";
     if(strlen($texte_evt) > 0) {
         $query = "CALL evt_Search ('$texte_evt')";
     }
-}
 
+} elseif($texte_prj) {
+    if(strlen($texte_prj) > 0) {
+        $query = "CALL prj_Search ('$texte_prj')";
+    }
+}
 $result = mysqli_query($con,$query);
 
 while($row = mysqli_fetch_array($result)){

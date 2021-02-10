@@ -59,21 +59,26 @@ include("header.php"); ?>
             <input type="text" class="form-control" id="intitule" placeholder="Intitulé *">
             <label for="intitule">Intitulé *</label>
         </div>
+        <div class="row mx-1 mt-3">
+            <div class="form-floating col-10">
+                <select class="form-select" id="partenaire" aria-label="Partenaire *">
+                    <option selected value="0">Partenaire *</option>
+                </select>
+                <label for="partenaire">Partenaire *</label>
+            </div>
+            <div class="col-2 my-auto">
+                <i id="new_part" class="fas fa-plus-circle fa-2x text-white pointeur" data-bs-toggle="modal" data-bs-target="#modal_part" data-toggle="tooltip" data-placement="top" title="Ajouter / modifier un partenaire"></i>
+            </div>
+        </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="pays" aria-label="Pays">
-                <option selected value="0">Pays de destination</option>
+                <option selected value="0">Pays de destination *</option>
             </select>
-            <label for="pays">Pays de destination</label>
+            <label for="pays">Pays de destination *</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <input type="text" class="form-control" id="ville" placeholder="Ville">
-            <label for="ville">Ville de déstination</label>
-        </div>
-        <div class="form-floating mx-3 mt-3 mb-4">
-            <select class="form-select" id="partenaire" aria-label="Partenaire">
-                <option selected value="0">Partenaire</option>
-            </select>
-            <label for="partenaire">Partenaire</label>
+            <label for="ville">Ville de destination</label>
         </div>
     </div>
     <!--                                                                                                              Période -->
@@ -151,110 +156,113 @@ include("header.php"); ?>
 </div>
 </div>
 
-<!--                                                                             ! ! ! - - M O D A L S  I N T E R V E N A N T - - ! ! ! -->
+<!--                                                                             ! ! ! - - M O D A L  P A R T E N A I R E S- - ! ! ! -->
 
-<!--                                                                                                               Modal pour choisir ajouter / modifier un-e intervenant-e -->
-<div class="modal fade" id="modal_int" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajouter ou modifier/supprimer un-e intervenant-e PLM</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-          Souhaitez-vous ajouter ou modifier/supprimer un-e intervenant-e PLM ?
-      </div>
-      <div class="modal-footer">
-          <button id="btn_int_create" type="button" class="btn btn-primary close-modal" data-bs-toggle="modal" data-bs-target="#modal_int_create">Ajouter</button>
-          <button id="btn_int_update" type="button" class="btn btn-warning close-modal" data-bs-toggle="modal" data-bs-target="#modal_int_update">Modifier</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!---                                                                                                              Modal pour ajouter un-e intervenant-e -->
-<div class="modal fade" id="modal_int_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--                                                                                                               Modal pour choisir ajouter / modifier un partenaire -->
+<div class="modal fade" id="modal_part" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ajouter un-e intervenant-e PLM</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter ou modifier un partenaire</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="form_int_create">
-                    <div class="form-floating mx-3 mt-3">
-                        <input type="text" class="form-control" id="create_prenom_int" placeholder="Prénom *">
-                        <label for="create_prenom_int">Prénom *</label>
-                    </div>
-                    <div class="form-floating mx-3 mt-3">
-                        <input type="text" class="form-control" id="create_nom_int" placeholder="Nom *">
-                        <label for="create_nom_int">Nom *</label>
-                    </div>
-                    <div class="form-check form-switch mx-3 mt-3">
-                        <input class="form-check-input" type="checkbox" id="create_actif" checked>
-                        <label class="form-check-label fw-bold" for="create_actif">actif</label>
-                    </div>
-                    <div class="form-check form-switch mx-3 mt-3">
-                        <input class="form-check-input" type="checkbox" id="create_volontaire">
-                        <label class="form-check-label fw-bold" for="create_volontaire">volontaire</label>
-                    </div>
-                </form>
+            <div class="modal-body text-center">
+                Souhaitez-vous ajouter ou modifier/supprimer<br> un partenaire ?
             </div>
             <div class="modal-footer">
-                <button id="int_create" type="button" class="btn btn-primary">Ajouter</button>
+                <button id="btn_part_create" type="button" class="btn btn-primary close-modal" data-bs-toggle="modal" data-bs-target="#modal_part_create">Ajouter</button>
+                <button id="btn_part_update" type="button" class="btn btn-warning close-modal" data-bs-toggle="modal" data-bs-target="#modal_part_update">Modifier</button>
             </div>
         </div>
     </div>
 </div>
 
-<!---                                                                                                              Modal pour modifier un intervenant-e -->
-<div class="modal fade" id="modal_int_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!---                                                                                                              Modal pour ajouter un partenaire -->
+<div class="modal fade" id="modal_part_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modifier ou supprimer un-e intervenant-e</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un partenaire</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="form_int_update">
-                    <div class="form-floating mx-3 mt-4">
-                        <select class="form-select" id="select_nom_int" aria-label="Nom de l'intervenant-e">
-                        <option selected value="">Séléctionner le nom de l'intervenant-e à modifier</option>
-                        </select>
-                        <label for="select_nom_int">Séléctionner le nom de l'intervenant-e à modifier</label>
+                <form id="form_part_create">
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="text" class="form-control" id="create_nom_part" placeholder="Nom de la structure partenaire *">
+                        <label for="create_nom_part">Nom de la structure partenaire *</label>
                     </div>
                     <div class="form-floating mx-3 mt-3">
-                        <input type="text" class="form-control" id="update_prenom_int" placeholder="Prenom de l'intervenant-e">
-                        <label for="update_prenom_int">Modifier le prenom de l'intervenant-e</label>
+                        <input type="text" class="form-control" id="create_contact_part" placeholder="Nom du contact">
+                        <label for="create_contact_part">Nom du contact</label>
                     </div>
                     <div class="form-floating mx-3 mt-3">
-                        <input type="text" class="form-control" id="update_nom_int" placeholder="Nom de l'intervenant-e">
-                        <label for="update_nom_int">Modifier le nom de l'intervenant-e</label>
+                        <input type="tel" class="form-control" id="create_tel_part" placeholder="Téléphone *">
+                        <label for="create_tel_part">Téléphone *</label>
                     </div>
-                    <div class="form-check form-switch mx-3 mt-3">
-                        <input class="form-check-input" type="checkbox" id="update_actif">
-                        <label class="form-check-label fw-bold" for="update_actif">actif</label>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="mail" class="form-control" id="create_mail_part" placeholder="Email *">
+                        <label for="create_mail_part">Email *</label>
                     </div>
-                    <div class="form-check form-switch mx-3 mt-3">
-                        <input class="form-check-input" type="checkbox" id="update_volontaire">
-                        <label class="form-check-label fw-bold" for="update_volontaire">volontaire</label>
+                    <div class="form-floating mx-3 mt-3 mb-4">
+                        <textarea class="form-control" placeholder="Commentaires" id="create_comm_part" style="height:125px;"></textarea>
+                        <label for="create_comm_part">Commentaires</label>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="int_update" type="button" class="btn btn-warning">Modifier</button>
-                <button id="int_delete" type="button" class="btn btn-danger">Supprimer</button>
+                <button id="part_create" type="button" class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---                                                                                                              Modal pour modifier un partenaire -->
+<div class="modal fade" id="modal_part_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier ou supprimer un partenaire</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_part_update">
+                    <div class="form-floating mx-3 mt-4">
+                        <select class="form-select" id="select_nom_part" aria-label="Nom du partenaire">
+                            <option selected value="">Séléctionner le partenaire à modifier</option>
+                        </select>
+                        <label for="select_nom_part">Séléctionner le partenaire à modifier</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="text" class="form-control" id="update_contact_part" placeholder="Nom du contact">
+                        <label for="update_contact_part">Nom du contact</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="tel" class="form-control" id="update_tel_part" placeholder="Téléphone *">
+                        <label for="update_tel_part">Téléphone *</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="mail" class="form-control" id="update_mail_part" placeholder="Email *">
+                        <label for="update_mail_part">Email *</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3 mb-4">
+                        <textarea class="form-control" placeholder="Commentaires" id="update_comm_part" style="height:125px;"></textarea>
+                        <label for="update_comm_part">Commentaires</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="part_update" type="button" class="btn btn-warning">Modifier</button>
+                <button id="part_delete" type="button" class="btn btn-danger">Supprimer</button>
             </div>
         </div>
     </div>
 </div>
 
 <!--                                                                                                               Scripts -->
-<script src="js/ajax_villeQpv.js"></script>
 <script src="js/ajax_prj.js"></script>
 <script src="js/prj.js"></script>
-<script src="js/int.js"></script>
-<script src="js/ajax_int.js"></script>
+<script src="js/ajax_part.js"></script>
+<script src="js/part.js"></script>
 <script src="js/functions.js"></script>
 
 </body>

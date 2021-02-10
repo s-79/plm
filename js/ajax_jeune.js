@@ -11,7 +11,7 @@ const ajaxListNpv = (liste) => {
         }
     });
 }
-/* -----------------------------------------------------------------------------Outil de recherche de jeune */
+/* ----------------------------------------------------------------------------- Outil de recherche de jeune */
 const jeune_Search = (search) => {
     $.ajax({
     url: 'php/populate.php',

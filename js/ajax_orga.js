@@ -65,7 +65,7 @@ const orga_Create = (nom, type) => {
 }
 // ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
-/* ---------------------------------------------------------------------------- Changement dans le menu SELECT du menu update */
+/* ---------------------------------------------------------------------------- Changement dans le menu SELECT du modal update */
 const orga_Change = (id) => {
     $.ajax({
         url: 'php/orga_Get.php',
