@@ -1,13 +1,15 @@
 // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste Ville - Récup données & append */
-const ajaxListVille = (liste) => {
+const ajaxListVille = (liste, id_ville) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
         data : {v_ville:"v_ville"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner la ville</option>");
             $(liste).append(displayList(response));
+            if(id_ville)$(liste).val(id_ville);
         }
     });
 }

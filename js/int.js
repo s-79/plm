@@ -17,7 +17,6 @@ $(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal int_Create
         document.getElementById("form_int_update").reset();
         //---------------------------------------------------------------------- Réinitialisation et remplissage de la liste des noms d'intervenant dans le modal de modification d'intervenant
-        $("#select_nom_int").html("<option selected value=''>Séléctionner le nom de l'intervenant-e à modifier</option>");
         ajaxListIntUp("#select_nom_int");
     })
 

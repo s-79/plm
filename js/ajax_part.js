@@ -1,43 +1,45 @@
 // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
+
 /* ---------------------------------------------------------------------------- Remplissage de la liste des partenaires */
-const ajaxListPart = (liste) => {
+const ajaxListPart = (liste, id_part) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
         data : {v_part:"part"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner un partenaire</option>")
             $(liste).append(displayList(response));
+            if(id_part)$(liste).val(id_part);
         }
     });
 }
 
-// // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
-//
-// const part_Create = (nom, type) => {
-//     $.ajax({
-//         //---------------------------------------------------------------------- Vérification : Le nom de l'partenaire existe-t-il déjà dans la BDD ?
-//         url: "php/exist.php",
-//         dataType: 'JSON',
-//         data : {nom_part:nom},
-//         success: function(response){
-//             const exist = parseInt(response[0].exist);
-//             if(exist === 1) alert("Création impossible : Il existe déjà un partenaire qui porte ce nom dans la base de données.");
-//             else {
-//                 $.ajax({
-//                     url: 'php/part.php',
-//                     dataType: 'JSON',
-//                     data : {nom:nom, type:type},
-//                     complete: function(){
-//                         alert("L'partenaire a bien été ajouté à la base de données.");
-//                         //------------------------------------------------------ Réinitialisation de la liste des types et noms d'partenaire sur la page jeune (fonction dans part.js)
-//                         part_Reset();
-//                         $('#modal_part_create').modal('hide');
-//                     }
-//                 });
-//             }
-//         }
-//     });
-// }
+// ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
+
+const part_Create = (nom, contact, tel, mail, commentaires) => {
+    $.ajax({
+        //---------------------------------------------------------------------- Vérification : Le nom du partenaire existe-t-il déjà dans la BDD ?
+        url: "php/exist.php",
+        dataType: 'JSON',
+        data : {nom_part:nom},
+        success: function(response){
+            const exist = parseInt(response[0].exist);
+            if(exist === 1) alert("Création impossible : Il existe déjà un partenaire qui porte ce nom dans la base de données.");
+            else {
+                $.ajax({
+                    url: 'php/part.php',
+                    dataType: 'JSON',
+                    data : {nom:nom, contact:contact, tel:tel, mail:mail, commentaires:commentaires},
+                    complete: function(){
+                        alert("Le partenaire a bien été ajouté à la base de données.");
+                        ajaxListPart("#partenaire");
+                        $('#modal_part_create').modal('hide');
+                    }
+                });
+            }
+        }
+    });
+}
 // ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
 /* ---------------------------------------------------------------------------- Changement dans le menu SELECT du modal update */
@@ -59,44 +61,40 @@ const part_Change = (id) => {
     });
 }
 
-// const part_Update = (id, nom, type) => {
-//     $.ajax({
-//         url: 'php/part.php',
-//         dataType: 'JSON',
-//         data : {id:id, nom:nom, type:type},
-//         complete: function(){
-//             alert("L'partenaire a bien été modifié.");
-//             //------------------------------------------------------------------ Réinitialisation de la liste des types et noms d'partenaire sur la page jeune (fonction dans part.js)
-//             part_Reset();
-//             $('#modal_part_update').modal('hide');
-//         }
-//     });
-// }
+const part_Update = (id, nom, contact, tel, mail, commentaires) => {
+    $.ajax({
+        url: 'php/part.php',
+        dataType: 'JSON',
+        data : {id:id, nom:nom, contact:contact, tel:tel, mail:mail, commentaires:commentaires},
+        complete: function(){
+            alert("le partenaire a bien été modifié.");
+            $('#modal_part_update').modal('hide');
+        }
+    });
+}
 
-// // ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
-// const part_Delete = (id) => {
-//     //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
-//     $.ajax({
-//         url: "php/part.php",
-//         dataType: 'JSON',
-//         data : {id_del:id},
-//         complete: function() {
-//             //------------------------------------------------------------------ Vérification : L'ID est-il bien supprimé de la BDD ?
-//             $.ajax({
-//                 url: "php/exist.php",
-//                 dataType: 'JSON',
-//                 data : {id_part:id},
-//                 success: function(response){
-//                     const exist = parseInt(response[0].exist);
-//                     if(exist === 1) alert("Suppression impossible : des jeunes sont encore reliés à cet partenaire dans la base de données.");
-//                     else {
-//                         alert("L'partenaire a bien été supprimé de la base de données.");
-//                         //------------------------------------------------------ Réinitialisation de la liste des types et noms d'partenaire sur la page jeune (fonction dans part.js)
-//                         part_Reset();
-//                         $('#modal_part_update').modal('hide');
-//                     }
-//                 }
-//             });
-//         }
-//     });
-// }
+// ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
+const part_Delete = (id) => {
+    //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
+    $.ajax({
+        url: "php/part.php",
+        dataType: 'JSON',
+        data : {id_del:id},
+        complete: function() {
+            //------------------------------------------------------------------ Vérification : L'ID est-il bien supprimé de la BDD ?
+            $.ajax({
+                url: "php/exist.php",
+                dataType: 'JSON',
+                data : {id_part:id},
+                success: function(response){
+                    const exist = parseInt(response[0].exist);
+                    if(exist === 1) alert("Suppression impossible : des projets sont encore reliés à ce partenaire dans la base de données.");
+                    else {
+                        alert("le partenaire a bien été supprimé de la base de données.");
+                        $('#modal_part_update').modal('hide');
+                    }
+                }
+            });
+        }
+    });
+}

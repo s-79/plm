@@ -76,7 +76,6 @@
                 <form id="form_orga_update">
                     <div class="form-floating mx-3 mt-4">
                         <select class="form-select" id="select_nom_orga" aria-label="Nom de l'organisme">
-                        <   option selected value="">Séléctionner l'organisme à modifier</option>
                         </select>
                     <label for="select_nom_orga">Séléctionner l'organisme à modifier</label>
                     </div>
@@ -128,7 +127,6 @@
                 <form id="form_evt_create">
                     <div class="form-floating mx-3 mt-4">
                         <select class="form-select" id="evt_create" aria-label="Sensibilisation">
-                            <option selected value="">Séléctionner la sensibilisation à ajouter</option>
                         </select>
                         <label for="update_int_rdv">Sensibilisation à ajouter</label>
                     </div>
@@ -191,7 +189,6 @@
                 <form id="form_evt2_create">
                     <div class="form-floating mx-3 mt-4">
                         <select class="form-select" id="evt2_create" aria-label="Atelier">
-                            <option selected value="">Séléctionner l'atelier collectif à ajouter</option>
                         </select>
                         <label for="update_int_rdv">Atelier à ajouter</label>
                     </div>
@@ -257,7 +254,6 @@
               </div>
               <div class="form-floating mx-3 mt-4">
                   <select class="form-select" id="create_int_rdv" aria-label="Intervenant">
-                      <option selected value="">Séléctionner l'intervenant-e</option>
                   </select>
                   <label for="update_int_rdv">Séléctionner l'intervenant-e</label>
               </div>
@@ -321,7 +317,6 @@
               </div>
           <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="update_int_rdv" aria-label="Intervenant">
-                  <option selected value="">Séléctionner l'intervenant-e</option>
               </select>
               <label for="update_int_rdv">Séléctionner l'intervenant-e</label>
           </div>

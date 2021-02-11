@@ -7,7 +7,8 @@ const ajaxListPrj = (liste) => {
         dataType: 'JSON',
         data : {v_prj:"v_prj"},
         success: function(response){
-            $(liste).html(displayList(response));
+            $(liste).html("<option selected value='0'>Séléctionner un projet</option>")
+            $(liste).append(displayList(response));
             }
     });
 }
@@ -25,13 +26,15 @@ const prj_Search = (search) => {
 }
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste des Pays */
-const ajaxListPays = (liste) => {
+const ajaxListPays = (liste, id_pays) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
         data : {v_pays:"pays"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner un pays</option>")
             $(liste).append(displayList(response));
+            if(id_pays)$(liste).val(id_pays);
         }
     });
 }
@@ -68,8 +71,8 @@ const ajaxPrjGet = (id_prj) => {
                 $("#pays_part")[0].disabled = false;
             }
             $("#intitule").val(intitule);
-            $("#partenaire").prepend(`<option selected value="${id_part}">${nom_part}</option>`);
-            $("#pays").prepend(`<option selected value="${id_pays}">${nom_pays}</option>`);
+            ajaxListPart("#partenaire", id_part);
+            ajaxListPays("#pays", id_pays);
             $("#ville").val(ville);
             $("#debut").val(debut);
             $("#fin").val(fin);
@@ -83,7 +86,7 @@ const ajaxPrjGet = (id_prj) => {
     });
 }
 
-//----------------------------------------------------------------------------- Remplissage du tableau des jeunes en fonction de l'id de l'projet
+//----------------------------------------------------------------------------- Remplissage du tableau des jeunes en fonction de l'id du projet
 // const ajaxprjJeune = (id_prj, liste) => {
 //     $.ajax({
 //         url: "php/prj_Get.php",
@@ -105,29 +108,29 @@ const ajaxPrjGet = (id_prj) => {
 //     });
 // }
 
-// // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
-//
-// const prj_Create = (mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
-//     $.ajax({
-//         url: 'php/prj.php',
-//         dataType: 'JSON',
-//         data : {mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
-//         complete: function(){
-//             //------------------------------------------------------------------ Récupération du nom de la ville et création du nom de l'projet
-//             const nom_ville = $("#nom_ville_none").val();
-//             const nom_prj = `${dat} - ${type} - ${nom_ville}`;
-//             //------------------------------------------------------------------ Récupération de l'id de l'projet créé
-//             //------------------------------------------------------------------ Puis récupération des intervenants et association avec l'évenemnt dans la table intervenir
-//             prj_Get_Id(nom_prj);
-//
-//             alert("L'projet a bien été ajouté à la base de données.");
-//             //------------------------------------------------------------------ Réinitialisation de la pages des projets
-//             prj_Reset();
-//         }
-//     });
-// }
-//
-// //----------------------------------------------------------------------------- Récupération de l'id de l'projet créé
+// ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
+
+const prj_Create = (mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
+    $.ajax({
+        url: 'php/prj.php',
+        dataType: 'JSON',
+        data : {mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
+        complete: function(){
+            //------------------------------------------------------------------ Récupération du nom de la ville et création du nom du projet
+            const nom_ville = $("#nom_ville_none").val();
+            const nom_prj = `${dat} - ${type} - ${nom_ville}`;
+            //------------------------------------------------------------------ Récupération de l'id du projet créé
+            //------------------------------------------------------------------ Puis récupération des intervenants et association avec l'évenemnt dans la table intervenir
+            prj_Get_Id(nom_prj);
+
+            alert("L'projet a bien été ajouté à la base de données.");
+            //------------------------------------------------------------------ Réinitialisation de la pages des projets
+            prj_Reset();
+        }
+    });
+}
+
+//----------------------------------------------------------------------------- Récupération de l'id du projet créé
 // const prj_Get_Id = (nom_prj) => {
 //     $.ajax({
 //         url: "php/prj_Get.php",
@@ -139,35 +142,7 @@ const ajaxPrjGet = (id_prj) => {
 //         }
 //     });
 // }
-//
-// //------------------------------------------------------------------------------ Récupération des intervenants et association avec l'évenemnt dans la table intervenir
-// const prj_Get_Inter = (id_prj) => {
-//     $.ajax({
-//         url: "php/populate.php",
-//         dataType: 'JSON',
-//         data : {v_int:"v_int"},
-//         success: function(response){
-//             const len = response.length;
-//             let checkInt = [];
-//             for (let i = 0; i < len; i++) {
-//                 const id = response[i].id;
-//                 const nom = response[i].nom;
-//                 const intId = `#int${id}`;
-//                 let check =  $(intId).is(':checked');
-//                 if(check) checkInt.push(id);
-//             }
-//             for(id_int of checkInt) {
-//                 $.ajax({
-//                     url: 'php/prj.php',
-//                     dataType: 'JSON',
-//                     data : {id_int:id_int, id_prj:id_prj},
-//                 });
-//             }
-//         }
-//     });
-// }
-//
-//
+
 // // ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 //
 // const prj_Update = (id, mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {

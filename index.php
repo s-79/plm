@@ -11,7 +11,6 @@
     <!--                                                                                                              Résultat de recherche -->
     <div class="col-12 col-lg-2 my-4 mx-1 text-center">
         <select class="form-select" aria-label="Default select example" id="npv_res">
-          <option selected value="">Séléctionner un jeune</option>
         </select>
     </div>
     <!--                                                                                                              Bouton afficher les infos-->
@@ -73,7 +72,6 @@
         <h2 class="pt-4">Sensibilisation</h2>
         <div class="form-floating mx-3 mt-4 mb-4">
             <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
-                <option selected value="">Ajouter une sensibilisation</option>
             </select>
             <label for="sensibilisation">Sensibilisation</label>
         </div>
@@ -116,7 +114,6 @@
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="ville" aria-label="Ville">
-                <option selected value="">Séléctionnez une ville *</option>
             </select>
             <label for="ville">Ville</label>
         </div>
@@ -141,8 +138,7 @@
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="nom_qpv" aria-label="Quartier QPV" disabled>
-                <option selected value="0">Séléctionner le quartier QPV</option>
-
+                <option selected value="">Séléctionner le quartier QPV</option>
             </select>
             <label for="nom_qpv">Quartier QPV</label>
         </div>
@@ -186,7 +182,7 @@
         <div class="row mx-1 mt-3">
             <div class="form-floating col-10">
                 <select class="form-select" id="nom_orga" aria-label="Nom de l'organisme" disabled>
-                    <option selected value="0">Séléctionner le nom de l'organisme</option>
+                    <option selected value="">Séléctionner le nom de l'organisme</option>
                 </select>
                 <label for="nom_orga">Nom de l'organisme</label>
             </div>

@@ -48,11 +48,6 @@ $(function(){
 
             //------------------------------------------------------------------ Récupération des données du jeune
             jeune_Get(id);
-
-            //------------------------------------------------------------------ Remplissage de la liste des villes
-            ajaxListVille("#ville");
-            //------------------------------------------------------------------ Remplissage de la liste des sensibilisations
-            ajaxListEvt("#sensibilisation");
         }
     });
 
@@ -208,6 +203,8 @@ const jeune_Reset = () => {
     //-------------------------------------------------------------------------- Remplissage de la liste des villes
     $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
     ajaxListVille("#ville");
+    $("#qpv")[0].disabled = true;
+    $("#nom_qpv")[0].disabled = true;
     //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
     $("#npv_res").html("<option selected value=''>Séléctionner un jeune</option>");
     ajaxListNpv("#npv_res");

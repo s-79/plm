@@ -1,5 +1,5 @@
 <div id="accompagnement" class="row justify-content-center mt-2 d-none">
-    <div class="col-9">
+<div class="col-9">
     <!--                                                                                                              Select Statut accompagnement-->
     <div class="form-group row mx-auto border-bottom border-top border-2 pt-4 mt-3 pb-4 mb-5">
         <div class="d-flex col-6 mt-3"><h2 class="rose" id="acc_npv"></h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i id="acc_projet" class="fas fa-plane-departure marine pointeur" style="font-size:1.5em;" data-toggle="tooltip" data-placement="top" title="Afficher les projets du jeune"></i></div>
@@ -36,7 +36,6 @@
         <div class="col-2">
             <div class="form-floating">
                 <select class="form-select" id="ref" aria-label="Référent-e">
-                    <option selected value="0">Référent-e</option>
                 </select>
                 <label for="ref">Référent-e</label>
             </div>
@@ -52,12 +51,11 @@
             <thead>
                 <tr>
                     <th class="d-none" scope="col">#</th>
-                    <th scope="col" style="width:300px">Type</th>
-                    <th scope="col" style="width:250px">Intitulé</th>
+                    <th scope="col" style="width:400px">Type</th>
+                    <th scope="col" style="width:600px">Intitulé</th>
                     <th scope="col">Pays</th>
-                    <th scope="col">Date aller</th>
-                    <th scope="col">Date retour</th>
-                    <th scope="col">Statut</th>
+                    <th scope="col">Départ</th>
+                    <th scope="col">Retour</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,21 +66,18 @@
                     <td>ROYAUME-UNI</td>
                     <td>21-02-03</td>
                     <td>21-04-03</td>
-                    <td class="fw-bold text-success">En prépartion</td>
                 </tr>
                 <!-- <tr>
                     <th class="d-none" scope="row">2</th>
                     <td>2021-02-02</td>
                     <td>Thornton</td>
                     <td>@fat</td>
-                    <td class="fw-bold text-warning">En cours</td>
                 </tr>
                 <tr>
                     <th class="d-none" scope="row">3</th>
                     <td>2021-02-02</td>
                     <td>@twitter</td>
                     <td>@twitter</td>
-                    <td class="fw-bold text-danger">Terminé</td>
                 </tr> -->
             </tbody>
         </table>

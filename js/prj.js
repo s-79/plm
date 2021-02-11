@@ -14,12 +14,11 @@ $(function(){
             prj_Search(search);
         } else {
             //------------------------------------------------------------------ Réinitialisation du champs de recherche des projets
-            $("#prj_res").html("<option selected value='0'>Séléctionner un projet</option>");
             ajaxListPrj("#prj_res");
         }
     });
 
-    //-------------------------------------------------------------------------- Remplissage du champs de recherche d'projets
+    //-------------------------------------------------------------------------- Remplissage du champs de recherche de projets
     ajaxListPrj("#prj_res");
 
     //-------------------------------------------------------------------------- Remplissage de la liste des pays

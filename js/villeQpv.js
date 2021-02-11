@@ -16,9 +16,9 @@ $(function(){
             //------------------------------------------------------------------ La ville possède-t-elle des quartiers QPV ? Si oui, on donne accès au champs QPV
             qpv_Exist(id_ville);
             //------------------------------------------------------------------ Reinitialisation du champ QPV
-            let qpv_Reset = "<option selected value=''>QPV</option>"
-            for (e of ["Oui", "Non", "Limite"]) {qpv_Reset += `<option value="${e}">${e}</option>`;}
-            $("#qpv").html(qpv_Reset);
+            // let qpv_Reset = "<option selected value=''>QPV</option>"
+            // for (e of ["Oui", "Non", "Limite"]) {qpv_Reset += `<option value="${e}">${e}</option>`;}
+            // $("#qpv").html(qpv_Reset);
             //------------------------------------------------------------------ Reinitialisation et désactivation du champ nom QPV
             $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
             $("#nom_qpv")[0].disabled = true;

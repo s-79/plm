@@ -7,6 +7,7 @@ const ajaxListNpv = (liste) => {
         dataType: 'JSON',
         data : {v_npv:"v_npv"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner un jeune</option>")
             $(liste).append(displayList(response));
         }
     });
@@ -79,7 +80,8 @@ const jeune_Get = (id) => {
             $("#nom").val(nom);
             $("#prenom").val(prenom);
             $("#ddn").val(ddn);
-            $("#sensibilisation").prepend(`<option selected value="${id_evt}">${nom_evt}</option>`);
+            acc_List_Evt("#sensibilisation", id_evt);
+            // $("#sensibilisation").prepend(`<option selected value="${}">${nom_evt}</option>`);
             $("#email").val(email);
             $("#tel").val(tel);
             $("#facebook").val(facebook);
@@ -87,7 +89,8 @@ const jeune_Get = (id) => {
             $("#insta").val(insta);
             $("#urgence").val(urgence);
             $("#adresse").val(adresse);
-            $("#ville").prepend(`<option selected value="${id_ville}">${ville}</option>`);
+            ajaxListVille("#ville", id_ville);
+            // $("#ville").prepend(`<option selected value="${}">${ville}</option>`);
             $("#nom_ville_none").val(nom_ville);
             $("#contrat_ville").val(contrat_ville);
             $("#qpv").val(qpv);
@@ -98,7 +101,7 @@ const jeune_Get = (id) => {
             if (prij === "1") $("#prij").prop('checked', true);
             $("#type_orga").val(type_orga);
             $("#nom_orga").prepend(`<option selected value="${id_orga}">${nom_orga}</option>`);
-            if(parseInt(id_orga) !== 0) $("#nom_orga")[0].disabled = false;
+            $("#nom_orga")[0].disabled = true;
             $("#nom_ref").val(nom_ref);
             $("#tel_ref").val(tel_ref);
             $("#email_ref").val(email_ref);
@@ -137,7 +140,6 @@ statut, pe, rsa, gj) => {
                         formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues,
                         statut:statut, pe:pe, rsa:rsa, gj:gj},
                     complete: function(){
-
                         //------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement à la sensibilisation
                         jeune_Get_Id(npv, id_evt);
 

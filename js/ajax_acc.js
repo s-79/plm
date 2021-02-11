@@ -1,13 +1,15 @@
 // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste de toutes les sensibilisation (mission 0 et 1) - permet d'ajouter une association dans le modal Mission 0 et 1 */
-const acc_List_Evt = (liste) => {
+const acc_List_Evt = (liste, id_evt) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
         data : {v_acc_list_evt:"v_acc_list_evt"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner la sensibilisation</option>")
             $(liste).append(displayList(response, 1));
+            if(id_evt)$(liste).val(id_evt);
         }
     });
 }
@@ -19,6 +21,7 @@ const acc_List_Evt2 = (liste) => {
         dataType: 'JSON',
         data : {v_acc_list_evt2:"v_acc_list_evt2"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner l'atelier collectif</option>")
             $(liste).append(displayList(response, 1));
         }
     });
@@ -42,8 +45,7 @@ const jeune_Get_Acc = (id) => {
             $("#acc_npv").html(npv);
             $("#acc").val(acc);
             $("#mob").val(mob);
-            $("#ref").html(`<option selected value="${id_ref}">${ref}</option>`);
-            ajaxListIntUp("#ref");
+            ajaxListIntUp("#ref", id_ref);
         }
     });
 }
@@ -168,8 +170,7 @@ const rdv_Get = (id) => {
             $("#update_date_rdv").val(dat);
             $("#update_visio_rdv").prop('checked', false);
             if (visio === "1") $("#update_visio_rdv").prop('checked', true);
-            $("#update_int_rdv").html(`<option selected value="${id_intervenant}">${intervenant}</option>`);
-            ajaxListIntUp("#update_int_rdv");
+            ajaxListIntUp("#update_int_rdv", id_intervenant);
             $("#update_duree_rdv").val(duree);
             $("#update_comm_rdv").val(commentaires);
         }

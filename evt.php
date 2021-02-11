@@ -11,7 +11,6 @@ include("header.php"); ?>
     <!--                                                                                                              Résultat de recherche -->
     <div class="col-12 col-lg-2 my-4 mx-1 text-center">
         <select class="form-select" aria-label="Default select example" id="evt_res">
-          <option selected value="">Séléctionner un événement</option>
         </select>
     </div>
     <!--                                                                                                              Bouton afficher les infos-->
@@ -61,7 +60,6 @@ include("header.php"); ?>
         </div>
         <div id="select_m0" class="form-floating mx-3 mt-3 d-none">
             <select class="form-select type_m" id="type_m0" aria-label="Type d'événement *" disabled>
-                <option selected value="">Séléctionner un type d'événement *</option>
             </select>
             <label for="type_m0">Type *</label>
         </div>
@@ -90,8 +88,6 @@ include("header.php"); ?>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="ville" aria-label="Ville">
-                <option selected value="0">Séléctionnez une ville *</option>
-                <option value="0"></option>
             </select>
             <label for="ville">Ville</label>
         </div>
@@ -138,7 +134,6 @@ include("header.php"); ?>
             </div>
             <div class="form-floating mx-3 mt-4">
                 <select class="form-select" id="projet" aria-label="Séléctionner un projet *">
-                    <option selected value="0">Séléctionner un projet *</option>
                 </select>
                 <label for="projet">Projet *</label>
             </div>
@@ -266,7 +261,6 @@ include("header.php"); ?>
                 <form id="form_int_update">
                     <div class="form-floating mx-3 mt-4">
                         <select class="form-select" id="select_nom_int" aria-label="Nom de l'intervenant-e">
-                        <option selected value="">Séléctionner le nom de l'intervenant-e à modifier</option>
                         </select>
                         <label for="select_nom_int">Séléctionner le nom de l'intervenant-e à modifier</label>
                     </div>

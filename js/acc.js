@@ -24,7 +24,6 @@ $(function(){
         document.getElementById("form_evt_create").reset();
         const id = $("#npv_res").val();
         /* --------------------------------------------------------------------- Remplissage de la liste des sensibilisation à associer */
-        $("#evt_create").html("<option selected value=''>Séléctionner la sensibilisation à ajouter</option>");
         acc_List_Evt("#evt_create");
     });
 
@@ -34,7 +33,6 @@ $(function(){
         document.getElementById("form_evt2_create").reset();
         const id = $("#npv_res").val();
         /* --------------------------------------------------------------------- Remplissage de la liste des ateliers à associer */
-        $("#evt2_create").html("<option selected value=''>Séléctionner l'atelier collectif à ajouter</option>");
         acc_List_Evt2("#evt2_create");
     });
 
@@ -43,17 +41,16 @@ $(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire
         document.getElementById("form_rdv_create").reset();
         //---------------------------------------------------------------------- Réinitialisation du menu type
-        let types = ["1er RDV", "RDV de suivi", "Suivi", "Relance", "Enquête", "Autres"];
-        let init_type = "<option selected value=''>Séléctionner le type de rendez-vous</option>"
-        for (type of types) {init_type += `<option value="${type}">${type}</option>`;};
-        $("#create_type_rdv").html(init_type);
-        //---------------------------------------------------------------------- Réinitialisation du menu durées
-        let durees = ["- de 10 min", "- de 30 min", "- d'1 heure"];
-        let init_duree = "<option selected value=''>Séléctionner la durée du rendez-vous</option>"
-        for (duree of durees) {init_duree += `<option value="${duree}">${duree}</option>`;}
-        $("#create_duree_rdv").html(init_duree);
+        // let types = ["1er RDV", "RDV de suivi", "Suivi", "Relance", "Enquête", "Autres"];
+        // let init_type = "<option selected value=''>Séléctionner le type de rendez-vous</option>"
+        // for (type of types) {init_type += `<option value="${type}">${type}</option>`;};
+        // $("#create_type_rdv").html(init_type);
+        // //---------------------------------------------------------------------- Réinitialisation du menu durées
+        // let durees = ["- de 10 min", "- de 30 min", "- d'1 heure"];
+        // let init_duree = "<option selected value=''>Séléctionner la durée du rendez-vous</option>"
+        // for (duree of durees) {init_duree += `<option value="${duree}">${duree}</option>`;}
+        // $("#create_duree_rdv").html(init_duree);
         //---------------------------------------------------------------------- Réinitialisation de la liste des intervenant-e-s
-        $("#create_int_rdv").html("<option selected value=''>Séléctionner l'intervenant-e</option>");
         ajaxListIntUp("#create_int_rdv");
     });
 

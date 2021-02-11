@@ -38,10 +38,10 @@ $(function(){
         $("#select_m0, #select_m1").addClass("d-none");
         $("#select_m2").removeClass("d-none");
         // --------------------------------------------------------------------- Réinitialisation de la liste type m2
-        let types_m2 = ["Atelier d'anglais", "Atelier Europe", "Atelier Interculturalité", "At. obj d'apprentissage", "At. retour à chaud", "2ème atelier retour", "Permanence"];
-        let init = "<option selected value=''>Séléctionner le type d'événement</option>"
-        for (type of types_m2) {init += `<option value="${type}">${type}</option>`;}
-        $("#type_m2").html(init);
+        // let types_m2 = ["Atelier d'anglais", "Atelier Europe", "Atelier Interculturalité", "At. obj d'apprentissage", "At. retour à chaud", "2ème atelier retour", "Permanence"];
+        // let init = "<option selected value=''>Séléctionner le type d'événement</option>"
+        // for (type of types_m2) {init += `<option value="${type}">${type}</option>`;}
+        // $("#type_m2").html(init);
         $("#type_m2")[0].disabled = false;
     });
     $("#m0,#m1").click(function() {
@@ -60,10 +60,10 @@ $(function(){
         $("#select_m0, #select_m2").addClass("d-none");
         $("#select_m1").removeClass("d-none");
         // --------------------------------------------------------------------- Réinitialisation de la liste type m1
-        let types_m1 = ["Info coll PLM", "Info coll exterieure", "Webinaire pros", "Sensibilisation pros", "Evt thématique"];
-        let init = "<option selected value=''>Séléctionner le type d'événement</option>"
-        for (type of types_m1) {init += `<option value="${type}">${type}</option>`;}
-        $("#type_m1").html(init);
+        // let types_m1 = ["Info coll PLM", "Info coll exterieure", "Webinaire pros", "Sensibilisation pros", "Evt thématique"];
+        // let init = "<option selected value=''>Séléctionner le type d'événement</option>"
+        // for (type of types_m1) {init += `<option value="${type}">${type}</option>`;}
+        // $("#type_m1").html(init);
         $("#type_m1")[0].disabled = false;
     });
 
@@ -214,10 +214,8 @@ const evt_Reset = () => {
     //-------------------------------------------------------------------------- Remplissage de la liste des intervenants
     ajaxListInter("#inter");
     //-------------------------------------------------------------------------- Remplissage de la liste des villes
-    $("#ville").html("<option selected value='0'>Séléctionner la ville</option>");
     ajaxListVille("#ville");
     //-------------------------------------------------------------------------- Réinitialisation du champs de recherche des événements
-    $("#evt_res").html("<option selected value=''>Séléctionner un événement</option>");
     ajaxListEvt("#evt_res");
     //-------------------------------------------------------------------------- Réinitialisation du tableau de jeunes
     $("#tableau").html("");

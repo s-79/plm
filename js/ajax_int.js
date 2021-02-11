@@ -1,12 +1,15 @@
 // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
-/* ---------------------------------------------------------------------------- Remplissage de la liste des intervenants - Récup données & append */
-const ajaxListIntUp = (liste) => {
+
+/* ---------------------------------------------------------------------------- Remplissage de la liste des intervenants */
+const ajaxListIntUp = (liste, id_int) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
         data : {v_intUp:"v_intUp"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner le nom de l'intervenant</option>")
             $(liste).append(displayList(response));
+            if(id_int)$(liste).val(id_int);
         }
     });
 }

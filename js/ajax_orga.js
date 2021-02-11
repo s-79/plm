@@ -6,6 +6,7 @@ const ajaxListOrga = (liste) => {
         dataType: 'JSON',
         data : {v_orga:"v_orga"},
         success: function(response){
+            $(liste).html("<option selected value=''>Séléctionner le nom de l'organisme</option>")
             $(liste).append(displayList(response));
         }
     });
@@ -54,9 +55,8 @@ const orga_Create = (nom, type) => {
                     data : {nom:nom, type:type},
                     complete: function(){
                         alert("L'organisme a bien été ajouté à la base de données.");
-                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
-                        orga_Reset();
-                        $('#modal_orga_create').modal('hide');
+                        //------------------------------------------------------ Réinitialisation du champs nom_orga et fermeture du modal
+                        orga_Reset("create");
                     }
                 });
             }
@@ -88,9 +88,8 @@ const orga_Update = (id, nom, type) => {
         data : {id:id, nom:nom, type:type},
         complete: function(){
             alert("L'organisme a bien été modifié.");
-            //------------------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
-            orga_Reset();
-            $('#modal_orga_update').modal('hide');
+            //------------------------------------------------------ Réinitialisation du champs nom_orga et fermeture du modal
+            orga_Reset("update");
         }
     });
 }
@@ -113,12 +112,20 @@ const orga_Delete = (id) => {
                     if(exist === 1) alert("Suppression impossible : des jeunes sont encore reliés à cet organisme dans la base de données.");
                     else {
                         alert("L'organisme a bien été supprimé de la base de données.");
-                        //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)
-                        orga_Reset();
-                        $('#modal_orga_update').modal('hide');
+                        //------------------------------------------------------ Réinitialisation du champs nom_orga et fermeture du modal
+                        orga_Reset("update");
                     }
                 }
             });
         }
     });
+}
+
+// ----------------------------------------------------------------------------- ! ! ! - - R E S E T - - ! ! !
+const orga_Reset = (modal) => {
+    $("#type_orga").val("");
+    $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
+    $("#nom_orga")[0].disabled = true;
+    const div_modal = `#modal_orga_${modal}`;
+    $(div_modal).modal('hide');
 }

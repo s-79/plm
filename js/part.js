@@ -17,24 +17,25 @@ $(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal part_Update
         document.getElementById("form_part_update").reset();
         //---------------------------------------------------------------------- Réinitialisation et remplissage de la liste des noms de PARTENAIRE dans le modal de modification de partenaire
-        $("#select_nom_part").html("<option selected value=''>Séléctionner le partenaire à modifier</option>");
+        // $("#select_nom_part").html("<option selected value=''>Séléctionner le partenaire à modifier</option>");
         ajaxListPart("#select_nom_part");
     })
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON AJOUTER UN PARTENAIRE DANS LE MODAL DE CREATION
-    // $('#part_create').click(function(){
-    //     // --------------------------------------------------------------------- Récupération des valeurs saisies par l'utilisateur
-    //     const nom = $('#create_nom_part').val();
-    //     const type = $('#create_type_part').val();
-    //
-    //     if(!type)alert("Merci de séléctionner un type de partenaire")
-    //     else {
-    //         // ----------------------------------------------------------------- Vérification si la longueur ets ok pour la BDD puis vérif si le nom existe déjà dans la BDD et si non envoie des infos
-    //         if(vLen("Nom du partenaire",nom,100))part_Create(nom, type);
-    //     }
-    // })
+    $('#part_create').click(function(){
+        // --------------------------------------------------------------------- Récupération des valeurs saisies par l'utilisateur
+        const nom = $("#create_nom_part").val();
+        const contact = $("#create_contact_part").val();
+        const tel = $("#create_tel_part").val();
+        const mail = $("#create_mail_part").val();
+        const commentaires = $("#create_comm_part").val();
+        // -------------------------------------------------------------------- Vérification si les longueurs sont ok pour la BDD puis vérif si le nom existe déjà dans la BDD et si non envoie des infos
+        if(vLen("Nom de la structure partenaire",nom,100) && vLen("Nom du contact",contact,100) && vLen("Téléphone",tel,100) && vLen("Email",mail,100) && vLen("Commentaires",commentaires,255)) {
+            part_Create(nom, contact, tel, mail, commentaires);
+        }
+    })
 
     // ------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
@@ -45,38 +46,26 @@ $(function(){
     })
 
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON MODIFIER UN PARTENAIRE
-    $('#part_update').click(function(){
-        const id = $('#select_nom_part').val();
-        const type = $('#update_type_part').val();
-        const nom = $('#update_nom_part').val();
-        if(!id) alert("Aucun partenaire n'a été séléctionné");
-        else {
-            if(!type) alert("Aucun type de partenaire n'a été séléctionné");
-            // ------------------------------------------------------------- Envoies des données à modifier vers la BDD après vérif de la longueur du nom
-            else {
-                if(vLen("Nom du partenaire",nom,100)) part_Update(id, nom, type);
-            }
-        }
-    })
+    // $('#part_update').click(function(){
+    //     const id = $('#select_nom_part').val();
+    //     const type = $('#update_type_part').val();
+    //     const nom = $('#update_nom_part').val();
+    //     if(!id) alert("Aucun partenaire n'a été séléctionné");
+    //     else {
+    //         if(!type) alert("Aucun type de partenaire n'a été séléctionné");
+    //         // ------------------------------------------------------------- Envoies des données à modifier vers la BDD après vérif de la longueur du nom
+    //         else {
+    //             if(vLen("Nom du partenaire",nom,100)) part_Update(id, nom, type);
+    //         }
+    //     }
+    // })
     // ------------------------------------------------------------------------- ! ! ! - - D E L E T E- - ! ! !
 
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON SUPPRIMER UN PARTENAIRE
-    $('#part_delete').click(function(){
-        const id = $('#select_nom_part').val();
-        if(!id) alert("Aucun partenaire n'a été séléctionné")
-        // --------------------------------------------------------------------- Envoies de l'id à supprimer vers la BDD & Vérification de la suppression
-        else {part_Delete(id);}
-    })
+    // $('#part_delete').click(function(){
+    //     const id = $('#select_nom_part').val();
+    //     if(!id) alert("Aucun partenaire n'a été séléctionné")
+    //     // --------------------------------------------------------------------- Envoies de l'id à supprimer vers la BDD & Vérification de la suppression
+    //     else {part_Delete(id);}
+    // })
 });
-
-// ---------------------------------------------------------------------------- ! ! ! - - R E S E T (F U N C T I O N)- - ! ! !
-
-//------------------------------------------------------------------------------ Fonction de réinitialisation de la liste des types et noms de partenaire sur la page jeune
-const part_Reset = () => {
-    let types = ["Mission Locale", "Réseau IJ (BIJ, PIJ, CIDJ)", "Club de prévention", "Pôle Emploi", "Centre Paris Anim ou EPJ (Paris)", "Internet", "Bouche à oreilles / ami", "École de la deuxième chance", "Membre de la Plateforme (Concordia, SJ, …)", "Autres structures socio-éducatives", "Etat et collectivités (DDCS…)", "Foyer de jeunes travailleurs", "Autres"];
-    let init = "<option selected value='0'>Séléctionner le type de partenaire</option>"
-    for (type of types) {init += `<option value="${type}">${type}</option>`;}
-    $("#type_part").html(init);
-    $("#nom_part").html("<option selected value='0'>Séléctionner le nom du partenaire</option>");
-    $("#nom_part")[0].disabled = true;
-};

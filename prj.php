@@ -11,7 +11,6 @@ include("header.php"); ?>
     <!--                                                                                                              Résultat de recherche -->
     <div class="col-12 col-lg-2 my-4 mx-1 text-center">
         <select class="form-select" aria-label="Default select example" id="prj_res">
-          <option selected value="">Séléctionner un événement</option>
         </select>
     </div>
     <!--                                                                                                              Bouton afficher les infos-->
@@ -29,7 +28,7 @@ include("header.php"); ?>
                 <h2>Projet</h2>
             </div>
             <div class="col-1 p-0 m-0">
-                <i id="new_prj" class="fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouvel événement"></i>
+                <i id="new_prj" class="fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouvel projet"></i>
             </div>
         </div>
         <!--                                                                                                        Récupération de l'id dans un input invisible -->
@@ -62,7 +61,6 @@ include("header.php"); ?>
         <div class="row mx-1 mt-3">
             <div class="form-floating col-10">
                 <select class="form-select" id="partenaire" aria-label="Partenaire *">
-                    <option selected value="0">Partenaire *</option>
                 </select>
                 <label for="partenaire">Partenaire *</label>
             </div>
@@ -72,7 +70,6 @@ include("header.php"); ?>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="pays" aria-label="Pays">
-                <option selected value="0">Pays de destination *</option>
             </select>
             <label for="pays">Pays de destination *</label>
         </div>
@@ -228,7 +225,6 @@ include("header.php"); ?>
                 <form id="form_part_update">
                     <div class="form-floating mx-3 mt-4">
                         <select class="form-select" id="select_nom_part" aria-label="Nom du partenaire">
-                            <option selected value="">Séléctionner le partenaire à modifier</option>
                         </select>
                         <label for="select_nom_part">Séléctionner le partenaire à modifier</label>
                     </div>
