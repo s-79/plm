@@ -138,7 +138,7 @@ include("header.php"); ?>
                 <label for="projet">Projet *</label>
             </div>
         </div>
-        <div class="row pt-4">
+        <div class="row pt-5">
             <div class="col-8">
                 <h2>Intervenant-e-s PLM</h2>
             </div>
@@ -146,7 +146,7 @@ include("header.php"); ?>
                 <i id="new_inter" class="fas fa-plus-circle fa-2x text-white pointeur" data-bs-toggle="modal" data-bs-target="#modal_int" data-toggle="tooltip" data-placement="top" title="Ajouter / Modifier un-e intervenant-e PLM"></i>
             </div>
         </div>
-        <div id="inter" class="mx-3 mt-2" style="overflow-y:scroll; overflow-x:hidden; height:180px;">
+        <div id="inter" class="mx-3 mt-2 mb-4" style="overflow-y:scroll; overflow-x:hidden; height:180px;">
         </div>
     </div>
     <!--                                                                                                              Évaluation -->
@@ -164,10 +164,10 @@ include("header.php"); ?>
             <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:125px;"></textarea>
             <label for="commentaires">Commentaires</label>
         </div>
-        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">
+        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2">
             <button type="button" id="evt_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
         </div>
-        <div id="btn_evt_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1 d-none">
+        <div id="btn_evt_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2 d-none">
             <button type="button" id="evt_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
             <button type="button" id="evt_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
         </div>
@@ -240,6 +240,10 @@ include("header.php"); ?>
                         <input class="form-check-input" type="checkbox" id="create_volontaire">
                         <label class="form-check-label fw-bold" for="create_volontaire">volontaire</label>
                     </div>
+                    <div class="form-check form-switch mx-3 mt-3">
+                        <input class="form-check-input" type="checkbox" id="create_ref">
+                        <label class="form-check-label fw-bold" for="create_ref">référent-e</label>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -280,6 +284,10 @@ include("header.php"); ?>
                         <input class="form-check-input" type="checkbox" id="update_volontaire">
                         <label class="form-check-label fw-bold" for="update_volontaire">volontaire</label>
                     </div>
+                    <div class="form-check form-switch mx-3 mt-3">
+                        <input class="form-check-input" type="checkbox" id="update_ref">
+                        <label class="form-check-label fw-bold" for="update_ref">référent-e</label>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -296,6 +304,7 @@ include("header.php"); ?>
 <script src="js/evt.js"></script>
 <script src="js/int.js"></script>
 <script src="js/ajax_int.js"></script>
+<script src="js/ajax_prj.js"></script>
 <script src="js/functions.js"></script>
 
 </body>

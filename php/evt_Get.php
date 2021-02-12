@@ -7,7 +7,7 @@ $return_arr = array();
 $id = mysqli_real_escape_string($con, $_GET['id']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_evt_int = mysqli_real_escape_string($con, $_GET['id_evt_int']);
-$nom_evt = mysqli_real_escape_string($con, $_GET['nom_evt']);
+$uuid = mysqli_real_escape_string($con, $_GET['uuid']);
 
 // ----------------------------------------------------------------------------- Récupération des infos de l'événement en fonction de l'id
 if($id) {
@@ -21,7 +21,6 @@ if($id) {
         $mission = $row['mission'];
         $dat = $row['dat'];
         $id_ville = $row['id_ville'];
-        $ville = $row['ville'];
         $type = $row['type'];
         $visio = $row['visio'];
         $intitule = $row['intitule'];
@@ -37,7 +36,6 @@ if($id) {
             "mission" => $mission,
             "dat" => $dat,
             "id_ville" => $id_ville,
-            "ville" => $ville,
             "type" => $type,
             "visio" => $visio,
             "intitule" => $intitule,
@@ -92,8 +90,8 @@ if($id) {
     }
 
     // ----------------------------------------------------------------------------- Récupération de l'id de l'événement nouvellement créé
-} elseif($nom_evt) {
-        $query = "CALL evt_Get_Id('$nom_evt')";
+} elseif($uuid) {
+        $query = "CALL evt_Get_Id('$uuid')";
 
         $result = mysqli_query($con,$query);
 

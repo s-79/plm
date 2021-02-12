@@ -7,7 +7,21 @@ const ajaxListIntUp = (liste, id_int) => {
         dataType: 'JSON',
         data : {v_intUp:"v_intUp"},
         success: function(response){
-            $(liste).html("<option selected value=''>Séléctionner le nom de l'intervenant</option>")
+            $(liste).html("<option selected value='0'>Séléctionner le nom de l'intervenant</option>")
+            $(liste).append(displayList(response));
+            if(id_int)$(liste).val(id_int);
+        }
+    });
+}
+
+/* ---------------------------------------------------------------------------- Remplissage de la liste des référents */
+const ajaxListRef = (liste, id_int) => {
+    $.ajax({
+        url: "php/populate.php",
+        dataType: 'JSON',
+        data : {v_ref:"v_ref"},
+        success: function(response){
+            $(liste).html("<option selected value='0'>Séléctionner le nom du / de la référent-e</option>")
             $(liste).append(displayList(response));
             if(id_int)$(liste).val(id_int);
         }
@@ -15,7 +29,7 @@ const ajaxListIntUp = (liste, id_int) => {
 }
 
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
-const int_Create = (prenom_nom, prenom, nom, actif, volontaire) => {
+const int_Create = (prenom_nom, prenom, nom, actif, volontaire, ref) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom de l'intervenant-e existe-t-il déjà dans la BDD ?
         url: "php/exist.php",
@@ -28,7 +42,7 @@ const int_Create = (prenom_nom, prenom, nom, actif, volontaire) => {
                 $.ajax({
                     url: "php/int.php",
                     dataType: 'JSON',
-                    data : {prenom:prenom, nom:nom, actif:actif, volontaire:volontaire},
+                    data : {prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref},
                     complete: function(){
                         alert("L'intervenant-e a bien été ajouté-e à la base de données.");
                         $('#modal_int_create').modal('hide');
@@ -53,6 +67,7 @@ const int_Change = (id) => {
             const nom_int = response[0].nom_int;
             const actif = parseInt(response[0].actif);
             const volontaire = parseInt(response[0].volontaire);
+            const ref = parseInt(response[0].ref);
 
             $("#update_prenom_int").val(prenom_int);
             $("#update_nom_int").val(nom_int);
@@ -60,15 +75,17 @@ const int_Change = (id) => {
             if (actif === 1) $("#update_actif").prop('checked', true);
             $("#update_volontaire").prop('checked', false);
             if (volontaire === 1) $("#update_volontaire").prop('checked', true);
+            $("#update_ref").prop('checked', false);
+            if (ref === 1) $("#update_ref").prop('checked', true);
         }
     });
 }
 
-const int_Update = (id, prenom, nom, actif, volontaire) => {
+const int_Update = (id, prenom, nom, actif, volontaire, ref) => {
     $.ajax({
         url: 'php/int.php',
         dataType: 'JSON',
-        data : {id:id, prenom:prenom, nom:nom, actif:actif, volontaire:volontaire},
+        data : {id:id, prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref},
         complete: function(){
             alert("Les informations de l'intervenant-e ont bien été modifiées.");
             $('#modal_int_update').modal('hide');

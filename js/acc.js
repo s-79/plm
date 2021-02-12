@@ -40,18 +40,8 @@ $(function(){
     $("#new_rdv").click(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire
         document.getElementById("form_rdv_create").reset();
-        //---------------------------------------------------------------------- Réinitialisation du menu type
-        // let types = ["1er RDV", "RDV de suivi", "Suivi", "Relance", "Enquête", "Autres"];
-        // let init_type = "<option selected value=''>Séléctionner le type de rendez-vous</option>"
-        // for (type of types) {init_type += `<option value="${type}">${type}</option>`;};
-        // $("#create_type_rdv").html(init_type);
-        // //---------------------------------------------------------------------- Réinitialisation du menu durées
-        // let durees = ["- de 10 min", "- de 30 min", "- d'1 heure"];
-        // let init_duree = "<option selected value=''>Séléctionner la durée du rendez-vous</option>"
-        // for (duree of durees) {init_duree += `<option value="${duree}">${duree}</option>`;}
-        // $("#create_duree_rdv").html(init_duree);
         //---------------------------------------------------------------------- Réinitialisation de la liste des intervenant-e-s
-        ajaxListIntUp("#create_int_rdv");
+        ajaxListRef("#create_int_rdv");
     });
 
     // ------------------------------------------------------------------------- ! ! ! - - G E T - - ! ! !
@@ -97,13 +87,13 @@ $(function(){
         let visio =  $("#create_visio_rdv").is(':checked');
         if(visio)visio=1;else{visio=0};
         const duree = $("#create_duree_rdv").val();
-        const intitule = uuid();
+        const uuid = uuid_gen();
         const commentaires = $("#create_comm_rdv").val();
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
         if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
         //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
         else {
-            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, visio, duree, intitule, commentaires);
+            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires);
         };
     });
 

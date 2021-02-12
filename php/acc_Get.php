@@ -11,7 +11,7 @@ $id_jeune_rdv = mysqli_real_escape_string($con, $_GET['id_jeune_rdv']);
 $id_rdv = mysqli_real_escape_string($con, $_GET['id_rdv']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_jeune = mysqli_real_escape_string($con, $_GET['id_jeune']);
-$intitule = mysqli_real_escape_string($con, $_GET['intitule']);
+$uuid = mysqli_real_escape_string($con, $_GET['uuid']);
 
 // ----------------------------------------------------------------------------- Récupération du statut d'accompagnement du jeune séléctionné
 if($id_acc) {
@@ -111,7 +111,6 @@ if($id_acc) {
         $type = $row['type'];
         $visio = $row['visio'];
         $id_intervenant = $row['id_intervenant'];
-        $intervenant = $row['intervenant'];
         $duree = $row['duree'];
         $commentaires = $row['commentaires'];
 
@@ -122,7 +121,6 @@ if($id_acc) {
             "type" => $type,
             "visio" => $visio,
             "id_intervenant" => $id_intervenant,
-            "intervenant" => $intervenant,
             "duree" => $duree,
             "commentaires" => $commentaires
         );
@@ -149,8 +147,8 @@ if($id_acc) {
         );
     }
 
-} elseif($intitule) {
-    $query = "CALL rdv_Get_Id('$intitule')";
+} elseif($uuid) {
+    $query = "CALL rdv_Get_Id('$uuid')";
     $result = mysqli_query($con,$query);
 
     while($row = mysqli_fetch_array($result)){

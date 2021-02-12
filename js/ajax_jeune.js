@@ -38,8 +38,6 @@ const jeune_Get = (id) => {
             const prenom = response[0].prenom;
             const ddn = response[0].ddn;
             const id_evt = response[0].id_evt;
-            if(parseInt(id_evt) !== 0) nom_evt = response[0].nom_evt.substr(2);
-            else{nom_evt = "Non renseigné"};
             const email = response[0].email;
             const tel = response[0].tel;
             const facebook = response[0].facebook;
@@ -53,13 +51,9 @@ const jeune_Get = (id) => {
             const contrat_ville = response[0].contrat_ville;
             const qpv = response[0].qpv;
             const id_qpv = response[0].id_qpv;
-            if(parseInt(id_qpv) !== 0) nom_qpv = response[0].nom_qpv;
-            else{nom_qpv = "Non renseigné"};
             const prij = response[0].prij;
             const type_orga = response[0].type_orga;
             const id_orga = response[0].id_orga;
-            if(parseInt(id_orga) !== 0) nom_orga = response[0].nom_orga;
-            else{nom_orga = "Non renseigné"};
             const nom_ref = response[0].nom_ref;
             const tel_ref = response[0].tel_ref;
             const email_ref = response[0].email_ref;
@@ -81,7 +75,6 @@ const jeune_Get = (id) => {
             $("#prenom").val(prenom);
             $("#ddn").val(ddn);
             acc_List_Evt("#sensibilisation", id_evt);
-            // $("#sensibilisation").prepend(`<option selected value="${}">${nom_evt}</option>`);
             $("#email").val(email);
             $("#tel").val(tel);
             $("#facebook").val(facebook);
@@ -90,18 +83,14 @@ const jeune_Get = (id) => {
             $("#urgence").val(urgence);
             $("#adresse").val(adresse);
             ajaxListVille("#ville", id_ville);
-            // $("#ville").prepend(`<option selected value="${}">${ville}</option>`);
             $("#nom_ville_none").val(nom_ville);
             $("#contrat_ville").val(contrat_ville);
-            $("#qpv").val(qpv);
-            if(qpv === "Oui") $("#qpv")[0].disabled = false;
-            $("#nom_qpv").prepend(`<option selected value="${id_qpv}">${nom_qpv}</option>`);
-            if(parseInt(id_qpv) !== 0) $("#nom_qpv")[0].disabled = true;
+            qpv_Exist(id_ville, qpv);
+            qpv_Change (id_ville, qpv, id_qpv);
             $("#prij").prop('checked', false);
             if (prij === "1") $("#prij").prop('checked', true);
             $("#type_orga").val(type_orga);
-            $("#nom_orga").prepend(`<option selected value="${id_orga}">${nom_orga}</option>`);
-            $("#nom_orga")[0].disabled = true;
+            type_Change(type_orga, id_orga);
             $("#nom_ref").val(nom_ref);
             $("#tel_ref").val(tel_ref);
             $("#email_ref").val(email_ref);
@@ -118,7 +107,6 @@ const jeune_Get = (id) => {
     });
 }
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! ! */
-
 const jeune_Create = (npv, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse,
 id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
 statut, pe, rsa, gj) => {
@@ -131,6 +119,11 @@ statut, pe, rsa, gj) => {
             const exist = parseInt(response[0].exist);
             if(exist === 1) alert("Création impossible : Il existe déjà un jeune qui porte ce nom et qui habite cette ville dans la base de données.");
             else {
+                alert(adherent);
+                alert(id_evt);
+                alert(id_ville);
+                alert(id_qpv);
+                alert(id_orga);
                 $.ajax({
                     url: 'php/jeune.php',
                     dataType: 'JSON',

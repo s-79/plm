@@ -142,7 +142,7 @@
             </select>
             <label for="nom_qpv">Quartier QPV</label>
         </div>
-        <div class="form-group row mx-0 mt-4">
+        <div class="form-group row mx-0 mt-4 mb-4">
             <label class="form-check-label col-2 text-white" for="prij">
                 PRIJ
             </label>
@@ -182,7 +182,7 @@
         <div class="row mx-1 mt-3">
             <div class="form-floating col-10">
                 <select class="form-select" id="nom_orga" aria-label="Nom de l'organisme" disabled>
-                    <option selected value="">Séléctionner le nom de l'organisme</option>
+                    <option selected value="0">Séléctionner le nom de l'organisme</option>
                 </select>
                 <label for="nom_orga">Nom de l'organisme</label>
             </div>
@@ -238,7 +238,7 @@
             </select>
             <label for="niveau_anglais">Niveau d'anglais</label>
         </div>
-        <div class="form-floating mx-3 mt-3">
+        <div class="form-floating mx-3 mt-3 mb-4">
             <input type="text" class="form-control" id="langues" placeholder="Autre langue parlée">
             <label for="langues">Autres langues parlées</label>
         </div>
@@ -285,10 +285,10 @@
             </select>
             <label for="gj">Garantie Jeune</label>
         </div>
-        <div id="btn_jeune_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">
+        <div id="btn_jeune_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2">
             <button type="button" id="jeune_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
         </div>
-        <div id="btn_jeune_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1 d-none">
+        <div id="btn_jeune_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2 d-none">
             <button type="button" id="jeune_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
             <button type="button" id="jeune_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
         </div>

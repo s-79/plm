@@ -276,9 +276,9 @@
           <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="create_duree_rdv" aria-label="Durée du rendez-vous">
                   <option selected value="">Séléctionner la durée du rendez-vous</option>
-                  <option value="moins de 10 minutes">moins de 10 minutes</option>
-                  <option value="moins de 10 minutes">moins de 30 minutes</option>
-                  <option value="moins de 10 minutes">moins d'une heure</option>
+                  <option value="- de 10 min">- de 10 min</option>
+                  <option value="- de 30 min">- de 30 min</option>
+                  <option value="- d'1 heure">- d'1 heure</option>
               </select>
               <label for="create_duree_rdv">Durée du rendez-vous</label>
           </div>

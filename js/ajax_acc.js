@@ -45,7 +45,7 @@ const jeune_Get_Acc = (id) => {
             $("#acc_npv").html(npv);
             $("#acc").val(acc);
             $("#mob").val(mob);
-            ajaxListIntUp("#ref", id_ref);
+            ajaxListRef("#ref", id_ref);
         }
     });
 }
@@ -162,15 +162,15 @@ const rdv_Get = (id) => {
             const type = response[0].type;
             const visio = response[0].visio;
             const id_intervenant = response[0].id_intervenant;
-            const intervenant = response[0].intervenant;
             const duree = response[0].duree;
             const commentaires = response[0].commentaires;
             $("#update_id_rdv").val(id);
             $("#update_nom_rdv").val(nom2);
             $("#update_date_rdv").val(dat);
+            $("#update_type_rdv").val(type);
             $("#update_visio_rdv").prop('checked', false);
             if (visio === "1") $("#update_visio_rdv").prop('checked', true);
-            ajaxListIntUp("#update_int_rdv", id_intervenant);
+            ajaxListRef("#update_int_rdv", id_intervenant);
             $("#update_duree_rdv").val(duree);
             $("#update_comm_rdv").val(commentaires);
         }
@@ -213,17 +213,17 @@ const acc_Create_Evt = (id_jeune, id_evt, commentaire, mission) => {
 //-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Création d'un RDV individuel
-const rdv_Create = (id_jeune, id_int, dat, type, visio, duree, intitule, commentaires) => {
+const rdv_Create = (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
-        data : {id_int:id_int, dat:dat, type:type, visio:visio, duree:duree, intitule:intitule, commentaires:commentaires},
+        data : {id_int:id_int, dat:dat, type:type, visio:visio, duree:duree, uuid:uuid, commentaires:commentaires},
         complete: function(){
             //------------------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous
             $.ajax({
                 url: "php/acc_Get.php",
                 dataType: 'JSON',
-                data : {intitule:intitule},
+                data : {uuid:uuid},
                 success: function(response){
                     const id_rdv = response[0].id;
                     //---------------------------------------------------------- Création de l'association entre le jeune et le rdv
@@ -243,9 +243,6 @@ const jeune_Update_Acc = (id, statut, mob, id_ref) => {
         dataType: 'JSON',
         data : {id_acc:id, statut:statut, mob:mob, id_ref:id_ref},
         complete: function(){
-            // ----------------------------------------------------------------- Affichage d'une icone de validation pedant 2 secondes
-            // $("#acc_projet").addClass('text-success');
-
             // ----------------------------------------------------------------- Fonction en dessous
             setTimeout(acc_Check, 1000);
         }

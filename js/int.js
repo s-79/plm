@@ -32,9 +32,11 @@ $(function(){
         if(actif)actif=1;else{actif=0};
         let volontaire =  $("#create_volontaire").is(':checked');
         if(volontaire)volontaire=1;else{volontaire=0};
+        let ref =  $("#create_ref").is(':checked');
+        if(ref)volontaire=1;else{ref=0};
 
         // -------------------------------------------------------------------- Vérification si la longueur est ok pour la BDD puis vérif si le nom existe déjà dans la BDD et si non envoie des infos
-        if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Create(prenom_nom, prenom, nom, actif, volontaire);
+        if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Create(prenom_nom, prenom, nom, actif, volontaire, ref);
     })
 
     // --------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
@@ -55,9 +57,12 @@ $(function(){
         if(actif)actif=1;else{actif=0};
         let volontaire =  $("#update_volontaire").is(':checked');
         if(volontaire)volontaire=1;else{volontaire=0};
+        let ref =  $("#update_ref").is(':checked');
+        if(ref)ref=1;else{ref=0};
+
         if(!id) alert("Aucun intervenant-e n'a été séléctionné-e");
         // -------------------------------------------------------------------- Vérification si la longueur est ok pour la BDD et si oui envoie des infos
-        else {if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Update(id, prenom, nom, actif, volontaire);}
+        else {if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Update(id, prenom, nom, actif, volontaire, ref);}
     })
     // ------------------------------------------------------------------------- ! ! ! - - D E L E T E- - ! ! !
 

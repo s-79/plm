@@ -27,21 +27,20 @@ $(function(){
     //-------------------------------------------------------------------------- Remplissage de la liste des intervenants
     ajaxListInter("#inter");
 
+    //-------------------------------------------------------------------------- Remplissage de la liste projets
+    ajaxListPrj("#projet");
+
     // ------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
 
     // ------------------------------------------------------------------------- ÉVENEMENT CLICK SUR LES BOUTONS RADIOS DES MISSIONS
     $("#m2").click(function() {
         $("#orga_evt").addClass("d-none");
         $("#projet_evt").removeClass("d-none");
+        $("#ville").val(0);
         $("#ville")[0].disabled = true;
         $("#nb_pros")[0].disabled = true;
         $("#select_m0, #select_m1").addClass("d-none");
         $("#select_m2").removeClass("d-none");
-        // --------------------------------------------------------------------- Réinitialisation de la liste type m2
-        // let types_m2 = ["Atelier d'anglais", "Atelier Europe", "Atelier Interculturalité", "At. obj d'apprentissage", "At. retour à chaud", "2ème atelier retour", "Permanence"];
-        // let init = "<option selected value=''>Séléctionner le type d'événement</option>"
-        // for (type of types_m2) {init += `<option value="${type}">${type}</option>`;}
-        // $("#type_m2").html(init);
         $("#type_m2")[0].disabled = false;
     });
     $("#m0,#m1").click(function() {
@@ -59,11 +58,6 @@ $(function(){
     $("#m1").click(function() {
         $("#select_m0, #select_m2").addClass("d-none");
         $("#select_m1").removeClass("d-none");
-        // --------------------------------------------------------------------- Réinitialisation de la liste type m1
-        // let types_m1 = ["Info coll PLM", "Info coll exterieure", "Webinaire pros", "Sensibilisation pros", "Evt thématique"];
-        // let init = "<option selected value=''>Séléctionner le type d'événement</option>"
-        // for (type of types_m1) {init += `<option value="${type}">${type}</option>`;}
-        // $("#type_m1").html(init);
         $("#type_m1")[0].disabled = false;
     });
 
@@ -115,6 +109,7 @@ $(function(){
         let visio =  $("#visio").is(':checked');
         if(visio)visio=1;else{visio=0};
         const intitule = $("#intitule").val();
+        const uuid = uuid_gen();
         const id_projet = $("#projet").val();
         const organise = $("#organise").val();
         const nb_jeunes = $("#nb_jeunes").val();
@@ -129,7 +124,7 @@ $(function(){
             if(vLen("Intitulé",intitule,100) && vLen("Organisé par...",organise,100) && vLen("Commentaire",commentaires,100)) {
 
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                evt_Create(mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires);
+                evt_Create(mission, dat, id_ville, type, visio, intitule, uuid, id_projet, organise, nb_jeunes, nb_pros, commentaires);
 
             }
         }
@@ -156,6 +151,7 @@ $(function(){
         let visio =  $("#visio").is(':checked');
         if(visio)visio=1;else{visio=0};
         const intitule = $("#intitule").val();
+        const uuid = uuid_gen();
         const id_projet = $("#projet").val();
         const organise = $("#organise").val();
         const nb_jeunes = $("#nb_jeunes").val();
@@ -163,7 +159,7 @@ $(function(){
         const commentaires = $("#commentaires").val();
 
         if(vLen("Intitulé",intitule,100) && vLen("Organisé par...",organise,100) && vLen("Commentaire",commentaires,100)) {
-            evt_Update(id, mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires);
+            evt_Update(id, mission, dat, id_ville, type, visio, intitule, uuid, id_projet, organise, nb_jeunes, nb_pros, commentaires);
         }
     })
 

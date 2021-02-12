@@ -16,8 +16,6 @@ $(function(){
     $("#btn_orga_update").click(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal orga_Update
         document.getElementById("form_orga_update").reset();
-        //---------------------------------------------------------------------- Réinitialisation et remplissage de la liste des noms d'organisme dans le modal de modification d'organisme
-        $("#select_nom_orga").html("<option selected value=''>Séléctionner l'organisme à modifier</option>");
         ajaxListOrga("#select_nom_orga");
     })
 

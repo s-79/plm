@@ -17,7 +17,6 @@ $(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire dans le modal part_Update
         document.getElementById("form_part_update").reset();
         //---------------------------------------------------------------------- Réinitialisation et remplissage de la liste des noms de PARTENAIRE dans le modal de modification de partenaire
-        // $("#select_nom_part").html("<option selected value=''>Séléctionner le partenaire à modifier</option>");
         ajaxListPart("#select_nom_part");
     })
 

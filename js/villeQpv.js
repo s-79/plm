@@ -16,9 +16,7 @@ $(function(){
             //------------------------------------------------------------------ La ville possède-t-elle des quartiers QPV ? Si oui, on donne accès au champs QPV
             qpv_Exist(id_ville);
             //------------------------------------------------------------------ Reinitialisation du champ QPV
-            // let qpv_Reset = "<option selected value=''>QPV</option>"
-            // for (e of ["Oui", "Non", "Limite"]) {qpv_Reset += `<option value="${e}">${e}</option>`;}
-            // $("#qpv").html(qpv_Reset);
+            $("#qpv").val("");
             //------------------------------------------------------------------ Reinitialisation et désactivation du champ nom QPV
             $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
             $("#nom_qpv")[0].disabled = true;
@@ -29,16 +27,10 @@ $(function(){
 
     //-------------------------------------------------------------------------- EVENEMENT CHANGE SUR QPV (OUI, NON, LIMITE)
     $("#qpv").change(function(){
-        //---------------------------------------------------------------------- Remplissage de l'en-tête de liste de noms de QPV
-        $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
 
-        const qpv = $("#qpv").val();
         //---------------------------------------------------------------------- Remplissage de la liste des quartiers QPV del la ville séléctionnée
-        if(qpv === "Oui" || qpv === "Limite") {qpv_Change($("#ville").val())}
-        //---------------------------------------------------------------------- Désactivation du champ nom_qpv
-        else {$("#nom_qpv")[0].disabled = true;}
-        //---------------------------------------------------------------------- Décochage de la case prij
-        $("#prij").prop('checked', false);
+        qpv_Change($("#ville").val(), $("#qpv").val());
+
     });
 
     //-------------------------------------------------------------------------- EVENEMENT CHANGE SUR LE CHOIX D'UN NOM DE QUARTIER QPV

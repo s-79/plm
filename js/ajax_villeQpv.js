@@ -32,34 +32,39 @@ const contrat_ville_Change = (id_ville) => {
 }
 
 //------------------------------------------------------------------------------ La ville possède-t-elle des quartiers QPV ?
-const qpv_Exist = (id) => {
+const qpv_Exist = (id_ville, qpv) => {
     $.ajax({
         url: "php/exist.php",
         dataType: 'JSON',
-        data : {id_ville_qpv:id},
+        data : {id_ville_qpv:id_ville},
         success: function(response){
             const exist = parseInt(response[0].exist);
             if(exist === 1) {
+                if(qpv) $("#qpv").val(qpv);
                 $("#qpv")[0].disabled = false;
-                $("#nom_qpv")[0].disabled = true;
             } else {
                 $("#qpv").val("Non");
                 $("#qpv")[0].disabled = true;
-                $("#nom_qpv")[0].disabled = true;
             }
         }
     });
 }
 
 /* ----------------------------------------------------------------------------- QPV : Changement dans le menu SELECT */
-const qpv_Change = (id_ville) => {
+const qpv_Change = (id_ville, qpv, id_qpv) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
         data : {id_ville:id_ville},
         success: function(response){
-            $("#nom_qpv")[0].disabled = false;
-            $("#nom_qpv").append(displayList(response));
+            $("#nom_qpv").html("<option selected value=''>Séléctionner le quartier QPV</option>");
+            $("#prij").prop('checked', false);
+            if(qpv === "Oui" || qpv === "Limite") {
+                $("#nom_qpv")[0].disabled = false;
+                $("#nom_qpv").append(displayList(response));
+                if(id_qpv) $("#nom_qpv").val(id_qpv);
+            }
+            else {$("#nom_qpv")[0].disabled = true;}
         }
     });
 }

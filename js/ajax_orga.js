@@ -6,7 +6,7 @@ const ajaxListOrga = (liste) => {
         dataType: 'JSON',
         data : {v_orga:"v_orga"},
         success: function(response){
-            $(liste).html("<option selected value=''>Séléctionner le nom de l'organisme</option>")
+            $(liste).html("<option selected value='0'>Séléctionner le nom de l'organisme</option>")
             $(liste).append(displayList(response));
         }
     });
@@ -15,23 +15,30 @@ const ajaxListOrga = (liste) => {
 // ----------------------------------------------------------------------------- ! ! ! - - C H A N G E - - ! ! !
 
 /* ----------------------------------------------------------------------------  Changement dans le menu type de la page jeune */
-const type_Change = (type) => {
+const type_Change = (type, id_orga) => {
     $.ajax({
         url: 'php/populate.php',
         dataType: 'JSON',
         data : {orga_type:type},
         success: function(response){
             const len = response.length;
-            // ----------------------------------------------------------------- S'il n'y a pas d'organisme attécha à ce type d'organisme, on grose la case nom et on affiche le modal
-            if(len === 0) {
+            // ----------------------------------------------------------------- S'il n'y a pas d'organisme attécha à ce type d'organisme et que le nom n'est pas NULL
+            if(type && len === 0) {
                 $("#nom_orga")[0].disabled = true;
                 $('#modal_orga').modal('show');
                 // ------------------------------------------------------------- Ajouter au modal la div qui dit qu'il n'y a pas d'orga de ce type
                 $("#txt_modal_orga").removeClass("d-none");
                 $("#txt_modal_orga").addClass("d-block");
             } else {
-                $("#nom_orga").append(displayList(response));
-                $("#nom_orga")[0].disabled = false;
+                $("#nom_orga").html("<option selected value='0'>Séléctionner le nom de l'organisme</option>");
+                // ------------------------------------------------------------ Si le nom est NULL
+                if(!type) $("#nom_orga")[0].disabled = true;
+                else {
+                    $("#nom_orga").append(displayList(response));
+                    $("#nom_orga")[0].disabled = false;
+                    // --------------------------------------------------------- Si on a passé un argument id_orga lors du Get
+                    if(id_orga) $("#nom_orga").val(id_orga);
+                }
             }
         }
     });

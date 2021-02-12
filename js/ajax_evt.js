@@ -61,14 +61,10 @@ const ajaxEvtGet = (id_evt) => {
             const mission = response[0].mission;
             const dat = response[0].dat;
             const id_ville = response[0].id_ville;
-            const ville = response[0].ville;
             const type = response[0].type;
             const intitule = response[0].intitule;
             const visio = response[0].visio;
             const id_projet = response[0].id_projet;
-            let nom_projet = "";
-            // if(parseInt(id_projet) !== 0) nom_projet = response[0].nom_projet;
-            // else{nom_projet = "Non renseigné"};
             const organise = response[0].organise;
             const nb_jeunes = response[0].nb_jeunes;
             const nb_pros = response[0].nb_pros;
@@ -94,11 +90,6 @@ const ajaxEvtGet = (id_evt) => {
                 $("#m1").prop('checked', true);
                 $("#select_m0, #select_m2").addClass("d-none");
                 $("#select_m1").removeClass("d-none");
-                // ------------------------------------------------------------- Réinitialisation de la liste type m1
-                // let types_m1 = ["Info coll PLM", "Info coll exterieure", "Webinaire pros", "Sensibilisation pros", "Evt thématique"];
-                // let init = "";
-                // for (type_m1 of types_m1) {init += `<option value="${type_m1}">${type_m1}</option>`;}
-                // $("#type_m1").html(init);
                 $("#type_m1").val(type);
                 $("#type_m1")[0].disabled = false;
             }
@@ -106,20 +97,16 @@ const ajaxEvtGet = (id_evt) => {
                 $("#m2").prop('checked', true);
                 $("#orga_evt").addClass("d-none");
                 $("#projet_evt").removeClass("d-none");
+                //-------------------------------------------------------------------------- Remplissage de la liste projets
+                ajaxListPrj("#projet", id_projet);
                 $("#ville")[0].disabled = true;
                 $("#nb_pros")[0].disabled = true;
                 $("#select_m0, #select_m1").addClass("d-none");
                 $("#select_m2").removeClass("d-none");
-                // ------------------------------------------------------------- Réinitialisation de la liste type m2
-                // let types_m2 = ["Atelier d'anglais", "Atelier Europe", "Atelier Interculturalité", "At. obj d'apprentissage", "At. retour à chaud", "2ème atelier retour"];
-                // let init = "";
-                // for (type_m2 of types_m2) {init += `<option value="${type_m2}">${type_m2}</option>`;}
-                // $("#type_m2").html(init);
                 $("#type_m2").val(type);
                 $("#type_m2")[0].disabled = false;
             }
             $("#date").val(dat);
-            // $("#type_m2").prepend(`<option selected value="${type}">${type}</option>`);
             $("#intitule").val(intitule);
             $("#visio").prop('checked', false);
             if (visio === "1") $("#visio").prop('checked', true);
@@ -173,18 +160,15 @@ const ajaxEvtInter = (id_evt, liste) => {
 
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 
-const evt_Create = (mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
+const evt_Create = (mission, dat, id_ville, type, visio, intitule, uuid, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
     $.ajax({
         url: 'php/evt.php',
         dataType: 'JSON',
-        data : {mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
+        data : {mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, uuid:uuid, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
         complete: function(){
-            //------------------------------------------------------------------ Récupération du nom de la ville et création du nom de l'événement
-            const nom_ville = $("#nom_ville_none").val();
-            const nom_evt = `${dat} - ${type} - ${nom_ville}`;
             //------------------------------------------------------------------ Récupération de l'id de l'événement créé
             //------------------------------------------------------------------ Puis récupération des intervenants et association avec l'évenemnt dans la table intervenir
-            evt_Get_Id(nom_evt);
+            evt_Get_Id(uuid);
 
             alert("L'événement a bien été ajouté à la base de données.");
             //------------------------------------------------------------------ Réinitialisation de la pages des événements
@@ -194,11 +178,11 @@ const evt_Create = (mission, dat, id_ville, type, visio, intitule, id_projet, or
 }
 
 //----------------------------------------------------------------------------- Récupération de l'id de l'événement créé
-const evt_Get_Id = (nom_evt) => {
+const evt_Get_Id = (uuid) => {
     $.ajax({
         url: "php/evt_Get.php",
         dataType: 'JSON',
-        data : {nom_evt:nom_evt},
+        data : {uuid:uuid},
         success: function(response){
             const id_evt = response[0].id;
             evt_Get_Inter(id_evt);
@@ -236,11 +220,11 @@ const evt_Get_Inter = (id_evt) => {
 
 // ---------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
-const evt_Update = (id, mission, dat, id_ville, type, visio, intitule, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
+const evt_Update = (id, mission, dat, id_ville, type, visio, intitule, uuid, id_projet, organise, nb_jeunes, nb_pros, commentaires) => {
     $.ajax({
         url: 'php/evt.php',
         dataType: 'JSON',
-        data : {id:id, mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
+        data : {id:id, mission:mission, dat:dat, id_ville:id_ville, type:type, visio:visio, intitule:intitule, uuid:uuid, id_projet:id_projet, organise:organise, nb_jeunes:nb_jeunes, nb_pros:nb_pros, commentaires:commentaires},
         complete: function(){
             //------------------------------------------------------------------ Suppression des associations entre intervenants et cet événement dans la table intervenir
             //------------------------------------------------------------------ Puis récupération des intervenants et association avec l'évenemnt dans la table intervenir

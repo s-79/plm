@@ -73,7 +73,7 @@ include("header.php"); ?>
             </select>
             <label for="pays">Pays de destination *</label>
         </div>
-        <div class="form-floating mx-3 mt-3">
+        <div class="form-floating mx-3 mt-3 mb-4">
             <input type="text" class="form-control" id="ville" placeholder="Ville">
             <label for="ville">Ville de destination</label>
         </div>
@@ -124,10 +124,10 @@ include("header.php"); ?>
             <label for="pays_part">Pays participants</label>
         </div>
 
-        <div id="btn_prj_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1">
+        <div id="btn_prj_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2">
             <button type="button" id="prj_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
         </div>
-        <div id="btn_prj_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-1 d-none">
+        <div id="btn_prj_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2 d-none">
             <button type="button" id="prj_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
             <button type="button" id="prj_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
         </div>

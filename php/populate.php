@@ -8,6 +8,7 @@ $v_npv = mysqli_real_escape_string($con, $_GET['v_npv']);
 $v_orga = mysqli_real_escape_string($con, $_GET['v_orga']);
 $v_evt = mysqli_real_escape_string($con, $_GET['v_evt']);
 $v_int = mysqli_real_escape_string($con, $_GET['v_int']);
+$v_ref = mysqli_real_escape_string($con, $_GET['v_ref']);
 $v_intUp = mysqli_real_escape_string($con, $_GET['v_intUp']);
 $v_acc_list_evt = mysqli_real_escape_string($con, $_GET['v_acc_list_evt']);
 $v_acc_list_evt2 = mysqli_real_escape_string($con, $_GET['v_acc_list_evt2']);
@@ -31,6 +32,9 @@ if($v_npv) {$query = "CALL npv_List ()";
 
 } elseif($v_int) {
     $query = "CALL int_List ()";
+
+} elseif($v_ref) {
+    $query = "CALL ref_List ()";
 
 } elseif($v_intUp) {
     $query = "CALL intUp_List ()";

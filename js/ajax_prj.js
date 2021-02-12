@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste projet pour l'outil de recherche de la page prj */
-const ajaxListPrj = (liste) => {
+const ajaxListPrj = (liste, id_projet) => {
     $.ajax({
         url: 'php/populate.php',
         dataType: 'JSON',
@@ -9,6 +9,7 @@ const ajaxListPrj = (liste) => {
         success: function(response){
             $(liste).html("<option selected value='0'>Séléctionner un projet</option>")
             $(liste).append(displayList(response));
+            if(id_projet) $(liste).val(id_projet);
             }
     });
 }
@@ -50,9 +51,7 @@ const ajaxPrjGet = (id_prj) => {
             const type = response[0].type;
             const intitule = response[0].intitule;
             const id_part = response[0].id_part;
-            const nom_part = response[0].nom_part;
             const id_pays = response[0].id_pays;
-            const nom_pays = response[0].nom_pays;
             const ville = response[0].ville;
             const debut = response[0].debut;
             const fin = response[0].fin;

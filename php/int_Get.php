@@ -17,6 +17,7 @@ while($row = mysqli_fetch_array($result)){
     $nom = $row['nom'];
     $actif = $row['actif'];
     $volontaire = $row['volontaire'];
+    $ref = $row['ref'];
 
     $return_arr[] = array(
         "id" => $id,
@@ -25,7 +26,8 @@ while($row = mysqli_fetch_array($result)){
         "nom" => $nom,
         "actif" => $actif,
         "volontaire" => $volontaire,
-        );
+        "ref" => $ref
+    );
 }
 
 if($return_arr) {echo json_encode($return_arr);}
