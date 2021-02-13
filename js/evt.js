@@ -105,7 +105,7 @@ $(function(){
         }
         const dat = $("#date").val();
         const id_ville = $("#ville").val();
-        contrat_ville_Change(id_ville);
+        // contrat_ville_Change(id_ville);
         let visio =  $("#visio").is(':checked');
         if(visio)visio=1;else{visio=0};
         const intitule = $("#intitule").val();
@@ -121,7 +121,7 @@ $(function(){
             alert("Les champs Mission, Date, Type et Ville ainsi que le nombre de jeunes ou de pros sont obligatoires.");
         } else {
             // ----------------------------------------------------------------- La longueur des champs est-elles bien inférieur à celle attendue dans la BDD ?
-            if(vLen("Intitulé",intitule,100) && vLen("Organisé par...",organise,100) && vLen("Commentaire",commentaires,100)) {
+            if(vLen("Intitulé",intitule,100) && vLen("Organisé par...",organise,100) && vLen("Commentaire",commentaires,255)) {
 
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
                 evt_Create(mission, dat, id_ville, type, visio, intitule, uuid, id_projet, organise, nb_jeunes, nb_pros, commentaires);

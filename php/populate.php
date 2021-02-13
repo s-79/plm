@@ -18,6 +18,7 @@ $v_prj = mysqli_real_escape_string($con, $_GET['v_prj']);
 $orga_type = mysqli_real_escape_string($con, $_GET['orga_type']);
 $v_ville = mysqli_real_escape_string($con, $_GET['v_ville']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville']);
+$id_pays = mysqli_real_escape_string($con, $_GET['id_pays']);
 $texte = mysqli_real_escape_string($con, $_GET['texte']);
 $texte_evt = mysqli_real_escape_string($con, $_GET['texte_evt']);
 $texte_prj = mysqli_real_escape_string($con, $_GET['texte_prj']);
@@ -62,6 +63,9 @@ if($v_npv) {$query = "CALL npv_List ()";
 
 } elseif($id_ville_qpv) {
     $query = "CALL ville_Qpv ('$id_ville_qpv')";
+
+} elseif($id_pays) {
+    $query = "CALL pays_Change ('$id_pays')";
 
 } elseif($texte) {
     if(strlen($texte) > 0) {

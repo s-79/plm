@@ -73,6 +73,11 @@ include("header.php"); ?>
             </select>
             <label for="pays">Pays de destination *</label>
         </div>
+        <!--                                                                    Div invisible pour récup nom_pays -->
+        <div class="form-floating mx-3 mt-3 d-none">
+            <input type="text" class="form-control" id="nom_pays_none">
+            <label for="nom_pays_none"></label>
+        </div>
         <div class="form-floating mx-3 mt-3 mb-4">
             <input type="text" class="form-control" id="ville" placeholder="Ville">
             <label for="ville">Ville de destination</label>
@@ -82,12 +87,12 @@ include("header.php"); ?>
     <div class="col-12 col-lg-3 bg-marine m-3 rounded rounded-3">
         <h2 class="pt-4">Période & Détails</h2>
         <div class="form-floating mx-3 mt-4">
-            <input type="date" class="form-control" id="debut" placeholder="Début de la période">
-            <label for="debut">Début de la période</label>
+            <input type="date" class="form-control" id="debut" placeholder="Début de la période *">
+            <label for="debut">Début de la période *</label>
         </div>
         <div class="form-floating mx-3 mt-3">
-            <input type="date" class="form-control" id="fin" placeholder="Fin de la période">
-            <label for="fin">Fin de la période</label>
+            <input type="date" class="form-control" id="fin" placeholder="Fin de la période *">
+            <label for="fin">Fin de la période *</label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select type_m" id="duree" aria-label="Durée du projet">

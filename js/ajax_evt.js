@@ -280,7 +280,7 @@ const evt_Delete = (id) => {
 // ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
 
 // ----------------------------------------------------------------------------- Stockage de l'id du jeune et envoie vers la page jeune (acc)
-const id_jeune_storage = (id, location) => {
+let id_jeune_storage = (id, location) => {
     sessionStorage.setItem('id_jeune', id);
     document.location='index.php';
 }
