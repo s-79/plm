@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste NPV - Récup données & append */
-const ajaxListNpv = (liste) => {
+const ajaxListNpv = (liste, id) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
@@ -9,6 +9,7 @@ const ajaxListNpv = (liste) => {
         success: function(response){
             $(liste).html("<option selected value=''>Séléctionner un jeune</option>")
             $(liste).append(displayList(response));
+            if(id) $(liste).val(id);
         }
     });
 }

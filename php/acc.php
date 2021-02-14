@@ -7,6 +7,14 @@ $statut =  mysqli_real_escape_string($con, $_GET['statut']);
 $mob =  mysqli_real_escape_string($con, $_GET['mob']);
 $id_ref =  mysqli_real_escape_string($con, $_GET['id_ref']);
 
+// ---------------------------------------------------------------------------  Partir
+$id_jeune =  mysqli_real_escape_string($con, $_GET['id_jeune']);
+$depart =  mysqli_real_escape_string($con, $_GET['depart']);
+$retour =  mysqli_real_escape_string($con, $_GET['retour']);
+$id_prj =  mysqli_real_escape_string($con, $_GET['id_prj']);
+$id_prj_up =  mysqli_real_escape_string($con, $_GET['id_prj_up']);
+$id_prj_del =  mysqli_real_escape_string($con, $_GET['id_prj_del']);
+
 // ---------------------------------------------------------------------------  Participer
 $id_jeune =  mysqli_real_escape_string($con, $_GET['id_jeune']);
 $commentaire =  mysqli_real_escape_string($con, $_GET['commentaire']);
@@ -29,7 +37,18 @@ $id_rdv_del =  mysqli_real_escape_string($con, $_GET['id_rdv_del']);
 
 if($id_acc) {
     $query = "CALL jeune_Update_Acc('$id_acc', '$statut', '$mob', '$id_ref')";
-// ---------------------------------------------------------------------------  Associations evt, evt2, rdv
+
+// ---------------------------------------------------------------------------  Partir - Association jeune-prj
+} elseif($id_prj) {
+    $query = "CALL acc_Create_Prj ('$id_jeune', '$id_prj', '$depart', '$retour')";
+
+} elseif($id_prj_up) {
+   $query = "CALL acc_Update_Prj ('$id_jeune', '$id_prj_up', '$depart', '$retour')";
+
+} elseif($id_prj_del) {
+    $query = "CALL acc_Delete_Prj('$id_jeune', '$id_prj_del')";
+
+// ---------------------------------------------------------------------------  Participer - Associations evt, evt2, rdv
 } elseif($id_evt) {
     $query = "CALL acc_Create_Evt ('$id_jeune', '$id_evt', '$commentaire')";
 

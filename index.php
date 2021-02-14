@@ -309,6 +309,7 @@
 <script src="js/acc.js"></script>
 <script src="js/ajax_acc.js"></script>
 <script src="js/ajax_int.js"></script>
+<script src="js/ajax_prj.js"></script>
 
 </body>
 </html>

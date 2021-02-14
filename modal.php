@@ -112,6 +112,75 @@
     </div>
 </div>
 
+<!--                                                                             ! ! ! - - P R O J E T - - ! ! ! -->
+
+<!---                                                                                                              Modal pour associer un projet au suivi d'un jeune -->
+
+<div class="modal fade" id="modal_prj_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un projet au suivi du jeune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_prj_create">
+                    <div class="form-floating mx-3 mt-4">
+                        <select class="form-select" id="prj_create" aria-label="projet">
+                        </select>
+                        <label for="prj_create">Projet à ajouter</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="date" class="form-control" id="create_depart_prj" placeholder="Départ prévu">
+                        <label for="create_depart_prj">Départ prévu</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="date" class="form-control" id="create_retour_prj" placeholder="Retour prévu">
+                        <label for="create_retour_prj">Retour prévu</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_prj_create" type="button" class="btn btn-primary">Ajouter au suivi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---                                                                                                              Modal pour disocier ou modifier un projet -->
+<div class="modal fade" id="modal_prj_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier les dates ou supprimer le&nbsp;projet du suivi du jeune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_prj_update">
+                    <!--                                                                                                        Récupération de l'id_prj dans un input invisible -->
+                    <input type="text" class="form-control d-none" id="update_id_prj">
+                    <div class="form-floating mx-3 mt-4">
+                            <input type="text" class="form-control" id="update_nom_prj" placeholder="Projet à modifier" disabled>
+                            <label for="update_nom_prj">Projet à modifier</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="date" class="form-control" id="update_depart_prj" placeholder="Départ prévu">
+                        <label for="update_depart_prj">Départ prévu</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
+                        <input type="date" class="form-control" id="update_retour_prj" placeholder="Retour prévu">
+                        <label for="update_retour_prj">Retour prévu</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_prj_update" type="button" class="btn btn-warning">Modifier les dates</button>
+                <button id="btn_prj_delete" type="button" class="btn btn-danger">Supprimer du suivi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--                                                                             ! ! ! - - S E N S I B I L I S A T I O N S - - ! ! ! -->
 
 <!---                                                                                                              Modal pour associer une sensibilisation -->
@@ -128,7 +197,7 @@
                     <div class="form-floating mx-3 mt-4">
                         <select class="form-select" id="evt_create" aria-label="Sensibilisation">
                         </select>
-                        <label for="update_int_rdv">Sensibilisation à ajouter</label>
+                        <label for="evt_create">Sensibilisation à ajouter</label>
                     </div>
                     <div class="form-floating mx-3 mt-3">
                         <textarea class="form-control" placeholder="Commentaires individuels" id="create_comm_evt" style="height:125px;"></textarea>
@@ -190,7 +259,7 @@
                     <div class="form-floating mx-3 mt-4">
                         <select class="form-select" id="evt2_create" aria-label="Atelier">
                         </select>
-                        <label for="update_int_rdv">Atelier à ajouter</label>
+                        <label for="evt2_create">Atelier à ajouter</label>
                     </div>
                     <div class="form-floating mx-3 mt-3">
                         <textarea class="form-control" placeholder="Commentaires individuels" id="create_comm_evt2" style="height:125px;"></textarea>
@@ -255,7 +324,7 @@
               <div class="form-floating mx-3 mt-4">
                   <select class="form-select" id="create_int_rdv" aria-label="Intervenant">
                   </select>
-                  <label for="update_int_rdv">Séléctionner l'intervenant-e</label>
+                  <label for="create_int_rdv">Séléctionner l'intervenant-e</label>
               </div>
           <div class="form-floating mx-3 mt-3">
               <input type="date" class="form-control" id="create_date_rdv" placeholder="Date du rendez-vous *">

@@ -136,6 +136,8 @@ $(function(){
 const prj_Get = (id_prj) => {
     if(!id_prj) alert("Aucun projet n'a été séléctionné")
     else {
+        //---------------------------------------------------------------------- Affichage du projet séléctionné lorsqu'on à vient de la page jeune en cliquant dans le tableau
+        ajaxListPrj("#prj_res", id_prj);
         //---------------------------------------------------------------------- Reinitialisation des champs
         $("#youth_leader")[0].disabled = true;
         $("#nb_part")[0].disabled = true;

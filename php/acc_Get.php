@@ -9,7 +9,9 @@ $id = mysqli_real_escape_string($con, $_GET['id']);
 $id2 = mysqli_real_escape_string($con, $_GET['id2']);
 $id_jeune_rdv = mysqli_real_escape_string($con, $_GET['id_jeune_rdv']);
 $id_rdv = mysqli_real_escape_string($con, $_GET['id_rdv']);
+$id_jeune_prj = mysqli_real_escape_string($con, $_GET['id_jeune_prj']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
+$id_prj = mysqli_real_escape_string($con, $_GET['id_prj']);
 $id_jeune = mysqli_real_escape_string($con, $_GET['id_jeune']);
 $uuid = mysqli_real_escape_string($con, $_GET['uuid']);
 
@@ -98,6 +100,30 @@ if($id_acc) {
         );
     }
 
+// ----------------------------------------------------------------------------- Récupération des infos des projets en fonction de l'id du jeune
+} elseif($id_jeune_prj) {
+    $query = "CALL jeune_Get_Prj('$id_jeune_prj')";
+
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id = $row['id'];
+        $type = $row['type'];
+        $intitule = $row['intitule'];
+        $pays = $row['pays'];
+        $depart = $row['depart'];
+        $retour = $row['retour'];
+
+        $return_arr[] = array(
+            "id" => $id,
+            "type" => $type,
+            "intitule" => $intitule,
+            "pays" => $pays,
+            "depart" => $depart,
+            "retour" => $retour
+        );
+    }
+
 // ----------------------------------------------------------------------------- Récupération des infos d'un RDV en fonction de son id
 } elseif($id_rdv) {
     $query = "CALL acc_Get_Rdv('$id_rdv')";
@@ -144,6 +170,27 @@ if($id_acc) {
             "nom" => $nom,
             "nom_evt" => $nom_evt,
             "commentaire" => $commentaire
+        );
+    }
+
+} elseif($id_prj) {
+    $query = "CALL acc_Get_Prj('$id_prj', '$id_jeune')";
+
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id_prj = $row['id'];
+        $id_jeune = $row['jeune_id'];
+        $nom = $row['nom'];
+        $depart = $row['depart'];
+        $retour = $row['retour'];
+
+        $return_arr[] = array(
+            "id_prj" => $id_prj,
+            "id_jeune" => $id_jeune,
+            "nom" => $nom,
+            "depart" => $depart,
+            "retour" => $retour
         );
     }
 

@@ -43,42 +43,21 @@
 
     </div>
 
-
     <!--                                                                                                              Projets-->
     <div id="divProjet" class="d-none">
-        <h2 class="marine">Projets &nbsp;<i id="new_projet" class="fas fa-plus-circle fa-lg marine pointeur" data-bs-toggle="modal" data-bs-target="#modal_projet" data-toggle="tooltip" data-placement="top" title="Ajouter/Supprimer un projet"></i></h2>
+        <h2 class="marine">Projets &nbsp;<i id="new_prj" class="fas fa-plus-circle fa-lg marine pointeur" data-bs-toggle="modal" data-bs-target="#modal_prj_create" data-toggle="tooltip" data-placement="top" title="Ajouter/Supprimer un projet"></i></h2>
         <table class="table mb-5">
             <thead>
                 <tr>
                     <th class="d-none" scope="col">#</th>
                     <th scope="col" style="width:400px">Type</th>
-                    <th scope="col" style="width:600px">Intitulé</th>
+                    <th scope="col" style="width:550px">Intitulé</th>
                     <th scope="col">Pays</th>
                     <th scope="col">Départ</th>
                     <th scope="col">Retour</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th class="d-none" scope="row">1</th>
-                    <td>WWoofing / HelpX / Workaway</td>
-                    <td>Let's be in honey mood !</td>
-                    <td>ROYAUME-UNI</td>
-                    <td>21-02-03</td>
-                    <td>21-04-03</td>
-                </tr>
-                <!-- <tr>
-                    <th class="d-none" scope="row">2</th>
-                    <td>2021-02-02</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th class="d-none" scope="row">3</th>
-                    <td>2021-02-02</td>
-                    <td>@twitter</td>
-                    <td>@twitter</td>
-                </tr> -->
+            <tbody id="tab_prj">
             </tbody>
         </table>
     </div>

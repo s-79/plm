@@ -19,10 +19,17 @@ $(function(){
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE CRÉATION D'UNE ASSOCIATION ENTRE JEUNE ET SENSIBILISATION
+    $("#new_prj").click(function(){
+        //---------------------------------------------------------------------- Réinitialisation du formulaire
+        document.getElementById("form_prj_create").reset();
+        /* --------------------------------------------------------------------- Remplissage de la liste des sensibilisation à associer */
+        ajaxListPrj("#prj_create");
+    });
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON DE CRÉATION D'UNE ASSOCIATION ENTRE JEUNE ET SENSIBILISATION
     $("#new_evt").click(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire
         document.getElementById("form_evt_create").reset();
-        const id = $("#npv_res").val();
         /* --------------------------------------------------------------------- Remplissage de la liste des sensibilisation à associer */
         acc_List_Evt("#evt_create");
     });
@@ -31,7 +38,6 @@ $(function(){
     $("#new_evt2").click(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire
         document.getElementById("form_evt2_create").reset();
-        const id = $("#npv_res").val();
         /* --------------------------------------------------------------------- Remplissage de la liste des ateliers à associer */
         acc_List_Evt2("#evt2_create");
     });
@@ -57,7 +63,18 @@ $(function(){
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 
-    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL D'ASSOCIATION DE PROJET
+    $("#btn_prj_create").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_prj = $("#prj_create").val();
+        const depart = $("#create_depart_prj").val();
+        const retour = $("#create_retour_prj").val();
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et le projet
+        acc_Create_Prj(id_jeune, id_prj, depart, retour);
+    });
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL D'ASSOCIATION EVT
     $("#btn_evt_create").click(function(){
         //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
@@ -67,17 +84,17 @@ $(function(){
         if(vLen("Commentaire",commentaire,255)) acc_Create_Evt(id_jeune, id_evt, commentaire, "evt");
     });
 
-    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT2
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL D'ASSOCIATION EVT2
     $("#btn_evt2_create").click(function(){
         //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
         const id_evt2 = $("#evt2_create").val();
         const commentaire = $("#create_comm_evt2").val();
-        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt2
         if(vLen("Commentaire",commentaire,255)) acc_Create_Evt(id_jeune, id_evt2, commentaire, "evt2");
     });
 
-    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL DE CREATION EVT2
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL D'ASSOCIATION DE RDV
     $("#btn_rdv_create").click(function(){
         //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
@@ -91,7 +108,7 @@ $(function(){
         const commentaires = $("#create_comm_rdv").val();
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
         if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
-        //---------------------------------------------------------------------- Création de l'association entre le jeune et l'evt
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et le rdv
         else {
             if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires);
         };
@@ -109,6 +126,17 @@ $(function(){
         jeune_Update_Acc(id, statut, mob, id_ref);
         $(this).addClass('text-success');
         setTimeout(acc_Check, 1500);
+    });
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LES DATES" DANS LE MODAL PROJET
+    $("#btn_prj_update").click(function(){
+        //---------------------------------------------------------------------- Récupération des données
+        const id_jeune = $("#id").val();
+        const id_prj = $("#update_id_prj").val();
+        const depart = $("#update_depart_prj").val();
+        const retour = $("#update_retour_prj").val();
+        //---------------------------------------------------------------------- Création de l'association entre le jeune et le projet
+        acc_Update_Prj(id_jeune, id_prj, depart, retour);
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LE COMMENTAIRE" DANS LE MODAL EVT M0 ET 1
@@ -154,6 +182,14 @@ $(function(){
     // ------------------------------------------------------------------------- ! ! ! - - D E L E T E-- !!!
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DE MODIFICATION EVT 0 ET 1
+    $('#btn_prj_delete').click(function(){
+        const id_jeune = $("#id").val();
+        const id_prj = $("#update_id_prj").val();
+        //---------------------------------------------------------------------- Suppression de l'association entre le jeune et le projet
+        acc_Delete_Prj(id_jeune, id_prj);
+    })
+
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "SUPPRIMER DU SUIVI" DANS LE MODAL DE MODIFICATION EVT 0 ET 1
     $('#btn_evt_delete').click(function(){
         const id_jeune = $("#id").val();
         const id_evt = $("#update_id_evt").val();
@@ -186,6 +222,8 @@ $(function(){
 const acc_Get = (id) => {
     if(!id) alert("Aucun jeune n'a été séléctionné")
     else {
+        //---------------------------------------------------------------------- Affichage du jeune séléctionné lorsqu'on à vient de la page evt ou prj en cliquant dans le tableau
+        ajaxListNpv("#npv_res", id);
         //---------------------------------------------------------------------- Changement d'interface
         $("#accompagnement").removeClass('d-none');
         $("#form_jeune").addClass('d-none');
@@ -195,6 +233,8 @@ const acc_Get = (id) => {
         $("#tab_rdv").html("");
         //---------------------------------------------------------------------- Récupération du statut du jeune
         jeune_Get_Acc(id);
+        //---------------------------------------------------------------------- TABLEAU PROJETS : Récupération des projets du jeune et remplissage du tableau
+        jeune_Get_Prj(id);
         //---------------------------------------------------------------------- TABLEAU M0, M1 : Récupération des sensibilisation (mission 0 et 1) du jeune et remplissage du tableau
         jeune_Get_Evt(id);
         //---------------------------------------------------------------------- TABLEAU M2 : RRécupération des ateliers collectifs (mission 2) du jeune et remplissage du tableau

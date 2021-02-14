@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste Événement pour l'outil de recherche de la page evt */
-const ajaxListEvt = (liste) => {
+const ajaxListEvt = (liste, id_evt) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
@@ -9,6 +9,7 @@ const ajaxListEvt = (liste) => {
         success: function(response){
             $(liste).html("<option selected value=''>Séléctionner un événement</option>");
             $(liste).append(displayList(response, 1));
+            if(id_evt) $(liste).val(id_evt);
         }
     });
 }

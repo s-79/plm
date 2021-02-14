@@ -178,6 +178,8 @@ $(function(){
 const evt_Get = (id_evt) => {
     if(!id_evt) alert("Aucun événement n'a été séléctionné")
     else {
+        //---------------------------------------------------------------------- Affichage du projet séléctionné lorsqu'on à vient de la page jeune en cliquant dans le tableau
+        ajaxListEvt("#evt_res", id_evt);
         //---------------------------------------------------------------------- Reinitialisation des champs
         $("#type_m1")[0].disabled = false;
         $("#type_m2")[0].disabled = false;

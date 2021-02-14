@@ -52,6 +52,32 @@ const jeune_Get_Acc = (id) => {
 
 //------------------------------------------------------------------------------ !!! REMPLISSAGE DES TABLEAUX !!!
 
+//------------------------------------------------------------------------------ TABLEAU DES PROJETS - Récupération des projets du jeune et remplissage du tableau
+const jeune_Get_Prj = (id) => {
+    $.ajax({
+        url: 'php/acc_Get.php',
+        dataType: 'JSON',
+        data : {id_jeune_prj:id},
+        success: function(response){
+            const len = response.length;
+            let res = "";
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                const type = response[i].type;
+                const intitule = response[i].intitule;
+                const pays = response[i].pays;
+                let depart = response[i].depart;
+                if(!depart)depart="";
+                let retour = response[i].retour;
+                if(!retour)retour="";
+                res += `<tr class="pointeur"><th class="d-none" scope="row">${id}</th><td onclick="id_prj_storage(${id})">${type}</td><td onclick="id_prj_storage(${id})">${intitule}</td><td onclick="id_prj_storage(${id})">${pays}</td><td onclick="prj_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_prj_update">${depart}</td><td onclick="prj_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_prj_update">${retour}</td></tr>`;
+            }
+            // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M0 / M1
+            $("#tab_prj").html(res);
+        }
+    });
+}
+
 //------------------------------------------------------------------------------ TABLEAU M0 et M1 - Récupération des sensibilisation (mission 0 et 1) du jeune et remplissage du tableau
 const jeune_Get_Evt = (id) => {
     $.ajax({
@@ -68,7 +94,7 @@ const jeune_Get_Evt = (id) => {
                 const nom_ville = response[i].nom_ville;
                 let commentaire = response[i].commentaire;
                 if(!commentaire)commentaire="";
-                res += `<tr><th class="d-none" scope="row">${id}</th><td>${dat}</td><td style="cursor: pointer" onclick="id_evt_storage(${id})">${type}</td><td style="cursor: pointer" onclick="evt_Get(${id},'evt')" data-bs-toggle="modal" data-bs-target="#modal_evt_update">${commentaire}</td><td>${nom_ville}</td></tr>`;
+                res += `<tr class="pointeur"><th class="d-none" scope="row">${id}</th><td onclick="id_evt_storage(${id})">${dat}</td><td onclick="id_evt_storage(${id})">${type}</td><td onclick="evt_Get(${id},'evt')" data-bs-toggle="modal" data-bs-target="#modal_evt_update">${commentaire}</td><td onclick="id_evt_storage(${id})">${nom_ville}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M0 / M1
             $("#tab_evt").html(res);
@@ -91,7 +117,7 @@ const jeune_Get_Evt2 = (id) => {
                 const type = response[i].type;
                 let commentaire = response[i].commentaire;
                 if(!commentaire)commentaire="";
-                res += `<tr><th class="d-none" scope="row">${id}</th><td>${dat}</td><td style="cursor: pointer" onclick="id_evt_storage(${id})">${type}</td><td style="cursor: pointer" onclick="evt_Get(${id}, 'evt2')" data-bs-toggle="modal" data-bs-target="#modal_evt2_update">${commentaire}</td></tr>`;
+                res += `<tr class="pointeur"><th class="d-none" scope="row">${id}</th><td onclick="id_evt_storage(${id})">${dat}</td><td onclick="id_evt_storage(${id})">${type}</td><td onclick="evt_Get(${id}, 'evt2')" data-bs-toggle="modal" data-bs-target="#modal_evt2_update">${commentaire}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M2
             $("#tab_evt2").html(res);
@@ -118,7 +144,7 @@ const jeune_Get_Rdv = (id) => {
                 if(!intervenant)intervenant="";
                 let commentaires = response[i].commentaires;
                 if(!commentaires)commentaires="";
-                res += `<tr style="cursor: pointer" onclick="rdv_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_rdv_update"><th class="d-none" scope="row">${id}</th><td>${dat}</td><td>${type}</td><td>${commentaires}</td><td>${intervenant}</td><td>${duree}</td></tr>`;
+                res += `<tr class="pointeur" onclick="rdv_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_rdv_update"><th class="d-none" scope="row">${id}</th><td>${dat}</td><td>${type}</td><td>${commentaires}</td><td>${intervenant}</td><td>${duree}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M2
             $("#tab_rdv").html(res);
@@ -127,6 +153,27 @@ const jeune_Get_Rdv = (id) => {
 }
 
 //------------------------------------------------------------------------------ !!! REMPLISSAGE DES CHAMPS DANS LES POP-UP DE MODIFICATIONS !!!
+
+/* ---------------------------------------------------------------------------- Fonction appelée en cliquant sur les lignes du tableau dans jeune_Get_Prj */
+/* ---------------------------------------------------------------------------- Récupération des données à modifier pour les pop-up prj */
+const prj_Get = (id_prj) => {
+    const id_jeune = $("#id").val();
+    $.ajax({
+        url: 'php/acc_Get.php',
+        dataType: 'JSON',
+        data : {id_prj:id_prj, id_jeune:id_jeune},
+        success: function(response){
+            const id_prj = response[0].id_prj;
+            const nom = response[0].nom;
+            const depart = response[0].depart;
+            const retour = response[0].retour;
+            $("#update_id_prj").val(id_prj);
+            $("#update_nom_prj").val(nom);
+            $("#update_depart_prj").val(depart);
+            $("#update_retour_prj").val(retour);
+        }
+    });
+}
 
 /* ---------------------------------------------------------------------------- Fonction appelée en cliquant sur les lignes du tableau dans jeune_Get_Evt et jeune_Get_Evt2 */
 /* ---------------------------------------------------------------------------- Récupération des données à modifier pour les pop-up evt et evt2 */
@@ -178,6 +225,33 @@ const rdv_Get = (id) => {
 }
 
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
+
+
+//------------------------------------------------------------------------------ Création d'une association entre un jeune et un événement Mission 0 ou 1
+const acc_Create_Prj = (id_jeune, id_prj, depart, retour) => {
+    $.ajax({
+        //---------------------------------------------------------------------- Vérification : L'association existe-t-elle déjà dans la BDD ?
+        url: "php/exist.php",
+        dataType: 'JSON',
+        data : {id_acc_jeune:id_jeune, id_acc_prj:id_prj},
+        success: function(response){
+            const exist = parseInt(response[0].exist);
+            if(exist === 1) alert("Création impossible : Ce projet est déjà associé au jeune dans la base de données.");
+            else {
+                $.ajax({
+                    url: 'php/acc.php',
+                    dataType: 'JSON',
+                    data : {id_jeune:id_jeune, id_prj:id_prj, depart:depart, retour:retour},
+                    complete: function(){
+                        $("#modal_prj_create").modal('hide')
+                        //------------------------------------------------------ TABLEAU PROJETS : Réinitialisation du tableau des projets dans le suivi du jeune
+                        jeune_Get_Prj(id_jeune);
+                    }
+                });
+            }
+        }
+    });
+}
 
 //------------------------------------------------------------------------------ Création d'une association entre un jeune et un événement Mission 0 ou 1
 const acc_Create_Evt = (id_jeune, id_evt, commentaire, mission) => {
@@ -249,6 +323,20 @@ const jeune_Update_Acc = (id, statut, mob, id_ref) => {
     });
 }
 
+//------------------------------------------------------------------------------ Modification du commentaire dans l'association entre un jeune et un projet
+const acc_Update_Prj = (id_jeune, id_prj, depart, retour) => {
+    $.ajax({
+        url: 'php/acc.php',
+        dataType: 'JSON',
+        data : {id_jeune:id_jeune, id_prj_up:id_prj, depart:depart, retour:retour},
+        complete: function(){
+            $("#modal_prj_update").modal('hide')
+            //----------------------------------------------------------------- TABLEAU PROJETS : Réinitialisation du tableau des projets dans le suivi du jeune
+            jeune_Get_Prj(id_jeune);
+        }
+    });
+}
+
 //------------------------------------------------------------------------------ Modification du commentaire dans l'association entre un jeune et un événement
 const acc_Update_Evt = (id_jeune, id_evt, commentaire, mission) => {
     $.ajax({
@@ -284,6 +372,20 @@ const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, visio, duree, commentai
 }
 
 // ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
+
+const acc_Delete_Prj = (id_jeune, id_prj) => {
+    //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
+    $.ajax({
+        url: "php/acc.php",
+        dataType: 'JSON',
+        data : {id_jeune:id_jeune, id_prj_del:id_prj},
+        complete: function() {
+            $("#modal_prj_update").modal('hide')
+            //----------------------------------------------------------------- TABLEAU PROJETS : Réinitialisation du tableau des projets dans le suivi du jeune
+            jeune_Get_Prj(id_jeune);
+        }
+    });
+}
 
 const acc_Delete_Evt = (id_jeune, id_evt, mission) => {
     //------------------------------------------------------------------------- Envoie de l'id vers la BDD pour suppression
@@ -329,7 +431,12 @@ const acc_Delete_Rdv = (id_jeune, id_rdv) => {
 }
 
 // ----------------------------------------------------------------------------- Stockage de l'id des événements et envoie vers la page evt
-const id_evt_storage = (id, location) => {
+const id_evt_storage = (id) => {
     sessionStorage.setItem('id_evt', id);
     document.location='evt.php';
+}
+// ----------------------------------------------------------------------------- Stockage de l'id des projets et envoie vers la page prj
+const id_prj_storage = (id) => {
+    sessionStorage.setItem('id_prj', id);
+    document.location='prj.php';
 }
