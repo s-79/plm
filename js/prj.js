@@ -28,6 +28,9 @@ $(function(){
 
     //-------------------------------------------------------------------------- ÉVENEMENT CLICK SUR LE BOUTONS AFFICHER LES INFORMATIONS
     $("#infos").click(function(){
+        //---------------------------------------------------------------------- Inversement des tableaux
+        $("#div_agenda").addClass("d-none");
+        $("#div_tableau, #form_prj").removeClass("d-none");
         //---------------------------------------------------------------------- Récupération de l'id du projet séléctionné
         const id_prj = $("#prj_res").val();
         //---------------------------------------------------------------------- (fonction à la fin) Récupération des infos du projet séléctionné
@@ -55,6 +58,16 @@ $(function(){
         //---------------------------------------------------------------------- Récupération du nom du pays
         pays_Change(id_pays);
     });
+
+    $("#periode").click(function(){
+        //---------------------------------------------------------------------- Inversement des tableaux
+        $("#div_agenda").toggleClass("d-none");
+        $("#div_tableau, #form_prj").toggleClass("d-none");
+        //---------------------------------------------------------------------- Vidage puis remplissage du tableau avec dates des projets à venir
+        ajaxPrjAgenda("#agenda");
+    });
+
+
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E -- !!!
 

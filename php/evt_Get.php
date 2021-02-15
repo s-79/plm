@@ -8,6 +8,7 @@ $id = mysqli_real_escape_string($con, $_GET['id']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_evt_int = mysqli_real_escape_string($con, $_GET['id_evt_int']);
 $uuid = mysqli_real_escape_string($con, $_GET['uuid']);
+$id_int = mysqli_real_escape_string($con, $_GET['id_int']);
 
 // ----------------------------------------------------------------------------- Récupération des infos de l'événement en fonction de l'id
 if($id) {
@@ -89,19 +90,45 @@ if($id) {
         );
     }
 
-    // ----------------------------------------------------------------------------- Récupération de l'id de l'événement nouvellement créé
+// ----------------------------------------------------------------------------- Récupération de l'id de l'événement nouvellement créé
 } elseif($uuid) {
-        $query = "CALL evt_Get_Id('$uuid')";
+    $query = "CALL evt_Get_Id('$uuid')";
 
-        $result = mysqli_query($con,$query);
+    $result = mysqli_query($con,$query);
 
-        while($row = mysqli_fetch_array($result)){
-            $id = $row['id'];
+    while($row = mysqli_fetch_array($result)){
+        $id = $row['id'];
 
-            $return_arr[] = array(
-                "id" => $id
-            );
-        }
+        $return_arr[] = array(
+            "id" => $id
+        );
+    }
+
+// ----------------------------------------------------------------------------- Remplissage des données d'un intervenant dans le moadal update_int
+} elseif($id_int) {
+    $query = "CALL int_Get('$id_int')";
+
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id = $row['id'];
+        $prenom_int = $row['prenom_int'];
+        $nom_int = $row['nom_int'];
+        $nom = $row['nom'];
+        $actif = $row['actif'];
+        $volontaire = $row['volontaire'];
+        $ref = $row['ref'];
+
+        $return_arr[] = array(
+            "id" => $id,
+            "prenom_int" => $prenom_int,
+            "nom_int" => $nom_int,
+            "nom" => $nom,
+            "actif" => $actif,
+            "volontaire" => $volontaire,
+            "ref" => $ref
+        );
+    }
 }
 
 if($return_arr) {echo json_encode($return_arr);}

@@ -7,10 +7,14 @@ const ajaxListPrj = (liste, id_projet) => {
         dataType: 'JSON',
         data : {v_prj:"v_prj"},
         success: function(response){
-            $(liste).html("<option selected value='0'>Séléctionner un projet</option>")
+            $(liste).html("<option selected value=''>Séléctionner un projet</option>")
             $(liste).append(displayList(response));
-            if(id_projet) $(liste).val(id_projet);
+            if(id_projet) {
+                sleep(50).then(() => {
+                    $(liste).val(id_projet);
+                });
             }
+        }
     });
 }
 
@@ -77,6 +81,11 @@ const ajaxPrjGet = (id_prj) => {
             const nb_participants = response[0].nb_participants;
             const pays_participants = response[0].pays_participants;
 
+            //---------------------------------------------------------------------- Inversement des tableaux si on vient du calendrier
+            $("#div_agenda").addClass("d-none");
+            $("#div_tableau, #form_prj").removeClass("d-none");
+            $("#prj_res").val(id);
+
             $("#id_prj").val(id);
             $("#type").val(type);
             if (type === "Échange de jeunes") {
@@ -118,6 +127,45 @@ const ajaxPrjJeune = (id_prj, liste) => {
                 res += `<tr style="cursor: pointer" onclick="id_jeune_storage(${id})"><th scope="row">${id}</th><td>${prenom}</td><td>${nom}</td><td>${nom_ville}</td><td>${acc}</td></tr>`;
             }
             $(liste).append(res);
+        }
+    });
+}
+
+//----------------------------------------------------------------------------- Remplissage de l'agenda
+const ajaxPrjAgenda = (liste) => {
+    $.ajax({
+        url: 'php/prj_Get.php',
+        dataType: 'JSON',
+        data : {agenda:"agenda"},
+        success: function(response){
+            const len = response.length;
+            let res = "";
+            let lst_mois = {"01":"janvier", "02":"février", "03":"mars", "04":"avril", "05":"mai", "06":"juin", "07":"juillet", "08":"août", "09":"septembre", "10":"octobre", "11":"novembre", "12":"décembre"}
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                const debut = response[i].debut;
+                const pays = response[i].pays;
+                const type = response[i].type;
+                const intitule = response[i].intitule;
+                const fin = response[i].fin;
+                const num_mois = debut.slice(5,7);
+                const mois = lst_mois[num_mois];
+                if(mois) {
+                    res += `<tr"><td class="text-uppercase fw-bold" colspan="4">${mois}</td></tr>`;
+                    delete lst_mois[num_mois];
+                }
+                if(type === "Volontariat CES court terme") {
+                    res += `<tr style="cursor: pointer" onclick="from_calendar(${id}, '#tableau')" class="table-warning"><th scope="row" class="d-none">${id}</th><td>${type}</td><td>${intitule}</td><td>${pays}</td><td>${debut}</td><td>${fin}</td></tr>`;
+                }
+                else if(type === "Volontariat CES long terme") {
+                    res += `<tr style="cursor: pointer" onclick="from_calendar(${id}, '#tableau')" class="table-info"><th scope="row" class="d-none">${id}</th><td>${type}</td><td>${intitule}</td><td>${pays}</td><td>${debut}</td><td>${fin}</td></tr>`;
+                }
+                else if(type === "Échange de jeunes") {
+                    res += `<tr style="cursor: pointer" onclick="from_calendar(${id}, '#tableau')" class="table-danger"><th scope="row" class="d-none">${id}</th><td>${type}</td><td>${intitule}</td><td>${pays}</td><td>${debut}</td><td>${fin}</td></tr>`;
+                }
+                else {res += `<tr style="cursor: pointer" onclick="from_calendar(${id}, '#tableau')"><th scope="row" class="d-none">${id}</th><td>${type}</td><td>${intitule}</td><td>${pays}</td><td>${debut}</td><td>${fin}</td></tr>`;}
+            }
+            $(liste).html(res);
         }
     });
 }
@@ -193,8 +241,7 @@ const prj_Delete = (id) => {
 
 // ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
 
-// ----------------------------------------------------------------------------- Stockage de l'id du jeune et envoie vers la page jeune (acc)
-id_jeune_storage = (id, location) => {
-    sessionStorage.setItem('id_jeune', id);
-    document.location='index.php';
+const from_calendar = (id, liste) => {
+    ajaxPrjGet(id);
+    ajaxPrjJeune(id, liste);
 }

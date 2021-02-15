@@ -45,14 +45,16 @@ const part_Create = (nom, contact, tel, mail, commentaires) => {
 /* ---------------------------------------------------------------------------- Changement dans le menu SELECT du modal update */
 const part_Change = (id) => {
     $.ajax({
-        url: 'php/part_Get.php',
+        url: 'php/prj_Get.php',
         dataType: 'JSON',
-        data : {id:id},
+        data : {id_part:id},
         success: function(response){
+            const nom = response[0].nom;
             const contact = response[0].contact;
             const tel = response[0].tel;
             const mail = response[0].mail;
             const commentaires = response[0].commentaires;
+            $("#update_nom_part").val(nom);
             $("#update_contact_part").val(contact);
             $("#update_tel_part").val(tel);
             $("#update_mail_part").val(mail);
@@ -67,7 +69,8 @@ const part_Update = (id, nom, contact, tel, mail, commentaires) => {
         dataType: 'JSON',
         data : {id:id, nom:nom, contact:contact, tel:tel, mail:mail, commentaires:commentaires},
         complete: function(){
-            alert("le partenaire a bien été modifié.");
+            alert("Le partenaire a bien été modifié.");
+            ajaxListPart("#partenaire");
             $('#modal_part_update').modal('hide');
         }
     });
@@ -91,6 +94,7 @@ const part_Delete = (id) => {
                     if(exist === 1) alert("Suppression impossible : des projets sont encore reliés à ce partenaire dans la base de données.");
                     else {
                         alert("le partenaire a bien été supprimé de la base de données.");
+                        ajaxListPart("#partenaire");
                         $('#modal_part_update').modal('hide');
                     }
                 }

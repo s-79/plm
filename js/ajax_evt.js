@@ -9,7 +9,11 @@ const ajaxListEvt = (liste, id_evt) => {
         success: function(response){
             $(liste).html("<option selected value=''>Séléctionner un événement</option>");
             $(liste).append(displayList(response, 1));
-            if(id_evt) $(liste).val(id_evt);
+            if(id_evt) {
+                sleep(50).then(() => {
+                    $(liste).val(id_evt);
+                });
+            }
         }
     });
 }
@@ -281,7 +285,7 @@ const evt_Delete = (id) => {
 // ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
 
 // ----------------------------------------------------------------------------- Stockage de l'id du jeune et envoie vers la page jeune (acc)
-let id_jeune_storage = (id, location) => {
+let id_jeune_storage = (id) => {
     sessionStorage.setItem('id_jeune', id);
     document.location='index.php';
 }

@@ -227,10 +227,6 @@ const acc_Get = (id) => {
         //---------------------------------------------------------------------- Changement d'interface
         $("#accompagnement").removeClass('d-none');
         $("#form_jeune").addClass('d-none');
-        //---------------------------------------------------------------------- Réinitialisation des tableaux
-        $("#tab_evt").html("");
-        $("#tab_evt2").html("");
-        $("#tab_rdv").html("");
         //---------------------------------------------------------------------- Récupération du statut du jeune
         jeune_Get_Acc(id);
         //---------------------------------------------------------------------- TABLEAU PROJETS : Récupération des projets du jeune et remplissage du tableau

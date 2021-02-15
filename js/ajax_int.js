@@ -59,9 +59,9 @@ const int_Create = (prenom_nom, prenom, nom, actif, volontaire, ref) => {
 /* ---------------------------------------------------------------------------- Changement dans le menu SELECT du menu update */
 const int_Change = (id) => {
     $.ajax({
-        url: 'php/int_Get.php',
+        url: 'php/evt_Get.php',
         dataType: 'JSON',
-        data : {id:id},
+        data : {id_int:id},
         success: function(response){
             const prenom_int = response[0].prenom_int;
             const nom_int = response[0].nom_int;

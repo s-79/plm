@@ -17,6 +17,10 @@ include("header.php"); ?>
     <div class="col-5 col-lg-2 my-4 mx-1 text-center">
         <button type="button" id="infos" class="btn btn-primary bg-bleu btn-bleu marine">Afficher les informations</button>
     </div>
+    <div class="col-5 col-lg-2 my-4 mx-1 text-center"><button type="button" id="periode" class="btn btn-warning" style="min-width:15em;">Calendrier des projets <i class="far fa-calendar-alt fa-lg ps-2"></i></button>
+    </div>
+
+
 </div>
 
 <form id="form_prj">
@@ -139,8 +143,29 @@ include("header.php"); ?>
     </div>
 </div>
 </form>
-<!--                                                                             Tableau -->
-<div class="container">
+
+<!--                                                                             Agenda -->
+<div id="div_agenda" class="container d-none">
+<div class="row justify-content-center mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="d-none" scope="col" style="width:130px">#</th>
+                <th scope="col">Type</th>
+                <th scope="col">Intitulé</th>
+                <th scope="col">Pays</th>
+                <th scope="col" style="width:130px">Début</th>
+                <th scope="col" style="width:130px">Fin</th>
+            </tr>
+        </thead>
+        <tbody id="agenda">
+        </tbody>
+    </table>
+</div>
+</div>
+
+<!--                                                                             Tableau des jeunes -->
+<div id="div_tableau" class="container">
 <div class="row justify-content-center mt-5">
     <table class="table table-striped">
         <thead>
@@ -234,6 +259,10 @@ include("header.php"); ?>
                         <label for="select_nom_part">Séléctionner le partenaire à modifier</label>
                     </div>
                     <div class="form-floating mx-3 mt-3">
+                        <input type="text" class="form-control" id="update_nom_part" placeholder="Nom du partenaire">
+                        <label for="update_nom_part">Nom du partenaire</label>
+                    </div>
+                    <div class="form-floating mx-3 mt-3">
                         <input type="text" class="form-control" id="update_contact_part" placeholder="Nom du contact">
                         <label for="update_contact_part">Nom du contact</label>
                     </div>
@@ -263,6 +292,7 @@ include("header.php"); ?>
 <script src="js/ajax_prj.js"></script>
 <script src="js/prj.js"></script>
 <script src="js/ajax_part.js"></script>
+<script src="js/ajax_evt.js"></script>
 <script src="js/part.js"></script>
 <script src="js/functions.js"></script>
 

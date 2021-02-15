@@ -19,9 +19,9 @@ const ajaxListVille = (liste, id_ville) => {
 /* ----------------------------------------------------------------------------- Changement dans le menu SELECT */
 const contrat_ville_Change = (id_ville) => {
     $.ajax({
-        url: "php/ville_contrat.php",
+        url: "php/jeune_Get.php",
         dataType: 'JSON',
-        data : {id_ville:id_ville},
+        data : {id_ville_contrat:id_ville},
         success: function(response){
             const contrat_ville = response[0].contrat_ville;
             const nom_ville = response[0].nom_ville;

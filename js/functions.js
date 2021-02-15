@@ -19,6 +19,11 @@ const displayList = (response, sub) => {
     return res;
 }
 
+/* ----------------------------------------------------------------------------- Asynchrone */
+const sleep = ms => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 /* ----------------------------------------------------------------------------- Mettre la 1ère lettre en majuscule */
 const strUpFirst = a => {
     return (a+'').charAt(0).toUpperCase()+a.substr(1);

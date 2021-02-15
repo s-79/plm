@@ -45,26 +45,27 @@ $(function(){
     })
 
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON MODIFIER UN PARTENAIRE
-    // $('#part_update').click(function(){
-    //     const id = $('#select_nom_part').val();
-    //     const type = $('#update_type_part').val();
-    //     const nom = $('#update_nom_part').val();
-    //     if(!id) alert("Aucun partenaire n'a été séléctionné");
-    //     else {
-    //         if(!type) alert("Aucun type de partenaire n'a été séléctionné");
-    //         // ------------------------------------------------------------- Envoies des données à modifier vers la BDD après vérif de la longueur du nom
-    //         else {
-    //             if(vLen("Nom du partenaire",nom,100)) part_Update(id, nom, type);
-    //         }
-    //     }
-    // })
+    $('#part_update').click(function(){
+        const id = $('#select_nom_part').val();
+        const nom = $("#update_nom_part").val();
+        const contact = $("#update_contact_part").val();
+        const tel = $("#update_tel_part").val();
+        const mail = $("#update_mail_part").val();
+        const commentaires = $("#update_comm_part").val();
+        if(!id) alert("Aucun partenaire n'a été séléctionné");
+        else {
+            if(vLen("Nom de la structure partenaire",nom,100) && vLen("Nom du contact",contact,100) && vLen("Téléphone",tel,100) && vLen("Email",mail,100) && vLen("Commentaires",commentaires,255)) {
+                part_Update(id, nom, contact, tel, mail, commentaires);
+            }
+        }
+    })
     // ------------------------------------------------------------------------- ! ! ! - - D E L E T E- - ! ! !
 
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON SUPPRIMER UN PARTENAIRE
-    // $('#part_delete').click(function(){
-    //     const id = $('#select_nom_part').val();
-    //     if(!id) alert("Aucun partenaire n'a été séléctionné")
-    //     // --------------------------------------------------------------------- Envoies de l'id à supprimer vers la BDD & Vérification de la suppression
-    //     else {part_Delete(id);}
-    // })
+    $('#part_delete').click(function(){
+        const id = $('#select_nom_part').val();
+        if(!id) alert("Aucun partenaire n'a été séléctionné")
+        // --------------------------------------------------------------------- Envoies de l'id à supprimer vers la BDD & Vérification de la suppression
+        else {part_Delete(id);}
+    })
 });
