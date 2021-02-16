@@ -89,7 +89,7 @@ include("header.php"); ?>
         <div class="form-floating mx-3 mt-3">
             <select class="form-select" id="ville" aria-label="Ville">
             </select>
-            <label for="ville">Ville</label>
+            <label for="ville">Ville *</label>
         </div>
         <!--                                                                    Div invisible pour récup nom_ville -->
         <!-- <div class="form-floating mx-3 mt-3 d-none">
@@ -175,12 +175,12 @@ include("header.php"); ?>
 </div>
 </form>
 <!--                                                                             Tableau -->
-<div class="container">
+<div id="div_tableau" class="container">
 <div class="row justify-content-center mt-5">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col" style="width:130px">#</th>
+                <th class="d-none" scope="col" style="width:130px">#</th>
                 <th scope="col" style="width:130px">Prénom</th>
                 <th scope="col" style="width:130px">Nom</th>
                 <th scope="col" style="width:130px">Ville</th>
@@ -188,6 +188,25 @@ include("header.php"); ?>
             </tr>
         </thead>
         <tbody id="tableau">
+        </tbody>
+    </table>
+</div>
+</div>
+
+<!--                                                                             Tableau Pro -->
+<div id="div_tableau_pro" class="container d-none">
+<div class="row justify-content-center mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="d-none" scope="col" style="width:130px">#</th>
+                <th scope="col" style="width:130px">Prénom</th>
+                <th scope="col" style="width:130px">Nom</th>
+                <th scope="col" style="width:130px">Structure</th>
+                <th scope="col" style="width:130px">Ville</th>
+            </tr>
+        </thead>
+        <tbody id="tableau_pro">
         </tbody>
     </table>
 </div>

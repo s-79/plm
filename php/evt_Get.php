@@ -6,6 +6,7 @@ $return_arr = array();
 
 $id = mysqli_real_escape_string($con, $_GET['id']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
+$id_evt_pro = mysqli_real_escape_string($con, $_GET['id_evt_pro']);
 $id_evt_int = mysqli_real_escape_string($con, $_GET['id_evt_int']);
 $uuid = mysqli_real_escape_string($con, $_GET['uuid']);
 $id_int = mysqli_real_escape_string($con, $_GET['id_int']);
@@ -68,6 +69,29 @@ if($id) {
             "acc" => $acc
         );
     }
+
+// ----------------------------------------------------------------------------- Récupération de la liste des jeunes qui ont participé à l'événement en fonction de l'id
+} elseif($id_evt_pro) {
+    $query = "CALL evt_Get_Pro('$id_evt_pro')";
+
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $id = $row['id'];
+        $prenom = $row['prenom'];
+        $nom = $row['nom_pro'];
+        $structure = $row['nom_orga'];
+        $ville = $row['nom_ville'];
+
+        $return_arr[] = array(
+            "id" => $id,
+            "prenom" => $prenom,
+            "nom" => $nom,
+            "structure" => $structure,
+            "ville" => $ville
+        );
+    }
+
 // ----------------------------------------------------------------------------- Récupération de la liste des intervenants qui ont participé à l'événement en fonction de l'id
 } elseif($id_evt_int) {
     $query = "CALL evt_Get_Inter('$id_evt_int')";

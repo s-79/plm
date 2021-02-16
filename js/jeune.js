@@ -9,7 +9,7 @@ $(function(){
             jeune_Search(search);
         } else {
             //------------------------------------------------------------------ Remplissage du champs de recherche de jeunes
-            $("#npv_res").html("<option selected value=''>Séléctionner un jeune</option>");
+            $("#npv_res").html("<option selected value=''>Séléctionner un.e jeune</option>");
             ajaxListNpv("#npv_res");
         }
     });
@@ -17,7 +17,7 @@ $(function(){
     //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
     acc_List_Evt("#sensibilisation");
 
-    //-------------------------------------------------------------------------- Remplissage du champs de recherche de jeunes
+    //-------------------------------------------------------------------------- Remplissage de la liste des sensibilisations
     ajaxListNpv("#npv_res");
 
     //-------------------------------------------------------------------------- Remplissage de la liste des villes

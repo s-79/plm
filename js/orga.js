@@ -56,8 +56,8 @@ $(function(){
     // ------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
     //-------------------------------------------------------------------------- EVENEMENT CHANGE LORS DE LA SELECTION D'UN ORGANISME DANS LE MODAL DE MODIFICATION
-    $('#select_nom_orga').change(function(){
-        const id = $('#select_nom_orga').val();
+    $('#select_nom_orga, #nom_orga').change(function(){
+        const id = $(this).val();
         if(id) orga_Change(id);
     })
 

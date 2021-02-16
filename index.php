@@ -56,14 +56,13 @@
         </div>
         <!--                                                                                                        Récupération de l'id dans un input invisible -->
         <input type="text" class="form-control d-none" id="id">
-
-        <div class="form-floating mx-3 mt-3">
-                <input type="text" class="form-control" id="nom" placeholder="Nom *">
-                <label for="nom">Nom <span class="rose-bold">*</span></label>
-        </div>
         <div class="form-floating mx-3 mt-3">
             <input type="text" class="form-control" id="prenom" placeholder="Prénom *">
             <label for="prenom">Prénom <span class="rose-bold">*</span></label>
+        </div>
+        <div class="form-floating mx-3 mt-3">
+                <input type="text" class="form-control" id="nom" placeholder="Nom *">
+                <label for="nom">Nom <span class="rose-bold">*</span></label>
         </div>
         <div class="form-floating mx-3 mt-3">
             <input type="date" class="form-control" id="ddn" placeholder="Date de naissance">
@@ -296,7 +295,10 @@
 </div>
 </form>
 
-<?php include("modal.php"); ?>
+<?php
+include("modal_orga.php");
+include("modal_acc.php"); 
+?>
 <!--                                                                                                               Scripts -->
 <script src="js/jeune.js"></script>
 <script src="js/ajax_jeune.js"></script>

@@ -20,6 +20,8 @@ $nom_prj = mysqli_real_escape_string($con, $_GET['nom_prj']);
 $id_acc_jeune = mysqli_real_escape_string($con, $_GET['id_acc_jeune']);
 $id_acc_evt = mysqli_real_escape_string($con, $_GET['id_acc_evt']);
 $id_acc_prj = mysqli_real_escape_string($con, $_GET['id_acc_prj']);
+$nom_pro = mysqli_real_escape_string($con, $_GET['nom_pro']);
+$id_pro = mysqli_real_escape_string($con, $_GET['id_pro']);
 
 if($id_orga) {
     $query = "SELECT orga_ExistId('$id_orga')";
@@ -59,6 +61,12 @@ if($id_orga) {
 
 } elseif($nom_prj) {
     $query = "SELECT prj_ExistNom('$nom_prj')";
+
+} elseif($id_pro) {
+    $query = "SELECT pro_ExistId('$id_pro')";
+
+} elseif($nom_pro) {
+    $query = "SELECT pro_ExistNom('$nom_pro')";
 
 } elseif($id_acc_evt) {
     $query = "SELECT participer_Exist('$id_acc_jeune', '$id_acc_evt')";

@@ -111,6 +111,18 @@ const ajaxEvtGet = (id_evt) => {
                 $("#type_m2").val(type);
                 $("#type_m2")[0].disabled = false;
             }
+            if(type === "Webinaire pros" || type === "Sensibilisation pros") {
+                $("#div_tableau_pro").removeClass("d-none");
+                $("#div_tableau").addClass("d-none");
+                $("#tableau_pro").html("");
+                ajaxEvtPro(id, "#tableau_pro");
+            } else {
+                //-------------------------------------------------------------- Vidage puis remplissage du tableau avec les noms des jeunes qui ont participé à l'événement
+                $("#div_tableau").removeClass("d-none");
+                $("#div_tableau_pro").addClass("d-none");
+                $("#tableau").html("");
+                ajaxEvtJeune(id, "#tableau");
+            }
             $("#date").val(dat);
             $("#intitule").val(intitule);
             $("#visio").prop('checked', false);
@@ -139,7 +151,29 @@ const ajaxEvtJeune = (id_evt, liste) => {
                 const nom = response[i].nom;
                 const nom_ville = response[i].nom_ville;
                 const acc = response[i].acc;
-                res += `<tr style="cursor: pointer" onclick="id_jeune_storage(${id})"><th scope="row">${id}</th><td>${prenom}</td><td>${nom}</td><td>${nom_ville}</td><td>${acc}</td></tr>`;
+                res += `<tr style="cursor: pointer" onclick="id_jeune_storage(${id})"><th class="d-none" scope="row">${id}</th><td>${prenom}</td><td>${nom}</td><td>${nom_ville}</td><td>${acc}</td></tr>`;
+            }
+            $(liste).append(res);
+        }
+    });
+}
+
+//----------------------------------------------------------------------------- Remplissage du tableau des pro en fonction de l'id de l'événement
+const ajaxEvtPro = (id_evt, liste) => {
+    $.ajax({
+        url: "php/evt_Get.php",
+        dataType: 'JSON',
+        data : {id_evt_pro:id_evt},
+        success: function(response){
+            const len = response.length;
+            let res = "";
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                const prenom = response[i].prenom;
+                const nom = response[i].nom;
+                const structure = response[i].structure;
+                const ville = response[i].ville;
+                res += `<tr style="cursor: pointer" onclick="id_pro_storage(${id})"><th class="d-none" scope="row">${id}</th><td>${prenom}</td><td>${nom}</td><td>${structure}</td><td>${ville}</td></tr>`;
             }
             $(liste).append(res);
         }
@@ -285,7 +319,13 @@ const evt_Delete = (id) => {
 // ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
 
 // ----------------------------------------------------------------------------- Stockage de l'id du jeune et envoie vers la page jeune (acc)
-let id_jeune_storage = (id) => {
+const id_jeune_storage = (id) => {
     sessionStorage.setItem('id_jeune', id);
     document.location='index.php';
+}
+
+// ----------------------------------------------------------------------------- Stockage de l'id du pro et envoie vers la page pro
+const id_pro_storage = (id) => {
+    sessionStorage.setItem('id_pro', id);
+    document.location='pro.php';
 }

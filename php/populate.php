@@ -15,6 +15,7 @@ $v_acc_list_evt2 = mysqli_real_escape_string($con, $_GET['v_acc_list_evt2']);
 $v_pays = mysqli_real_escape_string($con, $_GET['v_pays']);
 $v_part = mysqli_real_escape_string($con, $_GET['v_part']);
 $v_prj = mysqli_real_escape_string($con, $_GET['v_prj']);
+$v_pro = mysqli_real_escape_string($con, $_GET['v_pro']);
 $orga_type = mysqli_real_escape_string($con, $_GET['orga_type']);
 $v_ville = mysqli_real_escape_string($con, $_GET['v_ville']);
 $id_ville_qpv = mysqli_real_escape_string($con, $_GET['id_ville']);
@@ -22,6 +23,9 @@ $id_pays = mysqli_real_escape_string($con, $_GET['id_pays']);
 $texte = mysqli_real_escape_string($con, $_GET['texte']);
 $texte_evt = mysqli_real_escape_string($con, $_GET['texte_evt']);
 $texte_prj = mysqli_real_escape_string($con, $_GET['texte_prj']);
+$texte_pro = mysqli_real_escape_string($con, $_GET['texte_pro']);
+$v_pro_list_evt = mysqli_real_escape_string($con, $_GET['v_pro_list_evt']);
+
 
 if($v_npv) {$query = "CALL npv_List ()";
 
@@ -46,6 +50,9 @@ if($v_npv) {$query = "CALL npv_List ()";
 } elseif($v_acc_list_evt2) {
     $query = "CALL acc_List_Evt2 ()";
 
+} elseif($v_pro_list_evt) {
+    $query = "CALL pro_List_Evt ()";
+
 } elseif($v_ville) {
     $query = "CALL ville_List ()";
 
@@ -57,6 +64,9 @@ if($v_npv) {$query = "CALL npv_List ()";
 
 } elseif($v_prj) {
     $query = "CALL prj_List ()";
+
+} elseif($v_pro) {
+    $query = "CALL pro_List ()";
 
 } elseif($orga_type) {
     $query = "CALL orga_Type ('$orga_type')";
@@ -80,6 +90,11 @@ if($v_npv) {$query = "CALL npv_List ()";
 } elseif($texte_prj) {
     if(strlen($texte_prj) > 0) {
         $query = "CALL prj_Search ('$texte_prj')";
+    }
+
+} elseif($texte_pro) {
+    if(strlen($texte_pro) > 0) {
+        $query = "CALL pro_Search ('$texte_pro')";
     }
 }
 $result = mysqli_query($con,$query);

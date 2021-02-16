@@ -7,7 +7,8 @@ const ajaxListPrj = (liste, id_projet) => {
         dataType: 'JSON',
         data : {v_prj:"v_prj"},
         success: function(response){
-            $(liste).html("<option selected value=''>Séléctionner un projet</option>")
+            // 0 pour avoir une valeur dans la variable id_projet de evt_Create
+            $(liste).html("<option selected value='0'>Séléctionner un projet</option>")
             $(liste).append(displayList(response));
             if(id_projet) {
                 sleep(50).then(() => {
@@ -242,6 +243,5 @@ const prj_Delete = (id) => {
 // ----------------------------------------------------------------------------- ! ! ! - - F O N C T I O N S - - ! ! !
 
 const from_calendar = (id, liste) => {
-    ajaxPrjGet(id);
-    ajaxPrjJeune(id, liste);
+    prj_Get(id);
 }

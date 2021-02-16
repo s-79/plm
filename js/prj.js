@@ -155,8 +155,8 @@ const prj_Get = (id_prj) => {
         $("#youth_leader")[0].disabled = true;
         $("#nb_part")[0].disabled = true;
         $("#pays_part")[0].disabled = true;
-        $("#partenaire").html("");
-        $("#pays").html("");
+        // $("#partenaire").html("");
+        // $("#pays").html("");
         //---------------------------------------------------------------------- Récupération des données du projet
         ajaxPrjGet(id_prj);
         //---------------------------------------------------------------------- Vidage puis remplissage du tableau avec les noms des jeunes qui ont participé à l'projet

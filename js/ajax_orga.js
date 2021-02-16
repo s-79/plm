@@ -84,6 +84,7 @@ const orga_Change = (id) => {
             const nom_orga = response[0].nom_orga;
             $("#update_type_orga").val(type_orga);
             $("#update_nom_orga").val(nom_orga);
+            $("#nom_orga_none").val(nom_orga);
         }
     });
 }

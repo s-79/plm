@@ -183,12 +183,9 @@ const evt_Get = (id_evt) => {
         //---------------------------------------------------------------------- Reinitialisation des champs
         $("#type_m1")[0].disabled = false;
         $("#type_m2")[0].disabled = false;
-        $("#ville").html("");
+        // $("#ville").html("");
         //---------------------------------------------------------------------- Récupération des données de l'événement
         ajaxEvtGet(id_evt);
-        //---------------------------------------------------------------------- Vidage puis remplissage du tableau avec les noms des jeunes qui ont participé à l'événement
-        $("#tableau").html("");
-        ajaxEvtJeune(id_evt, "#tableau");
         //---------------------------------------------------------------------- Réinitialisation de la liste de tous intervenants et décochage des cases
         ajaxListInter("#inter");
         //---------------------------------------------------------------------- Récupération des intervants liés à cet événement
