@@ -21,13 +21,13 @@
 
         <div class="collapse navbar-collapse justify-content-center" id="navbarsExampleDefault">
             <ul class="navbar-nav nav-pills mb-2 mb-md-0">
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a class="nav-link" href="index.php">&nbsp;&nbsp;<i class="fas fa-child fa-lg"></i>&nbsp;JEUNES&nbsp;&nbsp;</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a class="nav-link" href="pro.php">&nbsp;&nbsp;<i class="fas fa-user-tie fa-lg"></i>&nbsp;&nbsp;PRO&nbsp;&nbsp;</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a class="nav-link" href="evt.php">&nbsp;&nbsp;<i class="fas fa-users fa-lg"></i>&nbsp;&nbsp;ÉVÉNEMENTS&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item">
@@ -35,7 +35,7 @@
                 </li>
                 <li class="nav-item">
                     <!-- line, pie, bar, area -->
-                    <a class="nav-link" href="#">&nbsp;&nbsp;<i class="fas fa-chart-bar fa-lg"></i>&nbsp;&nbsp;STATS&nbsp;&nbsp;</a>
+                    <a class="nav-link" href="stat.php">&nbsp;&nbsp;<i class="fas fa-chart-bar fa-lg"></i>&nbsp;&nbsp;STATS&nbsp;&nbsp;</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">&nbsp;<i class="fas fa-sign-out-alt fa-lg"></i>&nbsp;&nbsp;DECO&nbsp;</a>

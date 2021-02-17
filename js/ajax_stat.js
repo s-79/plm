@@ -1,0 +1,88 @@
+const ajaxListAnnee = () => {
+    $.ajax({
+        url: 'php/stat_Get.php',
+        dataType: 'JSON',
+        data : {annee:"annee"},
+        success: function(response){
+            $("#annee").html("<option selected value=''>Séléctionner une année</option>")
+            let res = "";
+            const len = response.length;
+            for (let i = 0; i < len; i++) {
+                const annee = response[i].annee;
+                res += `<option value="${annee}">${annee}</option>`;
+            }
+            $("#annee").append(res);
+        }
+    });
+}
+
+const ajaxListContratVille = () => {
+    $.ajax({
+        url: 'php/stat_Get.php',
+        dataType: 'JSON',
+        data : {contrat_ville:"contrat_ville"},
+        success: function(response){
+            $("#contrat_ville").html("<option selected value=''>Séléctionner un contrat de ville</option>")
+            let res = "";
+            const len = response.length;
+            for (let i = 0; i < len; i++) {
+                const contrat_ville = response[i].contrat_ville;
+                res += `<option value="${contrat_ville}">${contrat_ville}</option>`;
+            }
+            $("#contrat_ville").append(res);
+        }
+    });
+}
+
+// ---------------------------------------------------------------------------- !!! - - C H A R T - - !!!
+const ajaxStat = (select, layout, annee, mission, contrat_ville) => {
+    $.ajax({
+        type: 'POST',
+        url: 'php/stat.php',
+        data : {select:select, annee:annee, mission:mission, contrat_ville:contrat_ville},
+        datatype: 'json',
+        success: function (result) {
+            const ctx = document.getElementById(select).getContext("2d");
+            if (myChart) myChart.clear();
+            var myChart = new Chart(ctx,
+            {
+                type: 'doughnut',
+                data: JSON.parse(result),
+                options: {
+                    legend: {
+                        position: "right",
+                        align: "start",
+                        labels: {
+                            boxWidth: 10
+                        }
+                    },
+                    animation: {
+                        duration: 2000
+                    },
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: layout,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                return percentage;
+                            },
+                            color: '#fff',
+                        }
+                    }
+                }
+            })
+        }
+    })
+}

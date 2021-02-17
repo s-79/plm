@@ -120,11 +120,6 @@ statut, pe, rsa, gj) => {
             const exist = parseInt(response[0].exist);
             if(exist === 1) alert("Création impossible : Il existe déjà un jeune qui porte ce nom et qui habite cette ville dans la base de données.");
             else {
-                alert(adherent);
-                alert(id_evt);
-                alert(id_ville);
-                alert(id_qpv);
-                alert(id_orga);
                 $.ajax({
                     url: 'php/jeune.php',
                     dataType: 'JSON',

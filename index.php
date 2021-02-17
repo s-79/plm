@@ -248,8 +248,8 @@
         <div class="form-floating mx-3 mt-4">
             <select class="form-select" id="statut" aria-label="Statut emploi">
                 <option selected value="">Séléctionner le statut emploi</option>
-                <option value="Demandeur d'emploi de moins d'un an">Demandeur d'emploi de moins d'un an</option>
-                <option value="Demandeur d'emploi de plus d'un an">Demandeur d'emploi de plus d'un an</option>
+                <option value="DE de moins d'un an">DE de moins d'un an</option>
+                <option value="DE de plus d'un an">DE de plus d'un an</option>
                 <option value="En CDD">En CDD</option>
                 <option value="En intérim">En intérim</option>
                 <option value="En CDI">En CDI</option>
@@ -297,7 +297,7 @@
 
 <?php
 include("modal_orga.php");
-include("modal_acc.php"); 
+include("modal_acc.php");
 ?>
 <!--                                                                                                               Scripts -->
 <script src="js/jeune.js"></script>

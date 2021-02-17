@@ -57,7 +57,8 @@ const qpv_Change = (id_ville, qpv, id_qpv) => {
         dataType: 'JSON',
         data : {id_ville:id_ville},
         success: function(response){
-            $("#nom_qpv").html("<option selected value=''>Séléctionner le quartier QPV</option>");
+            // 0 car besoin de remonter un SMALLINT
+            $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
             $("#prij").prop('checked', false);
             if(qpv === "Oui" || qpv === "Limite") {
                 $("#nom_qpv")[0].disabled = false;
