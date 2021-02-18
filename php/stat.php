@@ -6,32 +6,49 @@ $annee =  mysqli_real_escape_string($con, $_POST['annee']);
 $mission =  mysqli_real_escape_string($con, $_POST['mission']);
 $contrat_ville =  mysqli_real_escape_string($con, $_POST['contrat_ville']);
 
-// $select = "genre";
-// $annee = 2021;
-// $mission =  0;
-// $contrat_ville = "Est-Ensemble";
-
 if ($mission == "0-1") {
-    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `annee` = '$annee' AND `mission` = 0 OR `mission` = 1 AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
-
-} elseif ($mission == "2") {
-    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `mission` = '$mission' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
-
-} elseif (!$annee) {
-    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `mission` = '$mission' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `annee` = '$annee' AND (`mission` = 0 OR `mission` = 1) AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
 
     if (!$contrat_ville) {
-    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `mission` = '$mission' GROUP BY `$select` DESC;";
+    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `annee` = '$annee' AND (`mission` = 0 OR `mission` = 1) GROUP BY `$select` DESC;";
+
+        if (!$annee) {
+            $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE (`mission` = 0 OR `mission` = 1) GROUP BY `$select` DESC;";
+        }
+
+    } elseif (!$annee) {
+        $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE (`mission` = 0 OR `mission` = 1) AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
     }
 
-} elseif (!$contrat_ville) {
-    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `annee` = '$annee' AND `mission` = '$mission' GROUP BY `$select` DESC;";
+} elseif ($mission == "2") {
+    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `annee` = '$annee' AND `mission` = 2 AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+
+    if (!$contrat_ville) {
+    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `annee` = '$annee' AND `mission` = 2 GROUP BY `$select` DESC;";
+
+        if (!$annee) {
+            $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `mission` = 2 GROUP BY `$select` DESC;";
+        }
+
+    } elseif (!$annee) {
+        $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `mission` = 2 AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+    }
 
 } else {
     $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `annee` = '$annee' AND `mission` = '$mission' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+
+    if (!$contrat_ville) {
+    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `annee` = '$annee' AND `mission` = '$mission' GROUP BY `$select` DESC;";
+
+        if (!$annee) {
+            $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `mission` = '$mission' GROUP BY `$select` DESC;";
+        }
+
+    } elseif (!$annee) {
+        $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE `mission` = '$mission' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+    }
+
 }
-
-
 
 if ($stmt = $con->prepare($query)) {
     $stmt->execute();
