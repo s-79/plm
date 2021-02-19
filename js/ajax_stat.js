@@ -1,39 +1,3 @@
-const ajaxListAnnee = () => {
-    $.ajax({
-        url: 'php/stat_Get.php',
-        dataType: 'JSON',
-        data : {annee:"annee"},
-        success: function(response){
-            $("#annee").html("<option selected value=''>Séléctionner une année</option>")
-            let res = "";
-            const len = response.length;
-            for (let i = 0; i < len; i++) {
-                const annee = response[i].annee;
-                res += `<option value="${annee}">${annee}</option>`;
-            }
-            $("#annee").append(res);
-        }
-    });
-}
-
-const ajaxListContratVille = () => {
-    $.ajax({
-        url: 'php/stat_Get.php',
-        dataType: 'JSON',
-        data : {contrat_ville:"contrat_ville"},
-        success: function(response){
-            $("#contrat_ville").html("<option selected value=''>Séléctionner un contrat de ville</option>")
-            let res = "";
-            const len = response.length;
-            for (let i = 0; i < len; i++) {
-                const contrat_ville = response[i].contrat_ville;
-                res += `<option value="${contrat_ville}">${contrat_ville}</option>`;
-            }
-            $("#contrat_ville").append(res);
-        }
-    });
-}
-
 // ---------------------------------------------------------------------------- !!! - - C H A R T - - !!!
 const ajaxStat = (select, layout, annee, mission, contrat_ville) => {
     $.ajax({
@@ -92,4 +56,41 @@ const ajaxStat = (select, layout, annee, mission, contrat_ville) => {
             }
         }
     })
+}
+
+// ---------------------------------------------------------------------------- !!! - - P O P U L A T E - - !!!
+const ajaxListAnnee = () => {
+    $.ajax({
+        url: 'php/stat_Get.php',
+        dataType: 'JSON',
+        data : {annee:"annee"},
+        success: function(response){
+            $("#annee").html("<option selected value=''>Séléctionner une année</option>")
+            let res = "";
+            const len = response.length;
+            for (let i = 0; i < len; i++) {
+                const annee = response[i].annee;
+                res += `<option value="${annee}">${annee}</option>`;
+            }
+            $("#annee").append(res);
+        }
+    });
+}
+
+const ajaxListContratVille = () => {
+    $.ajax({
+        url: 'php/stat_Get.php',
+        dataType: 'JSON',
+        data : {contrat_ville:"contrat_ville"},
+        success: function(response){
+            $("#contrat_ville").html("<option selected value=''>Séléctionner un contrat de ville</option>")
+            let res = "";
+            const len = response.length;
+            for (let i = 0; i < len; i++) {
+                const contrat_ville = response[i].contrat_ville;
+                res += `<option value="${contrat_ville}">${contrat_ville}</option>`;
+            }
+            $("#contrat_ville").append(res);
+        }
+    });
 }

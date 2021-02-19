@@ -43,11 +43,9 @@ $(function(){
         const type = $("#type").val();
         if (type === "Échange de jeunes") {
             $("#youth_leader")[0].disabled = false;
-            $("#nb_part")[0].disabled = false;
             $("#pays_part")[0].disabled = false;
         } else {
             $("#youth_leader")[0].disabled = true;
-            $("#nb_part")[0].disabled = true;
             $("#pays_part")[0].disabled = true;
         }
     });

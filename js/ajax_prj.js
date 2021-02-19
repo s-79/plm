@@ -91,7 +91,6 @@ const ajaxPrjGet = (id_prj) => {
             $("#type").val(type);
             if (type === "Échange de jeunes") {
                 $("#youth_leader")[0].disabled = false;
-                $("#nb_part")[0].disabled = false;
                 $("#pays_part")[0].disabled = false;
             }
             $("#intitule").val(intitule);

@@ -47,16 +47,27 @@ include("header.php"); ?>
 <!--                                                                            F I L E S -->
     <div class="row px-5" style="margin-top:7em;">
         <div class="col-4 d-flex justify-content-end">
-            <button id="csv_jeune" type="button" class="btn btn-outline-primary">CSV Jeune</button>
+            <form action="php/export.php" method="post">
+                <!--                                                            Récupération de la valeur dans un input invisible -->
+                <input type="text" class="form-control d-none" name="view" value="jeune">
+                <button id="csv_jeune" type="submit" class="btn btn-outline-primary">CSV Jeune</button>
+            </form>
         </div>
         <div class="col-4 d-flex justify-content-center">
-            <button id="csv_evt" type="button" class="btn btn-outline-primary">CSV Évenement</button>
+            <form action="php/export.php" method="post">
+                <!--                                                            Récupération de la valeur dans un input invisible -->
+                <input type="text" class="form-control d-none" name="view" value="evt">
+                <button id="csv_evt" type="submit" class="btn btn-outline-primary">CSV Évenement</button>
+            </form>
         </div>
         <div class="col-4 d-flex justify-content-start">
-            <button id="csv_prj" type="button" class="btn btn-outline-primary">CSV Projet</button>
+            <form action="php/export.php" method="post">
+                <!--                                                            Récupération de la valeur dans un input invisible -->
+                <input type="text" class="form-control d-none" name="view" value="prj">
+                <button id="csv_prj" type="submit" class="btn btn-outline-primary">CSV Projet</button>
+            </form>
         </div>
     </div>
-
 </div>
 
 <!--                                                                            M O D A L-->
@@ -69,7 +80,7 @@ include("header.php"); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
-                Cette combinaison de choix ne contient pas de donnée.<br><br>Les listes et les graphiques ont été réinitialisés.
+                Cette combinaison de choix ne contient pas de donnée.<br><br>Les listes et les graphiques ont été réinitialisés.<br>
             </div>
         </div>
     </div>

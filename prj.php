@@ -112,9 +112,9 @@ include("header.php"); ?>
             <input type="text" class="form-control" id="them" placeholder="Thématique">
             <label for="them">Thématique</label>
         </div>
-        <div class="form-floating mx-3 mt-3 mb-4">
-            <textarea class="form-control" placeholder="Commentaires" id="commentaires"></textarea>
-            <label for="commentaires">Commentaires</label>
+        <div class="form-floating mx-3 mt-3">
+            <input type="text" class="form-control" id="nb_part" placeholder="Nombre de participants">
+            <label for="nb_part">Nombre de participants</label>
         </div>
     </div>
     <!--                                                                                                              Échange de jeunes -->
@@ -125,14 +125,13 @@ include("header.php"); ?>
             <label for="youth_leader">Nom du Youth Leader</label>
         </div>
         <div class="form-floating mx-3 mt-3">
-            <input type="text" class="form-control" id="nb_part" placeholder="Nombre de participants">
-            <label for="nb_part">Nombre de participants</label>
-        </div>
-        <div class="form-floating mx-3 mt-3">
-            <textarea class="form-control" placeholder="Pays participants" id="pays_part" style="height:125px;"></textarea>
+            <textarea class="form-control" placeholder="Pays participants" id="pays_part"></textarea>
             <label for="pays_part">Pays participants</label>
         </div>
-
+        <div class="form-floating mx-3 mt-3 mb-3">
+            <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:125px;"></textarea>
+            <label for="commentaires">Commentaires</label>
+        </div>
         <div id="btn_prj_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2">
             <button type="button" id="prj_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
         </div>

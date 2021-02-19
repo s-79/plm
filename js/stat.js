@@ -24,17 +24,6 @@ $(function(){
             ajaxStat("statut", 0, annee, mission, contrat_ville);
         }
     });
-
-    //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LES BOUTONS CSV
-    $("#csv_jeune").click(function(){
-        window.location = 'php/export_jeune.php';
-    });
-    $("#csv_evt").click(function(){
-        window.location = 'php/export_evt.php';
-    });
-    $("#csv_pro").click(function(){
-        window.location = 'php/export_pro.php';
-    });
 });
 
 const stat_Reset = () => {
