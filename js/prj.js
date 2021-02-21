@@ -1,6 +1,9 @@
 $(function(){
     // ------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
+    // ------------------------------------------------------------------------- Mise en valeur du menu actuel
+    $("#menu_prj").toggleClass("nav-link-toggle");
+
     //-------------------------------------------------------------------------- Récupérarion et suppression d'un éventuel id de projet stocké (si l'utilisateur a cliqué sur une lige du tableau dans acc)
     let id_prj_storage = sessionStorage.getItem("id_prj");
     sessionStorage.removeItem('id_prj');

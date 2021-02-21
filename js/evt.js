@@ -1,6 +1,9 @@
 $(function(){
     // ------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
+    // ------------------------------------------------------------------------- Mise en valeur du menu actuel
+    $("#menu_evt").toggleClass("nav-link-toggle");
+
     //-------------------------------------------------------------------------- Récupérarion et suppression d'un éventuel id d'événement stocké (si l'utilisateur a cliqué sur une lige du tableau dans acc)
     let id_evt_storage = sessionStorage.getItem("id_evt");
     sessionStorage.removeItem('id_evt');

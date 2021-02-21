@@ -1,4 +1,5 @@
 $(function(){
+
     // ------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LES BOUTONS "AJOUTER" OU "MODIFIER" UNE INTERVENANT-E
@@ -34,9 +35,11 @@ $(function(){
         if(volontaire)volontaire=1;else{volontaire=0};
         let ref =  $("#create_ref").is(':checked');
         if(ref)volontaire=1;else{ref=0};
-
+        let mail = prenom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        mail += "." + nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        mail = mail.toLowerCase();
         // -------------------------------------------------------------------- Vérification si la longueur est ok pour la BDD puis vérif si le nom existe déjà dans la BDD et si non envoie des infos
-        if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Create(prenom_nom, prenom, nom, actif, volontaire, ref);
+        if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Create(prenom_nom, prenom, nom, actif, volontaire, ref, mail);
     })
 
     // --------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
@@ -59,10 +62,13 @@ $(function(){
         if(volontaire)volontaire=1;else{volontaire=0};
         let ref =  $("#update_ref").is(':checked');
         if(ref)ref=1;else{ref=0};
+        let mail = prenom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        mail += "." + nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        mail = mail.toLowerCase();
 
         if(!id) alert("Aucun intervenant-e n'a été séléctionné-e");
         // -------------------------------------------------------------------- Vérification si la longueur est ok pour la BDD et si oui envoie des infos
-        else {if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Update(id, prenom, nom, actif, volontaire, ref);}
+        else {if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Update(id, prenom, nom, actif, volontaire, ref, mail);}
     })
     // ------------------------------------------------------------------------- ! ! ! - - D E L E T E- - ! ! !
 

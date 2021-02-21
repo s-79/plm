@@ -1,4 +1,8 @@
 body {
+    /* background-image: url(img/arbre_reseau3_left.png),url(img/arbre_reseau3_right.png);
+    background-repeat: no-repeat,no-repeat;
+    background-position: top 6.2em left,top 5.7em right;
+    background-attachment: fixed; */
     font-family: "DejaVu Sans", sans-serif;
 }
 
@@ -29,15 +33,27 @@ label {
 }
 
 .nav-pills .nav-link {
-    color: #fff !important;
+    color: #fff;
     text-align: center;
     letter-spacing: 1px;
     border-radius: 10px;
 }
 
-.nav-pills .nav-link.active,  .nav-pills .nav-link:hover {
-    color: rgb(25, 30, 54) !important;
+.nav-pills .nav-link.active, .nav-pills .nav-link:hover {
+    color: rgb(218, 51, 80) !important;
     background-color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.nav-link-toggle {
+  color: rgb(25, 30, 54) !important;
+  text-align: center;
+  letter-spacing: 1px;
+  background-color: #fff !important;
+  border-radius: 10px;
 }
 
 /* ----------------------------------------------------------------------------- COULEURS PLM */

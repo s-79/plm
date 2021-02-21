@@ -9,15 +9,16 @@ $nom = mysqli_real_escape_string($con, $_GET['nom']);
 $actif =  mysqli_real_escape_string($con, $_GET['actif']);
 $volontaire =  mysqli_real_escape_string($con, $_GET['volontaire']);
 $ref =  mysqli_real_escape_string($con, $_GET['ref']);
+$mail =  mysqli_real_escape_string($con, $_GET['mail']);
 
 if($id_del) {
     $query = "CALL int_Delete('$id_del')";
 }
 elseif($id) {
-    $query = "CALL int_Update ('$id', '$prenom', '$nom', '$actif', '$volontaire', '$ref')";
+    $query = "CALL int_Update ('$id', '$prenom', '$nom', '$actif', '$volontaire', '$ref', '$mail')";
 
 } else {
-    $query = "CALL int_Create ('$prenom', '$nom', '$actif', '$volontaire', '$ref')";
+    $query = "CALL int_Create ('$prenom', '$nom', '$actif', '$volontaire', '$ref', '$mail')";
 }
 
 $result = $con->prepare($query);

@@ -29,7 +29,7 @@ const ajaxListRef = (liste, id_int) => {
 }
 
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
-const int_Create = (prenom_nom, prenom, nom, actif, volontaire, ref) => {
+const int_Create = (prenom_nom, prenom, nom, actif, volontaire, ref, mail) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom de l'intervenant-e existe-t-il déjà dans la BDD ?
         url: "php/exist.php",
@@ -42,7 +42,7 @@ const int_Create = (prenom_nom, prenom, nom, actif, volontaire, ref) => {
                 $.ajax({
                     url: "php/int.php",
                     dataType: 'JSON',
-                    data : {prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref},
+                    data : {prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref, mail:mail},
                     complete: function(){
                         alert("L'intervenant-e a bien été ajouté-e à la base de données.");
                         $('#modal_int_create').modal('hide');
@@ -81,11 +81,11 @@ const int_Change = (id) => {
     });
 }
 
-const int_Update = (id, prenom, nom, actif, volontaire, ref) => {
+const int_Update = (id, prenom, nom, actif, volontaire, ref, mail) => {
     $.ajax({
         url: 'php/int.php',
         dataType: 'JSON',
-        data : {id:id, prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref},
+        data : {id:id, prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref, mail:mail},
         complete: function(){
             alert("Les informations de l'intervenant-e ont bien été modifiées.");
             $('#modal_int_update').modal('hide');

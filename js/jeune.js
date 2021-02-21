@@ -2,6 +2,9 @@ $(function(){
 
     // ----------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
+    // ------------------------------------------------------------------------- Mise en valeur du menu actuel
+    $("#menu_jeune").toggleClass("nav-link-toggle");
+
     //-------------------------------------------------------------------------- Outil de recherche de jeunes
     $("#npv").keyup(function(){
         let search = $("#npv").val();

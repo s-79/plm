@@ -150,7 +150,7 @@ if($id) {
             "nom" => $nom,
             "actif" => $actif,
             "volontaire" => $volontaire,
-            "ref" => $ref
+            "ref" => $ref,
         );
     }
 }

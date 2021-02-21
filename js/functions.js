@@ -1,6 +1,6 @@
 $(function(){
     //-------------------------------------------------------------------------- Toolitips au survol des boutons (+)
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 const displayList = (response, sub) => {

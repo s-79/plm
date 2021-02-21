@@ -1,6 +1,9 @@
 $(function(){
     // ------------------------------------------------------------------------- ! ! ! - - P O P U L A T E - - ! ! !
 
+    // ------------------------------------------------------------------------- Mise en valeur du menu actuel
+    $("#menu_pro").toggleClass("nav-link-toggle");
+
     //-------------------------------------------------------------------------- Récupérarion et suppression d'un éventuel id de pro stocké (si l'utilisateur a cliqué sur une ligne du tableau dans evt)
     let id_pro_storage = sessionStorage.getItem("id_pro");
     sessionStorage.removeItem('id_pro');
