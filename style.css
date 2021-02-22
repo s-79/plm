@@ -6,6 +6,10 @@ body {
     font-family: "DejaVu Sans", sans-serif;
 }
 
+.formulaires, .accomp {
+    max-width: 1600px !important;
+}
+
 .pointeur {
     cursor: pointer;
 }
@@ -21,8 +25,15 @@ label {
 }
 
 .btn-bleu:hover {
-    background-color: rgb(101, 178, 255);
+    background-color: rgba(101, 178, 255, 0.8);
     color: rgb(25, 30, 54);
+    border: none;
+}
+
+.btn-bleu, .btn-bleu:visited, .btn-bleu:focus, .btn-bleu.active:focus {
+    background-color: rgb(101, 178, 222);
+    color: rgb(25, 30, 54);
+    border: none;
 }
 
 /* ----------------------------------------------------------------------------- NAVBAR */
@@ -63,27 +74,64 @@ label {
 .bleu {
     color: rgb(101, 178, 222);
 }
-.beige {
-    color: rgb(200, 184, 162);
-}
 .rose {
     color: rgb(218, 51, 80);
 }
-
 .rose-bold {
     color: rgb(218, 51, 80);
     font-weight: bold;
 }
-
 .bg-marine {
     background-color: rgb(25, 30, 54);
 }
 .bg-bleu {
     background-color: rgb(101, 178, 222);
 }
-.bg-beige {
-    background-color: rgb(200, 184, 162);
-}
 .bg-rose {
     background-color: rgb(218, 51, 80);
+}
+
+/* ----------------------------------------------------------------------------- RESPONSIVE*/
+@media screen and (min-width: 576px) and (max-width: 980px){
+    .formulaires, .search-bar, .accomp {
+        max-width: 576px !important;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .titre {
+        font-size: 0.90em;
+    }
+    h2 {
+        font-size: 1.25em;
+    }
+    .accomp {
+        max-width: 330px !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .search_bar {
+        max-width: 400px !important;
+    }
+}
+
+/* ----------------------------------------------------------------------------- Suppression du logo */
+@media screen and (max-width: 1300px) {
+    #nav_img {
+        display: none;
+    }
+}
+/* ----------------------------------------------------------------------------- Tronquage de l apartie IDF du titre */
+@media screen and (max-width: 576px) {
+    #nav_titre {
+        display: none;
+    }
+}
+
+/* ----------------------------------------------------------------------------- Taille min des div */
+@media screen and (min-width: 1600px) {
+    .div_marine {
+        min-width: 450px !important;
+    }
 }

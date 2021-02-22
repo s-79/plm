@@ -2,181 +2,180 @@
 include("header.php"); ?>
 
 <div class="container-fluid">
-<div class="row justify-content-center mt-5" style="margin-top: 5em !important;">
-    <!--                                                                                                              Zone de recherche -->
-    <div class="col-12 col-lg-2 my-4 mx-1 text-center">
-        <input type="text" class="form-control" id="evt_search" placeholder="Saisir la date, le type ou la ville">
-        <label for="dtv" class="d-none">Saisir la date, le type ou la ville</label>
-    </div>
-    <!--                                                                                                              Résultat de recherche -->
-    <div class="col-12 col-lg-2 my-4 mx-1 text-center">
-        <select class="form-select" aria-label="Default select example" id="evt_res">
-        </select>
-    </div>
-    <!--                                                                                                              Bouton afficher les infos-->
-    <div class="col-5 col-lg-2 my-4 mx-1 text-center">
-        <button type="button" id="infos" class="btn btn-primary bg-bleu btn-bleu marine">Afficher les informations</button>
-    </div>
-</div>
-
-<form id="form_evt">
-<div class="row justify-content-center ">
-    <!--                                                                                                              Événement-->
-    <div class="col-12 col-lg-3 bg-marine m-3 rounded rounded-3">
-        <div class="row pt-4">
-            <div class="col-5">
-                <h2>Évenement</h2>
+    <div class="d-flex justify-content-center" style="margin-top: 5em !important;">
+        <div class="row search_bar">
+            <!--                                                                                                              Zone de recherche -->
+            <div class="col-12 col-sm-4 py-4 pr-1 pl-3 text-center">
+                <input type="text" class="form-control" id="evt_search" placeholder="Saisir la date, le type ou la ville">
+                <label for="evt_search" class="d-none">Saisir la date, le type ou la ville</label>
             </div>
-            <div class="col-1 p-0 m-0">
-                <i id="new_evt" class="fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouvel événement"></i>
-            </div>
-        </div>
-        <div class="mx-3 mt-3 row">
-            <div class="col-4 p-0">
-                <span class="text-warning fw-bold">MISSION * : </span>
-            </div>
-            <div class="col-8 d-flex justify-content-end p-0">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m0" value="m0">
-                    <label class="form-check-label text-white fw-bold" for="inlineRadio1">M0</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m1" value="m1">
-                    <label class="form-check-label text-white fw-bold" for="inlineRadio2">M1</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m2" value="m2">
-                    <label class="form-check-label text-white fw-bold" for="inlineRadio3">M2</label>
-                </div>
-            </div>
-        </div>
-
-        <!--                                                                                                        Récupération de l'id dans un input invisible -->
-        <input type="text" class="form-control d-none" id="id_evt">
-
-        <div class="form-floating mx-3 mt-3">
-            <input type="date" class="form-control" id="date" placeholder="Date de l'événement *">
-            <label for="date">Date de l'événement *</label>
-        </div>
-        <div id="select_m0" class="form-floating mx-3 mt-3 d-none">
-            <select class="form-select type_m" id="type_m0" aria-label="Type d'événement *" disabled>
-            </select>
-            <label for="type_m0">Type *</label>
-        </div>
-        <div id="select_m1" class="form-floating mx-3 mt-3">
-            <select class="form-select type_m" id="type_m1" aria-label="Type d'événement *" disabled>
-                <option selected value="">Séléctionner un type d'événement *</option>
-                <option value="Info coll PLM">Info coll PLM</option>
-                <option value="Info coll exterieure">Info coll exterieure</option>
-                <option value="Webinaire pros">Webinaire pros</option>
-                <option value="Sensibilisation pros">Sensibilisation pros</option>
-                <option value="Evt thématique">Evt thématique</option>
-            </select>
-            <label for="type_m1">Type *</label>
-        </div>
-        <div id="select_m2" class="form-floating mx-3 mt-3 d-none">
-            <select class="form-select type_m" id="type_m2" aria-label="Type d'événement *" disabled>
-                <option selected value="">Séléctionner un type d'événement *</option>
-                <option value="Atelier d'anglais">Atelier d'anglais</option>
-                <option value="Atelier Europe">Atelier Europe</option>
-                <option value="Atelier Interculturalité">Atelier Interculturalité</option>
-                <option value="At. obj d'apprentissage">At. obj d'apprentissage</option>
-                <option value="At. retour à chaud">At. retour à chaud</option>
-                <option value="2ème atelier retour">2ème atelier retour</option>
-            </select>
-            <label for="type_m2">Type *</label>
-        </div>
-        <div class="form-floating mx-3 mt-3">
-            <select class="form-select" id="ville" aria-label="Ville">
-            </select>
-            <label for="ville">Ville *</label>
-        </div>
-        <!--                                                                    Div invisible pour récup nom_ville -->
-        <!-- <div class="form-floating mx-3 mt-3 d-none">
-            <input type="text" class="form-control" id="nom_ville_none">
-            <label for="nom_ville_none"></label>
-        </div> -->
-        <div class="form-floating mx-3 mt-3 mb-4">
-            <input type="text" class="form-control" id="intitule" placeholder="Intitulé">
-            <label for="intitule">Intitulé</label>
-        </div>
-    </div>
-    <!--                                                                                                              Intervenant-e-s -->
-    <div class="col-12 col-lg-3 bg-marine m-3 rounded rounded-3">
-        <div id="orga_evt">
-            <div class="row pt-4">
-                <div class="col-7">
-                    <h2>Organisation</h2>
-                </div>
-                <div class="col-4 d-flex justify-content-end mt-1">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="visio">
-                      <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-floating mx-3 mt-4">
-                <input type="text" class="form-control" id="organise" placeholder="Organisé par...">
-                <label for="organise">Organisé par...</label>
-            </div>
-        </div>
-        <div id="projet_evt" class="d-none">
-            <div class="row pt-4">
-                <div class="col-7">
-                    <h2>Projet</h2>
-                </div>
-                <div class="col-4 d-flex justify-content-end mt-1">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="visio">
-                      <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-floating mx-3 mt-4">
-                <select class="form-select" id="projet" aria-label="Séléctionner un projet *">
+            <!--                                                                                                              Résultat de recherche -->
+            <div class="col-12 col-sm-4 py-4 pr-3 pl-1 text-center">
+                <select class="form-select" aria-label="Default select example" id="evt_res">
                 </select>
-                <label for="projet">Projet *</label>
             </div>
-        </div>
-        <div class="row pt-5">
-            <div class="col-8">
-                <h2>Intervenant-e-s PLM</h2>
+            <!--                                                                                                              Bouton afficher les infos-->
+            <div class="col-12 col-sm-4 py-4 px-1 text-center">
+                <button type="button" id="infos" class="btn btn-primary btn-bleu">Afficher les informations</button>
             </div>
-            <div class="col-1 p-0 m-0">
-                <i id="new_inter" class="fas fa-plus-circle fa-2x text-white pointeur" data-bs-toggle="modal" data-bs-target="#modal_int" data-toggle="tooltip" data-placement="top" title="Ajouter / Modifier un-e intervenant-e PLM"></i>
-            </div>
-        </div>
-        <div id="inter" class="mx-3 mt-2 mb-4" style="overflow-y:scroll; overflow-x:hidden; height:180px;">
         </div>
     </div>
-    <!--                                                                                                              Évaluation -->
-    <div class="col-12 col-lg-3 bg-marine m-3 rounded rounded-3">
-        <h2 class="pt-4">Évaluation</h2>
-        <div class="form-floating mx-3 mt-4">
-            <input type="text" class="form-control" id="nb_jeunes" placeholder="Nombre de jeunes">
-            <label for="nb_jeunes">Nombre de jeunes</label>
+
+    <form id="form_pro">
+        <div class="d-flex justify-content-center">
+            <div class="row formulaires">
+                <!--                                                                                                              État Civil-->
+                <div class="col-12 col-lg-6 col-xl-4">
+                    <div class="bg-marine m-3 py-2 px-3 rounded rounded-3 div_marine">
+                        <div class="d-flex pt-3">
+                            <h2>Évenement</h2>
+                            <i id="new_evt" class="ps-3 fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouvel événement"></i>
+                        </div>
+                        <div class="mx-3 mt-3 row">
+                            <div class="col-12 col-sm-4 p-0">
+                                <span class="text-warning fw-bold">MISSION * : </span>
+                            </div>
+                            <div class="col-12 col-sm-8 d-flex justify-content-end p-0">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m0" value="m0">
+                                    <label class="form-check-label text-white fw-bold" for="inlineRadio1">M0</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m1" value="m1">
+                                    <label class="form-check-label text-white fw-bold" for="inlineRadio2">M1</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m2" value="m2">
+                                    <label class="form-check-label text-white fw-bold" for="inlineRadio3">M2</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--                                                                                                        Récupération de l'id dans un input invisible -->
+                        <input type="text" class="form-control d-none" id="id_evt">
+
+                        <div class="form-floating mx-3 mt-3">
+                            <input type="date" class="form-control" id="date" placeholder="Date de l'événement *">
+                            <label for="date">Date de l'événement *</label>
+                        </div>
+                        <div id="select_m0" class="form-floating mx-3 mt-3 d-none">
+                            <select class="form-select type_m" id="type_m0" aria-label="Type d'événement *" disabled>
+                            </select>
+                            <label for="type_m0">Type *</label>
+                        </div>
+                        <div id="select_m1" class="form-floating mx-3 mt-3">
+                            <select class="form-select type_m" id="type_m1" aria-label="Type d'événement *" disabled>
+                                <option selected value="">Séléctionner un type d'événement *</option>
+                                <option value="Info coll PLM">Info coll PLM</option>
+                                <option value="Info coll exterieure">Info coll exterieure</option>
+                                <option value="Webinaire pros">Webinaire pros</option>
+                                <option value="Sensibilisation pros">Sensibilisation pros</option>
+                                <option value="Evt thématique">Evt thématique</option>
+                            </select>
+                            <label for="type_m1">Type *</label>
+                        </div>
+                        <div id="select_m2" class="form-floating mx-3 mt-3 d-none">
+                            <select class="form-select type_m" id="type_m2" aria-label="Type d'événement *" disabled>
+                                <option selected value="">Séléctionner un type d'événement *</option>
+                                <option value="Atelier d'anglais">Atelier d'anglais</option>
+                                <option value="Atelier Europe">Atelier Europe</option>
+                                <option value="Atelier Interculturalité">Atelier Interculturalité</option>
+                                <option value="At. obj d'apprentissage">At. obj d'apprentissage</option>
+                                <option value="At. retour à chaud">At. retour à chaud</option>
+                                <option value="2ème atelier retour">2ème atelier retour</option>
+                            </select>
+                            <label for="type_m2">Type *</label>
+                        </div>
+                        <div class="form-floating mx-3 mt-3">
+                            <select class="form-select" id="ville" aria-label="Ville">
+                            </select>
+                            <label for="ville">Ville *</label>
+                        </div>
+                        <div class="form-floating mx-3 mt-3 mb-4">
+                            <input type="text" class="form-control" id="intitule" placeholder="Intitulé">
+                            <label for="intitule">Intitulé</label>
+                        </div>
+                    </div>
+                </div>
+                <!--                                                                                                              Contact -->
+                <div class="col-12 col-lg-6 col-xl-4">
+                    <div class="bg-marine m-3 py-2 px-3 rounded rounded-3 div_marine">
+                        <div id="orga_evt">
+                            <div class="row pt-3">
+                                <div class="col-12 col-sm-7">
+                                    <h2>Organisation</h2>
+                                </div>
+                                <div class="col-12 col-sm-4 d-flex justify-content-end mt-1">
+                                    <div class="form-check form-switch">
+                                      <input class="form-check-input" type="checkbox" id="visio">
+                                      <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mx-3 mt-4">
+                                <input type="text" class="form-control" id="organise" placeholder="Organisé par...">
+                                <label for="organise">Organisé par...</label>
+                            </div>
+                        </div>
+                        <div id="projet_evt" class="d-none">
+                            <div class="row pt-3">
+                                <div class="col-7">
+                                    <h2>Projet</h2>
+                                </div>
+                                <div class="col-4 d-flex justify-content-end mt-1">
+                                    <div class="form-check form-switch">
+                                      <input class="form-check-input" type="checkbox" id="visio">
+                                      <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mx-3 mt-4">
+                                <select class="form-select" id="projet" aria-label="Séléctionner un projet *">
+                                </select>
+                                <label for="projet">Projet *</label>
+                            </div>
+                        </div>
+                        <div class="d-flex pt-4 mt-1">
+                            <h2>Intervenant.e.s</h2>
+                            <i id="new_inter" class="ps-3 fas fa-plus-circle fa-2x text-white pointeur" data-bs-toggle="modal" data-bs-target="#modal_int" data-toggle="tooltip" data-placement="top" title="Ajouter / Modifier un-e intervenant-e PLM"></i>
+                        </div>
+                        <div id="inter" class="mx-3 mt-2 mb-4" style="overflow-y:scroll; overflow-x:hidden; height:180px;">
+                        </div>
+                    </div>
+                </div>
+                <!--                                                                                                              Coordonnées -->
+                <div class="col-12 col-lg-6 col-xl-4">
+                    <div class="bg-marine m-3 py-2 px-3 rounded rounded-3 div_marine">
+                        <h2 class="pt-3">Évaluation</h2>
+                        <div class="form-floating mx-3 mt-4">
+                            <input type="text" class="form-control" id="nb_jeunes" placeholder="Nombre de jeunes">
+                            <label for="nb_jeunes">Nombre de jeunes</label>
+                        </div>
+                        <div class="form-floating mx-3 mt-3">
+                            <input type="text" class="form-control" id="nb_pros" placeholder="Nombre de professionels">
+                            <label for="nb_pros">Nombre de professionels</label>
+                        </div>
+                        <div class="form-floating mx-3 mt-3">
+                            <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:100px;"></textarea>
+                            <label for="commentaires">Commentaires</label>
+                        </div>
+                        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1">
+                            <button type="button" id="evt_create" class="btn btn-primary btn-bleu m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
+                        </div>
+                        <div id="btn_evt_update" class="form-group d-flex justify-content-center mx-3 mt-1 d-none">
+                            <button type="button" id="evt_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
+                            <button type="button" id="evt_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-floating mx-3 mt-3">
-            <input type="text" class="form-control" id="nb_pros" placeholder="Nombre de professionels">
-            <label for="nb_pros">Nombre de professionels</label>
-        </div>
-        <div class="form-floating mx-3 mt-3">
-            <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:125px;"></textarea>
-            <label for="commentaires">Commentaires</label>
-        </div>
-        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2">
-            <button type="button" id="evt_create" class="btn btn-primary bg-bleu btn-bleu marine m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
-        </div>
-        <div id="btn_evt_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2 d-none">
-            <button type="button" id="evt_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
-            <button type="button" id="evt_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
-        </div>
-    </div>
+    </form>
 </div>
-</form>
+
 <!--                                                                             Tableau -->
 <div id="div_tableau" class="container">
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center mt-4">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -226,7 +225,7 @@ include("header.php"); ?>
           Souhaitez-vous ajouter ou modifier/supprimer un-e intervenant-e PLM ?
       </div>
       <div class="modal-footer">
-          <button id="btn_int_create" type="button" class="btn btn-primary close-modal" data-bs-toggle="modal" data-bs-target="#modal_int_create">Ajouter</button>
+          <button id="btn_int_create" type="button" class="btn btn-primary btn-bleu close-modal" data-bs-toggle="modal" data-bs-target="#modal_int_create">Ajouter</button>
           <button id="btn_int_update" type="button" class="btn btn-warning close-modal" data-bs-toggle="modal" data-bs-target="#modal_int_update">Modifier</button>
       </div>
     </div>
@@ -266,7 +265,7 @@ include("header.php"); ?>
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="int_create" type="button" class="btn btn-primary">Ajouter</button>
+                <button id="int_create" type="button" class="btn btn-primary btn-bleu">Ajouter</button>
             </div>
         </div>
     </div>

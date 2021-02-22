@@ -22,7 +22,7 @@ include("header.php"); ?>
             </select>
         </div>
         <div class="col-2 col-lg-2 my-4 mx-1 text-center">
-            <button type="button" id="btn_stats" class="btn btn-primary bg-bleu btn-bleu marine">Afficher les statistiques</button>
+            <button type="button" id="btn_stats" class="btn btn-primary btn-bleu">Afficher les statistiques</button>
         </div>
     </div>
 <!--                                                                            C H A R T S -->

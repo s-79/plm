@@ -15,7 +15,7 @@
                 Souhaitez-vous ajouter ou modifier/supprimer<br> un organisme référent ?
             </div>
             <div class="modal-footer">
-                <button id="btn_orga_create" type="button" class="btn btn-primary close-modal" data-bs-toggle="modal" data-bs-target="#modal_orga_create">Ajouter</button>
+                <button id="btn_orga_create" type="button" class="btn btn-primary btn-bleu close-modal" data-bs-toggle="modal" data-bs-target="#modal_orga_create">Ajouter</button>
                 <button id="btn_orga_update" type="button" class="btn btn-warning close-modal" data-bs-toggle="modal" data-bs-target="#modal_orga_update">Modifier</button>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="orga_create" type="button" class="btn btn-primary">Ajouter</button>
+                <button id="orga_create" type="button" class="btn btn-primary btn-bleu">Ajouter</button>
             </div>
         </div>
     </div>

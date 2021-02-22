@@ -25,7 +25,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="btn_prj_create" type="button" class="btn btn-primary">Ajouter au suivi</button>
+                <button id="btn_prj_create" type="button" class="btn btn-primary btn-bleu">Ajouter au suivi</button>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="btn_evt_create" type="button" class="btn btn-primary">Ajouter au suivi</button>
+                <button id="btn_evt_create" type="button" class="btn btn-primary btn-bleu">Ajouter au suivi</button>
             </div>
         </div>
     </div>
@@ -152,7 +152,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="btn_evt2_create" type="button" class="btn btn-primary">Ajouter au suivi</button>
+                <button id="btn_evt2_create" type="button" class="btn btn-primary btn-bleu">Ajouter au suivi</button>
             </div>
         </div>
     </div>
@@ -242,7 +242,7 @@
       </form>
       </div>
       <div class="modal-footer">
-          <button id="btn_rdv_create" type="button" class="btn btn-primary">Ajouter</button>
+          <button id="btn_rdv_create" type="button" class="btn btn-primary btn-bleu">Ajouter</button>
       </div>
     </div>
   </div>
