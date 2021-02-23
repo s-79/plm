@@ -10,6 +10,14 @@ body {
     max-width: 1600px !important;
 }
 
+.charts {
+    max-width: 1200px !important;
+}
+
+canvas{
+    text-align: center;
+    }
+
 .pointeur {
     cursor: pointer;
 }
@@ -93,7 +101,7 @@ label {
 
 /* ----------------------------------------------------------------------------- RESPONSIVE*/
 @media screen and (min-width: 576px) and (max-width: 980px){
-    .formulaires, .search-bar, .accomp {
+    .formulaires, .search-bar {
         max-width: 576px !important;
     }
 }
@@ -114,17 +122,15 @@ label {
     .search_bar {
         max-width: 400px !important;
     }
+    /* ----------------------------------------------------------------------------- Tronquage de la partie IDF du titre */
+    #nav_titre {
+        display: none;
+    }
 }
 
 /* ----------------------------------------------------------------------------- Suppression du logo */
 @media screen and (max-width: 1300px) {
     #nav_img {
-        display: none;
-    }
-}
-/* ----------------------------------------------------------------------------- Tronquage de l apartie IDF du titre */
-@media screen and (max-width: 576px) {
-    #nav_titre {
         display: none;
     }
 }

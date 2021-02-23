@@ -91,7 +91,7 @@ const pro_Create = (nom_pro, prenom, nom, fonction, id_evt, mailing, mail, tel, 
         data : {nom_pro:nom_pro},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) alert("Création impossible : Il existe déjà un professionel avec ce prénom, dans cette structure et dans cette ville.");
+            if(exist === 1) alert("Création impossible : Il existe déjà un.e professionel.le avec ce prénom, dans cette structure et dans cette ville.");
             else {
                 $.ajax({
                     url: 'php/pro.php',

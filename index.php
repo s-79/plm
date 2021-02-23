@@ -17,7 +17,7 @@ if (isset($_POST['user']) && isset($_POST['mdp'])){
 
 		// Si l'utilisateur est admin
 		if ($user_result['admin'] == 1) {
-			
+
 			// Si le mot de passe est le même que le mot de passe hacher
 			if (password_verify($mdp, $user_result['mdp'])) {
 					// Création du jeton de session

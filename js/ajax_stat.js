@@ -18,6 +18,15 @@ const ajaxStat = (select, layout, annee, mission, contrat_ville) => {
                     type: 'doughnut',
                     data: JSON.parse(result),
                     options: {
+                        // title: {
+                        //     display: true,
+                        //     text: strUpFirst(select),
+                        //     fontFamily:'DejaVu Sans',
+                        //     fontSize:20,
+                        //     fontColor:'#191E36',
+                        //     fontStyle:'bold'
+                        // },
+                        // responsive: true,
                         legend: {
                             position: "right",
                             align: "start",

@@ -7,7 +7,7 @@ const ajaxListIntUp = (liste, id_int) => {
         dataType: 'JSON',
         data : {v_intUp:"v_intUp"},
         success: function(response){
-            $(liste).html("<option selected value='0'>Séléctionner le nom de l'intervenant</option>")
+            $(liste).html("<option selected value='0'>Séléctionner le nom de l'intervenant.e</option>")
             $(liste).append(displayList(response));
             if(id_int)$(liste).val(id_int);
         }
@@ -21,7 +21,7 @@ const ajaxListRef = (liste, id_int) => {
         dataType: 'JSON',
         data : {v_ref:"v_ref"},
         success: function(response){
-            $(liste).html("<option selected value='0'>Séléctionner le nom du / de la référent-e</option>")
+            $(liste).html("<option selected value='0'>Séléctionner le nom du / de la référent.e</option>")
             $(liste).append(displayList(response));
             if(id_int)$(liste).val(id_int);
         }
@@ -37,14 +37,14 @@ const int_Create = (prenom_nom, prenom, nom, actif, volontaire, ref, mail) => {
         data : {nom_int:prenom_nom},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) alert("Création impossible : Il existe déjà un-e intervenant-e ce nom dans la base de données.");
+            if(exist === 1) alert("Création impossible : Il existe déjà un.e intervenant.e avec ce nom dans la base de données.");
             else {
                 $.ajax({
                     url: "php/int.php",
                     dataType: 'JSON',
                     data : {prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref, mail:mail},
                     complete: function(){
-                        alert("L'intervenant-e a bien été ajouté-e à la base de données.");
+                        alert("L'intervenant.e a bien été ajouté.e à la base de données.");
                         $('#modal_int_create').modal('hide');
                         //------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
                         ajaxListInter("#inter");
@@ -87,7 +87,7 @@ const int_Update = (id, prenom, nom, actif, volontaire, ref, mail) => {
         dataType: 'JSON',
         data : {id:id, prenom:prenom, nom:nom, actif:actif, volontaire:volontaire, ref:ref, mail:mail},
         complete: function(){
-            alert("Les informations de l'intervenant-e ont bien été modifiées.");
+            alert("Les informations de l'intervenant.e ont bien été modifiées.");
             $('#modal_int_update').modal('hide');
             //------------------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
             ajaxListInter("#inter");
@@ -110,9 +110,9 @@ const int_Delete = (id) => {
                 data : {id_int:id},
                 success: function(response){
                     const exist = parseInt(response[0].exist);
-                    if(exist === 1) alert("Suppression impossible : cet-te intervenant-e est relié-e à des événements et/ou rendez-vous dans la base de données.");
+                    if(exist === 1) alert("Suppression impossible : cet.te intervenant.e est relié.e à des événements et/ou rendez-vous dans la base de données.");
                     else {
-                        alert("L'intervenant-e a bien été supprimé-e de la base de données.");
+                        alert("L'intervenant.e a bien été supprimé.e de la base de données.");
                         $('#modal_int_update').modal('hide');
                         //------------------------------------------------------ Réinitialisation de la liste des intervenants sur la page evt
                         ajaxListInter("#inter");

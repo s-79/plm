@@ -24,7 +24,7 @@ const part_Create = (nom, contact, tel, mail, commentaires) => {
         data : {nom_part:nom},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) alert("Création impossible : Il existe déjà un partenaire qui porte ce nom dans la base de données.");
+            if(exist === 1) alert("Création impossible : Il existe déjà un.e partenaire qui porte ce nom dans la base de données.");
             else {
                 $.ajax({
                     url: 'php/part.php',
@@ -93,7 +93,7 @@ const part_Delete = (id) => {
                     const exist = parseInt(response[0].exist);
                     if(exist === 1) alert("Suppression impossible : des projets sont encore reliés à ce partenaire dans la base de données.");
                     else {
-                        alert("le partenaire a bien été supprimé de la base de données.");
+                        alert("Le partenaire a bien été supprimé de la base de données.");
                         ajaxListPart("#partenaire");
                         $('#modal_part_update').modal('hide');
                     }

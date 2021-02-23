@@ -66,7 +66,7 @@ $(function(){
         mail += "." + nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         mail = mail.toLowerCase();
 
-        if(!id) alert("Aucun intervenant-e n'a été séléctionné-e");
+        if(!id) alert("Aucun.e intervenant.e n'a été séléctionné.e");
         // -------------------------------------------------------------------- Vérification si la longueur est ok pour la BDD et si oui envoie des infos
         else {if(vLen("Prénom de l'intervenant",prenom,100) && vLen("Nom de l'intervenant",nom,100)) int_Update(id, prenom, nom, actif, volontaire, ref, mail);}
     })
@@ -75,7 +75,7 @@ $(function(){
     //-------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON SUPPRIMER UN INTERVENANT
     $('#int_delete').click(function(){
         const id = $('#select_nom_int').val();
-        if(!id) alert("Aucun intervenant-e n'a été séléctionné-e")
+        if(!id) alert("Aucun.e intervenant.e n'a été séléctionné.e")
         // --------------------------------------------------------------------- Envoies de l'id à supprimer vers la BDD & Vérification de la suppression
         else {int_Delete(id);}
     })

@@ -1,51 +1,54 @@
 <?php
 include("header.php"); ?>
 
-<div class="container-fluid" style="margin-top:8em;">
-<!--                                                                            L I S T E S  S E L E C T -->
-    <div class="row d-flex justify-content-center mb-5">
-        <div class="col-12 col-lg-2 my-4 mx-1 text-center">
-            <select class="form-select" aria-label="Default select example" id="annee">
-            </select>
-        </div>
-        <div class="col-12 col-lg-2 my-4 mx-1 text-center">
-            <select class="form-select" aria-label="Default select example" id="mission">
-                <option selected value="">Séléctionner une mission</option>
-                <option value="0">Mission 0</option>
-                <option value="0-1">Mission 0 et 1</option>
-                <option value="1">Mission 1</option>
-                <option value="2">Mission 2</option>
-            </select>
-        </div>
-        <div class="col-12 col-lg-2 my-4 mx-1 text-center">
-            <select class="form-select" aria-label="Default select example" id="contrat_ville">
-            </select>
-        </div>
-        <div class="col-2 col-lg-2 my-4 mx-1 text-center">
-            <button type="button" id="btn_stats" class="btn btn-primary btn-bleu">Afficher les statistiques</button>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center" style="margin-top: 5em !important;">
+        <div class="row search_bar">
+            <div class="col-12 col-sm-6 col-lg-3 py-4 pr-1 pl-3 text-center">
+                <select class="form-select" aria-label="Default select example" id="annee">
+                </select>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 py-4 pr-3 pl-1 text-center">
+                <select class="form-select" aria-label="Default select example" id="mission">
+                    <option selected value="">Séléctionner une mission</option>
+                    <option value="0">Mission 0</option>
+                    <option value="0-1">Mission 0 et 1</option>
+                    <option value="1">Mission 1</option>
+                    <option value="2">Mission 2</option>
+                </select>
+            </div>
+            <div class="col-12 col-lg-3 py-4 px-1 text-center">
+                <select class="form-select" aria-label="Default select example" id="contrat_ville">
+                </select>
+            </div>
+            <div class="col-12 col-lg-3 py-4 px-1 text-center">
+                <button type="button" id="btn_stats" class="btn btn-primary btn-bleu">Afficher les statistiques</button>
+            </div>
         </div>
     </div>
 <!--                                                                            C H A R T S -->
-    <div class="row px-5" style="margin-top:5em;">
-        <div id="div_genre" class="col-3">
-            <h2 class="marine mb-4" style="padding-left:5.3em;">Genre</h2>
-            <canvas id="genre"></canvas>
-        </div>
-        <div id="div_niveau" class="col-3">
-            <h2 class="marine mb-4">Niveau de qualification</h2>
-            <canvas id="niveau"></canvas>
-        </div>
-        <div id="div_qpv" class="col-3">
-            <h2 class="marine mb-4" style="padding-left:3em;">Quartier QPV</h2>
-            <canvas id="qpv"></canvas>
-        </div>
-        <div id="div_statut" class="col-3">
-            <h2 class="marine mb-4 ps-4">Statut Emploi</h2>
-            <canvas id="statut"></canvas>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="row charts">
+            <div id="div_genre" class="col-12 col-xl-6 mb-5">
+                <h2 class="marine mb-4">Genre</h2>
+                <canvas id="genre"></canvas>
+            </div>
+            <div id="div_niveau" class="col-12 col-xl-6 mb-5">
+                <h2 class="marine mb-4">Niveau de qualification</h2>
+                <canvas id="niveau"></canvas>
+            </div>
+            <div id="div_qpv" class="col-12 col-xl-6 mb-5">
+                <h2 class="marine mb-4">Quartier QPV</h2>
+                <canvas id="qpv"></canvas>
+            </div>
+            <div id="div_statut" class="col-12 col-xl-6 mb-5">
+                <h2 class="marine mb-4">Statut Emploi</h2>
+                <canvas id="statut"></canvas>
+            </div>
         </div>
     </div>
 <!--                                                                            F I L E S -->
-    <div class="row px-5" style="margin-top:7em;">
+    <div class="row">
         <div class="col-4 d-flex justify-content-end">
             <form action="php/export.php" method="post">
                 <!--                                                            Récupération de la valeur dans un input invisible -->

@@ -107,7 +107,7 @@ $(function(){
         const uuid = uuid_gen();
         const commentaires = $("#create_comm_rdv").val();
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
+        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant.e, Date, Type et Durée sont obligatoires.");
         //---------------------------------------------------------------------- Création de l'association entre le jeune et le rdv
         else {
             if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires);
@@ -172,7 +172,7 @@ $(function(){
         const duree = $("#update_duree_rdv").val();
         const commentaires = $("#update_comm_rdv").val();
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant-e, Date, Type et Durée sont obligatoires.");
+        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant.e, Date, Type et Durée sont obligatoires.");
         else {
             //---------------------------------------------------------------------- Création de l'association entre le jeune et le rendez-vous
             if(vLen("Commentaires",commentaires,255)) rdv_Update(id_jeune, id_rdv, id_int, dat, type, visio, duree, commentaires);

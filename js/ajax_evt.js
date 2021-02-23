@@ -304,7 +304,7 @@ const evt_Delete = (id) => {
                 data : {id_evt:id},
                 success: function(response){
                     const exist = parseInt(response[0].exist);
-                    if(exist === 1) alert("Suppression impossible : l'évenement est relié à des jeunes ou des intervenants dans la BDD.");
+                    if(exist === 1) alert("Suppression impossible : l'évenement est relié à des jeunes ou des intervenant.e.s dans la BDD.");
                     else {
                         alert("L'événement a bien été supprimé de la base de données.");
                         //------------------------------------------------------ Réinitialisation de la liste des types et noms d'organisme sur la page jeune (fonction dans orga.js)

@@ -12,7 +12,7 @@ $(function(){
             jeune_Search(search);
         } else {
             //------------------------------------------------------------------ Remplissage du champs de recherche de jeunes
-            $("#npv_res").html("<option selected value=''>Séléctionner un.e jeune</option>");
+            $("#npv_res").html("<option selected value=''>Séléctionner un jeune</option>");
             ajaxListNpv("#npv_res");
         }
     });
