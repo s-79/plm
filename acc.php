@@ -21,8 +21,8 @@
             </div>
             <div class="col-12 col-sm-4 col-xl-2 my-1">
                 <div class="form-floating">
-                    <select id="mob" class="form-select"  aria-label="Mobilité présentie">
-                        <option selected value="">Mobilité présentie</option>
+                    <select id="mob" class="form-select"  aria-label="Mobilité pressentie">
+                        <option selected value="">Mobilité pressentie</option>
                         <option value="Échange de jeune">Échange de jeune</option>
                         <option value="Volontariat court terme">Volontariat court terme</option>
                         <option value="Volontariat long terme">Volontariat long terme</option>
@@ -30,14 +30,14 @@
                         <option value="PVT">PVT</option>
                         <option value="Emploi">Emploi</option>
                     </select>
-                    <label for="mob">Mobilité présentie</label>
+                    <label for="mob">Mobilité pressentie</label>
                 </div>
             </div>
             <div class="col-12 col-sm-4 col-xl-2 my-1">
                 <div class="form-floating">
-                    <select class="form-select" id="ref" aria-label="Référent-e">
+                    <select class="form-select" id="ref" aria-label="Référent.e">
                     </select>
-                    <label for="ref">Référent-e</label>
+                    <label for="ref">Référent.e</label>
                 </div>
             </div>
         </div>

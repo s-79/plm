@@ -59,13 +59,19 @@ const qpv_Change = (id_ville, qpv, id_qpv) => {
         success: function(response){
             // 0 car besoin de remonter un SMALLINT
             $("#nom_qpv").html("<option selected value='0'>Séléctionner le quartier QPV</option>");
-            $("#prij").prop('checked', false);
+
             if(qpv === "Oui" || qpv === "Limite") {
                 $("#nom_qpv")[0].disabled = false;
                 $("#nom_qpv").append(displayList(response));
-                if(id_qpv) $("#nom_qpv").val(id_qpv);
+                if(id_qpv) {
+                    $("#nom_qpv").val(id_qpv);
+                    qpv_Prij(id_qpv);
+                }
             }
-            else {$("#nom_qpv")[0].disabled = true;}
+            else {
+                $("#nom_qpv")[0].disabled = true;
+                $("#prij").prop('checked', false);
+            }
         }
     });
 }
