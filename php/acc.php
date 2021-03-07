@@ -34,6 +34,13 @@ $commentaires =  mysqli_real_escape_string($con, $_GET['commentaires']);
 $id_rdv_up =  mysqli_real_escape_string($con, $_GET['id_rdv_up']);
 $id_rdv_del =  mysqli_real_escape_string($con, $_GET['id_rdv_del']);
 
+// ---------------------------------------------------------------------------  Fiches Profil
+$id_jeune_fiche =  mysqli_real_escape_string($con, $_GET['id_jeune_fiche']);
+$projet_pro =  mysqli_real_escape_string($con, $_GET['projet_pro']);
+$parcours =  mysqli_real_escape_string($con, $_GET['parcours']);
+$situation =  mysqli_real_escape_string($con, $_GET['situation']);
+$prj_mob =  mysqli_real_escape_string($con, $_GET['prj_mob']);
+$commentaires_fiche =  mysqli_real_escape_string($con, $_GET['commentaires']);
 
 if($id_acc) {
     $query = "CALL jeune_Update_Acc('$id_acc', '$statut', '$mob', '$id_ref')";
@@ -67,6 +74,9 @@ if($id_acc) {
 
 } elseif($id_rdv_del) {
     $query = "CALL rdv_Delete('$id_rdv_del')";
+
+} elseif($id_jeune_fiche) {
+    $query = "CALL acc_Update_Fiche('$id_jeune_fiche', '$projet_pro', '$parcours', '$situation', '$prj_mob', '$commentaires_fiche')";
 }
 
 $result = $con->prepare($query);

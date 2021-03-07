@@ -33,11 +33,12 @@ const jeune_Get = (id) => {
         data : {id:id},
         success: function(response){
             const id = response[0].id;
-            const adherent = response[0].adherent;
             const genre = response[0].genre;
-            const nom = response[0].nom;
             const prenom = response[0].prenom;
+            const nom = response[0].nom;
             const ddn = response[0].ddn;
+            const nationalite = response[0].nationalite;
+            const adherent = response[0].adherent;
             const id_evt = response[0].id_evt;
             const email = response[0].email;
             const tel = response[0].tel;
@@ -58,24 +59,26 @@ const jeune_Get = (id) => {
             const nom_ref = response[0].nom_ref;
             const tel_ref = response[0].tel_ref;
             const email_ref = response[0].email_ref;
+            const ml = response[0].ml;
+            const gj = response[0].gj;
             const formation = response[0].formation;
             const niveau = response[0].niveau;
             const diplome = response[0].diplome;
             const niveau_anglais = response[0].niveau_anglais;
             const langues = response[0].langues;
+            const at_anglais = response[0].at_anglais;
             const statut = response[0].statut;
             const pe = response[0].pe;
             const rsa = response[0].rsa;
-            const gj = response[0].gj;
 
             $("#id").val(id);
             $("#genre").val(genre);
+            $("#prenom").val(prenom);
+            $("#nom").val(nom);
+            $("#ddn").val(ddn);
+            $("#nationalite").val(nationalite);
             $("#adherent").prop('checked', false);
             if (adherent === "1") $("#adherent").prop('checked', true);
-            $("#nom").val(nom);
-            $("#prenom").val(prenom);
-            $("#ddn").val(ddn);
-            acc_List_Evt("#sensibilisation", id_evt);
             $("#email").val(email);
             $("#tel").val(tel);
             $("#facebook").val(facebook);
@@ -95,22 +98,30 @@ const jeune_Get = (id) => {
             $("#nom_ref").val(nom_ref);
             $("#tel_ref").val(tel_ref);
             $("#email_ref").val(email_ref);
+            $("#ml").prop('checked', false);
+            if (ml === "1") $("#ml").prop('checked', true);
+            $("#gj").prop('checked', false);
+            if (gj === "1") $("#gj").prop('checked', true);
             $("#formation").val(formation);
             $("#niveau").val(niveau);
             $("#diplome").val(diplome);
             $("#niveau_anglais").val(niveau_anglais);
             $("#langues").val(langues);
+            $("#at_anglais").prop('checked', false);
+            if (at_anglais === "1") $("#at_anglais").prop('checked', true);
             $("#statut").val(statut);
             $("#pe").val(pe);
             $("#rsa").val(rsa);
-            $("#gj").val(gj);
+            acc_List_Evt("#sensibilisation", id_evt);
         }
     });
 }
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! ! */
-const jeune_Create = (npv, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse,
-id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
-statut, pe, rsa, gj) => {
+const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent,
+    email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv,
+    id_orga, nom_ref, tel_ref, email_ref, ml, gj,
+    formation, niveau, diplome, niveau_anglais, langues, at_anglais,
+    statut, pe, rsa, id_evt) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom du jeune existe-t-il déjà dans la BDD ?
         url: "php/exist.php",
@@ -123,11 +134,11 @@ statut, pe, rsa, gj) => {
                 $.ajax({
                     url: 'php/jeune.php',
                     dataType: 'JSON',
-                    data : {adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, id_evt:id_evt,
-                        email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence,
-                        adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv, id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref,
-                        formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues,
-                        statut:statut, pe:pe, rsa:rsa, gj:gj},
+                    data : {genre:genre, prenom:prenom, nom:nom, ddn:ddn, nationalite:nationalite, adherent:adherent,
+                        email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
+                        id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref, ml:ml, gj:gj,
+                        formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues, at_anglais:at_anglais,
+                        statut:statut, pe:pe, rsa:rsa, id_evt:id_evt},
                     complete: function(){
                         //------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement à la sensibilisation
                         jeune_Get_Id(npv, id_evt);
@@ -157,17 +168,19 @@ const jeune_Get_Id = (npv, id_evt) => {
 
 // ----------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
-const jeune_Update = (npv, id, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse,
-id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues,
-statut, pe, rsa, gj) => {
+const jeune_Update = (npv, id, genre, prenom, nom, ddn, nationalite, adherent,
+    email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv,
+    id_orga, nom_ref, tel_ref, email_ref, ml, gj,
+    formation, niveau, diplome, niveau_anglais, langues, at_anglais,
+    statut, pe, rsa, id_evt) => {
     $.ajax({
         url: 'php/jeune.php',
         dataType: 'JSON',
-        data : {id:id, adherent:adherent, genre:genre, prenom:prenom, nom:nom, ddn:ddn, id_evt:id_evt,
-            email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence,
-            adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv, id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref,
-            formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues,
-            statut:statut, pe:pe, rsa:rsa, gj:gj},
+        data : {id:id, genre:genre, prenom:prenom, nom:nom, ddn:ddn, nationalite:nationalite, adherent:adherent,
+            email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
+            id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref, ml:ml, gj:gj,
+            formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues, at_anglais:at_anglais,
+            statut:statut, pe:pe, rsa:rsa, id_evt:id_evt},
         complete: function(){
             alert(`La fiche de ${npv} a bien été modifiée.`);
             // ----------------------------------------------------------------- Réinitialisation du formulaire et des listes select dynamiques sur la page jeune (fonction dans jeune_Create)

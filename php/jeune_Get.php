@@ -14,13 +14,12 @@ if($id) {
 
     while($row = mysqli_fetch_array($result)){
         $id = $row['id'];
-        $adherent = $row['adherent'];
         $genre = $row['genre'];
-        $nom = $row['nom'];
         $prenom = $row['prenom'];
+        $nom = $row['nom'];
         $ddn = $row['ddn'];
-        $id_evt = $row['id_evt'];
-        $nom_evt = $row['nom_evt'];
+        $nationalite = $row['nationalite'];
+        $adherent = $row['adherent'];
         $email = $row['email'];
         $tel = $row['tel'];
         $facebook = $row['facebook'];
@@ -34,33 +33,33 @@ if($id) {
         $contrat_ville = $row['contrat_ville'];
         $qpv = $row['qpv'];
         $id_qpv = $row['id_qpv'];
-        $nom_qpv = $row['nom_qpv'];
         $prij = $row['prij'];
         $type_orga = $row['type_orga'];
         $id_orga = $row['id_orga'];
-        $nom_orga = $row['nom_orga'];
         $nom_ref = $row['nom_ref'];
         $tel_ref = $row['tel_ref'];
         $email_ref = $row['email_ref'];
+        $ml = $row['ml'];
+        $gj = $row['gj'];
         $formation = $row['formation'];
         $niveau = $row['niveau'];
         $diplome = $row['diplome'];
         $niveau_anglais = $row['niveau_anglais'];
         $langues = $row['langues'];
+        $at_anglais = $row['at_anglais'];
         $statut = $row['statut'];
         $pe = $row['pe'];
         $rsa = $row['rsa'];
-        $gj = $row['gj'];
+        $id_evt = $row['id_evt'];
 
         $return_arr[] = array(
             "id" => $id,
-            "adherent" => $adherent,
             "genre" => $genre,
             "nom" => $nom,
             "prenom" => $prenom,
             "ddn" => $ddn,
-            "id_evt" => $id_evt,
-            "nom_evt" => $nom_evt,
+            "nationalite" => $nationalite,
+            "adherent" => $adherent,
             "email" => $email,
             "tel" => $tel,
             "facebook" => $facebook,
@@ -74,23 +73,25 @@ if($id) {
             "contrat_ville" => $contrat_ville,
             "qpv" => $qpv,
             "id_qpv" => $id_qpv,
-            "nom_qpv" => $nom_qpv,
             "prij" => $prij,
             "type_orga" => $type_orga,
             "id_orga" => $id_orga,
-            "nom_orga" => $nom_orga,
             "nom_ref" => $nom_ref,
             "tel_ref" => $tel_ref,
             "email_ref" => $email_ref,
+            "ml" => $ml,
+            "gj" => $gj,
             "formation" => $formation,
             "niveau" => $niveau,
             "diplome" => $diplome,
             "niveau_anglais" => $niveau_anglais,
             "langues" => $langues,
+            "at_anglais" => $at_anglais,
             "statut" => $statut,
             "pe" => $pe,
             "rsa" => $rsa,
-            "gj" => $gj);
+            "id_evt" => $id_evt
+        );
     }
 
 } elseif($npv) {

@@ -54,7 +54,6 @@ $(function(){
         }
     });
 
-
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E -- !!!
 
 
@@ -67,13 +66,13 @@ $(function(){
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "ENREGISTRER LA FICHE" DANS LA PAGE JEUNE
     $('#jeune_create').click(function(){
         // --------------------------------------------------------------------- Récupération des valeus saisies par l'utilisateur
+        const genre = $("#genre").val();
+        const prenom = strUpFirst($("#prenom").val());
+        const nom = $("#nom").val().toUpperCase();
+        const ddn = $("#ddn").val();
+        const nationalite = $("#nationalite").val();
         let adherent =  $("#adherent").is(':checked');
         if(adherent)adherent=1;else{adherent=0};
-        const genre = $("#genre").val();
-        const nom = $("#nom").val().toUpperCase();
-        const prenom = strUpFirst($("#prenom").val());
-        const ddn = $("#ddn").val();
-        const id_evt = $("#sensibilisation").val();
         const email = $("#email").val();
         const tel = $("#tel").val();
         const facebook = $("#facebook").val();
@@ -93,18 +92,24 @@ $(function(){
         const nom_ref = $("#nom_ref").val();
         const tel_ref = $("#tel_ref").val();
         const email_ref = $("#email_ref").val();
+        let ml =  $("#ml").is(':checked');
+        if(ml)ml=1;else{ml=0};
+        let gj =  $("#gj").is(':checked');
+        if(gj)gj=1;else{gj=0};
         const formation = $("#formation").val();
         const niveau = $("#niveau").val();
         const diplome = $("#diplome").val();
         const niveau_anglais = $("#niveau_anglais").val();
         const langues = $("#langues").val();
+        let at_anglais =  $("#at_anglais").is(':checked');
+        if(at_anglais)at_anglais=1;else{at_anglais=0};
         const statut = $("#statut").val();
         const pe = $("#pe").val();
         const rsa = $("#rsa").val();
-        const gj = $("#gj").val();
+        const id_evt = $("#sensibilisation").val();
 
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!genre || !nom || !prenom || !id_ville || !id_evt || (!email && !tel)) {
+        if(!genre || !prenom || !nom || !id_ville || !id_evt || (!email && !tel)) {
             alert("Les champs Genre, Nom, Prénom, Sensibilisation et Ville ainsi que Email ou Tel sont obligatoires.");
         } else {
             // ----------------------------------------------------------------- La longueur des champs est-elles bien inférieur à celle attendue dans la BDD ?
@@ -116,7 +121,7 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Create(npv, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
+                jeune_Create(npv, genre, prenom, nom, ddn, nationalite, adherent, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, pe, rsa, id_evt);
             }
         }
     })
@@ -127,13 +132,13 @@ $(function(){
     $('#jeune_update').click(function(){
         // --------------------------------------------------------------------- Récupération des valeus saisies par l'utilisateur
         const id = $("#id").val();
+        const genre = $("#genre").val();
+        const prenom = strUpFirst($("#prenom").val());
+        const nom = $("#nom").val().toUpperCase();
+        const ddn = $("#ddn").val();
+        const nationalite = $("#nationalite").val();
         let adherent =  $("#adherent").is(':checked');
         if(adherent)adherent=1;else{adherent=0};
-        const genre = $("#genre").val();
-        const nom = $("#nom").val().toUpperCase();
-        const prenom = strUpFirst($("#prenom").val());
-        const ddn = $("#ddn").val();
-        const id_evt = $("#sensibilisation").val();
         const email = $("#email").val();
         const tel = $("#tel").val();
         const facebook = $("#facebook").val();
@@ -153,18 +158,24 @@ $(function(){
         const nom_ref = $("#nom_ref").val();
         const tel_ref = $("#tel_ref").val();
         const email_ref = $("#email_ref").val();
+        let ml =  $("#ml").is(':checked');
+        if(ml)ml=1;else{ml=0};
+        let gj =  $("#gj").is(':checked');
+        if(gj)gj=1;else{gj=0};
         const formation = $("#formation").val();
         const niveau = $("#niveau").val();
         const diplome = $("#diplome").val();
         const niveau_anglais = $("#niveau_anglais").val();
         const langues = $("#langues").val();
+        let at_anglais =  $("#at_anglais").is(':checked');
+        if(at_anglais)at_anglais=1;else{at_anglais=0};
         const statut = $("#statut").val();
         const pe = $("#pe").val();
         const rsa = $("#rsa").val();
-        const gj = $("#gj").val();
+        const id_evt = $("#sensibilisation").val();
 
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!genre || !nom || !prenom || !id_ville || (!email && !tel)) {
+        if(!genre || !prenom || !nom || !id_ville || (!email && !tel)) {
             alert("Les champs Genre, Nom, Prénom et Ville ainsi que Email ou Tel sont obligatoires.");
         } else {
             // ----------------------------------------------------------------- La longueur des champs est-elles bien inférieur à celle attendue dans la BDD ?
@@ -176,7 +187,7 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Update(npv, id, adherent, genre, nom, prenom, ddn, id_evt, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, formation, niveau, diplome, niveau_anglais, langues, statut, pe, rsa, gj);
+                jeune_Update(npv, id, genre, prenom, nom, ddn, nationalite, adherent, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, pe, rsa, id_evt);
             }
         }
     })
@@ -202,7 +213,7 @@ const jeune_Reset = () => {
     document.getElementById("form_jeune").reset();
     //-------------------------------------------------------------------------- Remplissage de la liste des sensibilisations
     $("#sensibilisation").html("<option selected value=''>Ajouter une sensibilisation</option>");
-    ajaxListEvt("#sensibilisation");
+    acc_List_Evt("#sensibilisation");
     //-------------------------------------------------------------------------- Remplissage de la liste des villes
     $("#ville").html("<option selected value=''>Séléctionner la ville</option>");
     ajaxListVille("#ville");

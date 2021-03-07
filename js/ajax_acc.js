@@ -152,6 +152,26 @@ const jeune_Get_Rdv = (id) => {
     });
 }
 
+const jeune_Get_Fiche = (id) => {
+    $.ajax({
+        url: 'php/acc_Get.php',
+        dataType: 'JSON',
+        data : {id_jeune_fiche:id},
+        success: function(response){
+            const projet_pro = response[0].projet_pro;
+            const parcours = response[0].parcours;
+            const situation = response[0].situation;
+            const prj_mob = response[0].prj_mob;
+            const commentaires = response[0].commentaires;
+            $("#projet_pro").val(projet_pro);
+            $("#parcours").val(parcours);
+            $("#situation").val(situation);
+            $("#prj_mob").val(prj_mob);
+            $("#commentaires").val(commentaires);
+        }
+    });
+}
+
 //------------------------------------------------------------------------------ !!! REMPLISSAGE DES CHAMPS DANS LES POP-UP DE MODIFICATIONS !!!
 
 /* ---------------------------------------------------------------------------- Fonction appelée en cliquant sur les lignes du tableau dans jeune_Get_Prj */
@@ -367,6 +387,20 @@ const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, visio, duree, commentai
             //------------------------------------------------------------------ TABLEAU RDV : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
             const id = $("#id").val();
             jeune_Get_Rdv(id);
+        }
+    });
+}
+
+//-------------------------------------------------------------------------------F I C H E  P R O F I L
+
+//------------------------------------------------------------------------------ Modification d'un RDV individuel
+const jeune_Update_Fiche = (id_jeune, projet_pro, parcours, situation, prj_mob, commentaires) => {
+    $.ajax({
+        url: 'php/acc.php',
+        dataType: 'JSON',
+        data : {id_jeune_fiche:id_jeune, projet_pro:projet_pro, parcours:parcours, situation:situation, prj_mob:prj_mob, commentaires:commentaires},
+        complete: function(){
+            $('#modal_fiche_profil').modal('hide')
         }
     });
 }

@@ -32,20 +32,10 @@
                 <!--                                                                                                              État Civil-->
                 <div class="col-12 col-lg-6 col-xl-4">
                     <div class="bg-marine m-3 py-2 px-3 rounded rounded-3 div_marine">
-
-                        <div class="d-flex pt-3">
-                            <div class="col-7 d-flex justify-content-start">
-                                <h2>État civil</h2>
-                                <i id="new_jeune" class="ps-3 fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouveau profil"></i>
-                            </div>
-                            <div class="col-5 d-flex justify-content-end pe-3">
-                                <label class="form-check-label text-white" for="adherent">
-                                    Adhérent
-                                </label>&nbsp;&nbsp;
-                                <input class="form-check-input" type="checkbox" value="" id="adherent">
-                            </div>
+                        <div class="d-flex justify-content-start pt-3">
+                            <h2>État civil</h2>
+                            <i id="new_jeune" class="ps-3 fas fa-plus-circle fa-2x text-white pointeur" data-toggle="tooltip" data-placement="top" title="Créer un nouveau profil"></i>
                         </div>
-
                         <div class="form-floating mx-3 mt-4">
                             <select class="form-select" id="genre" aria-label="Genre *">
                                 <option selected value="">Séléctionner un genre *</option>
@@ -69,12 +59,17 @@
                             <input type="date" class="form-control" id="ddn" placeholder="Date de naissance">
                             <label for="ddn">Date de naissance</label>
                         </div>
-                        <h2 class="pt-3">Sensibilisation</h2>
-                        <div class="form-floating mx-3 mt-4 mb-4">
-                            <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
-                            </select>
-                            <label for="sensibilisation">Sensibilisation</label>
+                        <div class="form-floating mx-3 mt-3 mb-4">
+                            <input type="text" class="form-control" id="nationalite" placeholder="Nationalité">
+                            <label for="nationalite">Nationalité</label>
                         </div>
+                        <div class="mx-3 mt-4 py-1 ps-1 mb-4">
+                            <div class="form-check">
+                                <label class="form-check-label text-white" for="adherent">Adhérent.e</label>
+                                <input class="form-check-input" type="checkbox" value="" id="adherent">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <!--                                                                                                              Contact -->
@@ -170,6 +165,7 @@
                                 <option value="Réseau IJ (BIJ, PIJ, CIDJ)">Réseau IJ (BIJ, PIJ, CIDJ)</option>
                                 <option value="Club de prévention">Club de prévention</option>
                                 <option value="Pôle Emploi">Pôle Emploi</option>
+                                <option value="Maison de l'emploi">Maison de l'emploi</option>
                                 <option value="Centre Paris Anim ou EPJ (Paris)">Centre Paris Anim ou EPJ (Paris)</option>
                                 <option value="Internet">Internet</option>
                                 <option value="Bouche à oreilles / ami">Bouche à oreilles / ami</option>
@@ -201,9 +197,19 @@
                             <input type="text" class="form-control" id="tel_ref" placeholder="Téléphone du référent">
                             <label for="tel_ref">Téléphone du référent</label>
                         </div>
-                        <div class="form-floating mx-3 mt-3 mb-4">
+                        <div class="form-floating mx-3 mt-3">
                             <input type="email" class="form-control" id="email_ref" placeholder="Email du référent<">
                             <label for="email_ref">Email du référent</label>
+                        </div>
+                        <div class="row mx-3 mt-4 ps-1 mb-4">
+                            <div class="form-check col-6">
+                                <label class="form-check-label text-white" for="ml">Mission Locale</label>
+                                <input class="form-check-input" type="checkbox" value="" id="ml">
+                            </div>
+                            <div class="form-check col-6">
+                                <label class="form-check-label text-white" for="gj">Garantie Jeune</label>
+                                <input class="form-check-input" type="checkbox" value="" id="gj">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -243,9 +249,15 @@
                             </select>
                             <label for="niveau_anglais">Niveau d'anglais</label>
                         </div>
-                        <div class="form-floating mx-3 mt-3 mb-4">
+                        <div class="form-floating mx-3 mt-3">
                             <input type="text" class="form-control" id="langues" placeholder="Autre langue parlée">
                             <label for="langues">Autres langues parlées</label>
+                        </div>
+                        <div class="mx-3 mt-4 ps-1 mb-4">
+                            <div class="form-check">
+                                <label class="form-check-label text-white" for="at_anglais">Intéréssé.e par les ateliers d'anglais</label>
+                                <input class="form-check-input" type="checkbox" value="" id="at_anglais">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -284,18 +296,16 @@
                             </select>
                             <label for="rsa">Allocataire RSA</label>
                         </div>
+                        <h2 class="mt-3">Sensibilisation</h2>
                         <div class="form-floating mx-3 mt-3">
-                            <select class="form-select" id="gj" aria-label="Garantie Jeune">
-                                <option selected value="">Garantie Jeune</option>
-                                <option value="Oui">Oui</option>
-                                <option value="Non">Non</option>
+                            <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
                             </select>
-                            <label for="gj">Garantie Jeune</label>
+                            <label for="sensibilisation">Sensibilisation</label>
                         </div>
-                        <div id="btn_jeune_create" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2">
+                        <div id="btn_jeune_create" class="form-group d-flex justify-content-center pt-1 mt-2 mx-3">
                             <button type="button" id="jeune_create" class="btn btn-primary btn-bleu m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
                         </div>
-                        <div id="btn_jeune_update" class="form-group d-flex justify-content-center mx-3 mt-1 mb-2 d-none">
+                        <div id="btn_jeune_update" class="form-group d-flex justify-content-center pt-1 mt-2 mx-3 d-none">
                             <button type="button" id="jeune_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
                             <button type="button" id="jeune_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
                         </div>

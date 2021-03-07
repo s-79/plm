@@ -1,8 +1,11 @@
 <div id="accompagnement" class="d-flex justify-content-center mt-2 d-none">
     <div class="accomp">
         <!--                                                                                                              Select Statut accompagnement-->
-        <div class="form-group row mx-auto border-bottom border-top border-2 pt-4 mt-3 pb-4 mb-5">
-            <div class="d-flex col-12 col-xl-6 mt-3"><h2 class="rose" id="acc_npv"></h2><i id="acc_projet" class="ps-3 fas fa-plane-departure marine pointeur" style="font-size:1.5em;" data-toggle="tooltip" data-placement="top" title="Afficher les projets du jeune"></i></div>
+        <div class="form-group row mx-auto border-bottom border-top border-2 pt-4 mt-3 pb-4 mb-3">
+            <div class="d-flex col-12 col-xl-6 mt-3">
+                <h2 class="rose" id="acc_npv"></h2>
+                <i id="acc_projet" class="ps-3 fas fa-plane-departure marine pointeur" style="font-size:1.5em;" data-toggle="tooltip" data-placement="top" title="Afficher les projets du jeune"></i>
+            </div>
             <div class="col-12 col-sm-4 col-xl-2 my-1">
                 <div class="form-floating">
                     <select id="acc" class="form-select" aria-label="Statut d'accomp.">
@@ -40,6 +43,11 @@
                     <label for="ref">Référent.e</label>
                 </div>
             </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-2 marine fw-bold">
+            <span id="fiche_profil" class="pointeur" data-bs-toggle="modal" data-bs-target="#modal_fiche_profil">Fiche Profil <i id="acc_projet" class="ps-3 fas fa-file-alt marine" style="font-size:1.5em;" data-toggle="tooltip" data-placement="top" title="Afficher la fiche profil projets du jeune"></i></span>
+
         </div>
 
         <!--                                                                                                              Projets-->

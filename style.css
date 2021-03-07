@@ -10,6 +10,10 @@ body {
     max-width: 1600px !important;
 }
 
+.accomp {
+    width: 80%;
+}
+
 .charts {
     max-width: 1200px !important;
 }

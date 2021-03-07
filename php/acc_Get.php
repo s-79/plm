@@ -14,6 +14,7 @@ $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_prj = mysqli_real_escape_string($con, $_GET['id_prj']);
 $id_jeune = mysqli_real_escape_string($con, $_GET['id_jeune']);
 $uuid = mysqli_real_escape_string($con, $_GET['uuid']);
+$id_jeune_fiche = mysqli_real_escape_string($con, $_GET['id_jeune_fiche']);
 
 // ----------------------------------------------------------------------------- Récupération du statut d'accompagnement du jeune séléctionné
 if($id_acc) {
@@ -203,6 +204,27 @@ if($id_acc) {
 
         $return_arr[] = array(
             "id" => $id);
+    }
+
+} elseif($id_jeune_fiche) {
+    $query = "CALL acc_Get_Fiche('$id_jeune_fiche')";
+    $result = mysqli_query($con,$query);
+
+    while($row = mysqli_fetch_array($result)){
+        $projet_pro = $row['projet_pro'];
+        $parcours = $row['parcours'];
+        $situation = $row['situation'];
+        $prj_mob = $row['prj_mob'];
+        $commentaires = $row['commentaires'];
+
+        $return_arr[] = array(
+            "projet_pro" => $projet_pro,
+            "parcours" => $parcours,
+            "situation" => $situation,
+            "prj_mob" => $prj_mob,
+            "commentaires" => $commentaires
+
+        );
     }
 }
 

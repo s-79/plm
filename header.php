@@ -12,6 +12,9 @@ if (!$_SESSION['user']) {
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <script src="scripts/bootstrap.bundle.min.js"></script>
     <script src="scripts/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="scripts/fontawesome.min.css">

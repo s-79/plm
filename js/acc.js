@@ -61,6 +61,13 @@ $(function(){
         acc_Get(id);
     });
 
+    // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE TEXTE OU L'ICONE FICHE PROFIL
+    $("#fiche_profil").click(function(){
+        // --------------------------------------------------------------------- Récupération des infos pour remplir la fiche
+        const id = $("#npv_res").val();
+        jeune_Get_Fiche(id);
+    });
+
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AJOUTER AU SUIVI" DANS LE MODAL D'ASSOCIATION DE PROJET
@@ -126,6 +133,18 @@ $(function(){
         jeune_Update_Acc(id, statut, mob, id_ref);
         $(this).addClass('text-success');
         setTimeout(acc_Check, 1500);
+    });
+
+// ---------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON ENREGISTRER LES MODIFS DANS FICHE PROFIL
+    $("#btn_fiche_profil").click(function(){
+        const id_jeune = $("#npv_res").val();
+        const projet_pro = $("#projet_pro").val();
+        const parcours = $("#parcours").val();
+        const situation = $("#situation").val();
+        const prj_mob = $("#prj_mob").val();
+        const commentaires = $("#commentaires").val();
+        // --------------------------------------------------------------------- Mise à jour de la fiche profil
+        jeune_Update_Fiche(id_jeune, projet_pro, parcours, situation, prj_mob, commentaires);
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LES DATES" DANS LE MODAL PROJET

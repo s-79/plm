@@ -146,7 +146,7 @@ include("header.php"); ?>
                 <!--                                                                                                              Coordonnées -->
                 <div class="col-12 col-lg-6 col-xl-4">
                     <div class="bg-marine m-3 py-2 px-3 rounded rounded-3 div_marine">
-                        <h2 class="pt-3">Évaluation</h2>
+                        <h2 class="pt-3">Participation</h2>
                         <div class="form-floating mx-3 mt-4">
                             <input type="text" class="form-control" id="nb_jeunes" placeholder="Nombre de jeunes">
                             <label for="nb_jeunes">Nombre de jeunes</label>

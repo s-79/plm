@@ -1,3 +1,40 @@
+<!---                                                                                                              Modal fiche profil -->
+<div class="modal fade" id="modal_fiche_profil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Fiche Profil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mx-3 mt-3">
+                    <textarea class="form-control" placeholder="Projet pro" id="projet_pro" style="height:130px;"></textarea>
+                    <label for="projet_pro">Projet pro</label>
+                </div>
+                <div class="form-floating mx-3 mt-3">
+                    <textarea class="form-control" placeholder="Parcours extra-pro / hobbies" id="parcours" style="height:130px;"></textarea>
+                    <label for="parcours">Parcours extra-pro / hobbies</label>
+                </div>
+                <div class="form-floating mx-3 mt-3">
+                    <textarea class="form-control" placeholder="Situation actuelle" id="situation" style="height:130px;"></textarea>
+                    <label for="situation">Situation actuelle</label>
+                </div>
+                <div class="form-floating mx-3 mt-3">
+                    <textarea class="form-control" placeholder="Projet de mobilité" id="prj_mob" style="height:130px;"></textarea>
+                    <label for="prj_mob">Projet de mobilité</label>
+                </div>
+                <div class="form-floating mx-3 mt-3">
+                    <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:130px;"></textarea>
+                    <label for="commentaires">Commentaires</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_fiche_profil" type="button" class="btn btn-primary btn-bleu">Enregistrer les modifications</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!---                                                                                                              Modal pour associer un projet au suivi d'un jeune -->
 
 <div class="modal fade" id="modal_prj_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
