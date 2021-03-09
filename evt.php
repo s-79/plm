@@ -38,15 +38,15 @@ include("header.php"); ?>
                             <div class="col-12 col-sm-8 d-flex justify-content-end p-0">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m0" value="m0">
-                                    <label class="form-check-label text-white fw-bold" for="inlineRadio1">M0</label>
+                                    <label class="form-check-label text-white fw-bold m-0" for="inlineRadio1">M0</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m1" value="m1">
-                                    <label class="form-check-label text-white fw-bold" for="inlineRadio2">M1</label>
+                                    <label class="form-check-label text-white fw-bold m-0" for="inlineRadio2">M1</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m2" value="m2">
-                                    <label class="form-check-label text-white fw-bold" for="inlineRadio3">M2</label>
+                                    <label class="form-check-label text-white fw-bold m-0" for="inlineRadio3">M2</label>
                                 </div>
                             </div>
                         </div>
@@ -102,10 +102,10 @@ include("header.php"); ?>
                     <div class="bg-marine m-3 py-2 px-3 rounded rounded-3 div_marine">
                         <div id="orga_evt">
                             <div class="row pt-3">
-                                <div class="col-12 col-sm-7">
+                                <div class="col-12 col-sm-6">
                                     <h2>Organisation</h2>
                                 </div>
-                                <div class="col-12 col-sm-4 d-flex justify-content-end mt-1">
+                                <div class="col-12 col-sm-5 d-flex justify-content-end mt-1">
                                     <div class="form-check form-switch">
                                       <input class="form-check-input" type="checkbox" id="visio">
                                       <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
@@ -136,7 +136,7 @@ include("header.php"); ?>
                             </div>
                         </div>
                         <div class="d-flex pt-4 mt-1">
-                            <h2>Intervenant.e.s</h2>
+                            <h2 class="pt-1">Intervenant.e.s</h2>
                             <i id="new_inter" class="ps-3 fas fa-plus-circle fa-2x text-white pointeur" data-bs-toggle="modal" data-bs-target="#modal_int" data-toggle="tooltip" data-placement="top" title="Ajouter / Modifier un-e intervenant-e PLM"></i>
                         </div>
                         <div id="inter" class="mx-3 mt-2 mb-4" style="overflow-y:scroll; overflow-x:hidden; height:180px;">
@@ -159,10 +159,10 @@ include("header.php"); ?>
                             <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:100px;"></textarea>
                             <label for="commentaires">Commentaires</label>
                         </div>
-                        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1">
+                        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1 pt-1">
                             <button type="button" id="evt_create" class="btn btn-primary btn-bleu m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
                         </div>
-                        <div id="btn_evt_update" class="form-group d-flex justify-content-center mx-3 mt-1 d-none">
+                        <div id="btn_evt_update" class="form-group d-flex justify-content-center mx-3 mt-1 pt-1 d-none">
                             <button type="button" id="evt_update" class="btn btn-warning m-3">&nbsp;Modifier&nbsp;<br>la fiche</button>
                             <button type="button" id="evt_delete" class="btn btn-danger m-3">Supprimer <br>la fiche</button>
                         </div>

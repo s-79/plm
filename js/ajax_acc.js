@@ -8,7 +8,18 @@ const acc_List_Evt = (liste, id_evt) => {
         data : {v_acc_list_evt:"v_acc_list_evt"},
         success: function(response){
             $(liste).html("<option selected value=''>Séléctionner la sensibilisation</option>")
-            $(liste).append(displayList(response, 1));
+            let res = "";
+            const len = response.length;
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                let nom = "";
+                if(parseInt(id) === 1) nom = "Avant 2021";
+                else {
+                    nom = response[i].nom.substr(2);
+                }
+                res += `<option value="${id}">${nom}</option>`;
+            }
+            $(liste).append(res);
             if(id_evt)$(liste).val(id_evt);
         }
     });
@@ -89,7 +100,8 @@ const jeune_Get_Evt = (id) => {
             let res = "";
             for (let i = 0; i < len; i++) {
                 const id = response[i].id;
-                const dat = response[i].dat;
+                let dat = response[i].dat;
+                if (dat=="2099-31-12") dat = "Avant 2020";
                 const type = response[i].type;
                 const nom_ville = response[i].nom_ville;
                 let commentaire = response[i].commentaire;

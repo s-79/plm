@@ -140,8 +140,15 @@ label {
 }
 
 /* ----------------------------------------------------------------------------- Taille min des div */
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1400px) {
     .div_marine {
         min-width: 450px !important;
+    }
+}
+
+/* ----------------------------------------------------------------------------- Taille min des div */
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .div_marine {
+        min-width: 380px !important;
     }
 }

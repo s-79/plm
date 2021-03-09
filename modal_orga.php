@@ -39,6 +39,7 @@
                             <option value="Réseau IJ (BIJ, PIJ, CIDJ)">Réseau IJ (BIJ, PIJ, CIDJ)</option>
                             <option value="Club de prévention">Club de prévention</option>
                             <option value="Pôle Emploi">Pôle Emploi</option>
+                            <option value="Maison de l'emploi">Maison de l'emploi</option>
                             <option value="Centre Paris Anim ou EPJ (Paris)">Centre Paris Anim ou EPJ (Paris)</option>
                             <option value="Internet">Internet</option>
                             <option value="Bouche à oreilles / ami">Bouche à oreilles / ami</option>

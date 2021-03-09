@@ -8,7 +8,19 @@ const ajaxListEvt = (liste, id_evt) => {
         data : {v_evt:"v_evt"},
         success: function(response){
             $(liste).html("<option selected value=''>Séléctionner un événement</option>");
-            $(liste).append(displayList(response, 1));
+
+            let res = "";
+            const len = response.length;
+            for (let i = 0; i < len; i++) {
+                const id = response[i].id;
+                let nom = "";
+                if(parseInt(id) === 1) nom = "Avant 2021";
+                else {
+                    nom = response[i].nom.substr(2);
+                }
+                res += `<option value="${id}">${nom}</option>`;
+            }
+            $(liste).append(res);
             if(id_evt) {
                 sleep(50).then(() => {
                     $(liste).val(id_evt);
