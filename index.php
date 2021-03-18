@@ -23,6 +23,7 @@ if (isset($_POST['user']) && isset($_POST['mdp'])){
 					// Création du jeton de session
 					$_SESSION['user'] = $user_result['user'];
 					$_SESSION['initiales'] = $user_result['initiales'];
+					$_SESSION['ref'] = $user_result['ref'];
 					header('location: evt.php');
 			}	else {
 				$message = "Identifiant ou mot de passe incorrect.";

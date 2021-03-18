@@ -47,13 +47,15 @@ $(function(){
         //---------------------------------------------------------------------- Réinitialisation du formulaire
         document.getElementById("form_rdv_create").reset();
         //---------------------------------------------------------------------- Réinitialisation de la liste des intervenant-e-s
-        ajaxListRef("#create_int_rdv");
+        // ajaxListRef("#create_int_rdv");
     });
 
     // ------------------------------------------------------------------------- ! ! ! - - G E T - - ! ! !
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "AFFICHER ACCOMPAGNEMENT"
     $("#btn_accomp").click(function(){
+        $("#divTable").removeClass("d-none");
+        $("#divFiche_Profil").addClass("d-none");
         //---------------------------------------------------------------------- Récupération de l'id du jeune séléctionné
         const id = $("#npv_res").val();
         $("#id").val(id);
@@ -65,7 +67,7 @@ $(function(){
     $("#fiche_profil").click(function(){
         // --------------------------------------------------------------------- Récupération des infos pour remplir la fiche
         const id = $("#npv_res").val();
-        jeune_Get_Fiche(id);
+        acc_Create_Profil(id);
     });
 
     // ------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
@@ -105,7 +107,6 @@ $(function(){
     $("#btn_rdv_create").click(function(){
         //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
-        const id_int = $("#create_int_rdv").val();
         const dat = $("#create_date_rdv").val();
         const type = $("#create_type_rdv").val();
         let visio =  $("#create_visio_rdv").is(':checked');
@@ -114,10 +115,10 @@ $(function(){
         const uuid = uuid_gen();
         const commentaires = $("#create_comm_rdv").val();
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant.e, Date, Type et Durée sont obligatoires.");
+        if(!dat || !type || !duree) alert("Les champs Date, Type et Durée sont obligatoires.");
         //---------------------------------------------------------------------- Création de l'association entre le jeune et le rdv
         else {
-            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires);
+            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, dat, type, visio, duree, uuid, commentaires);
         };
     });
 
@@ -183,7 +184,6 @@ $(function(){
         //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
         const id_rdv = $("#update_id_rdv").val();
-        const id_int = $("#update_int_rdv").val();
         const dat = $("#update_date_rdv").val();
         const type = $("#update_type_rdv").val();
         let visio =  $("#update_visio_rdv").is(':checked');
@@ -191,10 +191,10 @@ $(function(){
         const duree = $("#update_duree_rdv").val();
         const commentaires = $("#update_comm_rdv").val();
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
-        if(!id_int || !dat || !type || !duree) alert("Les champs Intervenant.e, Date, Type et Durée sont obligatoires.");
+        if(!dat || !type || !duree) alert("Les champs Date, Type et Durée sont obligatoires.");
         else {
             //---------------------------------------------------------------------- Création de l'association entre le jeune et le rendez-vous
-            if(vLen("Commentaires",commentaires,255)) rdv_Update(id_jeune, id_rdv, id_int, dat, type, visio, duree, commentaires);
+            if(vLen("Commentaires",commentaires,255)) rdv_Update(id_jeune, id_rdv, dat, type, visio, duree, commentaires);
         };
     });
 
@@ -249,12 +249,16 @@ const acc_Get = (id) => {
         //---------------------------------------------------------------------- Récupération du statut du jeune
         jeune_Get_Acc(id);
         //---------------------------------------------------------------------- TABLEAU PROJETS : Récupération des projets du jeune et remplissage du tableau
+        $("#tab_prj").html("");
         jeune_Get_Prj(id);
         //---------------------------------------------------------------------- TABLEAU M0, M1 : Récupération des sensibilisation (mission 0 et 1) du jeune et remplissage du tableau
+        $("#tab_evt").html("");
         jeune_Get_Evt(id);
         //---------------------------------------------------------------------- TABLEAU M2 : RRécupération des ateliers collectifs (mission 2) du jeune et remplissage du tableau
+        $("#tab_evt2").html("");
         jeune_Get_Evt2(id);
         //---------------------------------------------------------------------- TABLEAU M3 : RRécupération des RDV (mission 3) du jeune et remplissage du tableau
+        $("#tab_rdv").html("");
         jeune_Get_Rdv(id);
     }
 };

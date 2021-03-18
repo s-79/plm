@@ -1,9 +1,9 @@
-body {
-    /* background-image: url(img/arbre_reseau3_left.png),url(img/arbre_reseau3_right.png);
-    background-repeat: no-repeat,no-repeat;
-    background-position: top 6.2em left,top 5.7em right;
-    background-attachment: fixed; */
+body, pre {
     font-family: "DejaVu Sans", sans-serif;
+}
+
+pre {
+    margin-bottom: 0;
 }
 
 .formulaires, .accomp {

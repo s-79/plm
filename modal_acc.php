@@ -1,40 +1,3 @@
-<!---                                                                                                              Modal fiche profil -->
-<div class="modal fade" id="modal_fiche_profil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Fiche Profil</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-floating mx-3 mt-3">
-                    <textarea class="form-control" placeholder="Projet pro" id="projet_pro" style="height:130px;"></textarea>
-                    <label for="projet_pro">Projet pro</label>
-                </div>
-                <div class="form-floating mx-3 mt-3">
-                    <textarea class="form-control" placeholder="Parcours extra-pro / hobbies" id="parcours" style="height:130px;"></textarea>
-                    <label for="parcours">Parcours extra-pro / hobbies</label>
-                </div>
-                <div class="form-floating mx-3 mt-3">
-                    <textarea class="form-control" placeholder="Situation actuelle" id="situation" style="height:130px;"></textarea>
-                    <label for="situation">Situation actuelle</label>
-                </div>
-                <div class="form-floating mx-3 mt-3">
-                    <textarea class="form-control" placeholder="Projet de mobilité" id="prj_mob" style="height:130px;"></textarea>
-                    <label for="prj_mob">Projet de mobilité</label>
-                </div>
-                <div class="form-floating mx-3 mt-3">
-                    <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:130px;"></textarea>
-                    <label for="commentaires">Commentaires</label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btn_fiche_profil" type="button" class="btn btn-primary btn-bleu">Enregistrer les modifications</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!---                                                                                                              Modal pour associer un projet au suivi d'un jeune -->
 
 <div class="modal fade" id="modal_prj_create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -242,11 +205,11 @@
                 <input class="form-check-input" type="checkbox" id="create_visio_rdv">
                 <label class="form-check-label fw-bold" for="create_visio_rdv">En visio</label>
               </div>
-              <div class="form-floating mx-3 mt-4">
+              <!-- <div class="form-floating mx-3 mt-4">
                   <select class="form-select" id="create_int_rdv" aria-label="Intervenant">
                   </select>
                   <label for="create_int_rdv">Séléctionner l'intervenant-e</label>
-              </div>
+              </div> -->
           <div class="form-floating mx-3 mt-3">
               <input type="date" class="form-control" id="create_date_rdv" placeholder="Date du rendez-vous *">
               <label for="create_date_rdv">Date du rendez-vous *</label>
@@ -266,15 +229,20 @@
           <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="create_duree_rdv" aria-label="Durée du rendez-vous">
                   <option selected value="">Séléctionner la durée du rendez-vous</option>
-                  <option value="- de 10 min">- de 10 min</option>
-                  <option value="- de 30 min">- de 30 min</option>
-                  <option value="- d'1 heure">- d'1 heure</option>
+                  <option value="< 10 min">< 10 min</option>
+                  <option value="10 à 30 min">10 à 30 min</option>
+                  <option value="30 min à 1h">30 min à 1h</option>
+                  <option value="> à 1h">> 1h</option>
               </select>
               <label for="create_duree_rdv">Durée du rendez-vous</label>
           </div>
           <div class="form-floating mx-3 mt-3">
               <textarea class="form-control" placeholder="Commentaires" id="create_comm_rdv" style="height:125px;"></textarea>
               <label for="create_comm_rdv">Commentaires</label>
+          </div>
+          <div class="form-floating mx-3 mt-3">
+              <textarea class="form-control" placeholder="Besoins / À faire" id="create_besoins_rdv" style="height:125px;"></textarea>
+              <label for="create_besoins_rdv">Besoins / À faire</label>
           </div>
       </form>
       </div>
@@ -305,11 +273,11 @@
                       <input type="text" class="form-control" id="update_nom_rdv" placeholder="Rendez-vous à modifier" disabled>
                       <label for="update_nom_rdv">Rendez-vous à modifier</label>
               </div>
-          <div class="form-floating mx-3 mt-4">
+          <!-- <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="update_int_rdv" aria-label="Intervenant">
               </select>
               <label for="update_int_rdv">Séléctionner l'intervenant-e</label>
-          </div>
+          </div> -->
           <div class="form-floating mx-3 mt-3">
               <input type="date" class="form-control" id="update_date_rdv" placeholder="Date du rendez-vous *">
               <label for="update_date_rdv">Date du rendez-vous *</label>
@@ -329,15 +297,20 @@
           <div class="form-floating mx-3 mt-4">
               <select class="form-select" id="update_duree_rdv" aria-label="Durée du rendez-vous">
                   <option selected value="">Séléctionner la durée du rendez-vous</option>
-                  <option value="- de 10 min">- de 10 min</option>
-                  <option value="- de 30 min">- de 30 min</option>
-                  <option value="- d'1 heure">- d'1 heure</option>
+                  <option value="< 10 min">< 10 min</option>
+                  <option value="10 à 30 min">10 à 30 min</option>
+                  <option value="30 min à 1h">30 min à 1h</option>
+                  <option value="> à 1h">> 1h</option>
               </select>
               <label for="update_duree_rdv">Durée du rendez-vous</label>
           </div>
           <div class="form-floating mx-3 mt-3">
               <textarea class="form-control" placeholder="Commentaires" id="update_comm_rdv" style="height:125px;"></textarea>
               <label for="update_comm_rdv">Commentaires</label>
+          </div>
+          <div class="form-floating mx-3 mt-3">
+              <textarea class="form-control" placeholder="Besoins / À faire" id="create_besoins_rdv" style="height:125px;"></textarea>
+              <label for="create_besoins_rdv">Besoins / À faire</label>
           </div>
       </form>
       </div>

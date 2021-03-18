@@ -14,7 +14,8 @@ $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
 $id_prj = mysqli_real_escape_string($con, $_GET['id_prj']);
 $id_jeune = mysqli_real_escape_string($con, $_GET['id_jeune']);
 $uuid = mysqli_real_escape_string($con, $_GET['uuid']);
-$id_jeune_fiche = mysqli_real_escape_string($con, $_GET['id_jeune_fiche']);
+$id_profil_jeune = mysqli_real_escape_string($con, $_GET['id_profil_jeune']);
+
 
 // ----------------------------------------------------------------------------- Récupération du statut d'accompagnement du jeune séléctionné
 if($id_acc) {
@@ -206,24 +207,43 @@ if($id_acc) {
             "id" => $id);
     }
 
-} elseif($id_jeune_fiche) {
-    $query = "CALL acc_Get_Fiche('$id_jeune_fiche')";
+} elseif($id_profil_jeune) {
+    $query = "CALL acc_Get_Profil('$id_profil_jeune')";
     $result = mysqli_query($con,$query);
 
     while($row = mysqli_fetch_array($result)){
-        $projet_pro = $row['projet_pro'];
-        $parcours = $row['parcours'];
-        $situation = $row['situation'];
+        $parcours  = $row['parcours'];
+        $exp_pro = $row['exp_pro'];
+        $prj_pro = $row['prj_pro'];
+        $loisirs = $row['loisirs'];
+        $volontariat = $row['volontariat'];
+        $voyages  = $row['voyages'];
+        $motivations = $row['motivations'];
         $prj_mob = $row['prj_mob'];
-        $commentaires = $row['commentaires'];
+        $freins = $row['freins'];
+        $apports = $row['apports'];
+        $attentes  = $row['attentes'];
+        $conditions_vie = $row['conditions_vie'];
+        $ressources = $row['ressources'];
+        $docs_adm = $row['docs_adm'];
+        $medical = $row['medical'];
 
         $return_arr[] = array(
-            "projet_pro" => $projet_pro,
             "parcours" => $parcours,
-            "situation" => $situation,
+            "exp_pro" => $exp_pro,
+            "prj_pro" => $prj_pro,
+            "loisirs" => $loisirs,
+            "volontariat" => $volontariat,
+            "voyages" => $voyages,
+            "motivations" => $motivations,
             "prj_mob" => $prj_mob,
-            "commentaires" => $commentaires
-
+            "freins" => $freins,
+            "apports" => $apports,
+            "attentes" => $attentes,
+            "conditions_vie" => $conditions_vie,
+            "ressources" => $ressources,
+            "docs_adm" => $docs_adm,
+            "medical" => $medical
         );
     }
 }

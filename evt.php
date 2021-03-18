@@ -21,7 +21,7 @@ include("header.php"); ?>
         </div>
     </div>
 
-    <form id="form_pro">
+    <form id="form_evt">
         <div class="d-flex justify-content-center">
             <div class="row formulaires">
                 <!--                                                                                                              État Civil-->
@@ -119,10 +119,10 @@ include("header.php"); ?>
                         </div>
                         <div id="projet_evt" class="d-none">
                             <div class="row pt-3">
-                                <div class="col-7">
+                                <div class="col-12 col-sm-6">
                                     <h2>Projet</h2>
                                 </div>
-                                <div class="col-4 d-flex justify-content-end mt-1">
+                                <div class="col-12 col-sm-5 d-flex justify-content-end mt-1">
                                     <div class="form-check form-switch">
                                       <input class="form-check-input" type="checkbox" id="visio">
                                       <label class="form-check-label text-warning fw-bold" for="visio">En visio</label>
@@ -148,12 +148,12 @@ include("header.php"); ?>
                     <div class="bg-marine m-3 py-2 px-3 rounded rounded-3 div_marine">
                         <h2 class="pt-3">Participation</h2>
                         <div class="form-floating mx-3 mt-4">
-                            <input type="text" class="form-control" id="nb_jeunes" placeholder="Nombre de jeunes">
-                            <label for="nb_jeunes">Nombre de jeunes</label>
+                            <input type="text" class="form-control" id="nb_jeunes" placeholder="Nombre de jeunes *">
+                            <label for="nb_jeunes">Nombre de jeunes *</label>
                         </div>
                         <div class="form-floating mx-3 mt-3">
-                            <input type="text" class="form-control" id="nb_pros" placeholder="Nombre de professionels">
-                            <label for="nb_pros">Nombre de professionels</label>
+                            <input type="text" class="form-control" id="nb_pros" placeholder="Nombre de professionels *">
+                            <label for="nb_pros">Nombre de professionels *</label>
                         </div>
                         <div class="form-floating mx-3 mt-3">
                             <textarea class="form-control" placeholder="Commentaires" id="commentaires" style="height:100px;"></textarea>

@@ -22,6 +22,7 @@ $id_acc_evt = mysqli_real_escape_string($con, $_GET['id_acc_evt']);
 $id_acc_prj = mysqli_real_escape_string($con, $_GET['id_acc_prj']);
 $nom_pro = mysqli_real_escape_string($con, $_GET['nom_pro']);
 $id_pro = mysqli_real_escape_string($con, $_GET['id_pro']);
+$id_profil_jeune = mysqli_real_escape_string($con, $_GET['id_profil_jeune']);
 
 if($id_orga) {
     $query = "SELECT orga_ExistId('$id_orga')";
@@ -73,6 +74,9 @@ if($id_orga) {
 
 } elseif($id_acc_prj) {
     $query = "SELECT partir_Exist('$id_acc_jeune', '$id_acc_prj')";
+
+} elseif($id_profil_jeune) {
+    $query = "SELECT profil_Exist('$id_profil_jeune')";
 
 }
 

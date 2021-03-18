@@ -7,7 +7,7 @@ const acc_List_Evt = (liste, id_evt) => {
         dataType: 'JSON',
         data : {v_acc_list_evt:"v_acc_list_evt"},
         success: function(response){
-            $(liste).html("<option selected value=''>Séléctionner la sensibilisation</option>")
+            $(liste).html("<option selected value=''>Séléctionner la sensibilisation *</option>")
             let res = "";
             const len = response.length;
             for (let i = 0; i < len; i++) {
@@ -101,12 +101,12 @@ const jeune_Get_Evt = (id) => {
             for (let i = 0; i < len; i++) {
                 const id = response[i].id;
                 let dat = response[i].dat;
-                if (dat=="2099-31-12") dat = "Avant 2020";
+                if (dat=="2099-12-31") dat = "Avant 2021";
                 const type = response[i].type;
                 const nom_ville = response[i].nom_ville;
                 let commentaire = response[i].commentaire;
                 if(!commentaire)commentaire="";
-                res += `<tr class="pointeur"><th class="d-none" scope="row">${id}</th><td onclick="id_evt_storage(${id})">${dat}</td><td onclick="id_evt_storage(${id})">${type}</td><td onclick="evt_Get(${id},'evt')" data-bs-toggle="modal" data-bs-target="#modal_evt_update">${commentaire}</td><td onclick="id_evt_storage(${id})">${nom_ville}</td></tr>`;
+                res += `<tr class="pointeur"><th class="d-none" scope="row">${id}</th><td onclick="id_evt_storage(${id})">${dat}</td><td onclick="id_evt_storage(${id})">${type}</td><td onclick="evt_Get(${id},'evt')" data-bs-toggle="modal" data-bs-target="#modal_evt_update"><pre style='font-size:1em;'>${commentaire}</pre></td><td onclick="id_evt_storage(${id})">${nom_ville}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M0 / M1
             $("#tab_evt").html(res);
@@ -129,7 +129,7 @@ const jeune_Get_Evt2 = (id) => {
                 const type = response[i].type;
                 let commentaire = response[i].commentaire;
                 if(!commentaire)commentaire="";
-                res += `<tr class="pointeur"><th class="d-none" scope="row">${id}</th><td onclick="id_evt_storage(${id})">${dat}</td><td onclick="id_evt_storage(${id})">${type}</td><td onclick="evt_Get(${id}, 'evt2')" data-bs-toggle="modal" data-bs-target="#modal_evt2_update">${commentaire}</td></tr>`;
+                res += `<tr class="pointeur"><th class="d-none" scope="row">${id}</th><td onclick="id_evt_storage(${id})">${dat}</td><td onclick="id_evt_storage(${id})">${type}</td><td onclick="evt_Get(${id}, 'evt2')" data-bs-toggle="modal" data-bs-target="#modal_evt2_update"><pre style='font-size:1em;'>${commentaire}</pre></td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M2
             $("#tab_evt2").html(res);
@@ -156,7 +156,7 @@ const jeune_Get_Rdv = (id) => {
                 if(!intervenant)intervenant="";
                 let commentaires = response[i].commentaires;
                 if(!commentaires)commentaires="";
-                res += `<tr class="pointeur" onclick="rdv_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_rdv_update"><th class="d-none" scope="row">${id}</th><td>${dat}</td><td>${type}</td><td>${commentaires}</td><td>${intervenant}</td><td>${duree}</td></tr>`;
+                res += `<tr class="pointeur" onclick="rdv_Get(${id})" data-bs-toggle="modal" data-bs-target="#modal_rdv_update"><th class="d-none" scope="row">${id}</th><td>${dat}</td><td>${type}</td><td><pre style='font-size:1em;'>${commentaires}</pre></td><td>${duree}</td></tr>`;
             }
             // ----------------------------------------------------------------- Remplissage du tableau de sensibilisation M2
             $("#tab_rdv").html(res);
@@ -164,25 +164,25 @@ const jeune_Get_Rdv = (id) => {
     });
 }
 
-const jeune_Get_Fiche = (id) => {
-    $.ajax({
-        url: 'php/acc_Get.php',
-        dataType: 'JSON',
-        data : {id_jeune_fiche:id},
-        success: function(response){
-            const projet_pro = response[0].projet_pro;
-            const parcours = response[0].parcours;
-            const situation = response[0].situation;
-            const prj_mob = response[0].prj_mob;
-            const commentaires = response[0].commentaires;
-            $("#projet_pro").val(projet_pro);
-            $("#parcours").val(parcours);
-            $("#situation").val(situation);
-            $("#prj_mob").val(prj_mob);
-            $("#commentaires").val(commentaires);
-        }
-    });
-}
+// const jeune_Get_Fiche = (id) => {
+//     $.ajax({
+//         url: 'php/acc_Get.php',
+//         dataType: 'JSON',
+//         data : {id_jeune_fiche:id},
+//         success: function(response){
+//             const projet_pro = response[0].projet_pro;
+//             const parcours = response[0].parcours;
+//             const situation = response[0].situation;
+//             const prj_mob = response[0].prj_mob;
+//             const commentaires = response[0].commentaires;
+//             $("#projet_pro").val(projet_pro);
+//             $("#parcours").val(parcours);
+//             $("#situation").val(situation);
+//             $("#prj_mob").val(prj_mob);
+//             $("#commentaires").val(commentaires);
+//         }
+//     });
+// }
 
 //------------------------------------------------------------------------------ !!! REMPLISSAGE DES CHAMPS DANS LES POP-UP DE MODIFICATIONS !!!
 
@@ -249,7 +249,6 @@ const rdv_Get = (id) => {
             $("#update_type_rdv").val(type);
             $("#update_visio_rdv").prop('checked', false);
             if (visio === "1") $("#update_visio_rdv").prop('checked', true);
-            ajaxListRef("#update_int_rdv", id_intervenant);
             $("#update_duree_rdv").val(duree);
             $("#update_comm_rdv").val(commentaires);
         }
@@ -258,6 +257,65 @@ const rdv_Get = (id) => {
 
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! !
 
+//------------------------------------------------------------------------------ Fiche profil : Création ou récupération
+const acc_Create_Profil = (id_jeune) => {
+    $.ajax({
+        //---------------------------------------------------------------------- Vérification : L'association existe-t-elle déjà dans la BDD ?
+        url: "php/exist.php",
+        dataType: 'JSON',
+        data : {id_profil_jeune:id_jeune},
+        success: function(response){
+            const exist = parseInt(response[0].exist);
+            if(exist === 1) {
+                $.ajax({
+                    url: 'php/acc_Get.php',
+                    dataType: 'JSON',
+                    data : {id_profil_jeune:id_jeune},
+                    success: function(response){
+                        const parcours = response[0].parcours;
+                        const exp_pro = response[0].exp_pro;
+                        const prj_pro = response[0].prj_pro;
+                        const loisirs = response[0].loisirs;
+                        const volontariat = response[0].volontariat;
+                        const voyages = response[0].voyages;
+                        const motivations = response[0].motivations;
+                        const prj_mob = response[0].prj_mob;
+                        const freins = response[0].freins;
+                        const apports = response[0].apports;
+                        const attentes = response[0].attentes;
+                        const conditions_vie = response[0].conditions_vie;
+                        const ressources = response[0].ressources;
+                        const docs_adm = response[0].docs_adm;
+                        const medical = response[0].medical;
+
+                        $("#parcours").val(parcours);
+                        $("#exp_pro").val(exp_pro);
+                        $("#prj_pro").val(prj_pro);
+                        $("#loisirs").val(loisirs);
+                        $("#volontariat").val(volontariat);
+                        $("#voyages").val(voyages);
+                        $("#motivations").val(motivations);
+                        $("#prj_mob").val(prj_mob);
+                        $("#freins").val(freins);
+                        $("#apports").val(apports);
+                        $("#attentes").val(attentes);
+                        $("#conditions_vie").val(conditions_vie);
+                        $("#ressources").val(ressources);
+                        $("#docs_adm").val(docs_adm);
+                        $("#medical").val(medical);
+
+                        $("#divTable, #divFiche_Profil").toggleClass("d-none");
+                    }
+                });
+            } else {
+                alert("nExist");
+                // $("#divTable, #divFiche_Profil").toggleClass("d-none");
+
+
+            }
+        }
+    });
+}
 
 //------------------------------------------------------------------------------ Création d'une association entre un jeune et un événement Mission 0 ou 1
 const acc_Create_Prj = (id_jeune, id_prj, depart, retour) => {
@@ -319,11 +377,11 @@ const acc_Create_Evt = (id_jeune, id_evt, commentaire, mission) => {
 //-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Création d'un RDV individuel
-const rdv_Create = (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires) => {
+const rdv_Create = (id_jeune, dat, type, visio, duree, uuid, commentaires) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
-        data : {id_int:id_int, dat:dat, type:type, visio:visio, duree:duree, uuid:uuid, commentaires:commentaires},
+        data : {id_int:0, dat:dat, type:type, visio:visio, duree:duree, uuid:uuid, commentaires:commentaires},
         complete: function(){
             //------------------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous
             $.ajax({
@@ -389,11 +447,11 @@ const acc_Update_Evt = (id_jeune, id_evt, commentaire, mission) => {
 //-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Modification d'un RDV individuel
-const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, visio, duree, commentaires) => {
+const rdv_Update = (id_jeune, id_rdv, dat, type, visio, duree, commentaires) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
-        data : {id_rdv_up:id_rdv, id_int:id_int, dat:dat, type:type, visio:visio, duree:duree, commentaires:commentaires},
+        data : {id_rdv_up:id_rdv, id_int:0, dat:dat, type:type, visio:visio, duree:duree, commentaires:commentaires},
         complete: function(){
             $('#modal_rdv_update').modal('hide')
             //------------------------------------------------------------------ TABLEAU RDV : Réinitialisation du tableau des ateliers collectifs dans le suivi du jeune
@@ -406,16 +464,16 @@ const rdv_Update = (id_jeune, id_rdv, id_int, dat, type, visio, duree, commentai
 //-------------------------------------------------------------------------------F I C H E  P R O F I L
 
 //------------------------------------------------------------------------------ Modification d'un RDV individuel
-const jeune_Update_Fiche = (id_jeune, projet_pro, parcours, situation, prj_mob, commentaires) => {
-    $.ajax({
-        url: 'php/acc.php',
-        dataType: 'JSON',
-        data : {id_jeune_fiche:id_jeune, projet_pro:projet_pro, parcours:parcours, situation:situation, prj_mob:prj_mob, commentaires:commentaires},
-        complete: function(){
-            $('#modal_fiche_profil').modal('hide')
-        }
-    });
-}
+// const jeune_Update_Fiche = (id_jeune, projet_pro, parcours, situation, prj_mob, commentaires) => {
+//     $.ajax({
+//         url: 'php/acc.php',
+//         dataType: 'JSON',
+//         data : {id_jeune_fiche:id_jeune, projet_pro:projet_pro, parcours:parcours, situation:situation, prj_mob:prj_mob, commentaires:commentaires},
+//         complete: function(){
+//             $('#modal_fiche_profil').modal('hide')
+//         }
+//     });
+// }
 
 // ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
 

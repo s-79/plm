@@ -150,30 +150,30 @@ file_put_contents($filename, $en_tete);
 fclose($fp);
 
 // ---------------------------------------------------------------------------- Create Zip
-$zip = new ZipArchive();
-$zipFile = $dir.$view.".zip";
-
-if ($zip->open($zipFile, ZipArchive::CREATE)===TRUE) {
-    $zip->addFile($filename);
-    $zip->setEncryptionName($filename, ZipArchive::EM_AES_256, 'OsezLesStats!');
-    $zip->close();
-} else {exit("Impossible d'ouvrir <$zipFile>\n");}
+// $zip = new ZipArchive();
+// $zipFile = $dir.$view.".zip";
+//
+// if ($zip->open($zipFile, ZipArchive::CREATE)===TRUE) {
+//     $zip->addFile($filename);
+//     $zip->setEncryptionName($filename, ZipArchive::EM_AES_256, 'OsezLesStats!');
+//     $zip->close();
+// } else {exit("Impossible d'ouvrir <$zipFile>\n");}
 
 
 // ----------------------------------------------------------------------------  Download CSV
-// header("Content-Description: File Transfer");
-// header("Content-Disposition: attachment; filename=".$filename);
-// header("Content-Type: application/csv; ");
-// readfile($filename);
+header("Content-Description: File Transfer");
+header("Content-Disposition: attachment; filename=".$filename);
+header("Content-Type: application/csv; ");
+readfile($filename);
 
 // ----------------------------------------------------------------------------  Download Zip
-header('Content-Type: application/zip');
-header('Content-Disposition: attachment; filename="'.basename($zipFile).'"');
-header('Content-Length: ' . filesize($zipFile));
-flush();
-readfile($zipFile);
-// ----------------------------------------------------------------------------- Delete file
-unlink($zipFile);
+// header('Content-Type: application/zip');
+// header('Content-Disposition: attachment; filename="'.basename($zipFile).'"');
+// header('Content-Length: ' . filesize($zipFile));
+// flush();
+// readfile($zipFile);
+// // ----------------------------------------------------------------------------- Delete file
+// unlink($zipFile);
 
 // ----------------------------------------------------------------------------  Reset CSV
 file_put_contents($filename, '');

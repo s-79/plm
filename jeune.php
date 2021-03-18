@@ -298,9 +298,9 @@
                         </div>
                         <h2 class="mt-3">Sensibilisation</h2>
                         <div class="form-floating mx-3 mt-3">
-                            <select class="form-select" id="sensibilisation" aria-label="Sensibilisation">
+                            <select class="form-select" id="sensibilisation" aria-label="Sensibilisation *">
                             </select>
-                            <label for="sensibilisation">Sensibilisation</label>
+                            <label for="sensibilisation">Sensibilisation *</label>
                         </div>
                         <div id="btn_jeune_create" class="form-group d-flex justify-content-center pt-1 mt-2 mx-3">
                             <button type="button" id="jeune_create" class="btn btn-primary btn-bleu m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
