@@ -19,6 +19,7 @@
                         <option value="Accompagnement retour">Accompagnement retour</option>
                         <option value="Suivi terminé">Suivi terminé</option>
                         <option value="Abandon">Abandon</option>
+                        <option value="Suspendu">Suspendu</option>
                     </select>
                     <label for="acc">Statut</label>
                 </div>

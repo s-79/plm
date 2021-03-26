@@ -67,6 +67,7 @@ $(function(){
     $("#fiche_profil").click(function(){
         // --------------------------------------------------------------------- Récupération des infos pour remplir la fiche
         const id = $("#npv_res").val();
+        document.getElementById("form_fiche_profil").reset();
         acc_Create_Profil(id);
     });
 
@@ -118,7 +119,7 @@ $(function(){
         if(!dat || !type || !duree) alert("Les champs Date, Type et Durée sont obligatoires.");
         //---------------------------------------------------------------------- Création de l'association entre le jeune et le rdv
         else {
-            if(vLen("Commentaires",commentaires,255)) rdv_Create (id_jeune, dat, type, visio, duree, uuid, commentaires);
+            if(vLen("Commentaires",commentaires,1000)) rdv_Create (id_jeune, dat, type, visio, duree, uuid, commentaires);
         };
     });
 
@@ -139,13 +140,23 @@ $(function(){
 // ---------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON ENREGISTRER LES MODIFS DANS FICHE PROFIL
     $("#btn_fiche_profil").click(function(){
         const id_jeune = $("#npv_res").val();
-        const projet_pro = $("#projet_pro").val();
         const parcours = $("#parcours").val();
-        const situation = $("#situation").val();
+        const exp_pro = $("#exp_pro").val();
+        const prj_pro = $("#prj_pro").val();
+        const loisirs = $("#loisirs").val();
+        const volontariat = $("#volontariat").val();
+        const voyages = $("#voyages").val();
+        const motivations = $("#motivations").val();
         const prj_mob = $("#prj_mob").val();
-        const commentaires = $("#commentaires").val();
+        const freins = $("#freins").val();
+        const apports = $("#apports").val();
+        const attentes = $("#attentes").val();
+        const conditions_vie = $("#conditions_vie").val();
+        const ressources = $("#ressources").val();
+        const docs_adm = $("#docs_adm").val();
+        const medical = $("#medical").val();
         // --------------------------------------------------------------------- Mise à jour de la fiche profil
-        jeune_Update_Fiche(id_jeune, projet_pro, parcours, situation, prj_mob, commentaires);
+        acc_Update_Profil(id_jeune, parcours, exp_pro, prj_pro, loisirs, volontariat, voyages, motivations, prj_mob, freins, apports, attentes, conditions_vie, ressources, docs_adm, medical);
     });
 
     // ------------------------------------------------------------------------- EVENEMENT CLICK SUR LE BOUTON "MODIFIER LES DATES" DANS LE MODAL PROJET
@@ -194,7 +205,7 @@ $(function(){
         if(!dat || !type || !duree) alert("Les champs Date, Type et Durée sont obligatoires.");
         else {
             //---------------------------------------------------------------------- Création de l'association entre le jeune et le rendez-vous
-            if(vLen("Commentaires",commentaires,255)) rdv_Update(id_jeune, id_rdv, dat, type, visio, duree, commentaires);
+            if(vLen("Commentaires",commentaires,1000)) rdv_Update(id_jeune, id_rdv, dat, type, visio, duree, commentaires);
         };
     });
 

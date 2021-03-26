@@ -200,16 +200,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form id="form_rdv_create">
-              <div class="form-check form-switch mx-3 d-flex justify-content-end ">
-                <input class="form-check-input" type="checkbox" id="create_visio_rdv">
-                <label class="form-check-label fw-bold" for="create_visio_rdv">En visio</label>
-              </div>
-              <!-- <div class="form-floating mx-3 mt-4">
-                  <select class="form-select" id="create_int_rdv" aria-label="Intervenant">
-                  </select>
-                  <label for="create_int_rdv">Séléctionner l'intervenant-e</label>
-              </div> -->
+      <form id="form_rdv_create">
+          <div class="form-check form-switch mx-3 d-flex justify-content-end ">
+            <input class="form-check-input" type="checkbox" id="create_visio_rdv">
+            <label class="form-check-label fw-bold" for="create_visio_rdv">En visio</label>
+          </div>
           <div class="form-floating mx-3 mt-3">
               <input type="date" class="form-control" id="create_date_rdv" placeholder="Date du rendez-vous *">
               <label for="create_date_rdv">Date du rendez-vous *</label>
@@ -237,7 +232,7 @@
               <label for="create_duree_rdv">Durée du rendez-vous</label>
           </div>
           <div class="form-floating mx-3 mt-3">
-              <textarea class="form-control" placeholder="Commentaires" id="create_comm_rdv" style="height:125px;"></textarea>
+              <textarea class="form-control" placeholder="Commentaires" id="create_comm_rdv" style="height:200px;"></textarea>
               <label for="create_comm_rdv">Commentaires</label>
           </div>
           <div class="form-floating mx-3 mt-3">
@@ -273,11 +268,6 @@
                       <input type="text" class="form-control" id="update_nom_rdv" placeholder="Rendez-vous à modifier" disabled>
                       <label for="update_nom_rdv">Rendez-vous à modifier</label>
               </div>
-          <!-- <div class="form-floating mx-3 mt-4">
-              <select class="form-select" id="update_int_rdv" aria-label="Intervenant">
-              </select>
-              <label for="update_int_rdv">Séléctionner l'intervenant-e</label>
-          </div> -->
           <div class="form-floating mx-3 mt-3">
               <input type="date" class="form-control" id="update_date_rdv" placeholder="Date du rendez-vous *">
               <label for="update_date_rdv">Date du rendez-vous *</label>
@@ -305,7 +295,7 @@
               <label for="update_duree_rdv">Durée du rendez-vous</label>
           </div>
           <div class="form-floating mx-3 mt-3">
-              <textarea class="form-control" placeholder="Commentaires" id="update_comm_rdv" style="height:125px;"></textarea>
+              <textarea class="form-control" placeholder="Commentaires" id="update_comm_rdv" style="height:200px;"></textarea>
               <label for="update_comm_rdv">Commentaires</label>
           </div>
           <div class="form-floating mx-3 mt-3">

@@ -164,26 +164,6 @@ const jeune_Get_Rdv = (id) => {
     });
 }
 
-// const jeune_Get_Fiche = (id) => {
-//     $.ajax({
-//         url: 'php/acc_Get.php',
-//         dataType: 'JSON',
-//         data : {id_jeune_fiche:id},
-//         success: function(response){
-//             const projet_pro = response[0].projet_pro;
-//             const parcours = response[0].parcours;
-//             const situation = response[0].situation;
-//             const prj_mob = response[0].prj_mob;
-//             const commentaires = response[0].commentaires;
-//             $("#projet_pro").val(projet_pro);
-//             $("#parcours").val(parcours);
-//             $("#situation").val(situation);
-//             $("#prj_mob").val(prj_mob);
-//             $("#commentaires").val(commentaires);
-//         }
-//     });
-// }
-
 //------------------------------------------------------------------------------ !!! REMPLISSAGE DES CHAMPS DANS LES POP-UP DE MODIFICATIONS !!!
 
 /* ---------------------------------------------------------------------------- Fonction appelée en cliquant sur les lignes du tableau dans jeune_Get_Prj */
@@ -260,12 +240,13 @@ const rdv_Get = (id) => {
 //------------------------------------------------------------------------------ Fiche profil : Création ou récupération
 const acc_Create_Profil = (id_jeune) => {
     $.ajax({
-        //---------------------------------------------------------------------- Vérification : L'association existe-t-elle déjà dans la BDD ?
+        //---------------------------------------------------------------------- Vérification : Le jeune a-t-il déjà une fiche profil ?
         url: "php/exist.php",
         dataType: 'JSON',
         data : {id_profil_jeune:id_jeune},
         success: function(response){
             const exist = parseInt(response[0].exist);
+            //-----------------------------------------------------------------  Si oui, récupération de la fiche.
             if(exist === 1) {
                 $.ajax({
                     url: 'php/acc_Get.php',
@@ -307,11 +288,16 @@ const acc_Create_Profil = (id_jeune) => {
                         $("#divTable, #divFiche_Profil").toggleClass("d-none");
                     }
                 });
+            //-----------------------------------------------------------------  Si non, création d'une fiche vierge.
             } else {
-                alert("nExist");
-                // $("#divTable, #divFiche_Profil").toggleClass("d-none");
-
-
+                $.ajax({
+                    url: 'php/acc.php',
+                    dataType: 'JSON',
+                    data : {id_profil_jeune:id_jeune},
+                    complete: function(){
+                        $("#divTable, #divFiche_Profil").toggleClass("d-none");
+                    }
+                });
             }
         }
     });
@@ -464,16 +450,16 @@ const rdv_Update = (id_jeune, id_rdv, dat, type, visio, duree, commentaires) => 
 //-------------------------------------------------------------------------------F I C H E  P R O F I L
 
 //------------------------------------------------------------------------------ Modification d'un RDV individuel
-// const jeune_Update_Fiche = (id_jeune, projet_pro, parcours, situation, prj_mob, commentaires) => {
-//     $.ajax({
-//         url: 'php/acc.php',
-//         dataType: 'JSON',
-//         data : {id_jeune_fiche:id_jeune, projet_pro:projet_pro, parcours:parcours, situation:situation, prj_mob:prj_mob, commentaires:commentaires},
-//         complete: function(){
-//             $('#modal_fiche_profil').modal('hide')
-//         }
-//     });
-// }
+const acc_Update_Profil = (id_jeune, parcours, exp_pro, prj_pro, loisirs, volontariat, voyages, motivations, prj_mob, freins, apports, attentes, conditions_vie, ressources, docs_adm, medical) => {
+    $.ajax({
+        url: 'php/acc.php',
+        dataType: 'JSON',
+        data : {id_profil_jeune_up:id_jeune, parcours:parcours, exp_pro:exp_pro, prj_pro:prj_pro, loisirs:loisirs, volontariat:volontariat, voyages:voyages, motivations:motivations, prj_mob:prj_mob, freins:freins, apports:apports, attentes:attentes, conditions_vie:conditions_vie, ressources:ressources, docs_adm:docs_adm, medical:medical},
+        complete: function(){
+            alert("La fiche profil a bien été mise à jour.");
+        }
+    });
+}
 
 // ----------------------------------------------------------------------------- ! ! ! - - D E L E T E - - ! ! !
 

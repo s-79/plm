@@ -57,16 +57,16 @@
                             <label for="motivations">Objectifs et motivations</label>
                         </div>
                         <div class="form-floating mx-3 mt-3">
-                            <textarea class="form-control" placeholder="Idée d'un projet, durée du séjour, disponibilités" id="prj_mob" style="height:100px;"></textarea>
-                            <label for="prj_mob">Idée d'un projet, durée du séjour, disponibilités</label>
+                            <textarea class="form-control" placeholder="Idée d'un projet, durée du séjour, dispos" id="prj_mob" style="height:100px;"></textarea>
+                            <label for="prj_mob">Idée d'un projet, durée du séjour, dispos</label>
                         </div>
                         <div class="form-floating mx-3 mt-3">
                             <textarea class="form-control" placeholder="Freins au départ" id="freins" style="height:100px;"></textarea>
                             <label for="freins">Freins au départ</label>
                         </div>
                         <div class="form-floating mx-3 mt-3">
-                            <textarea class="form-control" placeholder="Apport(s) pour la suite du projet professionnel et/ou personnel" id="apports" style="height:100px;"></textarea>
-                            <label for="apports">Apport(s) pour la suite du projet professionnel et/ou personnel</label>
+                            <textarea class="form-control" placeholder="Apports pour suite du projet pro et/ou perso" id="apports" style="height:100px;"></textarea>
+                            <label for="apports">Apports pour suite du projet pro et/ou perso</label>
                         </div>
                         <div class="form-floating mx-3 mt-3 mb-4">
                             <textarea class="form-control" placeholder="Attentes et besoins dans l’accompagnement" id="attentes" style="height:100px;"></textarea>
@@ -93,11 +93,11 @@
                             <label for="docs_adm">Documents administratifs</label>
                         </div>
                         <div class="form-floating mx-3 mt-3">
-                            <textarea class="form-control" placeholder="Médical (suivi de traitement, allergies, suivi psy, etc..)" id="medical" style="height:110px;"></textarea>
-                            <label for="medical">Médical (suivi de traitement, allergies, suivi psy, etc..)</label>
+                            <textarea class="form-control" placeholder="Médical (traitement, allergies, suivi psy, etc.)" id="medical" style="height:110px;"></textarea>
+                            <label for="medical">Médical (traitement, allergies, suivi psy, etc.)</label>
                         </div>
-                        <div id="btn_evt_create" class="form-group d-flex justify-content-center mx-3 mt-1 pt-1">
-                            <button type="button" id="evt_create" class="btn btn-primary btn-bleu m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
+                        <div class="form-group d-flex justify-content-center mx-3 mt-1 pt-1">
+                            <button type="button" id="btn_fiche_profil" class="btn btn-primary btn-bleu m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>
                         </div>
                     </div>
                 </div>

@@ -35,12 +35,24 @@ $id_rdv_up =  mysqli_real_escape_string($con, $_GET['id_rdv_up']);
 $id_rdv_del =  mysqli_real_escape_string($con, $_GET['id_rdv_del']);
 
 // ---------------------------------------------------------------------------  Fiches Profil
-$id_jeune_fiche =  mysqli_real_escape_string($con, $_GET['id_jeune_fiche']);
-$projet_pro =  mysqli_real_escape_string($con, $_GET['projet_pro']);
+$id_profil_jeune =  mysqli_real_escape_string($con, $_GET['id_profil_jeune']);
+
+$id_profil_jeune_up =  mysqli_real_escape_string($con, $_GET['id_profil_jeune_up']);
 $parcours =  mysqli_real_escape_string($con, $_GET['parcours']);
-$situation =  mysqli_real_escape_string($con, $_GET['situation']);
+$exp_pro =  mysqli_real_escape_string($con, $_GET['exp_pro']);
+$prj_pro =  mysqli_real_escape_string($con, $_GET['prj_pro']);
+$loisirs =  mysqli_real_escape_string($con, $_GET['loisirs']);
+$volontariat =  mysqli_real_escape_string($con, $_GET['volontariat']);
+$voyages =  mysqli_real_escape_string($con, $_GET['voyages']);
+$motivations =  mysqli_real_escape_string($con, $_GET['motivations']);
 $prj_mob =  mysqli_real_escape_string($con, $_GET['prj_mob']);
-$commentaires_fiche =  mysqli_real_escape_string($con, $_GET['commentaires']);
+$freins =  mysqli_real_escape_string($con, $_GET['freins']);
+$apports =  mysqli_real_escape_string($con, $_GET['apports']);
+$attentes =  mysqli_real_escape_string($con, $_GET['attentes']);
+$conditions_vie =  mysqli_real_escape_string($con, $_GET['conditions_vie']);
+$ressources =  mysqli_real_escape_string($con, $_GET['ressources']);
+$docs_adm =  mysqli_real_escape_string($con, $_GET['docs_adm']);
+$medical =  mysqli_real_escape_string($con, $_GET['medical']);
 
 if($id_acc) {
     $query = "CALL jeune_Update_Acc('$id_acc', '$statut', '$mob', '$id_ref')";
@@ -75,8 +87,12 @@ if($id_acc) {
 } elseif($id_rdv_del) {
     $query = "CALL rdv_Delete('$id_rdv_del')";
 
-} elseif($id_jeune_fiche) {
-    $query = "CALL acc_Update_Fiche('$id_jeune_fiche', '$projet_pro', '$parcours', '$situation', '$prj_mob', '$commentaires_fiche')";
+// ---------------------------------------------------------------------------  Fiche Profil
+} elseif($id_profil_jeune) {
+    $query = "CALL profil_Create('$id_profil_jeune')";
+
+} elseif($id_profil_jeune_up) {
+    $query = "CALL profil_Update('$id_profil_jeune_up', '$parcours', '$exp_pro', '$prj_pro', '$loisirs', '$volontariat', '$voyages', '$motivations', '$prj_mob', '$freins', '$apports', '$attentes', '$conditions_vie', '$ressources', '$docs_adm', '$medical')";
 }
 
 $result = $con->prepare($query);
