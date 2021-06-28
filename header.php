@@ -33,22 +33,22 @@ if (!$_SESSION['user']) {
         <div class="collapse navbar-collapse justify-content-center" id="navbarsExampleDefault">
             <ul class="navbar-nav nav-pills mb-2 mb-md-0">
                 <li class="nav-item mx-1">
-                    <a id="menu_jeune" class="nav-link" href="jeune.php">&nbsp;&nbsp;<i class="fas fa-child fa-lg"></i>&nbsp;JEUNES&nbsp;&nbsp;</a>
+                    <a id="menu_jeune" class="nav-link px-4" href="jeune.php"><i class="fas fa-child fa-lg pe-2"></i>JEUNES</a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a id="menu_pro" class="nav-link" href="pro.php">&nbsp;&nbsp;<i class="fas fa-user-tie fa-lg"></i>&nbsp;&nbsp;PRO&nbsp;&nbsp;</a>
+                    <a id="menu_pro" class="nav-link px-4" href="pro.php"><i class="fas fa-user-tie fa-lg pe-2"></i>PRO</a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a id="menu_evt" class="nav-link" href="evt.php">&nbsp;&nbsp;<i class="fas fa-users fa-lg"></i>&nbsp;&nbsp;ÉVÉNEMENTS&nbsp;&nbsp;</a>
+                    <a id="menu_evt" class="nav-link px-4" href="evt.php"><i class="fas fa-users fa-lg pe-2"></i>ÉVÉNEMENTS</a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a id="menu_prj" class="nav-link" href="prj.php">&nbsp;&nbsp;<i class="fas fa-plane-departure fa-lg"></i>&nbsp;&nbsp;PROJETS&nbsp;&nbsp;</a>
+                    <a id="menu_prj" class="nav-link px-4" href="prj.php"><i class="fas fa-plane-departure fa-lg pe-2"></i>PROJETS</a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a id="menu_stat" class="nav-link" href="stat.php">&nbsp;&nbsp;<i class="fas fa-chart-bar fa-lg"></i>&nbsp;&nbsp;STATS&nbsp;&nbsp;</a>
+                    <a id="menu_stat" class="nav-link px-4" href="stat.php"><i class="fas fa-chart-bar fa-lg pe-2"></i>STATS</a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a class="nav-link" href="index.php">&nbsp;<i class="fas fa-sign-out-alt fa-lg"></i>&nbsp;&nbsp;<?php echo $_SESSION['initiales'] ?>&nbsp;</a>
+                    <a class="nav-link px-4" href="index.php"><i class="fas fa-sign-out-alt fa-lg pe-2"></i><?php echo $_SESSION['initiales'] ?></a>
                 </li>
             </ul>
         </div>

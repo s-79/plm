@@ -68,6 +68,7 @@ include("header.php"); ?>
                                 <option selected value="">Séléctionner un type d'événement *</option>
                                 <option value="Info coll PLM">Info coll PLM</option>
                                 <option value="Info coll exterieure">Info coll exterieure</option>
+                                <option value="Info coll par un partenaire">Info coll par un partenaire</option>
                                 <option value="Webinaire pros">Webinaire pros</option>
                                 <option value="Sensibilisation pros">Sensibilisation pros</option>
                                 <option value="Evt thématique">Evt thématique</option>
