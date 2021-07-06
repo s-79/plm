@@ -149,9 +149,10 @@ const ajaxPrjAgenda = (liste) => {
                 const intitule = response[i].intitule;
                 const fin = response[i].fin;
                 const num_mois = debut.slice(5,7);
+                const annee = debut.slice(0,4);
                 const mois = lst_mois[num_mois];
                 if(mois) {
-                    res += `<tr"><td class="text-uppercase fw-bold" colspan="4">${mois}</td></tr>`;
+                    res += `<tr"><td class="text-uppercase fw-bold" colspan="4">${mois} ${annee}</td></tr>`;
                     delete lst_mois[num_mois];
                 }
                 if(type === "Volontariat CES court terme") {

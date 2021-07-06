@@ -154,7 +154,7 @@ const prj_Get = (id_prj) => {
         ajaxListPrj("#prj_res", id_prj);
         //---------------------------------------------------------------------- Reinitialisation des champs
         $("#youth_leader")[0].disabled = true;
-        $("#nb_part")[0].disabled = true;
+        // $("#nb_part")[0].disabled = true;
         $("#pays_part")[0].disabled = true;
         // $("#partenaire").html("");
         // $("#pays").html("");
