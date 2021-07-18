@@ -20,18 +20,19 @@ if ($mission == "0-1") {
         $query = "SELECT `$select`, COUNT(*) count FROM `v_stat` WHERE (`mission` = 0 OR `mission` = 1) AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
     }
 
+// DISTINCT car dans la vue, les id apparaissent plusieurs fois
 } elseif ($mission == "2") {
-    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `annee` = '$annee' AND `mission` = 2 AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+    $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM `v_stat2` WHERE `annee` = '$annee' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
 
     if (!$contrat_ville) {
-    $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `annee` = '$annee' AND `mission` = 2 GROUP BY `$select` DESC;";
+    $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM `v_stat2` WHERE `annee` = '$annee' GROUP BY `$select` DESC;";
 
         if (!$annee) {
-            $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `mission` = 2 GROUP BY `$select` DESC;";
+            $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM `v_stat2` GROUP BY `$select` DESC;";
         }
 
     } elseif (!$annee) {
-        $query = "SELECT `$select`, COUNT(*) count FROM `v_stat2` WHERE `mission` = 2 AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+        $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM `v_stat2` WHERE `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
     }
 
 } else {
