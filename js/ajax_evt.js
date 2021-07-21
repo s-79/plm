@@ -15,9 +15,7 @@ const ajaxListEvt = (liste, id_evt) => {
                 const id = response[i].id;
                 let nom = "";
                 if(parseInt(id) === 1) nom = "Avant 2021";
-                else {
-                    nom = response[i].nom.substr(2);
-                }
+                else { nom = response[i].nom.substr(2);}
                 res += `<option value="${id}">${nom}</option>`;
             }
             $(liste).append(res);
@@ -43,7 +41,7 @@ const evt_Search = (search) => {
 }
 
 /* ---------------------------------------------------------------------------- Remplissage de la liste des intervenants */
-const ajaxListInter = (liste) => {
+const ajaxListInter = (liste, id_evt) => {
     $.ajax({
         url: "php/populate.php",
         dataType: 'JSON',
@@ -62,6 +60,9 @@ const ajaxListInter = (liste) => {
                 $(intId).prop('checked', false);
             }
             $(liste).html(res);
+
+            //------------------------------------------------------------------ S'il y a un id-evt, récupération des intervants liés à cet événemen
+            if(id_evt) ajaxEvtInter(id_evt);
         }
     });
 }

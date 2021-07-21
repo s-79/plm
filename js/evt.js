@@ -190,9 +190,9 @@ const evt_Get = (id_evt) => {
         //---------------------------------------------------------------------- Récupération des données de l'événement
         ajaxEvtGet(id_evt);
         //---------------------------------------------------------------------- Réinitialisation de la liste de tous intervenants et décochage des cases
-        ajaxListInter("#inter");
-        //---------------------------------------------------------------------- Récupération des intervants liés à cet événement
-        ajaxEvtInter(id_evt);
+        //---------------------------------------------------------------------- Et récupération des intervants liés à cet événement
+        ajaxListInter("#inter", id_evt);
+
         //---------------------------------------------------------------------- Inversement des boutons en bas de page
         $("#btn_evt_create").addClass("d-none");
         $("#btn_evt_update").removeClass("d-none");

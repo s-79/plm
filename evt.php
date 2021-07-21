@@ -84,6 +84,7 @@ include("header.php"); ?>
                                 <option value="At. obj d'apprentissage">At. obj d'apprentissage</option>
                                 <option value="At. retour à chaud">At. retour à chaud</option>
                                 <option value="2ème atelier retour">2ème atelier retour</option>
+                                <option value="Atelier préparation YE">Atelier préparation YE</option>
                             </select>
                             <label for="type_m2">Type *</label>
                         </div>
