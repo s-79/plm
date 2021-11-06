@@ -37,6 +37,8 @@
                         <option value="Stage">Stage</option>
                         <option value="PVT">PVT</option>
                         <option value="Emploi">Emploi</option>
+                        <option value="Wwoofing">Wwoofing</option>
+                        <option value="HelpX, Workaway">HelpX, Workaway</option>
                     </select>
                     <label for="mob">Mobilité</label>
                 </div>

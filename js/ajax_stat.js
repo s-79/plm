@@ -54,7 +54,9 @@ const ajaxStat = (select, layout, annee, mission, contrat_ville) => {
                                     dataArr.map(data => {
                                         sum += data;
                                     });
-                                    let percentage = (value*100 / sum).toFixed(2)+"%";
+                                    // 2 chiffres après la virgule
+                                    // let percentage = (value*100 / sum).toFixed(2)+"%";
+                                    let percentage = (value*100 / sum).toFixed(0)+"%";
                                     return percentage;
                                 },
                                 color: '#fff',

@@ -39,13 +39,15 @@ const jeune_Get = (id) => {
             const ddn = response[0].ddn;
             const nationalite = response[0].nationalite;
             const adherent = response[0].adherent;
+            const ami = response[0].ami;
             const id_evt = response[0].id_evt;
             const email = response[0].email;
             const tel = response[0].tel;
             const facebook = response[0].facebook;
-            const skype = response[0].skype;
             const insta = response[0].insta;
             const urgence = response[0].urgence;
+            const droits_image = response[0].droits_image;
+            const rgpd = response[0].rgpd;
             const adresse = response[0].adresse;
             const id_ville = response[0].id_ville;
             const ville = response[0].ville;
@@ -79,12 +81,17 @@ const jeune_Get = (id) => {
             $("#nationalite").val(nationalite);
             $("#adherent").prop('checked', false);
             if (adherent === "1") $("#adherent").prop('checked', true);
+            $("#ami").prop('checked', false);
+            if (ami === "1") $("#ami").prop('checked', true);
             $("#email").val(email);
             $("#tel").val(tel);
             $("#facebook").val(facebook);
-            $("#skype").val(skype);
             $("#insta").val(insta);
             $("#urgence").val(urgence);
+            $("#droits_image").prop('checked', false);
+            if (droits_image === "1") $("#droits_image").prop('checked', true);
+            $("#rgpd").prop('checked', false);
+            if (rgpd === "1") $("#rgpd").prop('checked', true);
             $("#adresse").val(adresse);
             ajaxListVille("#ville", id_ville);
             $("#nom_ville_none").val(nom_ville);
@@ -117,11 +124,7 @@ const jeune_Get = (id) => {
     });
 }
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! ! */
-const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent,
-    email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv,
-    id_orga, nom_ref, tel_ref, email_ref, ml, gj,
-    formation, niveau, diplome, niveau_anglais, langues, at_anglais,
-    statut, pe, rsa, id_evt) => {
+const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom du jeune existe-t-il déjà dans la BDD ?
         url: "php/exist.php",
@@ -134,11 +137,11 @@ const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent,
                 $.ajax({
                     url: 'php/jeune.php',
                     dataType: 'JSON',
-                    data : {genre:genre, prenom:prenom, nom:nom, ddn:ddn, nationalite:nationalite, adherent:adherent,
-                        email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
+                    data : {genre:genre, prenom:prenom, nom:nom, ddn:ddn, nationalite:nationalite, adherent:adherent, ami:ami,
+                        email:email, tel:tel, facebook:facebook, insta:insta, urgence:urgence, droits_image:droits_image, rgpd:rgpd, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
                         id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref, ml:ml, gj:gj,
                         formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues, at_anglais:at_anglais,
-                        statut:statut, pe:pe, rsa:rsa, id_evt:id_evt},
+                        statut:statut, statut2:statut2, pe:pe, rsa:rsa, id_evt:id_evt},
                     complete: function(){
                         //------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement à la sensibilisation
                         jeune_Get_Id(npv, id_evt);
@@ -168,19 +171,19 @@ const jeune_Get_Id = (npv, id_evt) => {
 
 // ----------------------------------------------------------------------------- ! ! ! - - U P D A T E - - ! ! !
 
-const jeune_Update = (npv, id, genre, prenom, nom, ddn, nationalite, adherent,
-    email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv,
+const jeune_Update = (npv, id, genre, prenom, nom, ddn, nationalite, adherent, ami,
+    email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv,
     id_orga, nom_ref, tel_ref, email_ref, ml, gj,
     formation, niveau, diplome, niveau_anglais, langues, at_anglais,
-    statut, pe, rsa, id_evt) => {
+    statut, statut2, pe, rsa, id_evt) => {
     $.ajax({
         url: 'php/jeune.php',
         dataType: 'JSON',
-        data : {id:id, genre:genre, prenom:prenom, nom:nom, ddn:ddn, nationalite:nationalite, adherent:adherent,
-            email:email, tel:tel, facebook:facebook, skype:skype, insta:insta, urgence:urgence, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
+        data : {id:id, genre:genre, prenom:prenom, nom:nom, ddn:ddn, nationalite:nationalite, adherent:adherent, ami:ami,
+            email:email, tel:tel, facebook:facebook, insta:insta, urgence:urgence, droits_image:droits_image, rgpd:rgpd, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
             id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref, ml:ml, gj:gj,
             formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues, at_anglais:at_anglais,
-            statut:statut, pe:pe, rsa:rsa, id_evt:id_evt},
+            statut:statut, statut2:statut2, pe:pe, rsa:rsa, id_evt:id_evt},
         complete: function(){
             alert(`La fiche de ${npv} a bien été modifiée.`);
             // ----------------------------------------------------------------- Réinitialisation du formulaire et des listes select dynamiques sur la page jeune (fonction dans jeune_Create)

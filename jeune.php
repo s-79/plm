@@ -63,13 +63,16 @@
                             <input type="text" class="form-control" id="nationalite" placeholder="Nationalité">
                             <label for="nationalite">Nationalité</label>
                         </div>
-                        <div class="mx-3 mt-4 py-1 ps-1 mb-4">
-                            <div class="form-check">
+                        <div class="row mx-3 mt-4 ps-1 mb-4">
+                            <div class="form-check col-6">
                                 <label class="form-check-label text-white" for="adherent">Adhérent.e</label>
                                 <input class="form-check-input" type="checkbox" value="" id="adherent">
                             </div>
+                            <div class="form-check col-6">
+                                <label class="form-check-label text-white" for="ami">Ambassadeur MI</label>
+                                <input class="form-check-input" type="checkbox" value="" id="ami">
+                            </div>
                         </div>
-
                     </div>
                 </div>
                 <!--                                                                                                              Contact -->
@@ -90,16 +93,22 @@
                             <label for="facebook">Facebook</label>
                         </div>
                         <div class="form-floating mx-3 mt-3">
-                            <input type="text" class="form-control" id="skype" placeholder="Skype">
-                            <label for="skype">Skype</label>
-                        </div>
-                        <div class="form-floating mx-3 mt-3">
                             <input type="text" class="form-control" id="insta" placeholder="Instagram">
                             <label for="instagram">Instagram</label>
                         </div>
                         <div class="form-floating mx-3 mt-3 mb-3">
                             <textarea class="form-control" placeholder="Contact en cas d'urgence" id="urgence"></textarea>
                             <label for="urgence">Contact en cas d'urgence</label>
+                        </div>
+                        <div class="row mx-3 mt-4 ps-1 mb-4">
+                            <div class="form-check col-6">
+                                <label class="form-check-label text-white" for="droits_image">Droits à l'image</label>
+                                <input class="form-check-input" type="checkbox" value="" id="droits_image">
+                            </div>
+                            <div class="form-check col-6">
+                                <label class="form-check-label text-white" for="rgpd">RGPD</label>
+                                <input class="form-check-input" type="checkbox" value="" id="rgpd">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -268,6 +277,7 @@
                         <div class="form-floating mx-3 mt-4">
                             <select class="form-select" id="statut" aria-label="Statut emploi">
                                 <option selected value="">Séléctionner le statut emploi</option>
+                                <!-- Si changement ajouter une modif dans js pour créer le statut 2 -->
                                 <option value="DE de moins d'un an">DE de moins d'un an</option>
                                 <option value="DE de plus d'un an">DE de plus d'un an</option>
                                 <option value="En CDD">En CDD</option>

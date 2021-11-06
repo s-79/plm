@@ -73,12 +73,17 @@ $(function(){
         const nationalite = $("#nationalite").val();
         let adherent =  $("#adherent").is(':checked');
         if(adherent)adherent=1;else{adherent=0};
+        let ami =  $("#ami").is(':checked');
+        if(ami)ami=1;else{ami=0};
         const email = $("#email").val();
         const tel = $("#tel").val();
         const facebook = $("#facebook").val();
-        const skype = $("#skype").val();
         const insta = $("#insta").val();
         const urgence = $("#urgence").val();
+        let droits_image =  $("#droits_image").is(':checked');
+        if(droits_image)droits_image=1;else{droits_image=0};
+        let rgpd =  $("#rgpd").is(':checked');
+        if(rgpd)rgpd=1;else{rgpd=0};
         const adresse = $("#adresse").val();
         const id_ville = $("#ville").val();
         const nom_ville = $("#nom_ville_none").val();
@@ -103,7 +108,16 @@ $(function(){
         const langues = $("#langues").val();
         let at_anglais =  $("#at_anglais").is(':checked');
         if(at_anglais)at_anglais=1;else{at_anglais=0};
+
         const statut = $("#statut").val();
+        let statut2 = "";
+        if(statut = "DE de moins d'un an" || "DE de plus d'un an") statut2 = "Demandeur d'emploi";
+        if(statut = "En CDD" || "En CDI" || "En intérim") statut2 = "En emploi";
+        if(statut = "Etudiant") statut2 = "Etudiant";
+        if(statut = "Service civique") statut2 = "Service civique";
+        if(statut = "En formation") statut2 = "En formation";
+        if(statut = "Autre") statut2 = "Autre";
+
         const pe = $("#pe").val();
         const rsa = $("#rsa").val();
         const id_evt = $("#sensibilisation").val();
@@ -114,14 +128,14 @@ $(function(){
         } else {
             // ----------------------------------------------------------------- La longueur des champs est-elles bien inférieur à celle attendue dans la BDD ?
             if(vLen("Nom",nom,100) && vLen("Prénom",prenom,100) && vLen("Email",email,100) && vLen("Téléphone",tel,50)
-            && vLen("Facebook",facebook,100) && vLen("Skype",skype,100) && vLen("Instagram",insta,100) && vLen("Urgence",urgence,100)
+            && vLen("Facebook",facebook,100) && vLen("Instagram",insta,100) && vLen("Urgence",urgence,100)
             && vLen("Adresse",adresse,100) && vLen("Nom du référent",nom_ref,100) && vLen("Téléphone du référent",tel_ref,50)
             && vLen("Email du référent",email_ref,100) && vLen("Formation",formation,100) && vLen("Diplôme",diplome,100)
             && vLen("Autres langues parlées",langues,255)) {
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Create(npv, genre, prenom, nom, ddn, nationalite, adherent, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, pe, rsa, id_evt);
+                jeune_Create(npv, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt);
             }
         }
     })
@@ -139,12 +153,17 @@ $(function(){
         const nationalite = $("#nationalite").val();
         let adherent =  $("#adherent").is(':checked');
         if(adherent)adherent=1;else{adherent=0};
+        let ami =  $("#ami").is(':checked');
+        if(ami)ami=1;else{ami=0};
         const email = $("#email").val();
         const tel = $("#tel").val();
         const facebook = $("#facebook").val();
-        const skype = $("#skype").val();
         const insta = $("#insta").val();
         const urgence = $("#urgence").val();
+        let droits_image =  $("#droits_image").is(':checked');
+        if(droits_image)droits_image=1;else{droits_image=0};
+        let rgpd =  $("#rgpd").is(':checked');
+        if(rgpd)rgpd=1;else{rgpd=0};
         const adresse = $("#adresse").val();
         const id_ville = $("#ville").val();
         const nom_ville = $("#nom_ville_none").val();
@@ -169,7 +188,16 @@ $(function(){
         const langues = $("#langues").val();
         let at_anglais =  $("#at_anglais").is(':checked');
         if(at_anglais)at_anglais=1;else{at_anglais=0};
+
         const statut = $("#statut").val();
+        let statut2 = "";
+        if(statut = "DE de moins d'un an" || "DE de plus d'un an") statut2 = "Demandeur d'emploi";
+        if(statut = "En CDD" || "En CDI" || "En intérim") statut2 = "En emploi";
+        if(statut = "Etudiant") statut2 = "Etudiant";
+        if(statut = "Service civique") statut2 = "Service civique";
+        if(statut = "En formation") statut2 = "En formation";
+        if(statut = "Autre") statut2 = "Autre";
+
         const pe = $("#pe").val();
         const rsa = $("#rsa").val();
         const id_evt = $("#sensibilisation").val();
@@ -180,14 +208,14 @@ $(function(){
         } else {
             // ----------------------------------------------------------------- La longueur des champs est-elles bien inférieur à celle attendue dans la BDD ?
             if(vLen("Nom",nom,100) && vLen("Prénom",prenom,100) && vLen("Email",email,100) && vLen("Téléphone",tel,50)
-            && vLen("Facebook",facebook,100) && vLen("Skype",skype,100) && vLen("Instagram",insta,100) && vLen("Urgence",urgence,100)
+            && vLen("Facebook",facebook,100) && vLen("Instagram",insta,100) && vLen("Urgence",urgence,100)
             && vLen("Adresse",adresse,100) && vLen("Nom du référent",nom_ref,100) && vLen("Téléphone du référent",tel_ref,50)
             && vLen("Email du référent",email_ref,100) && vLen("Formation",formation,100) && vLen("Diplôme",diplome,100)
             && vLen("Autres langues parlées",langues,255)) {
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Update(npv, id, genre, prenom, nom, ddn, nationalite, adherent, email, tel, facebook, skype, insta, urgence, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, pe, rsa, id_evt);
+                jeune_Update(npv, id, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt);
             }
         }
     })
