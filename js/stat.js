@@ -32,7 +32,9 @@ $(function(){
 
 const stat_Reset = () => {
     ajaxListAnnee();
-    ajaxListContratVille();
+    // ajaxListContratVille();
+    $("#contrat_ville").html('<option selected value="">Séléctionner un territoire</option><option value="75">Tout Paris</option><option value="91">Tout 91</option><option value="93">Tout 93</option><option value="95">Tout 95</option><option value="Paris 11, 13, 18, 19, 20ème">Paris 11, 13, 18, 19, 20ème</option><option value="Plaine commune">Plaine commune</option><option value="Hors contrat de ville">Hors contrat de ville</option><option value="Est-Ensemble">Est-Ensemble</option><option value="Grand Paris Grand Est">Grand Paris Grand Est</option><option value="Terre de France (Sevran, Tremblay, Villepinte)">Terre de France (Sevran, Tremblay, Villepinte)</option>');
+
     $("#mission").html('<option selected value="">Séléctionner une mission</option><option value="0">Mission 0</option><option value="0-1">Mission 0 et 1</option><option value="1">Mission 1</option><option value="2">Mission 2</option>');
 
     ajaxStat("genre", 100, "", "0-1", "");

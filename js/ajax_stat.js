@@ -88,20 +88,20 @@ const ajaxListAnnee = () => {
     });
 }
 
-const ajaxListContratVille = () => {
-    $.ajax({
-        url: 'php/stat_Get.php',
-        dataType: 'JSON',
-        data : {contrat_ville:"contrat_ville"},
-        success: function(response){
-            $("#contrat_ville").html("<option selected value=''>Séléctionner un contrat de ville</option>")
-            let res = "";
-            const len = response.length;
-            for (let i = 0; i < len; i++) {
-                const contrat_ville = response[i].contrat_ville;
-                res += `<option value="${contrat_ville}">${contrat_ville}</option>`;
-            }
-            $("#contrat_ville").append(res);
-        }
-    });
-}
+// const ajaxListContratVille = () => {
+//     $.ajax({
+//         url: 'php/stat_Get.php',
+//         dataType: 'JSON',
+//         data : {contrat_ville:"contrat_ville"},
+//         success: function(response){
+//             $("#contrat_ville").html("<option selected value=''>Séléctionner un contrat de ville</option>")
+//             let res = "";
+//             const len = response.length;
+//             for (let i = 0; i < len; i++) {
+//                 const contrat_ville = response[i].contrat_ville;
+//                 res += `<option value="${contrat_ville}">${contrat_ville}</option>`;
+//             }
+//             $("#contrat_ville").append(res);
+//         }
+//     });
+// }

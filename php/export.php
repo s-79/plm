@@ -11,14 +11,16 @@ if($view == "jeune") {
     $query = "CALL csv_jeune_Get()";
     $result = mysqli_query($con,$query);
 
-    $en_tete = "ADH,GENRE,PRENOM,NOM,DDN,AGE,SENSIBILISATION,EMAIL,TEL,VILLE,CONTRAT,DEP,QPV,NOM_QPV,PRIJ,TYPE_ORGA,NOM_ORGA,NIVEAU,ANGLAIS,EMPLOI,PE,RSA,GJ,ACCOMP,MOBILITE,REFERENT\n";
+    $en_tete = "ADH,AMI,D_IMAGE,RGPD,GENRE,PRENOM,NOM,AGE,SENSIBILISATION,EMAIL,TEL,VILLE,CONTRAT,DEP,QPV,NOM_QPV,PRIJ,TYPE_ORGA,NOM_ORGA,NIVEAU,ANGLAIS,EMPLOI,GJ,ACCOMP,MOBILITE,REFERENT\n";
 
     while($row = mysqli_fetch_array($result)){
         $adherent = $row['adherent'];
+        $ami = $row['ami'];
+        $droits_image = $row['droits_image'];
+        $rgpd = $row['rgpd'];
         $genre = $row['genre'];
         $prenom = $row['prenom'];
         $nom = $row['nom'];
-        $ddn = $row['ddn'];
         $age = $row['age'];
         $nom_evt = $row['nom_evt'];
         $email = $row['email'];
@@ -34,8 +36,6 @@ if($view == "jeune") {
         $niveau = $row['niveau'];
         $niveau_anglais = $row['niveau_anglais'];
         $statut = $row['statut'];
-        $pe = $row['pe'];
-        $rsa = $row['rsa'];
         $gj = $row['gj'];
         $acc = $row['acc'];
         $mob = $row['mob'];
@@ -43,10 +43,12 @@ if($view == "jeune") {
 
         $return_arr[] = array(
             "adherent" => $adherent,
+            "ami" => $ami,
+            "droits_image" => $droits_image,
+            "rgpd" => $rgpd,
             "genre" => $genre,
             "prenom" => $prenom,
             "nom" => $nom,
-            "ddn" => $ddn,
             "age" => $age,
             "nom_evt" => $nom_evt,
             "email" => $email,
@@ -62,8 +64,6 @@ if($view == "jeune") {
             "niveau" => $niveau,
             "niveau_anglais" => $niveau_anglais,
             "statut" => $statut,
-            "pe" => $pe,
-            "rsa" => $rsa,
             "gj" => $gj,
             "acc" => $acc,
             "mob" => $mob,

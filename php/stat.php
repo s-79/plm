@@ -26,17 +26,36 @@ if ($stmt = $con->prepare($query)) {
         $stmt->close();
 }
 
-$datasets = array (
-    'data'=> $data,
-    'backgroundColor'=> [
-        'rgba(25, 30, 54, 1)',
-        'rgba(101, 178, 222, 1)',
-        'rgba(218, 51, 80, 1)',
-        'rgba(240, 173, 78, 1)',
-        'rgba(223, 186, 132, 1)',
-        'rgba(200, 184, 162, 1)'
-    ]
-);
+// Adaptation des couleurs
+if ($select == 'niveau') { $datasets = array ('data'=> $data, 'backgroundColor'=> [
+            'rgba(218, 51, 80, 1)', // Rose
+            'rgba(200, 184, 162, 1)', // Marron
+            'rgba(223, 186, 132, 1)', // Jaune-Marron
+            'rgba(240, 173, 78, 1)', // Jaune
+            'rgba(101, 178, 222, 1)', // Bleu clair
+            'rgba(25, 30, 54, 1)' // Bleu foncé
+        ]
+    );
+} elseif ($select == 'statut') { $datasets = array ('data'=> $data, 'backgroundColor'=> [
+            'rgba(240, 173, 78, 1)', // Jaune
+            'rgba(223, 186, 132, 1)', // Jaune-Marron
+            'rgba(25, 30, 54, 1)', // Bleu foncé
+            'rgba(218, 51, 80, 1)', // Rose
+            'rgba(101, 178, 222, 1)', // Bleu clair
+            'rgba(200, 184, 162, 1)' // Marron
+        ]
+    );
+} else { $datasets = array ('data'=> $data, 'backgroundColor'=> [
+            'rgba(25, 30, 54, 1)', // Bleu foncé
+            'rgba(101, 178, 222, 1)', // Bleu clair
+            'rgba(218, 51, 80, 1)', // Rose
+            'rgba(240, 173, 78, 1)', // Jaune
+            'rgba(223, 186, 132, 1)', // Jaune-Marron
+            'rgba(200, 184, 162, 1)' // Marron
+        ]
+    );
+
+}
 
 $data = array('labels'=>$labels, 'datasets'=> array($datasets));
 
@@ -44,7 +63,7 @@ if($data) echo json_encode($data);
 
 function stats($select, $annee, $mission, $contrat_ville, $vue, $vueM2) {
     if ($mission == "0-1") {
-        $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `annee` = '$annee' AND (`mission` = 0 OR `mission` = 1) AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+        $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `annee` = '$annee' AND (`mission` = 0 OR `mission` = 1) AND (`contrat_ville` = '$contrat_ville' OR `departement` = '$contrat_ville') GROUP BY `$select` DESC;";
 
         if (!$contrat_ville) {
         $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `annee` = '$annee' AND (`mission` = 0 OR `mission` = 1) GROUP BY `$select` DESC;";
@@ -54,12 +73,12 @@ function stats($select, $annee, $mission, $contrat_ville, $vue, $vueM2) {
             }
 
         } elseif (!$annee) {
-            $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE (`mission` = 0 OR `mission` = 1) AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+            $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE (`mission` = 0 OR `mission` = 1) AND (`contrat_ville` = '$contrat_ville' OR `departement` = '$contrat_ville') GROUP BY `$select` DESC;";
         }
 
     // DISTINCT car dans la vue, les id apparaissent plusieurs fois
     } elseif ($mission == "2") {
-        $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM $vueM2 WHERE `annee` = '$annee' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+        $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM $vueM2 WHERE `annee` = '$annee' AND (`contrat_ville` = '$contrat_ville' OR `departement` = '$contrat_ville') GROUP BY `$select` DESC;";
 
         if (!$contrat_ville) {
         $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM $vueM2 WHERE `annee` = '$annee' GROUP BY `$select` DESC;";
@@ -69,11 +88,11 @@ function stats($select, $annee, $mission, $contrat_ville, $vue, $vueM2) {
             }
 
         } elseif (!$annee) {
-            $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM $vueM2 WHERE `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+            $query = "SELECT DISTINCT `$select`, COUNT(*) count FROM $vueM2 WHERE (`contrat_ville` = '$contrat_ville' OR `departement` = '$contrat_ville') GROUP BY `$select` DESC;";
         }
 
     } else {
-        $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `annee` = '$annee' AND `mission` = '$mission' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+        $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `annee` = '$annee' AND `mission` = '$mission' AND (`contrat_ville` = '$contrat_ville' OR `departement` = '$contrat_ville') GROUP BY `$select` DESC;";
 
         if (!$contrat_ville) {
         $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `annee` = '$annee' AND `mission` = '$mission' GROUP BY `$select` DESC;";
@@ -83,7 +102,7 @@ function stats($select, $annee, $mission, $contrat_ville, $vue, $vueM2) {
             }
 
         } elseif (!$annee) {
-            $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `mission` = '$mission' AND `contrat_ville` = '$contrat_ville' GROUP BY `$select` DESC;";
+            $query = "SELECT `$select`, COUNT(*) count FROM $vue WHERE `mission` = '$mission' AND (`contrat_ville` = '$contrat_ville' OR `departement` = '$contrat_ville') GROUP BY `$select` DESC;";
         }
 
     }
