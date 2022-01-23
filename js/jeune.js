@@ -111,8 +111,8 @@ $(function(){
 
         const statut = $("#statut").val();
         let statut2 = "";
-        if(statut === "DE de moins d'un an" || "DE de plus d'un an") statut2 = "Demandeur d'emploi";
-        if(statut === "En CDD" || "En CDI" || "En intérim") statut2 = "En emploi";
+        if(statut === ("DE de moins d'un an" || "DE de plus d'un an")) statut2 = "Demandeur d'emploi";
+        if(statut === ("En CDD" || "En CDI" || "En intérim")) statut2 = "En emploi";
         if(statut === "Etudiant") statut2 = "Etudiant";
         if(statut === "Service civique") statut2 = "Service civique";
         if(statut === "En formation") statut2 = "En formation";
@@ -191,12 +191,15 @@ $(function(){
 
         const statut = $("#statut").val();
         let statut2 = "";
-        if(statut === "DE de moins d'un an" || "DE de plus d'un an") statut2 = "Demandeur d'emploi";
-        if(statut === "En CDD" || "En CDI" || "En intérim") statut2 = "En emploi";
+        if(statut === ("DE de moins d'un an" || "DE de plus d'un an")) statut2 = "Demandeur d'emploi";
+        if(statut === ("En CDD" || "En CDI" || "En intérim")) statut2 = "En emploi";
         if(statut === "Etudiant") statut2 = "Etudiant";
         if(statut === "Service civique") statut2 = "Service civique";
         if(statut === "En formation") statut2 = "En formation";
         if(statut === "Autre") statut2 = "Autre";
+
+        alert(statut);
+        alert(statut2);
 
         const pe = $("#pe").val();
         const rsa = $("#rsa").val();
