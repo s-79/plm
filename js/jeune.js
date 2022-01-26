@@ -198,9 +198,6 @@ $(function(){
         if(statut === "En formation") statut2 = "En formation";
         if(statut === "Autre") statut2 = "Autre";
 
-        alert(statut);
-        alert(statut2);
-
         const pe = $("#pe").val();
         const rsa = $("#rsa").val();
         const id_evt = $("#sensibilisation").val();
