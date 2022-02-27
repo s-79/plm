@@ -11,7 +11,7 @@ if($view == "jeune") {
     $query = "CALL csv_jeune_Get()";
     $result = mysqli_query($con,$query);
 
-    $en_tete = "ADH,AMI,D_IMAGE,RGPD,GENRE,PRENOM,NOM,AGE,SENSIBILISATION,EMAIL,TEL,VILLE,CONTRAT,DEP,QPV,NOM_QPV,PRIJ,TYPE_ORGA,NOM_ORGA,NIVEAU,ANGLAIS,EMPLOI,GJ,ACCOMP,MOBILITE,REFERENT\n";
+    $en_tete = "ADH,AMI,D_IMAGE,RGPD,GENRE,PRENOM,NOM,AGE,SENSIBILISATION,EMAIL,TEL,VILLE,CONTRAT,DEP,QPV,NOM_QPV,PRIJ,TYPE_ORGA,NOM_ORGA,NIVEAU,ANGLAIS,EMPLOI,GJ,ACCOMP,MOBILITE,REFERENT,DERNIER_RDV\n";
 
     while($row = mysqli_fetch_array($result)){
         $adherent = $row['adherent'];
@@ -40,6 +40,7 @@ if($view == "jeune") {
         $acc = $row['acc'];
         $mob = $row['mob'];
         $ref = $row['ref'];
+        $last_evt = $row['last_evt'];
 
         $return_arr[] = array(
             "adherent" => $adherent,
@@ -67,7 +68,8 @@ if($view == "jeune") {
             "gj" => $gj,
             "acc" => $acc,
             "mob" => $mob,
-            "ref" => $ref
+            "ref" => $ref,
+            "last_evt" => $last_evt
         );
     }
 }
@@ -77,7 +79,7 @@ if($view == "evt") {
     $query = "CALL csv_evt_Get()";
     $result = mysqli_query($con,$query);
 
-    $en_tete = "MISSION,DATE,VILLE,DEP,CONTRAT_VILLE,TYPE,VISIO,NB_JEUNES,NB_PROS,DUREE,INTERVENANT·E\n";
+    $en_tete = "MISSION,DATE,VILLE,DEP,CONTRAT_VILLE,TYPE,VISIO,NB_JEUNES,NB_PROS,DUREE,INTERVENANT·E,VILLE_JEUNE,CV_JEUNE\n";
 
     while($row = mysqli_fetch_array($result)){
         $mission = $row['mission'];
@@ -91,6 +93,8 @@ if($view == "evt") {
         $nb_pros = $row['nb_pros'];
         $duree = $row['duree'];
         $intervenant = $row['intervenant'];
+        $ville_jeune = $row['ville_jeune'];
+        $cv_jeune = $row['cv_jeune'];
 
         $return_arr[] = array(
             "mission" => $mission,
@@ -103,7 +107,9 @@ if($view == "evt") {
             "nb_jeunes" => $nb_jeunes,
             "nb_pros" => $nb_pros,
             "duree" => $duree,
-            "intervenant" => $intervenant
+            "intervenant" => $intervenant,
+            "ville_jeune" => $ville_jeune,
+            "cv_jeune" => $cv_jeune
         );
     }
 }
