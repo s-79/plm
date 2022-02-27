@@ -72,6 +72,7 @@ const jeune_Get = (id) => {
             const statut = response[0].statut;
             const pe = response[0].pe;
             const rsa = response[0].rsa;
+            const connu = response[0].connu;
 
             $("#id").val(id);
             $("#genre").val(genre);
@@ -117,14 +118,15 @@ const jeune_Get = (id) => {
             $("#at_anglais").prop('checked', false);
             if (at_anglais === "1") $("#at_anglais").prop('checked', true);
             $("#statut").val(statut);
-            $("#pe").val(pe);
-            $("#rsa").val(rsa);
+            if (pe === "1") $("#pe").prop('checked', true);
+            if (rsa === "1") $("#rsa").prop('checked', true);
             acc_List_Evt("#sensibilisation", id_evt);
+            $("#connu").val(connu);
         }
     });
 }
 // ----------------------------------------------------------------------------- ! ! ! - - C R E A T E - - ! ! ! */
-const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt) => {
+const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt, connu) => {
     $.ajax({
         //---------------------------------------------------------------------- Vérification : Le nom du jeune existe-t-il déjà dans la BDD ?
         url: "php/exist.php",
@@ -141,7 +143,7 @@ const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent, ami, 
                         email:email, tel:tel, facebook:facebook, insta:insta, urgence:urgence, droits_image:droits_image, rgpd:rgpd, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
                         id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref, ml:ml, gj:gj,
                         formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues, at_anglais:at_anglais,
-                        statut:statut, statut2:statut2, pe:pe, rsa:rsa, id_evt:id_evt},
+                        statut:statut, statut2:statut2, pe:pe, rsa:rsa, id_evt:id_evt, connu:connu},
                     complete: function(){
                         //------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement à la sensibilisation
                         jeune_Get_Id(npv, id_evt);
@@ -175,7 +177,7 @@ const jeune_Update = (npv, id, genre, prenom, nom, ddn, nationalite, adherent, a
     email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv,
     id_orga, nom_ref, tel_ref, email_ref, ml, gj,
     formation, niveau, diplome, niveau_anglais, langues, at_anglais,
-    statut, statut2, pe, rsa, id_evt) => {
+    statut, statut2, pe, rsa, id_evt, connu) => {
     $.ajax({
         url: 'php/jeune.php',
         dataType: 'JSON',
@@ -183,7 +185,7 @@ const jeune_Update = (npv, id, genre, prenom, nom, ddn, nationalite, adherent, a
             email:email, tel:tel, facebook:facebook, insta:insta, urgence:urgence, droits_image:droits_image, rgpd:rgpd, adresse:adresse, id_ville:id_ville, qpv:qpv, id_qpv:id_qpv,
             id_orga:id_orga, nom_ref:nom_ref, tel_ref:tel_ref, email_ref:email_ref, ml:ml, gj:gj,
             formation:formation, niveau:niveau, diplome:diplome, niveau_anglais:niveau_anglais, langues:langues, at_anglais:at_anglais,
-            statut:statut, statut2:statut2, pe:pe, rsa:rsa, id_evt:id_evt},
+            statut:statut, statut2:statut2, pe:pe, rsa:rsa, id_evt:id_evt, connu:connu},
         complete: function(){
             alert(`La fiche de ${npv} a bien été modifiée.`);
             // ----------------------------------------------------------------- Réinitialisation du formulaire et des listes select dynamiques sur la page jeune (fonction dans jeune_Create)

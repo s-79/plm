@@ -39,6 +39,7 @@ $statut2 = mysqli_real_escape_string($con, $_GET['statut2']);
 $pe = mysqli_real_escape_string($con, $_GET['pe']);
 $rsa = mysqli_real_escape_string($con, $_GET['rsa']);
 $id_evt = mysqli_real_escape_string($con, $_GET['id_evt']);
+$connu = mysqli_real_escape_string($con, $_GET['connu']);
 
 if($id_del) {
     $query = "CALL jeune_Delete('$id_del')";
@@ -46,12 +47,12 @@ if($id_del) {
 } elseif($id) {
     $query = "CALL jeune_Update('$id', '$genre', '$prenom', '$nom', '$ddn', '$nationalite', '$adherent',  '$ami', '$email', '$tel', '$facebook', '$insta', '$urgence', '$droits_image', '$rgpd',
     '$adresse', '$id_ville', '$qpv', '$id_qpv', '$id_orga', '$nom_ref', '$tel_ref', '$email_ref', '$ml', '$gj',
-    '$formation', '$niveau', '$diplome', '$niveau_anglais', '$langues', '$at_anglais', '$statut', '$statut2', '$pe', '$rsa', '$id_evt')";
+    '$formation', '$niveau', '$diplome', '$niveau_anglais', '$langues', '$at_anglais', '$statut', '$statut2', '$pe', '$rsa', '$id_evt', '$connu')";
 
 } else {
     $query = "CALL jeune_Create ('$genre', '$prenom', '$nom', '$ddn', '$nationalite', '$adherent',  '$ami', '$email', '$tel', '$facebook', '$insta', '$urgence', '$droits_image', '$rgpd',
     '$adresse', '$id_ville', '$qpv', '$id_qpv', '$id_orga', '$nom_ref', '$tel_ref', '$email_ref', '$ml', '$gj',
-    '$formation', '$niveau', '$diplome', '$niveau_anglais', '$langues', '$at_anglais', '$statut', '$statut2', '$pe', '$rsa', '$id_evt')";
+    '$formation', '$niveau', '$diplome', '$niveau_anglais', '$langues', '$at_anglais', '$statut', '$statut2', '$pe', '$rsa', '$id_evt', '$connu')";
 }
 
 $result = $con->prepare($query);

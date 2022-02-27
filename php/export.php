@@ -77,7 +77,7 @@ if($view == "evt") {
     $query = "CALL csv_evt_Get()";
     $result = mysqli_query($con,$query);
 
-    $en_tete = "MISSION,DATE,VILLE,DEP,CONTRAT_VILLE,TYPE,VISIO,NB_JEUNES,NB_PROS\n";
+    $en_tete = "MISSION,DATE,VILLE,DEP,CONTRAT_VILLE,TYPE,VISIO,NB_JEUNES,NB_PROS,DUREE,INTERVENANT·E\n";
 
     while($row = mysqli_fetch_array($result)){
         $mission = $row['mission'];
@@ -89,6 +89,8 @@ if($view == "evt") {
         $visio = $row['visio'];
         $nb_jeunes = $row['nb_jeunes'];
         $nb_pros = $row['nb_pros'];
+        $duree = $row['duree'];
+        $intervenant = $row['intervenant'];
 
         $return_arr[] = array(
             "mission" => $mission,
@@ -99,7 +101,9 @@ if($view == "evt") {
             "type" => $type,
             "visio" => $visio,
             "nb_jeunes" => $nb_jeunes,
-            "nb_pros" => $nb_pros
+            "nb_pros" => $nb_pros,
+            "duree" => $duree,
+            "intervenant" => $intervenant
         );
     }
 }

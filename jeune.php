@@ -100,7 +100,7 @@
                             <textarea class="form-control" placeholder="Contact en cas d'urgence" id="urgence"></textarea>
                             <label for="urgence">Contact en cas d'urgence</label>
                         </div>
-                        <div class="row mx-3 mt-4 ps-1 mb-4">
+                        <div class="row mx-3 mt-4 pt-2 ps-1 mb-4">
                             <div class="form-check col-6">
                                 <label class="form-check-label text-white" for="droits_image">Droits à l'image</label>
                                 <input class="form-check-input" type="checkbox" value="" id="droits_image">
@@ -150,7 +150,7 @@
                             </select>
                             <label for="nom_qpv">Quartier QPV</label>
                         </div>
-                        <div class="form-group row mx-0 py-2 mt-4 mb-4">
+                        <div class="form-group row mx-0 pb-1 pt-2 mt-4 mb-4">
                             <label class="form-check-label col-2 text-white" for="prij">
                                 PRIJ
                             </label>
@@ -290,7 +290,7 @@
                             </select>
                             <label for="statut">Statut emploi</label>
                         </div>
-                        <div class="form-floating mx-3 mt-3">
+                        <!-- <div class="form-floating mx-3 mt-3">
                             <select class="form-select" id="pe" aria-label="Inscription Pôle Emploi">
                                 <option selected value="">Inscription Pôle Emploi</option>
                                 <option value="Oui">Oui</option>
@@ -305,12 +305,39 @@
                                 <option value="Non">Non</option>
                             </select>
                             <label for="rsa">Allocataire RSA</label>
+                        </div> -->
+                        <div class="row mx-3 mt-4 ps-1 mb-4">
+                            <div class="form-check col-6">
+                                <label class="form-check-label text-white" for="pe">Pôle Emploi</label>
+                                <input class="form-check-input" type="checkbox" value="" id="pe">
+                            </div>
+                            <div class="form-check col-6">
+                                <label class="form-check-label text-white" for="rsa">Allocataire RSA</label>
+                                <input class="form-check-input" type="checkbox" value="" id="rsa">
+                            </div>
                         </div>
-                        <h2 class="mt-3">Sensibilisation</h2>
+                        <h2 class="mt-3 pb-1 pt-2">Sensibilisation</h2>
                         <div class="form-floating mx-3 mt-3">
                             <select class="form-select" id="sensibilisation" aria-label="Sensibilisation *">
                             </select>
                             <label for="sensibilisation">Sensibilisation *</label>
+                        </div>
+                        <div class="form-floating mx-3 mt-3">
+                            <select class="form-select" id="connu" aria-label="connu">
+                                <option selected value="">Comment le / la jeune a connu PLM ?</option>
+                                <option value="Mission locale">Mission locale</option>
+                                <option value="Autre structure jeunesse locale">Autre structure jeunesse locale</option>
+                                <option value="Bouche à oreille">Bouche à oreille</option>
+                                <option value="Site PLM">Site PLM</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Youtube">Youtube</option>
+                                <option value="Forum / Salon">Forum / Salon</option>
+                                <option value="Pôle emploi">Pôle emploi</option>
+                                <option value="Newsletter">Newsletter</option>
+                                <option value="Autres">Autres</option>
+                            </select>
+                            <label for="connu">Comment le / la jeune a connu PLM ?</label>
                         </div>
                         <div id="btn_jeune_create" class="form-group d-flex justify-content-center pt-1 mt-2 mx-3">
                             <button type="button" id="jeune_create" class="btn btn-primary btn-bleu m-3">&nbsp;Enregistrer&nbsp;<br>la fiche</button>

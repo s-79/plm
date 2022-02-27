@@ -52,6 +52,7 @@ if($id) {
         $statut = $row['statut'];
         $pe = $row['pe'];
         $rsa = $row['rsa'];
+        $connu = $row['connu'];
         $id_evt = $row['id_evt'];
 
         $return_arr[] = array(
@@ -94,6 +95,7 @@ if($id) {
             "statut" => $statut,
             "pe" => $pe,
             "rsa" => $rsa,
+            "connu" => $connu,
             "id_evt" => $id_evt
         );
     }

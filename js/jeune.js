@@ -118,9 +118,14 @@ $(function(){
         if(statut === "En formation") statut2 = "En formation";
         if(statut === "Autre") statut2 = "Autre";
 
-        const pe = $("#pe").val();
-        const rsa = $("#rsa").val();
+        let pe = $("#pe").is(':checked');
+        if(pe)pe=1;else{pe=0};
+        let rsa = $("#rsa").is(':checked');
+        if(rsa)rsa=1;else{rsa=0};
         const id_evt = $("#sensibilisation").val();
+        const connu = $("#connu").val();
+
+
 
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
         if(!genre || !prenom || !nom || !id_ville || !id_evt || (!email && !tel)) {
@@ -135,7 +140,7 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Create(npv, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt);
+                jeune_Create(npv, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt, connu);
             }
         }
     })
@@ -198,9 +203,12 @@ $(function(){
         if(statut === "En formation") statut2 = "En formation";
         if(statut === "Autre") statut2 = "Autre";
 
-        const pe = $("#pe").val();
-        const rsa = $("#rsa").val();
+        let pe = $("#pe").is(':checked');
+        if(pe)pe=1;else{pe=0};
+        let rsa = $("#rsa").is(':checked');
+        if(rsa)rsa=1;else{rsa=0};
         const id_evt = $("#sensibilisation").val();
+        const connu = $("#connu").val();
 
         // --------------------------------------------------------------------- Les champs obligatoires sont-ils vides ?
         if(!genre || !prenom || !nom || !id_ville || (!email && !tel)) {
@@ -215,7 +223,7 @@ $(function(){
                 // ------------------------------------------------------------- Vérif si l'ensemble (prenom, nom, ville) existe déjà dans la BDD
                 const npv = `${prenom} ${nom} - ${nom_ville}`;
                 //-------------------------------------------------------------- Envoie des infos vers la BDD
-                jeune_Update(npv, id, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt);
+                jeune_Update(npv, id, genre, prenom, nom, ddn, nationalite, adherent, ami, email, tel, facebook, insta, urgence, droits_image, rgpd, adresse, id_ville, qpv, id_qpv, id_orga, nom_ref, tel_ref, email_ref, ml, gj, formation, niveau, diplome, niveau_anglais, langues, at_anglais, statut, statut2, pe, rsa, id_evt, connu);
             }
         }
     })

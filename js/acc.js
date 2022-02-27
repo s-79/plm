@@ -108,6 +108,7 @@ $(function(){
     $("#btn_rdv_create").click(function(){
         //---------------------------------------------------------------------- Récupération des données
         const id_jeune = $("#id").val();
+        let id_int = $("#ref").val();
         const dat = $("#create_date_rdv").val();
         const type = $("#create_type_rdv").val();
         let visio =  $("#create_visio_rdv").is(':checked');
@@ -119,7 +120,7 @@ $(function(){
         if(!dat || !type || !duree) alert("Les champs Date, Type et Durée sont obligatoires.");
         //---------------------------------------------------------------------- Création de l'association entre le jeune et le rdv
         else {
-            if(vLen("Commentaires",commentaires,1000)) rdv_Create (id_jeune, dat, type, visio, duree, uuid, commentaires);
+            if(vLen("Commentaires",commentaires,1000)) rdv_Create (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires);
         };
     });
 

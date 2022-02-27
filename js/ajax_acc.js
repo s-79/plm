@@ -363,11 +363,11 @@ const acc_Create_Evt = (id_jeune, id_evt, commentaire, mission) => {
 //-------------------------------------------------------------------------------R E N D E Z - V O U S
 
 //------------------------------------------------------------------------------ Création d'un RDV individuel
-const rdv_Create = (id_jeune, dat, type, visio, duree, uuid, commentaires) => {
+const rdv_Create = (id_jeune, id_int, dat, type, visio, duree, uuid, commentaires) => {
     $.ajax({
         url: 'php/acc.php',
         dataType: 'JSON',
-        data : {id_int:0, dat:dat, type:type, visio:visio, duree:duree, uuid:uuid, commentaires:commentaires},
+        data : {id_int:id_int, dat:dat, type:type, visio:visio, duree:duree, uuid:uuid, commentaires:commentaires},
         complete: function(){
             //------------------------------------------------------------------ Récupération de l'id de la fiche jeune créé et rattachement au rendez-vous
             $.ajax({
