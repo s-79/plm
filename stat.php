@@ -48,27 +48,36 @@ include("header.php"); ?>
         </div>
     </div>
 <!--                                                                            F I L E S -->
-    <div class="row">
-        <div class="col-4 d-flex justify-content-end">
-            <form action="php/export.php" method="post">
-                <!--                                                            Récupération de la valeur dans un input invisible -->
-                <input type="text" class="form-control d-none" name="view" value="jeune">
-                <button id="csv_jeune" type="submit" class="btn btn-outline-primary">CSV Jeune</button>
-            </form>
-        </div>
-        <div class="col-4 d-flex justify-content-center">
-            <form action="php/export.php" method="post">
-                <!--                                                            Récupération de la valeur dans un input invisible -->
-                <input type="text" class="form-control d-none" name="view" value="evt">
-                <button id="csv_evt" type="submit" class="btn btn-outline-primary">CSV Évenement</button>
-            </form>
-        </div>
-        <div class="col-4 d-flex justify-content-start">
-            <form action="php/export.php" method="post">
-                <!--                                                            Récupération de la valeur dans un input invisible -->
-                <input type="text" class="form-control d-none" name="view" value="prj">
-                <button id="csv_prj" type="submit" class="btn btn-outline-primary">CSV Projet</button>
-            </form>
+    <div style="max-width:80%" class="mx-auto mt-3 mb-5">
+        <div class="row">
+            <div class="col-3 d-flex justify-content-around">
+                <form action="php/export.php" method="post">
+                    <!--                                                            Récupération de la valeur dans un input invisible -->
+                    <input type="text" class="form-control d-none" name="view" value="jeune">
+                    <button id="csv_jeune" type="submit" class="btn btn-outline-primary">CSV Jeune</button>
+                </form>
+            </div>
+            <div class="col-3 d-flex justify-content-around">
+                <form action="php/export.php" method="post">
+                    <!--                                                            Récupération de la valeur dans un input invisible -->
+                    <input type="text" class="form-control d-none" name="view" value="evt">
+                    <button id="csv_evt" type="submit" class="btn btn-outline-primary">CSV Évenement</button>
+                </form>
+            </div>
+            <div class="col-3 d-flex justify-content-around">
+                <form action="php/export.php" method="post">
+                    <!--                                                            Récupération de la valeur dans un input invisible -->
+                    <input type="text" class="form-control d-none" name="view" value="prj">
+                    <button id="csv_prj" type="submit" class="btn btn-outline-primary">CSV Projet</button>
+                </form>
+            </div>
+            <div class="col-3 d-flex justify-content-around">
+                <form action="php/export.php" method="post">
+                    <!--                                                            Récupération de la valeur dans un input invisible -->
+                    <input type="text" class="form-control d-none" name="view" value="pro">
+                    <button id="csv_pro" type="submit" class="btn btn-outline-primary">CSV Pro</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

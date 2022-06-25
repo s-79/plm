@@ -11,7 +11,7 @@ if($view == "jeune") {
     $query = "CALL csv_jeune_Get()";
     $result = mysqli_query($con,$query);
 
-    $en_tete = "ADH,AMI,D_IMAGE,RGPD,GENRE,PRENOM,NOM,AGE,SENSIBILISATION,EMAIL,TEL,VILLE,CONTRAT,DEP,QPV,NOM_QPV,PRIJ,TYPE_ORGA,NOM_ORGA,NIVEAU,ANGLAIS,EMPLOI,GJ,ACCOMP,MOBILITE,REFERENT,DERNIER_RDV\n";
+    $en_tete = "ADH,AMI,D_IMAGE,RGPD,GENRE,PRENOM,NOM,AGE,SENSIBILISATION,ANNEE_SENSI,EMAIL,TEL,VILLE,CONTRAT,DEP,QPV,NOM_QPV,PRIJ,TYPE_ORGA,NOM_ORGA,NIVEAU,ANGLAIS,EMPLOI,GJ,ACCOMP,MOBILITE,REFERENT,DERNIER_RDV\n";
 
     while($row = mysqli_fetch_array($result)){
         $adherent = $row['adherent'];
@@ -23,6 +23,7 @@ if($view == "jeune") {
         $nom = $row['nom'];
         $age = $row['age'];
         $nom_evt = $row['nom_evt'];
+        $annee_sensi = $row['annee_sensi'];
         $email = $row['email'];
         $tel = $row['tel'];
         $nom_ville = $row['nom_ville'];
@@ -52,6 +53,7 @@ if($view == "jeune") {
             "nom" => $nom,
             "age" => $age,
             "nom_evt" => $nom_evt,
+            "annee_sensi" => $annee_sensi,
             "email" => $email,
             "tel" => $tel,
             "nom_ville" => $nom_ville,
@@ -144,9 +146,46 @@ if($view == "prj") {
     }
 }
 
+// ----------------------------------------------------------------------------- PRO
+if($view == "pro") {
+    $query = "SELECT * FROM `v_pro`";
+    $result = mysqli_query($con,$query);
+
+    $en_tete = "PRENOM,NOM,FONCTION,SENSIBILISATION,ANNEE_SENSI,MAILING_LIST,MAIL,TEL,COMMENTAIRES,ORGANISME,TYPE,VILLE\n";
+
+    while($row = mysqli_fetch_array($result)){
+        $prenom= $row['prenom'];
+        $nom_pro = $row['nom_pro'];
+        $fonction = $row['fonction'];
+        $nom_evt = $row['nom_evt'];
+        $annee_sensi = $row['annee_sensi'];
+        $mailing = $row['mailing'];
+        $mail = $row['mail'];
+        $tel = $row['tel'];
+        $commentaires = $row['commentaires'];
+        $nom_orga = $row['nom_orga'];
+        $type_orga = $row['type_orga'];
+        $nom_ville = $row['nom_ville'];
+
+        $return_arr[] = array(
+            "prenom" => $prenom,
+            "nom_pro" => $nom_pro,
+            "fonction" => $fonction,
+            "nom_evt" => $nom_evt,
+            "annee_sensi" => $annee_sensi,
+            "mailing" => $mailing,
+            "mail" => $mail,
+            "tel" => $tel,
+            "commentaires" => $commentaires,
+            "nom_orga" => $nom_orga,
+            "type_orga" => $type_orga,
+            "nom_ville" => $nom_ville
+        );
+    }
+}
+
 // ---------------------------------------------------------------------------- Create Csv
-$dir = "csv/";
-$filename = $dir.$view.".csv";
+$filename = "csv_".$view.".csv";
 
 $fp = fopen($filename, 'w') or die("can't open file");
 
