@@ -72,6 +72,7 @@ include("header.php"); ?>
                                 <option value="Webinaire pros">Webinaire pros</option>
                                 <option value="Sensibilisation pros">Sensibilisation pros</option>
                                 <option value="Evt thématique">Evt thématique</option>
+                                <option value="Autre">Autre</option>
                             </select>
                             <label for="type_m1">Type *</label>
                         </div>
