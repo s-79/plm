@@ -12,7 +12,7 @@ $(function(){
             jeune_Search(search);
         } else {
             //------------------------------------------------------------------ Remplissage du champs de recherche de jeunes
-            $("#npv_res").html("<option selected value=''>Séléctionner un jeune</option>");
+            $("#npv_res").html("<option selected value=''>Séléctionner un·e jeune</option>");
             ajaxListNpv("#npv_res");
         }
     });
@@ -42,7 +42,7 @@ $(function(){
 
         //---------------------------------------------------------------------- Récupération de l'id du jeune séléctionné
         const id = $("#npv_res").val();
-        if(!id) alert("Aucun jeune n'a été séléctionné")
+        if(!id) alert("Aucun·e jeune n'a été séléctionné·e")
         //---------------------------------------------------------------------- Récupération des données du jeune
         else {
             //------------------------------------------------------------------ Changement d'interface

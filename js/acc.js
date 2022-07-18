@@ -251,7 +251,7 @@ $(function(){
 
 //------------------------------------------------------------------------------ Fonction de réinitialisation de la liste des types, des durées et des intervenants sur les pages rdv
 const acc_Get = (id) => {
-    if(!id) alert("Aucun jeune n'a été séléctionné")
+    if(!id) alert("Aucun·e jeune n'a été séléctionné·e")
     else {
         //---------------------------------------------------------------------- Affichage du jeune séléctionné lorsqu'on à vient de la page evt ou prj en cliquant dans le tableau
         ajaxListNpv("#npv_res", id);

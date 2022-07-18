@@ -7,7 +7,7 @@ const ajaxListNpv = (liste, id) => {
         dataType: 'JSON',
         data : {v_npv:"v_npv"},
         success: function(response){
-            $(liste).html("<option selected value=''>Séléctionner un jeune</option>")
+            $(liste).html("<option selected value=''>Séléctionner un·e jeune</option>")
             $(liste).append(displayList(response));
             if(id) $(liste).val(id);
         }
@@ -134,7 +134,7 @@ const jeune_Create = (npv, genre, prenom, nom, ddn, nationalite, adherent, ami, 
         data : {nom_jeune:npv},
         success: function(response){
             const exist = parseInt(response[0].exist);
-            if(exist === 1) alert("Création impossible : Il existe déjà un jeune qui porte ce nom et qui habite cette ville dans la base de données.");
+            if(exist === 1) alert("Création impossible : Il existe déjà un·e jeune qui porte ce nom et qui habite cette ville dans la base de données.");
             else {
                 $.ajax({
                     url: 'php/jeune.php',
