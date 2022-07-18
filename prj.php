@@ -54,7 +54,7 @@
                                 <option value="Stage Erasmus +">Stage Erasmus +</option>
                                 <option value="Stage OFQJ">Stage OFQJ</option>
                                 <option value="Stage OFAJ">Stage OFAJ</option>
-                                <option value="Service Civique International">Service Civique International</option>
+                                <option value="Service Civique à l’international">Service Civique à l’international</option>
                                 <option value="PVT">PVT</option>
                                 <option value="Training Course">Training Course</option>
                                 <option value="Emploi">Emploi</option>
