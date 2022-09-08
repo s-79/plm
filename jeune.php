@@ -1,7 +1,7 @@
 <?php include("header.php"); ?>
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-center" style="margin-top: 5em !important;">
+    <div class="d-flex justify-content-center" style="margin-top: 1.5em !important;">
         <div class="row search_bar">
             <!--                                                                                                              Zone de recherche -->
             <div class="col-12 col-sm-6 col-lg-3 py-4 pr-1 pl-3 text-center">

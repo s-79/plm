@@ -1,6 +1,12 @@
 $(function(){
     //-------------------------------------------------------------------------- Toolitips au survol des boutons (+)
     $('[data-toggle="tooltip"]').tooltip();
+    // if(window.devicePixelRatio == 1 ) {
+    // const scale = 'scale(0.9)';
+    //     document.body.style.webkitTransform =  scale;    // Chrome, Opera, Safari
+    //     document.body.style.msTransform =   scale;       // IE 9
+    //     document.body.style.transform = scale;     // General
+    // }
 });
 
 const displayList = (response, sub) => {

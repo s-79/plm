@@ -104,6 +104,12 @@ label {
 }
 
 /* ----------------------------------------------------------------------------- RESPONSIVE*/
+.container-fluid, .modal {
+   -moz-transform: scale(0.9, 0.9);
+   zoom: 0.9;
+   zoom: 90%;
+}
+
 @media screen and (min-width: 576px) and (max-width: 980px){
     .formulaires, .search-bar {
         max-width: 576px !important;

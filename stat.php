@@ -2,7 +2,7 @@
 include("header.php"); ?>
 
 <div class="container-fluid">
-    <div class="d-flex justify-content-center" style="margin-top: 5em !important;">
+    <div class="d-flex justify-content-center" style="margin-top: 2.5em !important;">
         <div class="row search_bar">
             <div class="col-12 col-sm-6 col-lg-3 py-4 pr-1 pl-3 text-center">
                 <select class="form-select" aria-label="Default select example" id="annee">
